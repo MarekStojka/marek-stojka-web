@@ -438,3 +438,10 @@ Vzdálený repozitář MarekStojka/marek-stojka-web byl nyní přímo ověřen j
 SITE_BASE umožňuje / pro vlastní doménu i /marek-stojka-web/ pro projektové Pages. Sdílený withBase v src/lib/site-path.ts je použit na aktivní navigaci, obrázky článků, OG obrázky, favicon a sitemap; Astro řeší generované assety. Patří sem i React harmoniky a jejich data-entry adresy. Tři přechody porovnávají cílovou cestu bez závislosti na podadresáři nebo koncovém lomítku; opraven i relativní cíl popelového vstupu. Noindex stránky nevytvářejí canonical (zejména neexistující /404/).
 
 Ověřeno: npm run build pro kořen i projektový podadresář, nulové chyby Astro/TypeScript, testy cest, 31 HTML stránek a 723/728 lokálních URL; ZIP 16,3 MB bez zdrojů nebo administrace. V prohlížeči hotový podadresářový export: homepage → Kreativita → rubrika, návrat a vstup do Temnoty, mobil 390 px → Humor; obrázky načtené, přechodové vrstvy po dokončení skryté, bez chyb konzole a vodorovného přesahu při mobilní kontrole. Nejde o ověření živého nasazení GitHub workflow.
+
+
+## GitHub Pages veřejně funguje — 6. 11. 2026
+
+Na výslovný pokyn „Nahraj na git“ byl commit 0e57508 nahrán do main přes přihlášený GitHub Desktop. Publikování Publish website (run 42303106284) i Check and build (run 42303106164) úspěšné. Veřejná adresa https://marekstojka.github.io/marek-stojka-web/ vrací HTTP 200; v prohlížeči ověřena homepage a animovaný vstup na /marek-stojka-web/kreativec/ včetně obrázků, bez chyb konzole. Git CLI nemá vlastní uložené přihlášení; GitHub Desktop funguje. Doplněk GitHub je nainstalovaný, jeho nástroje ale v tomto chatu nebyly zpřístupněné.
+
+Původní automatické pages build and deployment přes Jekyll stále souběžně selhává. Nové workflow Astro publikuje úspěšně i tak. Nastavení Source doporučeno přepnout na GitHub Actions; v tomto kroku nebylo vzdálené nastavení změněno. Další push do main spouští připravené automatické nasazení.
