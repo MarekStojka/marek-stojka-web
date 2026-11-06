@@ -19,7 +19,15 @@ import { creativePhotos } from '../data/creative-photos';
   [data-motif] .editorial-topic-photo { inset: 0 0 96px; }
   [data-motif] .editorial-topic-label { min-height: 96px; padding: 22px 20px; }
   /* Motion belongs to the object. Labels and the entire native link stay still. */
-  [data-motif] .editorial-topic-photo img { width: min(62%, 280px); transform: none; transition: none; }
+  [data-motif] .editorial-topic-photo img { width: min(62%, 280px); scale: var(--paper-scale, 1); transform: none; transition: none; }
+  /* Equal optical area for different silhouettes; independent of gesture transforms. */
+  [data-motif="odborne"] { --paper-scale: .92; }
+  [data-motif="svobodne"] { --paper-scale: .95; }
+  [data-motif="cviceni"] { --paper-scale: .912; }
+  [data-motif="okenko"] { --paper-scale: .96; }
+  [data-motif="recenze"] { --paper-scale: 1.027; }
+  [data-motif="spoluprace"] { --paper-scale: .909; }
+  [data-motif="inspirace"] { --paper-scale: .96; }
   @media (max-width: 1000px) {
     .editorial-topic-tile[data-motif] { min-height: 360px; }
   }
