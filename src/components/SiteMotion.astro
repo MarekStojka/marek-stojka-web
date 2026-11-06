@@ -1,0 +1,134 @@
+<script>
+  let disposeMotion = () => {};
+  let initializedBody: HTMLElement | null = null;
+
+  function setupSiteMotion() {
+    if (initializedBody === document.body) return;
+    disposeMotion();
+    initializedBody = document.body;
+    const controller = new AbortController();
+    const { signal } = controller;
+    const media = matchMedia('(prefers-reduced-motion: reduce)');
+    const root = document.documentElement;
+    const directoryCards = [...document.querySelectorAll<HTMLElement>('.editorial-topic-tile')];
+    const offeringParts = [...document.querySelectorAll<HTMLElement>('.offering-heading, .offering-tile')];
+    const sections = [...document.querySelectorAll<HTMLElement>(
+      'main section, main > header, main > article, main .article-content-block, main .humor-photo-pair, main .humor-margin-note, main .editorial-other-rubrics, .shared-footer'
+    )];
+    const candidates = [...new Set([...sections, ...directoryCards, ...offeringParts])];
+    // Only the smallest content block animates: never fade a parent and child twice.
+    // React accordion internals stay untouched, including before client:visible hydration.
+    const targets = candidates.filter(element =>
+      !element.closest('[data-motion-skip]') &&
+      !candidates.some(other => other !== element && element.contains(other))
+    );
+    const running = new Map<HTMLElement, Animation>();
+    let entryTimer: ReturnType<typeof setTimeout> | undefined;
+
+    function show(element: HTMLElement) {
+      running.get(element)?.cancel();
+      running.delete(element);
+      element.dataset.scrollReveal = 'visible';
+      observer?.unobserve(element);
+    }
+
+    function play(element: HTMLElement, delay = 0) {
+      if (element.dataset.scrollReveal !== 'pending') return;
+      if (media.matches || document.hidden || element.contains(document.activeElement)) {
+        show(element);
+        return;
+      }
+      element.dataset.scrollReveal = 'revealing';
+      observer?.unobserve(element);
+      const animation = element.animate([
+        { opacity: 0, translate: '0 18px' },
+        { opacity: 1, translate: '0 0' },
+      ], { duration: 850, delay, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'backwards' });
+      running.set(element, animation);
+      animation.onfinish = () => { show(element); };
+    }
+
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+      const entering = entries.filter(entry => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left);
+      let rowTop = -Infinity;
+      let column = 0;
+      entering.forEach(entry => {
+        if (Math.abs(entry.boundingClientRect.top - rowTop) > 12) column = 0;
+        rowTop = entry.boundingClientRect.top;
+        play(entry.target as HTMLElement, Math.min(column++, 3) * 75);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' }) : null;
+
+    function finishEntry() {
+      delete root.dataset.siteEntry;
+      targets.forEach(element => {
+        if (element.dataset.scrollReveal === 'entry') show(element);
+      });
+    }
+
+    function showTarget(target: EventTarget | null) {
+      if (!(target instanceof Node)) return;
+      targets.forEach(element => { if (element.contains(target)) show(element); });
+    }
+
+    function showHashTarget() {
+      try { showTarget(document.getElementById(decodeURIComponent(location.hash.slice(1)))); } catch { /* Invalid fragment. */ }
+    }
+
+    function showAll() {
+      finishEntry();
+      targets.forEach(show);
+      observer?.disconnect();
+    }
+
+    if (media.matches || !observer || !Element.prototype.animate) {
+      showAll();
+    } else {
+      const entry = root.hasAttribute('data-site-entry') && !location.hash && scrollY < 80;
+      if (!entry) finishEntry();
+      targets.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const onScreen = element.getClientRects().length > 0 && rect.top < innerHeight - 24;
+        if (onScreen) {
+          // First-paint CSS provides the 2–3s intro. Content already on screen on
+          // subsequent navigations or restored scroll positions stays visible.
+          element.dataset.scrollReveal = entry && element.matches('.editorial-topic-tile') ? 'entry' : 'visible';
+        } else {
+          element.dataset.scrollReveal = 'pending';
+          observer.observe(element);
+        }
+      });
+      if (entry) entryTimer = setTimeout(finishEntry, 2800);
+    }
+
+    document.addEventListener('focusin', event => {
+      finishEntry();
+      showTarget(event.target);
+    }, { signal });
+    window.addEventListener('hashchange', showHashTarget, { signal });
+    showHashTarget();
+    media.addEventListener('change', () => { if (media.matches) showAll(); }, { signal });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        finishEntry();
+        [...running.keys()].forEach(show);
+      }
+    }, { signal });
+    window.addEventListener('pageshow', event => { if (event.persisted) showAll(); }, { signal });
+
+    disposeMotion = () => {
+      controller.abort();
+      clearTimeout(entryTimer);
+      showAll();
+    };
+  }
+
+  document.addEventListener('astro:before-swap', event => {
+    disposeMotion();
+    const incoming = (event as Event & { newDocument: Document }).newDocument;
+    delete incoming.documentElement.dataset.siteEntry;
+  });
+  document.addEventListener('astro:page-load', setupSiteMotion);
+  setupSiteMotion();
+</script>

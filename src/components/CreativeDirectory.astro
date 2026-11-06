@@ -4,7 +4,7 @@ import { withBase } from '../lib/site-path';
 import { creativeCategories } from '../data/creative-categories';
 import { creativePhotos } from '../data/creative-photos';
 ---
-<section class="editorial-directory editorial-photo-directory" id="zapisnik" aria-labelledby="main-title" data-creative-directory>
+<section class="editorial-directory editorial-photo-directory" id="zapisnik" aria-labelledby="main-title" data-creative-directory data-site-intro>
   <h1 id="main-title" class="sr-only">Magazín o kreativitě — vyberte si téma</h1>
   <div class="editorial-topic-tiles">
     {creativeCategories.map((category, index) => <a class="editorial-topic-tile" href={withBase(`/kreativec/magazin/${category.id}`)} data-motif={category.id}>
