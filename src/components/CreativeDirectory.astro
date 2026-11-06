@@ -1,0 +1,107 @@
+---
+import { Image } from 'astro:assets';
+import { withBase } from '../lib/site-path';
+import { creativeCategories } from '../data/creative-categories';
+import { creativePhotos } from '../data/creative-photos';
+---
+<section class="editorial-directory editorial-photo-directory" id="zapisnik" aria-labelledby="main-title" data-creative-directory>
+  <h1 id="main-title" class="sr-only">Magazín o kreativitě — vyberte si téma</h1>
+  <div class="editorial-topic-tiles">
+    {creativeCategories.map((category, index) => <a class="editorial-topic-tile" href={withBase(`/kreativec/magazin/${category.id}`)} data-motif={category.id}>
+      <div class="editorial-topic-photo"><Image src={creativePhotos[category.id]} width={850} format="webp" alt="" loading={index < 4 ? 'eager' : 'lazy'} /></div>
+      <div class="editorial-topic-label"><h2>{category.title}</h2><span aria-hidden="true">↗</span></div>
+    </a>)}
+  </div>
+</section>
+
+<style>
+  /* Motion belongs to the object. Labels and the entire native link stay still. */
+  [data-motif] .editorial-topic-photo img { transform: none; transition: none; }
+  [data-motif="recenze"] .editorial-topic-photo img { transform-origin: 50% 65%; }
+  [data-motif="inspirace"] .editorial-topic-photo img { transform-origin: 50% 72%; }
+</style>
+
+<script>
+  // Short, distinct gestures using the existing photographs; no animation loop.
+  const gestures: Record<string, [string, string]> = {
+    obecne: ['translate(-7%, -3%) rotate(-15deg) scale(1.02)', 'translate(9%, -8%) rotate(20deg) scale(1.05)'],
+    odborne: ['translate(0, -8%) rotate(-5deg) scale(1.06)', 'translate(2%, -3%) rotate(3deg) scale(1.02)'],
+    svobodne: ['translate(-3%, -4%) rotate(-10deg)', 'translate(3%, -7%) rotate(11deg) scale(1.04)'],
+    cviceni: ['translate(-9%, 3%) rotate(-7deg)', 'translate(15%, -13%) rotate(8deg) scale(1.04)'],
+    okenko: ['perspective(800px) rotateY(-16deg) rotate(-4deg) scale(1.06)', 'perspective(800px) rotateY(9deg) rotate(3deg) scale(1.03)'],
+    recenze: ['translate(0, -5%) rotate(-9deg)', 'translate(0, -2%) rotate(6deg)'],
+    spoluprace: ['translate(-4%, -5%) rotate(-5deg) scale(1.04)', 'translate(4%, -3%) rotate(5deg) scale(1.02)'],
+    inspirace: ['translate(0, -3%) rotate(-5deg)', 'translate(0, -1%) rotate(4deg)'],
+  };
+
+  function setupCreativeDirectory() {
+    const directory = document.querySelector<HTMLElement>('[data-creative-directory]');
+    if (!directory) return;
+    const cards = Array.from(directory.querySelectorAll<HTMLAnchorElement>('[data-motif]'));
+    const controller = new AbortController();
+    const { signal } = controller;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const visible = new Set<HTMLAnchorElement>();
+    const entered = new WeakSet<HTMLAnchorElement>();
+    const running = new Map<HTMLAnchorElement, Animation>();
+
+    function stop(card: HTMLAnchorElement) {
+      running.get(card)?.cancel();
+      running.delete(card);
+    }
+
+    async function play(card: HTMLAnchorElement, delay = 0) {
+      const image = card.querySelector('img');
+      const gesture = gestures[card.dataset.motif ?? ''];
+      if (!image || !gesture || reducedMotion.matches || document.hidden || running.has(card)) return;
+      try { await image.decode(); } catch { return; }
+      // decode may finish after navigation, scrolling, or a preference change.
+      if (signal.aborted || !visible.has(card) || reducedMotion.matches || document.hidden || running.has(card)) return;
+      const animation = image.animate([
+        { transform: 'none', offset: 0 },
+        { transform: gesture[0], offset: .28 },
+        { transform: gesture[1], offset: .65 },
+        { transform: 'none', offset: 1 },
+      ], { duration: card.dataset.motif === 'cviceni' ? 1800 : 1500, delay, easing: 'cubic-bezier(.22,.61,.36,1)' });
+      entered.add(card);
+      running.set(card, animation);
+      animation.onfinish = () => { if (running.get(card) === animation) running.delete(card); };
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const card = entry.target as HTMLAnchorElement;
+        if (!entry.isIntersecting || entry.intersectionRatio < .35) {
+          visible.delete(card);
+          stop(card);
+          return;
+        }
+        visible.add(card);
+        if (!entered.has(card) || card === document.activeElement) {
+          void play(card, (cards.indexOf(card) % 4) * 90);
+        }
+      });
+    }, { threshold: [0, .35] });
+
+    cards.forEach(card => {
+      observer.observe(card);
+      card.addEventListener('pointerenter', event => {
+        if (event.pointerType === 'mouse') void play(card);
+      }, { signal });
+      card.addEventListener('focus', () => { void play(card); }, { signal });
+    });
+    const stopAll = () => { cards.forEach(stop); };
+    reducedMotion.addEventListener('change', stopAll, { signal });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAll();
+      else visible.forEach(card => { if (!entered.has(card)) void play(card); });
+    }, { signal });
+    document.addEventListener('astro:before-swap', () => {
+      controller.abort();
+      observer.disconnect();
+      stopAll();
+    }, { once: true, signal });
+  }
+
+  document.addEventListener('astro:page-load', setupCreativeDirectory);
+</script>
