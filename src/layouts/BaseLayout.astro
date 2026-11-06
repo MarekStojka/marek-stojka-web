@@ -1,4 +1,5 @@
 ---
+import { withBase, samePage } from '../lib/site-path';
 import '@fontsource-variable/manrope';
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
@@ -10,8 +11,8 @@ import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/icon-motion.css';
 interface Props { title: string; description: string; noindex?: boolean; ogImage?: string; ogAlt?: string; ogWidth?: number; ogHeight?: number; theme?: 'dark' | 'neutral'; }
 const { title, description, noindex = false, ogImage = '/og-image.png', ogAlt = 'kreativno — jedna hlava, čtyři světy.', ogWidth = 1200, ogHeight = 630, theme = 'dark' } = Astro.props;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
-const image = Astro.site ? new URL(ogImage, Astro.site) : undefined;
+const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const image = Astro.site ? new URL(withBase(ogImage), Astro.site) : undefined;
 ---
 <!doctype html>
 <html lang="cs" data-theme={theme}>
@@ -32,12 +33,12 @@ const image = Astro.site ? new URL(ogImage, Astro.site) : undefined;
     {canonical && <meta property="og:url" content={canonical} />}
     {image && <><meta property="og:image" content={image} /><meta property="og:image:width" content={String(ogWidth)} /><meta property="og:image:height" content={String(ogHeight)} /><meta property="og:image:alt" content={ogAlt} /></>}
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
   </head>
   <body class={theme === 'neutral' ? 'homepage-neutral' : undefined}>
     <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
     <slot />
-    <SiteFooter home={Astro.url.pathname === '/'} />
+    <SiteFooter home={samePage(Astro.url.pathname, withBase('/'))} />
     <AshTransition />
     <PaintTransition />
     <PaperTransition />

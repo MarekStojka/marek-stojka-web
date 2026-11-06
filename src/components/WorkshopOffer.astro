@@ -1,11 +1,12 @@
 ---
+import { withBase } from '../lib/site-path';
 import BrushIcon from './BrushIcon.astro';
 import { creativeWorkshops } from '../data/creative-workshops';
 import { publicContact } from '../data/contact';
 ---
 <section class="workshop-offer" id="workshopy" aria-labelledby="workshops-title">
  <header><h2 id="workshops-title">Kreativitu<br /><em>zkusíme naživo.</em></h2><div><p class="editorial-lead">Připravuji čtyři praktické workshopy. Každý může stát samostatně, společně tvoří cestu od prvního pokusu k rozpracovanému nápadu.</p><p>Živě, v malé skupině a s prostorem pro vlastní práci. Plán počítá přibližně se třemi hodinami na téma včetně přestávky. Termíny, místo a cenu teprve doplním.</p></div></header>
- <div class="workshop-offer-grid">{creativeWorkshops.map(workshop=><a class="workshop-offer-card icon-motion-trigger" style={{'--workshop-color':workshop.color}} href={`/kreativec/workshopy/${workshop.slug}`}><BrushIcon kind={workshop.icon}/><h3>{workshop.title}</h3><p>{workshop.intro}</p><span>Prozkoumat workshop <span aria-hidden="true">↗</span></span></a>)}</div>
+ <div class="workshop-offer-grid">{creativeWorkshops.map(workshop=><a class="workshop-offer-card icon-motion-trigger" style={{'--workshop-color':workshop.color}} href={withBase(`/kreativec/workshopy/${workshop.slug}`)}><BrushIcon kind={workshop.icon}/><h3>{workshop.title}</h3><p>{workshop.intro}</p><span>Prozkoumat workshop <span aria-hidden="true">↗</span></span></a>)}</div>
  <div class="workshop-offer-bottom"><p>Nemusíte absolvovat celý cyklus. Vyberte si téma, které právě potřebujete. Všechny čtyři workshopy jsou zatím v přípravě.</p><a href={`mailto:${publicContact.email}?subject=${encodeURIComponent('Zájem o kreativní workshopy')}`}>Mám zájem nebo otázku <span aria-hidden="true">↗</span></a></div>
 </section>
 <style>

@@ -1,6 +1,7 @@
 <div id="ash-passage" transition:persist="ash-passage" hidden aria-hidden="true"><div class="ash-shade"></div><canvas></canvas></div>
 <div id="ash-passage-status" class="visually-hidden" role="status" aria-live="polite" transition:persist="ash-passage-status"></div>
 <script>
+import { samePage } from '../lib/site-path';
   import { navigate } from 'astro:transitions/client';
   import { createAshTextures } from '../lib/ashTexture';
   const layer = document.querySelector<HTMLDivElement>('#ash-passage')!;
@@ -105,7 +106,7 @@
       cancelAnimationFrame(frame);ctx.clearRect(0,0,width,height);layer.dataset.phase='covered';navigated=true;
       timeout=window.setTimeout(()=>{restore();location.assign(href);},8000);
       await navigate(href);
-      if(location.pathname!==new URL(href).pathname){restore();return;}
+      if(!samePage(location.pathname,href)){restore();return;}
       // The destination ash loop stays still until this light compositor fade ends.
       document.querySelector<HTMLElement>('#main-title')?.focus({preventScroll:true});
       layer.dataset.phase='revealing';

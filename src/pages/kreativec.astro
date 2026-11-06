@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/site-path';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MagazineHeader from '../components/MagazineHeader.astro';
 import MagazineIntroduction from '../components/MagazineIntroduction.astro';
@@ -14,13 +15,13 @@ import '../styles/creative-editorial.css';
 <div class="editorial-page"><MagazineHeader/><main id="obsah">
  <section class="editorial-directory editorial-photo-directory" id="zapisnik" aria-labelledby="main-title">
  <h1 id="main-title" class="sr-only">Magazín o kreativitě — vyberte si téma</h1>
- <div class="editorial-topic-tiles">{creativeCategories.map((category,index)=><a class="editorial-topic-tile" href={`/kreativec/magazin/${category.id}`} style={{'--rubric-accent':category.accent,'--rubric-color':category.color}}>
+ <div class="editorial-topic-tiles">{creativeCategories.map((category,index)=><a class="editorial-topic-tile" href={withBase(`/kreativec/magazin/${category.id}`)} style={{'--rubric-accent':category.accent,'--rubric-color':category.color}}>
  <div class="editorial-topic-photo"><Image src={creativePhotos[category.id]} width={850} format="webp" alt="" loading={index<4?'eager':'lazy'}/></div>
  <div class="editorial-topic-label"><h2>{category.title}</h2><span aria-hidden="true">↗</span></div>
  </a>)}</div></section>
  <MagazineIntroduction/>
  <figure class="editorial-object-break"><Image src={bottle} width={1400} format="webp" alt="Prázdná skleněná lahev jako odpalovací plocha pro papírovou vlaštovku. Vedle ní leží zátka." loading="lazy"/></figure>
- <section id="autor" class="editorial-person editorial-person-tiles" aria-labelledby="person-title" style={{'--person-color':creativeCategories[0].color}}><figure><Image src={candid} width={1000} format="webp" alt="Marek Stojka u pracovního stolu." loading="lazy"/></figure><blockquote class="editorial-person-quote"><p>Někdy přišla snadno.<br /><em>Jindy jsem hledal, jak ji probudit.</em></p></blockquote><div class="editorial-person-story"><h2 id="person-title">A kde v tom<br /><em>jsem já?</em></h2><p class="editorial-lead">Skromně si myslím, že jsem kreativní od narození. A mám být po kom — oba moji rodiče jsou tvořiví.</p><p>Vědomě jsem kreativitu začal využívat na vysoké škole. Zjistil jsem, že nápadité zpracování dokáže dát tématu šanci vyniknout i vedle silné konkurence, která všechno dělá „tak, jak se má“.</p><p>Jako grafik jsem se pak s kreativitou setkával denně. Někdy přišla snadno. Jindy jsem hledal, jak ji probudit. Začal jsem si všímat drobností, které mi při tom pomáhaly.</p><p>A právě ty chci předávat dál. Každý malý objev, nový pohled i zkušenost, která může někomu dalšímu otevřít cestu k vlastnímu nápadu.</p><a href="/kreativec/magazin/okenko">Moje kreativní okénko ↗</a></div></section>
+ <section id="autor" class="editorial-person editorial-person-tiles" aria-labelledby="person-title" style={{'--person-color':creativeCategories[0].color}}><figure><Image src={candid} width={1000} format="webp" alt="Marek Stojka u pracovního stolu." loading="lazy"/></figure><blockquote class="editorial-person-quote"><p>Někdy přišla snadno.<br /><em>Jindy jsem hledal, jak ji probudit.</em></p></blockquote><div class="editorial-person-story"><h2 id="person-title">A kde v tom<br /><em>jsem já?</em></h2><p class="editorial-lead">Skromně si myslím, že jsem kreativní od narození. A mám být po kom — oba moji rodiče jsou tvořiví.</p><p>Vědomě jsem kreativitu začal využívat na vysoké škole. Zjistil jsem, že nápadité zpracování dokáže dát tématu šanci vyniknout i vedle silné konkurence, která všechno dělá „tak, jak se má“.</p><p>Jako grafik jsem se pak s kreativitou setkával denně. Někdy přišla snadno. Jindy jsem hledal, jak ji probudit. Začal jsem si všímat drobností, které mi při tom pomáhaly.</p><p>A právě ty chci předávat dál. Každý malý objev, nový pohled i zkušenost, která může někomu dalšímu otevřít cestu k vlastnímu nápadu.</p><a href={withBase('/kreativec/magazin/okenko')}>Moje kreativní okénko ↗</a></div></section>
 
 </main></div>
 </BaseLayout>

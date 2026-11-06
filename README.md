@@ -1,5 +1,22 @@
 # kreativno — pracovní název autorského webu / V1
 
+## Aktuální export a GitHub Pages (6. 11. 2026)
+
+Web se dál upravuje ve zdrojích Astro. `npm run build` už vytváří hotové HTML, CSS, JavaScript, obrázky a písma ve složce `dist/`; na hostingu nepotřebuje Node ani databázi. Animace i interakce zůstávají součástí exportu. Samotné otevření HTML dvojklikem není náhled hostingu — používejte `npm run preview` nebo webový server.
+
+- **Běžný hosting / vlastní doména:** otevřete `Exportovat web.command` (na Macu) nebo spusťte `SITE_BASE=/ npm run build`. Exportovací soubor vytvoří `exports/web-html.zip`. Na hosting patří celý obsah ZIPu, s `index.html` přímo v kořeni webu. Pro správné sdílení a sitemap nastavte před exportem `SITE_URL` na skutečnou doménu. ZIP bez domény stále funguje, pouze nevytváří absolutní metadata.
+- **GitHub Pages:** připravený `.github/workflows/deploy.yml` sestaví Astro a nahraje `dist/`. V [Settings → Pages](https://github.com/MarekStojka/marek-stojka-web/settings/pages) musí být **Source: GitHub Actions**, nikoli sestavování větve přes Jekyll. Po nahrání tohoto workflow do `main` se web sestaví a zveřejní při každém dalším pushi. Adresa projektu je `https://marekstojka.github.io/marek-stojka-web/`; workflow bere doménu i podadresář z nastavení Pages, takže podporuje i pozdější vlastní doménu. Odkaz se po úspěchu objeví u prostředí `github-pages` a v Settings → Pages.
+- **Stav při přípravě:** vzdálený repozitář ověřen jako veřejný; předchozí Pages běh selhal ve „Build with Jekyll“. Nová oprava je lokální a ještě není nahraná ani nasazená. Starší poznámky o soukromém repozitáři níže jsou historické.
+
+Při úpravách přes chat zůstávají rozhodující zdroje, ne vygenerované soubory v `dist/`. Po dokončení změn stačí nový export nebo push do GitHubu po jednorázovém zapojení Pages. Lokální editor Keystatic, koncepty a demo články nejsou součástí veřejného exportu; články se zařazují až se stavem `published`.
+
+Build kontroluje lokální odkazy, obrázky a skripty i nepřítomnost lokální administrace. Pro kontrolu stejného podadresáře jako na GitHubu:
+
+```sh
+SITE_URL=https://marekstojka.github.io SITE_BASE=/marek-stojka-web/ npm run build
+SITE_BASE=/marek-stojka-web/ npm run preview
+```
+
 Responzivní statický web: Astro, React, TypeScript a Tailwind CSS 4. Neutrální autorská homepage s vysokou harmonikou jako jedinou dominantou hero sekce, vlastní interaktivní kresbou s odhalováním barev a představením pod ní a samostatná stránka `/temnota` s interaktivním popelem na Canvasu. Čitelné představení autora, místo pro skutečné zkušenosti a jednoduchý kontakt. Nativní CSS přechody, postupné odhalování při posouvání a Canvas nahrazují další animační knihovnu. Popel reaguje na ukazatel i dotyk a má tlačítko pro víření a pozastavení. Při omezeném pohybu zůstane statický. Žádné externí obrázky, runtime fontové služby, měření, backend ani databáze.
 
 ## Lokální spuštění
@@ -31,7 +48,7 @@ Bez `SITE_URL` build funguje, nevymýšlí doménu a nevytváří canonical ani 
 
 ## GitHub a automatická kontrola
 
-Soukromý repozitář: [MarekStojka/marek-stojka-web](https://github.com/MarekStojka/marek-stojka-web). Větev `main` obsahuje zdroje, obrázky a dokumentaci. Nahrání na GitHub samo web veřejně nespouští; hosting zatím není propojený.
+Veřejný repozitář: [MarekStojka/marek-stojka-web](https://github.com/MarekStojka/marek-stojka-web). Větev `main` obsahuje zdroje, obrázky a dokumentaci. Aktuální příprava GitHub Pages je popsaná výše.
 
 Pro nahrání dalších změn z tohoto adresáře:
 
@@ -54,7 +71,7 @@ Projekt je čistě statický, proto nepotřebuje Cloudflare adaptér ani vlastn�
 5. Pokud přidělenou adresu ještě neznáte, první deploy získá adresu `*.pages.dev`. Doplňte ji do `SITE_URL` a spusťte nový deploy. Při připojení vlastní domény použijte jako `SITE_URL` tuto doménu a build zopakujte.
 6. V **Custom domains** můžete následně připojit doménu. Zkontrolujte HTTPS, `/robots.txt`, `/sitemap.xml`, sdílení homepage a neexistující URL (musí zobrazit vlastní 404).
 
-Po propojení každý push do `main` automaticky nasadí novou verzi. Cloudflare může vytvářet preview pro pull requesty. Pro preview nastavte odpovídající prostředí; případné indexování preview zakažte v nastavení platformy. GitHub Actions web nenasazuje, pouze kontroluje.
+Po propojení každý push do `main` automaticky nasadí novou verzi. Cloudflare může vytvářet preview pro pull requesty. Pro preview nastavte odpovídající prostředí; případné indexování preview zakažte v nastavení platformy. Workflow `ci.yml` pouze kontroluje; nové `deploy.yml` je určené pro GitHub Pages, viz aktuální postup nahoře.
 
 Volitelný přímý deploy po přihlášení k Cloudflare CLI:
 

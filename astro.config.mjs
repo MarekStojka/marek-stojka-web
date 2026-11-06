@@ -8,6 +8,8 @@ import { join, relative, sep } from 'node:path';
 
 const site = process.env.SITE_URL?.trim() || undefined;
 if (site && !/^https?:\/\//.test(site)) throw new Error('SITE_URL musí být úplná URL včetně https://');
+const base = process.env.SITE_BASE?.trim() || '/';
+if (!/^\/(?:[a-zA-Z0-9_-]+\/?)*$/.test(base)) throw new Error('SITE_BASE musí být cesta jako / nebo /marek-stojka-web/');
 
 const localAdmin = {
   name: 'local-content-admin',
@@ -35,6 +37,7 @@ const localAdmin = {
 
 export default defineConfig({
   site,
+  base,
   output: 'static',
   devToolbar: { enabled: false },
   integrations: [react(), localAdmin],

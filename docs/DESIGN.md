@@ -427,3 +427,14 @@ Ověřeno: 8 shodných dlaždic desktop i mobil 390 px, nová rubrika, animace i
 ## GitHub — 6. listopadu 2026
 
 Autor výslovně zadal nahrání webu na GitHub. Soukromý repozitář je https://github.com/MarekStojka/marek-stojka-web, hlavní větev main. Hosting ani veřejné vystavení nejsou součástí tohoto kroku. Do repozitáře patří zdroje, původní podklady a dokumentace, nikoli .env, místní Node runtime, node_modules, .astro nebo dist. Administrace Keystatic zůstává lokální; GitHub režim zatím není propojený.
+
+
+## Přenosný HTML export a příprava GitHub Pages — 6. 11. 2026
+
+Autor chce dál upravovat web přes chat a následně jej jednoduše přenést na hosting. Astro zůstává zdrojem; běžný build už generuje statické HTML/CSS/JS. Nový Exportovat web.command provede kontrolovaný build pro kořen domény a připraví exports/web-html.zip (ignorovaný v Gitu). Celý rozbalený obsah patří na hosting. Vzhled, texty a pracovní status obsahu se nemění. Administrace, koncepty a demo články zůstávají mimo veřejný build.
+
+Vzdálený repozitář MarekStojka/marek-stojka-web byl nyní přímo ověřen jako VEŘEJNÝ a Pages zapnuté. Původní nasazení selhalo při Build with Jekyll; veřejná adresa při kontrole vracela 404. Lokálně připraven .github/workflows/deploy.yml: npm ci → npm run build → upload-pages-artifact → deploy-pages. Před aktivací je potřeba v Settings → Pages zvolit GitHub Actions a nahrát opravu. V tomto chatu neproběhl push, změna vzdáleného nastavení ani veřejné nasazení. Starší informace o soukromém repozitáři již neplatí.
+
+SITE_BASE umožňuje / pro vlastní doménu i /marek-stojka-web/ pro projektové Pages. Sdílený withBase v src/lib/site-path.ts je použit na aktivní navigaci, obrázky článků, OG obrázky, favicon a sitemap; Astro řeší generované assety. Patří sem i React harmoniky a jejich data-entry adresy. Tři přechody porovnávají cílovou cestu bez závislosti na podadresáři nebo koncovém lomítku; opraven i relativní cíl popelového vstupu. Noindex stránky nevytvářejí canonical (zejména neexistující /404/).
+
+Ověřeno: npm run build pro kořen i projektový podadresář, nulové chyby Astro/TypeScript, testy cest, 31 HTML stránek a 723/728 lokálních URL; ZIP 16,3 MB bez zdrojů nebo administrace. V prohlížeči hotový podadresářový export: homepage → Kreativita → rubrika, návrat a vstup do Temnoty, mobil 390 px → Humor; obrázky načtené, přechodové vrstvy po dokončení skryté, bez chyb konzole a vodorovného přesahu při mobilní kontrole. Nejde o ověření živého nasazení GitHub workflow.

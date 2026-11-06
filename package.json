@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "check": "astro check",
-    "build": "astro check && astro build",
+    "test:paths": "node --experimental-strip-types --test scripts/site-path.test.mjs",
+    "build": "npm run test:paths && astro check && astro build && node scripts/check-static-build.mjs",
     "preview": "astro preview --host 127.0.0.1"
   },
   "dependencies": {

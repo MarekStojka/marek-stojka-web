@@ -1,5 +1,6 @@
 <div id="paper-passage" transition:persist="paper-passage" hidden aria-hidden="true"><svg preserveAspectRatio="none"><path class="tear-shadow" fill="#080808"/><path class="tear-black" fill="#080808"/><path class="tear-rim" fill="#f6f3ed" fill-rule="evenodd"/><path class="tear-fibres" fill="none" stroke="#cfcac2" stroke-width=".7"/></svg></div>
 <script>
+import { samePage } from '../lib/site-path';
  import { navigate } from 'astro:transitions/client';
  const layer=document.querySelector<HTMLElement>('#paper-passage')!;
  const svg=layer.querySelector('svg')!;
@@ -45,9 +46,9 @@
    await new Promise<void>(resolve=>{finish=resolve;const tick=(now:number)=>{const progress=Math.min(1,(now-started)/1000);draw(progress);if(progress<1&&!cancelled)frame=requestAnimationFrame(tick);else resolve();};frame=requestAnimationFrame(tick);});
    if(cancelled)return;
    navigated=true;await navigate(href);
-   if(location.pathname!=='/kreativec')return;
+   if(!samePage(location.pathname,href))return;
    const reveal=layer.animate([{opacity:1},{opacity:0}],{duration:600,easing:'ease-out',fill:'forwards'});animations.push(reveal);await reveal.finished;
-  }catch{if(!cancelled&&location.pathname!=='/kreativec')location.assign(href);}
+  }catch{if(!cancelled&&!samePage(location.pathname,href))location.assign(href);}
   finally{cleanup();}
  },{capture:true});
 </script>

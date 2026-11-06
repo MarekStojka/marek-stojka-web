@@ -1,3 +1,4 @@
+import { withBase } from '../lib/site-path';
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import { worlds } from '../data/worlds';
 import WorldArt, { type TileArtwork } from './WorldArt';
@@ -71,7 +72,7 @@ export default function WorldAccordion({ tileArtwork = {}, instanceId = 'main' }
       setActive(null);
     }
   }}>
-    {worlds.map((world, index) => <article key={world.id} data-paper-entry={world.id === 'napady' ? '' : undefined} data-paper-href={world.id === 'napady' ? world.target : undefined} data-paint-entry={world.id === 'absurdita' ? '' : undefined} data-paint-href={world.id === 'absurdita' ? world.target : undefined} data-ash-entry={world.id === 'temnota' ? '' : undefined} data-ash-href={world.id === 'temnota' ? world.target : undefined} className={`world world-${world.id} ${active === index ? 'is-active' : ''}`} onPointerEnter={(event) => { if (event.pointerType === 'mouse' && supportsHover()) setActive(index); }} onClick={(event) => {
+    {worlds.map((world, index) => <article key={world.id} data-paper-entry={world.id === 'napady' ? '' : undefined} data-paper-href={world.id === 'napady' ? withBase(world.target) : undefined} data-paint-entry={world.id === 'absurdita' ? '' : undefined} data-paint-href={world.id === 'absurdita' ? withBase(world.target) : undefined} data-ash-entry={world.id === 'temnota' ? '' : undefined} data-ash-href={world.id === 'temnota' ? withBase(world.target) : undefined} className={`world world-${world.id} ${active === index ? 'is-active' : ''}`} onPointerEnter={(event) => { if (event.pointerType === 'mouse' && supportsHover()) setActive(index); }} onClick={(event) => {
       if (!opensWithTransition(world.id) && !(event.target as HTMLElement).closest('a, button')) setActive(index);
     }}>
       <WorldArt artwork={tileArtwork[world.id]} />
@@ -83,7 +84,7 @@ export default function WorldAccordion({ tileArtwork = {}, instanceId = 'main' }
       <div id={`${instanceId}-panel-${world.id}`} className="world-details" inert={active !== index}>
         <p className="world-tagline">{world.tagline}</p>
         <p className="world-description">{world.description}</p>
-        {<a className="world-cta" href={world.target} data-paper-entry={world.id === 'napady' ? '' : undefined} data-ash-entry={world.id === 'temnota' ? '' : undefined} data-paint-entry={world.id === 'absurdita' ? '' : undefined}>{world.cta}<span aria-hidden="true">↗</span></a>}
+        {<a className="world-cta" href={withBase(world.target)} data-paper-entry={world.id === 'napady' ? '' : undefined} data-ash-entry={world.id === 'temnota' ? '' : undefined} data-paint-entry={world.id === 'absurdita' ? '' : undefined}>{world.cta}<span aria-hidden="true">↗</span></a>}
       </div>
     </article>)}
     <span className="world-cursor" aria-hidden="true">↗</span>

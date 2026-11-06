@@ -1,5 +1,6 @@
 <div id="paint-passage" transition:persist="paint-passage" hidden aria-hidden="true"><svg viewBox="0 0 1440 1000" preserveAspectRatio="none"><defs><linearGradient id="pour-violet" x2="0" y2="1"><stop stop-color="#552199"/><stop offset="1" stop-color="#9345d1"/></linearGradient><linearGradient id="pour-magenta" x2="0" y2="1"><stop stop-color="#a91883"/><stop offset="1" stop-color="#dc40a4"/></linearGradient></defs><path class="paint-pour" fill="url(#pour-violet)"/><path class="paint-pour" fill="url(#pour-magenta)"/></svg></div>
 <script>
+import { samePage } from '../lib/site-path';
 import { navigate } from 'astro:transitions/client';
 const layer=document.querySelector<HTMLElement>('#paint-passage')!;
 const pours=Array.from(layer.querySelectorAll<SVGPathElement>('.paint-pour'));
@@ -40,9 +41,9 @@ document.addEventListener('click',async event=>{
   });
   if(cancelled)return;
   navigated=true;await navigate(href);
-  if(location.pathname!=='/humor'){cleanup();return;}
+  if(!samePage(location.pathname,href)){cleanup();return;}
   const reveal=layer.animate([{opacity:1},{opacity:0}],{duration:550,easing:'ease-out',fill:'forwards'});animations.push(reveal);await reveal.finished;
- }catch{if(!cancelled&&location.pathname!=='/humor')location.assign(href);}
+ }catch{if(!cancelled&&!samePage(location.pathname,href))location.assign(href);}
  finally{cleanup();}
 },{capture:true});
 </script>
