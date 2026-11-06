@@ -1,0 +1,66 @@
+---
+import { creativeTopics } from '../data/creative-topics';
+import { publicContact } from '../data/contact';
+import { Image } from 'astro:assets';
+import candid from '../assets/portraits/marek-momentka-v1.png';
+import portrait from '../assets/portraits/marek-portret-par-v1.png';
+import artwork from '../assets/artwork/marek-stojka-surrealni-portret.png';
+import artworkTwo from '../assets/artwork/marek-stojka-hudebnik.png';
+import homepage from '../../docs/nahled-rozcestnik.jpg';
+import experiment from '../assets/piles/banka.png';
+const previews:Record<string,{title:string,body:string}>={
+ blog:{title:'První příspěvek teprve vznikne.',body:'Tady se objeví nejnovější článek. O nápadech, tvorbě a o tom, co se děje mezi prvním pokusem a výsledkem.'},
+ skoleni:{title:'Potkáme se nad nápady.',body:'Připravuji školení kreativního myšlení. Termín, místo a konkrétní program zveřejním, až budou potvrzené.'},
+ reference:{title:'Běsoháj. Nápad, který můžete vzít do ruky.',body:'Můj vlastní projekt, ve kterém tvořím produkty. Další práce doplním podle možností zveřejnění ve spolupráci s agenturami.'},
+ edukace:{title:'Jak přemýšlet o nápadech.',body:'Připravuji postupy a edukativní videa. První materiál tu dostane prostor, až bude hotový.'},
+ 'kreativni-hry':{title:'Co kdyby to bylo naopak?',body:'Vyberte jednu věc, kterou právě řešíte. Obraťte běžné řešení a chvíli nehodnoťte, jestli je správné. Co vás překvapilo?'},
+ psani:{title:'Od jednoho slova k celému příběhu.',body:'Píšu příběhy, názvy, slogany a reklamní texty. Konkrétní ukázky sem postupně vyberu.'},
+ grafika:{title:'Myšlenka potřebuje podobu.',body:'Bannery, tisková grafika a vizuální zpracování nápadů. Ukázky doplním podle možností zveřejnění.'},
+ 'web-design':{title:'Aby to fungovalo i mezi kliknutími.',body:'Navrhuji weby a rozhraní s ohledem na obsah a uživatelskou zkušenost. Konkrétní projekty a svou roli ještě doplním.'},
+ 'ai-tvorba':{title:'Co vznikne, když to zkusíme jinak?',body:'Zkouším AI nástroje a jejich místo v tvůrčím procesu. Budu tu sdílet experimenty i to, co se při nich naučím.'},
+ ilustrace:{title:'Někdy je lepší to nakreslit.',body:'Vlastní kresby a motivy. Výběr ilustrací pro tuto sekci ještě připravím.'},
+ reklama:{title:'Jedna myšlenka. Více způsobů, jak ji říct.',body:'Vymýšlím reklamní koncepty a propojuji text s obrazem. Ukázky kampaní přidám, jakmile je budu moci zveřejnit.'},
+ 'brand-a-identita':{title:'Značka, která má vlastní tvář.',body:'Název, hlas a vizuální identita. Konkrétní ukázku a svůj podíl na ní doplním.'},
+};
+---
+<div class="creative-feed creative-feed-mosaic">
+ <section class="feed-blog" id="tema-blog" aria-labelledby="feed-blog">
+  <figure class="feed-photo"><Image src={candid} width={1100} format="webp" alt="Marek u pracovního stolu — momentka s modrým motýlem v popředí." loading="lazy"/></figure>
+  <div class="feed-card feed-blog-copy"><h2 id="feed-blog">Blog.</h2><h3>Co se děje<br />mezi nápady.</h3><p>Postřehy z tvorby, pokusy i slepé uličky. Nejnovější článek tu dostane prostor jako první.</p><p class="feed-pending">První příspěvek připravuji.</p><a href="/kreativec/blog">Do zápisníku ↗</a></div>
+ </section>
+ <section class="feed-training" id="tema-skoleni" aria-labelledby="feed-skoleni">
+  <div class="feed-card"><h2 id="feed-skoleni">Školení.</h2><h3>Nápady se dají<br />rozhýbat.</h3><p>Společně zkusíme jiné úhly pohledu a práci s vlastní představivostí.</p><a href="/kreativec/skoleni">Více o školení ↗</a></div>
+  <div class="feed-card feed-course"><span class="feed-course-symbol" aria-hidden="true">↗</span><h3>Příští setkání</h3><p>Termín a místo<br />ještě připravuji.</p><a href={`mailto:${publicContact.email}?subject=${encodeURIComponent('Zájem o školení kreativity')}`}>Mám zájem ↗</a></div>
+  <figure class="feed-photo feed-training-photo"><Image src={portrait} width={700} format="webp" alt="Marek Stojka v černém tričku." loading="lazy"/></figure>
+ </section>
+ <section class="feed-references" id="tema-reference" aria-labelledby="feed-reference">
+  <div class="feed-card feed-reference-intro"><h2 id="feed-reference">Reference.</h2><p>Část mé práce vzniká pro agentury a ne všechno mohu ukázat. Tady začínám vlastními projekty.</p><a href="/kreativec/reference">O spolupráci ↗</a></div>
+  <a class="feed-card feed-site-preview" href="/#svety"><figure><Image src={homepage} width={1100} format="webp" alt="Náhled tohoto autorského webu se čtyřmi fotografickými dlaždicemi." loading="lazy"/></figure><h3>Tenhle svět.</h3><p>Vlastní web. Návrh, který právě roste.</p><span aria-hidden="true">↗</span></a>
+  <a class="feed-card feed-besohaj" href="https://www.besohaj.cz/" target="_blank" rel="noreferrer"><h3>Běsoháj.</h3><p>Můj vlastní projekt.<br />Nápady proměněné v produkty.</p><span>Prohlédnout projekt ↗<span class="visually-hidden"> (nová karta)</span></span></a>
+ </section>
+ <div class="feed-topic-pairs">
+ {creativeTopics.filter(topic=>!['blog','skoleni','reference','ilustrace','ai-tvorba','kreativni-hry'].includes(topic.slug)).map(topic=><section class={`feed-card feed-mini feed-mini-${topic.slug}`} id={`tema-${topic.slug}`} aria-labelledby={`feed-${topic.slug}`}><h2 id={`feed-${topic.slug}`}>{topic.title}</h2><h3>{previews[topic.slug].title}</h3><p>{previews[topic.slug].body}</p><a href={`/kreativec/${topic.slug}`}>Prozkoumat téma ↗</a></section>)}
+ </div>
+ <section class="feed-art" id="tema-ilustrace" aria-labelledby="feed-ilustrace">
+  <div class="feed-card"><h2 id="feed-ilustrace">Ilustrace.</h2><h3>Někdy to<br />prostě nakreslím.</h3><p>Moje vlastní kresby. Posuňte se mezi dvěma motivy.</p><div class="feed-art-controls"><button type="button" data-art-choice="0" aria-pressed="true">Portrét</button><button type="button" data-art-choice="1" aria-pressed="false">Hudebník</button></div><a href="/kreativec/ilustrace">Více kreseb ↗</a></div>
+  <figure class="feed-artwork"><Image src={artwork} width={1000} format="webp" alt="Markova originální barevná surrealistická kresba portrétu." data-art-image="0" loading="lazy"/><Image src={artworkTwo} width={1000} format="webp" alt="Markova originální kresba hudebníka s fialovým vousem." data-art-image="1" hidden loading="lazy"/></figure>
+ </section>
+ <section class="feed-play" id="tema-kreativni-hry" aria-labelledby="feed-kreativni-hry">
+  <div class="feed-card"><h2 id="feed-kreativni-hry">Kreativní hry.</h2><p>Někdy stačí vyměnit jednu věc.</p><button class="feed-word-play" type="button" data-feed-word aria-label="Změnit slovo ve větě">Nápad přišel<br /><em data-feed-word-value>oknem.</em><span aria-hidden="true">↻</span></button><p class="visually-hidden" data-feed-word-status aria-live="polite"></p><a href="#kreativita">Zkusit další úhel pohledu ↓</a></div>
+  <div class="feed-card feed-ai" id="tema-ai-tvorba"><h2 id="feed-ai-tvorba">AI tvorba.</h2><figure><Image src={experiment} width={700} format="webp" alt="AI fotografická studie baňky s barevnými krystalky, použitá na tomto webu." loading="lazy"/></figure><p>Zkouším nástroje. Hledám možnosti.<br />Vizuální studie pro tento web.</p><a href="/kreativec/ai-tvorba">Do experimentů ↗</a></div>
+ </section>
+</div>
+<script>
+function setupCreativeMosaic(){
+ const root=document.querySelector('.creative-feed-mosaic');if(!root)return;
+ const controller=new AbortController();
+ root.querySelectorAll<HTMLButtonElement>('[data-art-choice]').forEach(button=>button.addEventListener('click',()=>{
+  root.querySelectorAll<HTMLButtonElement>('[data-art-choice]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  root.querySelectorAll<HTMLElement>('[data-art-image]').forEach(item=>item.hidden=item.dataset.artImage!==button.dataset.artChoice);
+ },{signal:controller.signal}));
+ const words=['oknem.','po špičkách.','pozdě.','v přestrojení.'];let index=0;
+ root.querySelector('[data-feed-word]')?.addEventListener('click',()=>{index=(index+1)%words.length;root.querySelector('[data-feed-word-value]')!.textContent=words[index];root.querySelector('[data-feed-word-status]')!.textContent=`Nápad přišel ${words[index]}`;},{signal:controller.signal});
+ document.addEventListener('astro:before-swap',()=>controller.abort(),{once:true,signal:controller.signal});
+}
+document.addEventListener('astro:page-load',setupCreativeMosaic);
+</script>

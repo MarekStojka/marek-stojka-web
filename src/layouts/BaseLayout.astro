@@ -1,0 +1,46 @@
+---
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import AshTransition from '../components/AshTransition.astro';
+import PaintTransition from '../components/PaintTransition.astro';
+import PaperTransition from '../components/PaperTransition.astro';
+import PageInteractions from '../components/PageInteractions.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/icon-motion.css';
+interface Props { title: string; description: string; noindex?: boolean; ogImage?: string; ogAlt?: string; ogWidth?: number; ogHeight?: number; theme?: 'dark' | 'neutral'; }
+const { title, description, noindex = false, ogImage = '/og-image.png', ogAlt = 'kreativno — jedna hlava, čtyři světy.', ogWidth = 1200, ogHeight = 630, theme = 'dark' } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const image = Astro.site ? new URL(ogImage, Astro.site) : undefined;
+---
+<!doctype html>
+<html lang="cs" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <ClientRouter fallback="swap" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={theme === 'neutral' ? '#f6f6f4' : '#0d0e0e'} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="kreativno" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {image && <><meta property="og:image" content={image} /><meta property="og:image:width" content={String(ogWidth)} /><meta property="og:image:height" content={String(ogHeight)} /><meta property="og:image:alt" content={ogAlt} /></>}
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class={theme === 'neutral' ? 'homepage-neutral' : undefined}>
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+    <slot />
+    <SiteFooter home={Astro.url.pathname === '/'} />
+    <AshTransition />
+    <PaintTransition />
+    <PaperTransition />
+    <PageInteractions />
+  </body>
+</html>

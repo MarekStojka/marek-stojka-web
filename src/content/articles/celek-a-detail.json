@@ -1,0 +1,34 @@
+{
+  "title": "Stejný obraz. Jiný příběh.",
+  "category": "okenko",
+  "cover": "drawing",
+  "intro": "Co z obrázku zůstane, když ukážeme jen výřez? Malá změna rámu může otevřít další způsob čtení.",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Vyberte, co ukážete.",
+      "paragraphs": [
+        "Obraz můžeme prohlížet celý, nebo se zastavit u jedné drobnosti. V celku si všimneme postavy a okolí. Ve výřezu třeba oka, barevné linie nebo gesta. Zkuste si všimnout, co vás v každém pohledu napadne jako první."
+      ]
+    },
+    {
+      "layout": "columns",
+      "title": "Zkuste tři různé výřezy.",
+      "paragraphs": [
+        "Vezměte vlastní fotografii nebo kresbu. Vyberte tři odlišné výřezy: jeden velkorysý, druhý těsný a třetí takový, který hlavní motiv úplně vynechá. Neměňte přitom barvy ani samotný obraz.",
+        "Ke každému výřezu napište krátký titulek. Popisujete stále tutéž situaci? Nebo jste v obraze našli další děj, kterého jste si v celku nevšimli?"
+      ]
+    },
+    {
+      "layout": "icon",
+      "title": "Vraťte se k celku.",
+      "paragraphs": [
+        "Nakonec položte výřezy vedle původního obrazu. Které informace jste při ořezu odstranili a které tím vystoupily do popředí? Podobně se dá přemýšlet i o textu: zkusit jiný začátek, nechat jednu větu samostatně nebo ubrat vysvětlení."
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

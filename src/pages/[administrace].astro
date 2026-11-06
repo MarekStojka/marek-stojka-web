@@ -1,0 +1,18 @@
+---
+import { allCreativeArticles } from '../data/creative-articles';
+import '@fontsource-variable/manrope';
+export function getStaticPaths() {
+ return import.meta.env.DEV ? [{ params: { administrace: 'administrace' } }] : [];
+}
+const labels = { demo: 'Ukázkový návrh', draft: 'Koncept', published: 'Publikováno' };
+---
+<!doctype html><html lang="cs"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="robots" content="noindex,nofollow"/><title>Správa obsahu — Marek Stojka</title></head><body><main>
+ <nav><a href="/">← Zpět na web</a><span>Marek Stojka</span></nav>
+ <header><h1>Prostor pro<br/><em>nové myšlenky.</em></h1><p>Správa článků magazínu. Obsah se ukládá do tohoto projektu na vašem počítači.</p><a class="primary" href="/keystatic/collection/articles/create">Napsat nový článek ↗</a><a class="secondary" href="/keystatic/collection/articles">Otevřít editor</a></header>
+ <section class="workflow" aria-label="Jak publikovat"><div><h2>Napište.</h2><p>Vyberte rubriku, přidejte fotografii a sestavte článek z textových bloků.</p></div><div><h2>Prohlédněte.</h2><p>Uložte změny a otevřete náhled. Koncept zůstává mimo přehled magazínu.</p></div><div><h2>Zveřejněte.</h2><p>Změňte stav na „Publikováno“ a uložte. Na veřejný web se článek dostane až nasazením webu.</p></div></section>
+ <section><h2>Vaše články</h2><div class="articles">{allCreativeArticles.map(article=><article><div><span class={`status status-${article.status}`}>{labels[article.status]}</span><h3>{article.title}</h3><p>{article.topic}</p></div><div class="actions"><a href={`/nahled-clanku/${article.slug}`}>Náhled ↗</a><a href={`/keystatic/collection/articles/item/${article.slug}`}>Upravit →</a></div></article>)}</div></section>
+ <footer>Administrace je zatím dostupná pouze v lokálním vývoji. Přihlášení a vzdálené publikování připojíme před spuštěním webu. Před náhledem vždy uložte změny v editoru.</footer>
+</main></body></html>
+<style>
+ :global(body){margin:0;background:#f4f3f6;color:#211b29;font-family:'Manrope Variable',sans-serif}main{max-width:1180px;margin:auto;padding:32px}a{color:inherit;text-underline-offset:5px}a:focus-visible{outline:3px solid #873dd3;outline-offset:5px}nav{display:flex;justify-content:space-between;gap:20px}header{padding:75px 0 55px;max-width:820px}h1{font-size:clamp(42px,6vw,76px);line-height:1.1;letter-spacing:-.06em;margin:0 0 28px}em{font-family:Georgia,serif;color:#7136b5}p{line-height:1.8;color:#655f6e}header p{max-width:540px}a.primary,a.secondary{display:inline-block;padding:18px 24px;margin:12px 12px 0 0;text-decoration:none}.primary{background:#271236;color:white}.secondary{border:1px solid #bbb3c2}.workflow{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:60px}.workflow>div{padding:28px;background:#fff}h2{font-size:25px;letter-spacing:-.04em}article{display:flex;justify-content:space-between;align-items:center;gap:28px;background:white;padding:25px 30px;margin:6px 0}h3{font-size:23px;letter-spacing:-.035em;margin:12px 0 0}article p{margin:6px 0}.status{font-size:13px;background:#eee8f5;padding:5px 9px}.status-published{background:#ccebdd}.actions{display:flex;gap:25px;flex-shrink:0}footer{padding:40px 0;color:#655f6e;font-size:14px;line-height:1.8;max-width:760px}@media(max-width:650px){main{padding:20px}.workflow{grid-template-columns:1fr}article{align-items:start;flex-direction:column;padding:24px}.actions{width:100%;justify-content:space-between}header{padding-top:50px}}
+</style>

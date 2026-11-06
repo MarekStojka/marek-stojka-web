@@ -1,0 +1,6 @@
+---
+import { paintEdge } from '../lib/paint';
+interface Props { class?: string; }
+const { class:className='' }=Astro.props;
+---
+<div class:list={['paint-drips',className]} data-paint-drips aria-hidden="true"><svg viewBox="0 0 1440 250" preserveAspectRatio="none"><path fill="#f4d52b" d={paintEdge(85,145)}/><path fill="#e51a8b" d={paintEdge(58,125)}/><path fill="#00a4d3" d={paintEdge(30,105)}/><path fill="#282628" d={paintEdge(0,77)}/></svg></div>

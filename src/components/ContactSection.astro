@@ -1,0 +1,89 @@
+---
+import '../styles/contact-studio.css';
+const topics=[
+ {label:'Texty',before:'Potřebujete pomoct s',word:'texty',after:'?',color:'#5339d3',subject:'Pomoc s texty'},
+ {label:'Logo',before:'Hledáte někoho, kdo vám navrhne',word:'logo',after:'?',color:'#283ce9',subject:'Návrh loga'},
+ {label:'Značka',before:'Potřebuje vaše značka',word:'jméno a tvář',after:'?',color:'#b52e87',subject:'Značka a identita'},
+ {label:'Web',before:'Zaslouží si váš web',word:'nový pohled',after:'?',color:'#076456',subject:'Nový nebo lepší web'},
+ {label:'Produkt',before:'Máte produkt. Jak o něm',word:'mluvit',after:'?',color:'#5339d3',subject:'Komunikace produktu'},
+ {label:'Kampaň',before:'Chystáte kampaň a chybí vám',word:'nosný nápad',after:'?',color:'#8b258b',subject:'Nápad pro reklamní kampaň'},
+ {label:'Slogan',before:'Hledáte slogan, který vystihne',word:'to podstatné',after:'?',color:'#b52e87',subject:'Tvorba sloganu'},
+ {label:'Grafika',before:'Potřebujete dát nápadu',word:'viditelnou podobu',after:'?',color:'#283ce9',subject:'Bannery, ilustrace nebo tisková grafika'},
+ {label:'Příběh',before:'Hledáte autora',word:'příběhu nebo scénáře',after:'?',color:'#5339d3',subject:'Příběh nebo scénář'},
+ {label:'AI',before:'Co kdyby vám AI',word:'uvolnila ruce',after:'?',color:'#076456',subject:'AI a automatizace'},
+ {label:'Tým',before:'Chcete rozhýbat',word:'kreativitu týmu',after:'?',color:'#b52e87',subject:'Kreativita týmu'},
+ {label:'Nápad',before:'Máte nápad. Jak ho dostat',word:'do života',after:'?',color:'#5339d3',subject:'Rozvinutí nápadu'},
+ {label:'Něco jiného',before:'Hodil by se vám',word:'jiný úhel pohledu',after:'?',color:'#8b258b',subject:'Jiný úhel pohledu'},
+];
+---
+<section class="home-sheet contact-studio" id="kontakt" aria-labelledby="contact-studio-title" data-contact-studio>
+ <div class="contact-conversation">
+ <div class="contact-heading"><h2 id="contact-studio-title">Co spolu vymyslíme?</h2></div>
+ <div class="contact-topics" role="group" aria-label="S čím potřebujete pomoci">
+  {topics.map((topic,index)=><button type="button" aria-pressed={index===0?'true':'false'} data-topic data-before={topic.before} data-word={topic.word} data-after={topic.after} data-color={topic.color} data-subject={topic.subject}>{topic.label}<span class="contact-topic-progress" aria-hidden="true"></span></button>)}
+ </div>
+ <div class="contact-stage">
+  <p class="contact-focus-question" aria-live="polite" aria-atomic="true"><span data-question-before>{topics[0].before}</span>{' '}<span class="contact-focus-word" data-question-word>{topics[0].word}</span><span data-question-after>{topics[0].after}</span></p>
+ </div>
+ </div>
+ <a class="contact-footer-jump" href="#kontaktni-udaje">Napište mi. Nebo zavolejte. <span aria-hidden="true">↓</span></a>
+</section>
+<script>
+function setupContactStudio(){
+ const root=document.querySelector<HTMLElement>('[data-contact-studio]');if(!root)return;
+ const contactRoot=root;
+ const controller=new AbortController();
+ const buttons=Array.from(root.querySelectorAll<HTMLButtonElement>('[data-topic]'));
+ const before=root.querySelector<HTMLElement>('[data-question-before]')!;
+ const word=root.querySelector<HTMLElement>('[data-question-word]')!;
+ const after=root.querySelector<HTMLElement>('[data-question-after]')!;
+ const question=root.querySelector<HTMLElement>('.contact-focus-question')!;
+ const emailLink=document.querySelector<HTMLAnchorElement>('[data-shared-contact-email]');
+ function select(button:HTMLButtonElement,manual=false){
+  question.setAttribute('aria-live',manual?'polite':'off');
+  buttons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  before.textContent=button.dataset.before||'';word.textContent=button.dataset.word||'';after.textContent=button.dataset.after||'';
+  contactRoot.style.setProperty('--contact-accent',button.dataset.color||'#5339d3');
+  if(emailLink?.dataset.email)emailLink.href=`mailto:${emailLink.dataset.email}?subject=${encodeURIComponent(button.dataset.subject||'Spolupráce')}`;
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){question.getAnimations().forEach(animation=>animation.cancel());question.animate([{opacity:.2,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'ease-out'});}
+ }
+ const edge=root.querySelector<HTMLElement>('.contact-live-edge')||root;
+ const media=matchMedia('(prefers-reduced-motion: reduce)');
+ let paused=media.matches,visible=false;
+ function syncMotion(){
+  contactRoot.dataset.contactMotion=!paused&&visible&&!document.hidden?'running':'paused';
+ }
+ const observer=new IntersectionObserver(entries=>{visible=entries.some(entry=>entry.isIntersecting);syncMotion();},{rootMargin:'100px'});observer.observe(edge);
+ media.addEventListener('change',()=>{paused=media.matches;syncMotion();},{signal:controller.signal});
+ document.addEventListener('visibilitychange',syncMotion,{signal:controller.signal});syncMotion();
+ const topics=root.querySelector<HTMLElement>('.contact-topics')!;
+ const conversation=root.querySelector<HTMLElement>('.contact-conversation')!;
+ let cyclePaused=media.matches,cycleVisible=false,hovered=false,focused=false,index=0;
+ let clock:Animation|null=null;
+ function syncCycle(){
+  const running=!cyclePaused&&!media.matches&&cycleVisible&&!document.hidden&&!hovered&&!focused;
+  if(clock){if(running)clock.play();else clock.pause();}
+ }
+ function startClock(){
+  clock?.cancel();
+  contactRoot.querySelectorAll<HTMLElement>('.contact-topic-progress').forEach(line=>line.style.transform='scaleX(0)');
+  const line=buttons[index].querySelector<HTMLElement>('.contact-topic-progress')!;
+  clock=line.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:6500,fill:'forwards',easing:'linear'});
+  const current=clock;
+  clock.finished.then(()=>{if(clock!==current||controller.signal.aborted)return;index=(index+1)%buttons.length;select(buttons[index]);startClock();}).catch(()=>{});
+  syncCycle();
+ }
+ const cycleObserver=new IntersectionObserver(entries=>{cycleVisible=entries.some(entry=>entry.isIntersecting);syncCycle();},{threshold:.25});cycleObserver.observe(conversation);
+ topics.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'){hovered=true;syncCycle();}},{signal:controller.signal});
+ topics.addEventListener('pointerleave',()=>{hovered=false;syncCycle();},{signal:controller.signal});
+ topics.addEventListener('focusin',()=>{focused=true;syncCycle();},{signal:controller.signal});
+ topics.addEventListener('focusout',event=>{focused=event.relatedTarget instanceof Node&&topics.contains(event.relatedTarget);syncCycle();},{signal:controller.signal});
+ media.addEventListener('change',()=>{cyclePaused=media.matches;syncCycle();},{signal:controller.signal});
+ document.addEventListener('visibilitychange',syncCycle,{signal:controller.signal});
+ buttons.forEach((button,i)=>button.addEventListener('click',()=>{index=i;select(button,true);startClock();},{signal:controller.signal}));
+ startClock();
+ document.addEventListener('astro:before-swap',()=>{clock?.cancel();cycleObserver.disconnect();},{once:true,signal:controller.signal});
+ document.addEventListener('astro:before-swap',()=>{observer.disconnect();controller.abort();},{once:true,signal:controller.signal});
+}
+document.addEventListener('astro:page-load',setupContactStudio);
+</script>

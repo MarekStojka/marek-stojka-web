@@ -1,0 +1,55 @@
+---
+import { meetingConfig } from '../data/next-meeting';
+import { publicContact } from '../data/contact';
+const event=meetingConfig.event;
+const start=event?new Date(event.startsAt):null;
+const validStart=start&&!Number.isNaN(start.getTime())?start:null;
+const dateText=validStart?new Intl.DateTimeFormat('cs-CZ',{dateStyle:'long',timeStyle:'short',timeZone:'Europe/Prague'}).format(validStart):null;
+const seatsUpdated=event?.seatsUpdatedAt?new Date(event.seatsUpdatedAt):null;
+const updatedText=seatsUpdated&&!Number.isNaN(seatsUpdated.getTime())?new Intl.DateTimeFormat('cs-CZ',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Prague'}).format(seatsUpdated):null;
+const full=event?.remainingSeats===0;
+const interest=`mailto:${publicContact.email}?subject=${encodeURIComponent(event?`Zájem o setkání: ${event.title}`:'Zájem o nejbližší setkání')}`;
+---
+<section class="next-meeting" id="pristi-setkani" aria-labelledby="next-meeting-title" data-next-meeting data-starts-at={validStart?event?.startsAt:undefined} data-ends-at={event?.endsAt}>
+ <div class="next-meeting-intro"><h2 id="next-meeting-title">{event?event.title:<>Příště<br /><em>naživo.</em></>}</h2><p class="meet-lead">{event?'Těším se na společné tvoření.':'První termín připravuji.'}</p><p>{event?'Tady najdete vše podstatné pro naše nejbližší setkání.':'Jakmile bude vypsaná konkrétní akce, najdete tu odpočet, místo i počet volných míst. Zatím mi můžete napsat, o jaké téma máte zájem.'}</p></div>
+ <div class="next-meeting-board"><p class="countdown-heading">Do dalšího setkání</p><div class="meeting-countdown" role="group" aria-label={event?'Zbývající čas do začátku setkání':'Odpočet se zobrazí po vypsání termínu'}>{[{key:'days',label:'Dny'},{key:'hours',label:'Hodiny'},{key:'minutes',label:'Minuty'},{key:'seconds',label:'Sekundy'}].map(item=><div><strong data-count={item.key}>—</strong><span>{item.label}</span></div>)}</div>
+ <p class="meeting-time-status" data-time-status role="status" hidden></p>
+ <dl class="meeting-facts"><div><dt>Kdy</dt><dd>{dateText?<time datetime={event?.startsAt}>{dateText}</time>:'Termín připravuji'}</dd></div><div><dt>Kde</dt><dd>{event?<>{event.venue}{event.address&&<span>{event.address}</span>}</>:'Místo bude doplněné'}</dd></div><div><dt>Volná místa</dt><dd>{event?.remainingSeats!=null?<><strong>{event.remainingSeats}</strong>{event.capacity!=null&&` z ${event.capacity}`}{full&&<span>Kapacita je naplněná</span>}</>:'Kapacitu teprve oznámím'}</dd></div></dl>
+ {updatedText&&<p class="meeting-seats-updated">Stav míst k {updatedText}.</p>}
+ <div class="meeting-actions">{event?.registrationUrl&&!full?<a class="meet-text-link" data-registration href={event.registrationUrl}>Přihlásit se na setkání <span aria-hidden="true">↗</span></a>:<a class="meet-text-link" href={interest}>{full?'Mám zájem o další termín':'Napsat o zájmu'} <span aria-hidden="true">↗</span></a>}<a class="meet-text-link" href="#setkani">Prohlédnout témata <span aria-hidden="true">↓</span></a></div>
+ </div>
+</section>
+<script>
+ import { meetingCountdown } from '../lib/meeting-countdown';
+ let disposeMeeting=()=>{};
+ function initMeeting(){
+  disposeMeeting();
+  const root=document.querySelector<HTMLElement>('[data-next-meeting]');
+  if(!root?.dataset.startsAt)return;
+  const start=Date.parse(root.dataset.startsAt);
+  if(!Number.isFinite(start))return;
+  const end=root.dataset.endsAt?Date.parse(root.dataset.endsAt):NaN;
+  let timer:ReturnType<typeof setInterval>|undefined;
+  const stop=()=>{if(timer!==undefined){clearInterval(timer);timer=undefined;}};
+  const tick=()=>{
+   const now=Date.now();const countdown=meetingCountdown(now,start,end);
+   const values={days:countdown.days,hours:countdown.hours,minutes:countdown.minutes,seconds:countdown.seconds};
+   for(const [key,value]of Object.entries(values)){const target=root.querySelector<HTMLElement>(`[data-count="${key}"]`);if(target)target.textContent=String(value).padStart(2,'0');}
+   const status=root.querySelector<HTMLElement>('[data-time-status]');
+   if(now>=start){
+    const registration=root.querySelector<HTMLElement>('[data-registration]');if(registration)registration.hidden=true;
+    if(status){status.hidden=false;const text=countdown.state==='ongoing'?'Setkání právě probíhá.':countdown.state==='ended'?'Setkání už proběhlo.':'Termín setkání nastal.';if(status.textContent!==text)status.textContent=text;}
+    if(!countdown.running)stop();
+   }
+  };
+  const resume=()=>{stop();tick();if(!document.hidden&&meetingCountdown(Date.now(),start,end).running)timer=setInterval(tick,1000);};
+  document.addEventListener('visibilitychange',resume);resume();
+  disposeMeeting=()=>{stop();document.removeEventListener('visibilitychange',resume);};
+ }
+ initMeeting();document.addEventListener('astro:page-load',initMeeting);document.addEventListener('astro:before-swap',()=>disposeMeeting());
+</script>
+<style>
+.next-meeting{display:grid;grid-template-columns:1fr 1.2fr;gap:8%;padding:60px 6%;background:#eee9f5}.next-meeting-intro>p{max-width:560px}.next-meeting-intro .meet-lead{margin-top:25px}.countdown-heading{margin:0 0 20px;color:#333!important;font-size:20px!important}.meeting-countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.meeting-countdown>div{background:#fff;padding:20px 8px;text-align:center}.meeting-countdown strong{font-family:'Manrope Variable',sans-serif;font-size:clamp(38px,4.2vw,65px);font-weight:450;letter-spacing:-.065em;line-height:1.2;display:block;font-variant-numeric:tabular-nums}.meeting-countdown span{font-size:15px;display:block;color:#666;margin-top:8px}.meeting-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;margin:30px 0}.meeting-facts dt{font-size:16px;color:#666;margin-bottom:12px}.meeting-facts dd{font-size:19px;line-height:1.5;margin:0}.meeting-facts dd span{display:block;font-size:16px;color:#666}.meeting-facts dd strong{font-size:27px;font-weight:500}.meeting-actions{display:flex;flex-wrap:wrap;gap:15px 30px}.meeting-actions a{font-size:17px}.meeting-seats-updated{font-size:14px!important}.meeting-time-status{color:#4b1887!important;font-size:19px!important}.next-meeting [hidden]{display:none!important}
+@media(max-width:1000px){.next-meeting{grid-template-columns:1fr;gap:25px}.next-meeting-intro>p{max-width:780px}.meeting-countdown strong{font-size:60px}}
+@media(max-width:700px){.next-meeting{padding:40px 7%}.meeting-countdown{gap:5px}.meeting-countdown>div{padding:16px 3px}.meeting-countdown strong{font-size:37px}.meeting-countdown span{font-size:12px}.meeting-facts{grid-template-columns:1fr;gap:20px}.meeting-facts>div{display:grid;grid-template-columns:60px 1fr;gap:20px}.meeting-facts dt{margin-top:4px}.meeting-facts dd{font-size:18px}}
+</style>

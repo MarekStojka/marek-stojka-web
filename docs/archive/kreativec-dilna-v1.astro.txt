@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import drawing from '../assets/artwork/marek-stojka-surrealni-portret.png';
+import { publicContact } from '../data/contact';
+import '../styles/creative-studio.css';
+import CircleHero from '../components/CircleHero.astro';
+import CreativityMagazine from '../components/CreativityMagazine.astro';
+---
+<BaseLayout title="Magazín o kreativitě — Marek Stojka" description="Nápady, tvůrčí cvičení, obraz a slovo. Magazín o kreativitě Marka Stojky.">
+<div class="studio-page">
+ <header class="studio-header"><a class="wordmark" href="/">kreativno<span aria-hidden="true">/</span></a><nav aria-label="Hlavní navigace"><a href="#zapisnik">Magazín</a><a href="#vyzkouset">Vyzkoušet</a><a href="#z-tvorby">Z tvorby</a><a href="#setkani">Setkání</a></nav></header>
+ <main id="obsah">
+  <CircleHero />
+  <CreativityMagazine />
+  <section class="studio-play" id="vyzkouset" aria-labelledby="play-title"><div class="studio-play-intro"><h2 id="play-title">Zkus to<br /><em>jinak.</em></h2><p>Spojte dvě obyčejné věci v jeden neobyčejný nápad. Co by spolu mohly dělat?</p><button type="button" data-shuffle-pair>Nová dvojice <span aria-hidden="true">↻</span></button></div><div class="studio-play-work"><div class="studio-pair" aria-live="polite" aria-atomic="true"><span data-pair-first>Deštník</span><span class="studio-plus" aria-hidden="true">+</span><span data-pair-second>Paměť</span></div><label for="studio-idea">Co vás napadlo?</label><textarea id="studio-idea" rows="3" placeholder="Třeba deštník, který si pamatuje místa, kde pršelo…"></textarea><p class="studio-private-note">Jen prostor pro váš pokus. Nic se neodesílá.</p><details><summary>Potřebuji postrčit <span aria-hidden="true">+</span></summary><p>Co kdyby první věc převzala schopnost té druhé? Nebo spolu vyřešily úplně jiný problém? Zkuste slogan, předmět nebo začátek příběhu.</p></details></div></section>
+  <section class="studio-making" id="z-tvorby" aria-labelledby="making-title"><div class="studio-section-title"><h2 id="making-title">Nápad pod lupou.</h2><p>Podívat se blíž. Všimnout si jiného detailu.</p></div><div class="studio-making-layout"><div class="studio-drawing-frame" data-drawing-frame><Image src={drawing} width={1200} format="webp" alt="Markova originální surrealistická kresba s fialovými vlasy a barevnými liniemi." loading="lazy"/></div><div class="studio-making-copy"><h3>Jeden obraz.<br /><em>Jiný pohled.</em></h3><p>Tohle je moje kresba. Zkuste přepnout z celku na detail. Stejný obraz může najednou vyprávět něco jiného.</p><div class="studio-view-controls" aria-label="Pohled na kresbu"><button type="button" data-drawing-view="whole" aria-pressed="true">Celek</button><button type="button" data-drawing-view="detail" aria-pressed="false">Detail</button></div><p>Postupně tu chci rozebírat i vznik konkrétních prací: odkud přišla myšlenka, co nefungovalo a co ji posunulo dál.</p></div></div><div class="studio-projects"><div><h3>Něco už žije<br />vlastním životem.</h3><a href="https://www.besohaj.cz/" target="_blank" rel="noreferrer">Běsoháj — můj svět produktů <span aria-hidden="true">↗</span><span class="visually-hidden"> (nová karta)</span></a></div><p>Další část tvorby vzniká ve spolupráci s agenturami. Ne všechny práce mohu veřejně ukázat. Konkrétní příběhy projektů doplním podle možností zveřejnění.</p></div></section>
+  <section class="studio-meet" id="setkani" aria-labelledby="meet-title"><div><h2 id="meet-title">Od nápadů<br /><em>k setkání.</em></h2><p>O kreativitě chci nejen psát, ale také ji společně zkoušet.</p></div><div class="studio-meet-plans"><article><h3>Semináře a workshopy</h3><p>Připravuji prostor pro společné hledání, otázky a tvůrčí pokusy. Téma a termín oznámím, až budou potvrzené.</p><a href={`mailto:${publicContact.email}?subject=${encodeURIComponent('Zájem o setkání o kreativitě')}`}>Tohle mě zajímá ↗</a></article><article><h3>Videa o kreativitě</h3><p>Plánuji sdílet postupy a pohled do tvorby i ve videích. První materiály zatím vznikají.</p></article></div></section>
+  <section class="studio-contact" id="spojme-se"><h2>Co vám<br /><em>vrtá hlavou?</em></h2><div><p>Nápad, otázka nebo téma, které tu chcete otevřít.</p><a href={`mailto:${publicContact.email}`}>{publicContact.email}</a><a href={`tel:${publicContact.phone.replace(/[^+\d]/g,'')}`}>{publicContact.phone}</a></div></section>
+ </main><footer class="studio-footer"><span>Marek Stojka</span><a href="/#svety">Zpátky do mých světů ↗</a></footer>
+</div>
+</BaseLayout>
+<script>
+function setupStudio(){
+ const root=document.querySelector('.studio-page');if(!root)return;
+ const controller=new AbortController();const signal=controller.signal;
+ const pairs=[['Deštník','Paměť'],['Výtah','Les'],['Knihovna','Ticho'],['Budík','Odvaha'],['Kapsa','Město']];let pair=0;
+ root.querySelector('[data-shuffle-pair]')?.addEventListener('click',()=>{pair=(pair+1)%pairs.length;root.querySelector('[data-pair-first]')!.textContent=pairs[pair][0];root.querySelector('[data-pair-second]')!.textContent=pairs[pair][1];},{signal});
+ root.querySelectorAll<HTMLButtonElement>('[data-drawing-view]').forEach(button=>button.addEventListener('click',()=>{root.querySelector('[data-drawing-frame]')?.classList.toggle('is-detail',button.dataset.drawingView==='detail');root.querySelectorAll<HTMLButtonElement>('[data-drawing-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));},{signal}));
+ document.addEventListener('astro:before-swap',()=>controller.abort(),{once:true,signal});
+}
+document.addEventListener('astro:page-load',setupStudio);
+</script>

@@ -1,0 +1,33 @@
+{
+  "title": "Než hledat odpověď, změňte otázku.",
+  "category": "obecne",
+  "cover": "none",
+  "intro": "Co se stane, když se na stejné zadání zeptáte jinými slovy? Malý pokus s tím, odkud začít.",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Pojmenujte zadání.",
+      "paragraphs": [
+        "Napište jednou větou, co právě řešíte. Třeba jak upozornit na nový projekt. Potom napište ještě dvě otázky, které se týkají stejné situace: pro koho je projekt zajímavý a co by si o něm měl člověk zapamatovat."
+      ]
+    },
+    {
+      "layout": "columns",
+      "title": "Zkuste jiný začátek.",
+      "paragraphs": [
+        "Ke každé otázce si poznamenejte jeden nápad. Nesnažte se je hned porovnávat. Sledujte, k čemu vás každá formulace přivedla. Některá vás může nasměrovat k obrazu, jiná k rozhovoru nebo k jednoduché větě."
+      ]
+    },
+    {
+      "layout": "highlight",
+      "title": "Vezměte si jednu dál.",
+      "paragraphs": [
+        "Vyberte si otázku, která vám otevřela nejzajímavější cestu. Udělejte podle ní malý návrh. Pokud nikam nevede, vraťte se k ostatním. I zadání může mít více verzí."
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

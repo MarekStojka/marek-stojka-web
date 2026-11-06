@@ -1,0 +1,79 @@
+---
+import ChangingSlogan from './ChangingSlogan.astro';
+import AuthorPhotoStory from './AuthorPhotoStory.astro';
+import BrushIcon from './BrushIcon.astro';
+import ContactSection from './ContactSection.astro';
+import '../styles/icon-motion.css';
+const offerings=[
+ {kind:'horror',title:'Píšu horory',description:'Píšu příběhy, které pracují s napětím, strachem a tím, co není vidět.'},
+ {kind:'comedy',title:'Píšu komedie',description:'Hledám humor v obyčejných situacích, absurditě i nečekaných zvratech.'},
+ {kind:'web',title:'Tvořím weby',description:'Proměňuji nápady ve weby, které mají vlastní charakter a dobře se používají.'},
+ {kind:'ai',title:'Experimentuji s AI',description:'Zkouším, co vznikne, když se lidská představivost potká s umělou inteligencí.'},
+ {kind:'spark',title:'Jsem kreativní',description:'Hledám další možnosti i tam, kde už všechno vypadá vyřešené.'},
+ {kind:'training',title:'Školím',description:'Pomáhám lidem hledat nové úhly pohledu a pracovat s vlastními nápady.'},
+ {kind:'presentation',title:'Tvořím prezentace',description:'Dávám myšlenkám jasnou strukturu a vizuální podobu, která pomůže sdělit to podstatné.'},
+ {kind:'ux',title:'Jsem UX/UI designér',description:'Navrhuji rozhraní s ohledem na to, jak v nich lidé přemýšlejí a jednají.'},
+ {kind:'ads',title:'Rozumím reklamě',description:'Hledám propojení mezi tím, co značka nabízí, a tím, co lidi zajímá.'},
+ {kind:'brand',title:'Tvořím brandy a identity',description:'Dávám značkám jméno, osobnost a vizuální podobu, které drží pohromadě.'},
+ {kind:'campaign',title:'Dělám reklamní kampaně',description:'Rozvíjím jednu nosnou myšlenku do kampaně napříč různými formáty.'},
+ {kind:'words',title:'Píšu slogany',description:'Hledám krátké věty, které vystihnou podstatu a zůstanou v hlavě.'},
+ {kind:'naming',title:'Vymýšlím názvy',description:'Vymýšlím názvy, které vystihují charakter značky, produktu nebo projektu.'},
+ {kind:'story',title:'Vyprávím příběhy značek',description:'Pomáhám značkám najít a vyprávět příběh, který je pro ně vlastní.'},
+ {kind:'script',title:'Píšu scénáře',description:'Dávám příběhu děj, rytmus a dialogy, aby fungoval i mimo mou hlavu.'},
+ {kind:'draw',title:'Kreslím a ilustruji',description:'Převádím představy do kreseb, ilustrací a vlastních vizuálních světů.'},
+ {kind:'connect',title:'Hledám nečekaná spojení',description:'Spojuji zdánlivě nesouvisející věci a hledám, co nového z nich vznikne.'},
+ {kind:'simplify',title:'Zjednodušuji složité',description:'Hledám podstatu a odstraňuji to, co zbytečně komplikuje porozumění.'},
+ {kind:'prototype',title:'Stavím prototypy',description:'Dávám nápadům první funkční podobu, abych je mohl vyzkoušet v praxi.'},
+ {kind:'automation',title:'Automatizuji práci',description:'Hledám opakující se práci a způsoby, jak ji nechat běžet jednodušeji.'},
+ {kind:'grow',title:'Rozvíjím nápady ostatních',description:'Navazuji na cizí myšlenky a pomáhám jim vyrůst v konkrétní koncept.'},
+ {kind:'compass',title:'Hledám směr značky',description:'Hledám, co má značka říkat, komu a jakým vlastním způsobem.'},
+ {kind:'network',title:'Propojuji lidi a obory',description:'Propojuji různé zkušenosti a obory, ze kterých může vzniknout něco nového.'},
+ {kind:'finish',title:'Dotahuji nápady',description:'Pomáhám myšlence projít od prvního náčrtu až ke konkrétnímu výsledku.'},
+ {kind:'banner',title:'Navrhuji bannery',description:'Převádím reklamní myšlenku do formátu, který upoutá i na malé ploše.'},
+ {kind:'print',title:'Tvořím tiskovou grafiku',description:'Dávám nápadům podobu plakátů, letáků a dalších věcí, které můžete vzít do ruky.'},
+ {kind:'voice',title:'Dávám značkám vlastní hlas',description:'Hledám způsob vyjadřování, podle kterého značku poznáte i bez loga.'},
+ {kind:'journey',title:'Navrhuji uživatelské cesty',description:'Hledám srozumitelnou cestu od prvního kliknutí k tomu, co člověk potřebuje.'},
+ {kind:'test',title:'Ověřuji nápady',description:'Zkouším první verze a hledám, co funguje a co se dá ještě posunout.'},
+ {kind:'imageword',title:'Propojuji obraz a slovo',description:'Hledám souhru textu a vizuálu, aby společně řekly víc než každý zvlášť.'},
+] as const;
+---
+<ChangingSlogan />
+<AuthorPhotoStory />
+<section class="home-offerings" data-discovery id="co-delam" aria-labelledby="offering-title"><h2 id="offering-title" class="offering-heading">Tohle všechno dělám</h2><div class="offering-grid">{offerings.map((item,index)=><button type="button" class="offering-tile" data-offering={item.kind} aria-label={item.title} aria-expanded="false" aria-controls={`offering-detail-${index}`}><span class="offering-face"><BrushIcon kind={item.kind}/></span><span class="offering-detail" id={`offering-detail-${index}`} hidden><strong>{item.title}</strong><span>{item.description}</span></span></button>)}</div><div class="discovery-reset" hidden><button type="button" data-discovery-reset>Zpátky na světlou stranu <span aria-hidden="true">↗</span></button></div><p class="visually-hidden" data-discovery-status aria-live="polite"></p></section>
+<ContactSection />
+
+<script>
+function setupDiscovery(){
+ const root=document.querySelector<HTMLElement>('[data-discovery]');if(!root)return;
+ const controller=new AbortController();const {signal}=controller;
+ const cards=[...root.querySelectorAll<HTMLButtonElement>('[data-offering]')];
+ const keys=new Set(cards.map(card=>card.dataset.offering!));
+ const storageKey='marek-card-discovery-v1';
+ let seen=new Set<string>(),opened=new Set<string>(),dark=false;
+ try{const saved=JSON.parse(sessionStorage.getItem(storageKey)||'null');if(saved&&Array.isArray(saved.seen)&&Array.isArray(saved.opened)){
+  seen=new Set(saved.seen.filter((key:unknown):key is string=>typeof key==='string'&&keys.has(key)));
+  opened=new Set(saved.opened.filter((key:unknown):key is string=>typeof key==='string'&&keys.has(key)));
+  dark=seen.size===keys.size;
+ }}catch{/* Browsing works even when session storage is unavailable. */}
+ function save(){try{sessionStorage.setItem(storageKey,JSON.stringify({seen:[...seen],opened:[...opened]}));}catch{}}
+ function render(){
+  cards.forEach(card=>{const open=opened.has(card.dataset.offering!);card.setAttribute('aria-expanded',String(open));
+   card.querySelector<HTMLElement>('.offering-face')!.hidden=open;
+   const detail=card.querySelector<HTMLElement>('.offering-detail')!;detail.hidden=!open;
+   card.setAttribute('aria-label',open?[...detail.children].map(part=>part.textContent!.trim()).join('. '):detail.querySelector('strong')!.textContent!);
+  });
+  if(dark)document.documentElement.dataset.homeMode='dark';else delete document.documentElement.dataset.homeMode;
+  root!.querySelector<HTMLElement>('.discovery-reset')!.hidden=!dark;
+ }
+ cards.forEach(card=>card.addEventListener('click',()=>{
+  const key=card.dataset.offering!;if(opened.has(key))opened.delete(key);else opened.add(key);seen.add(key);
+  const complete=!dark&&seen.size===keys.size;if(complete)dark=true;
+  render();save();
+  if(complete)root.querySelector('[data-discovery-status]')!.textContent=`Objevili jste všech ${keys.size} oblastí. Web přešel do tmavého režimu. Pod kartami jej můžete vrátit na světlou stranu.`;
+ },{signal}));
+ root.querySelector('[data-discovery-reset]')!.addEventListener('click',()=>{seen.clear();opened.clear();dark=false;render();save();root.querySelector('[data-discovery-status]')!.textContent='Web je opět světlý. Všechny karty jsou zavřené.';cards[0]?.focus({preventScroll:true});},{signal});
+ render();
+ document.addEventListener('astro:before-swap',()=>{controller.abort();delete document.documentElement.dataset.homeMode;},{once:true,signal});
+}
+document.addEventListener('astro:page-load',setupDiscovery);
+</script>

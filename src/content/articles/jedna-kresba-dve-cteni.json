@@ -1,0 +1,33 @@
+{
+  "title": "Co zůstane, když schovám okolí?",
+  "category": "okenko",
+  "cover": "drawing",
+  "intro": "Pracovní poznámka nad vlastní kresbou. Tentokrát kolem toho, co obraz ukazuje a co nechává stranou.",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Zastavit se u motivu.",
+      "paragraphs": [
+        "Na téhle kresbě je možné sledovat tvář, barevné linie i okolní motivy. Pro tenhle pokus si zkusme vybrat jen jednu část a ostatní na chvíli zakrýt. Co se objeví jako první?"
+      ]
+    },
+    {
+      "layout": "columns",
+      "title": "Pokus s rámem.",
+      "paragraphs": [
+        "Zvětšení detailu není nový obraz, ale může nabídnout jiný způsob, jak se na něj dívat. Vedle samotné kresby tak vzniká další otázka: kolik okolí je potřeba, aby motiv fungoval tak, jak chceme?"
+      ]
+    },
+    {
+      "layout": "highlight",
+      "title": "Otevřené okénko.",
+      "paragraphs": [
+        "Postupně sem chci přidávat vlastní pokusy a skutečné poznámky z tvorby. Tenhle text zatím slouží jako pracovní ukázka toho, jak by takové okénko mohlo vypadat."
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

@@ -1,0 +1,80 @@
+/* Hover is a short invitation, never a background loop across thirty cards. */
+.offering-tile{cursor:pointer;isolation:isolate;overflow:hidden;transition:background-color .25s,color .25s,box-shadow .25s}
+.offering-tile:focus-visible{outline:3px solid #7639bd;outline-offset:-5px;z-index:1}
+.offering-tile:active:not([aria-expanded=true]){background:#e5d8f5}
+.offering-tile .brush-icon{transition:transform .3s cubic-bezier(.2,.8,.2,1);overflow:visible}
+.offering-tile .brush-icon path{transform-box:fill-box;transform-origin:center}
+.offering-tile:focus-visible:not([aria-expanded=true]){background:#f0e7fa;color:#6731a2;box-shadow:inset 0 -4px #7639bd}
+@media(hover:hover){
+ .offering-tile:hover:not([aria-expanded=true]){background:#f0e7fa;color:#6731a2;box-shadow:inset 0 -4px #7639bd}
+ .offering-tile:hover .brush-icon{transform:rotate(0) scale(1.14)}
+}
+.offering-tile:focus-visible .brush-icon{transform:rotate(0) scale(1.14)}
+@media(prefers-reduced-motion:no-preference){
+ .offering-tile:is(:hover,:focus-visible) .brush-icon{animation:icon-arrive .6s cubic-bezier(.2,.8,.2,1) both}
+ .offering-tile:is(:hover,:focus-visible) .brush-icon path{animation:var(--part-motion,icon-ink) .9s ease-in-out both}
+ .offering-tile:is(:hover,:focus-visible) .brush-icon path:nth-child(2){animation-delay:.07s}
+ .offering-tile:is(:hover,:focus-visible) .brush-icon path:nth-child(3){animation-delay:.14s}
+ .brush-icon[data-icon=horror]{--part-motion:icon-shiver}
+ .brush-icon[data-icon=comedy]{--part-motion:icon-laugh}
+ .brush-icon[data-icon=web] path:last-child,.brush-icon[data-icon=ux] path:last-child{--part-motion:icon-slide}
+ .brush-icon[data-icon=ai]{--part-motion:icon-pulse}
+ .brush-icon[data-icon=spark] path:last-child{--part-motion:icon-rays}
+ .brush-icon[data-icon=training] path:last-child{--part-motion:icon-point}
+ .brush-icon[data-icon=presentation] path:nth-child(2){--part-motion:icon-fan}
+ .brush-icon[data-icon=ads] path:last-child{--part-motion:icon-broadcast}
+ .brush-icon[data-icon=brand] path:last-child{--part-motion:icon-rays}
+ .brush-icon[data-icon=campaign] path:first-child{--part-motion:icon-wave}
+ .brush-icon[data-icon=words] path:last-child,.brush-icon[data-icon=voice] path:last-child{--part-motion:icon-broadcast}
+ .brush-icon[data-icon=naming] path:nth-child(2){--part-motion:icon-laugh}
+ .brush-icon[data-icon=story] path:first-child,.brush-icon[data-icon=draw] path:first-child{--part-motion:icon-write}
+ .brush-icon[data-icon=script] path:first-child{--part-motion:icon-clap}
+ .brush-icon[data-icon=connect] path:first-child{--part-motion:icon-fit-left}
+ .brush-icon[data-icon=connect] path:last-child{--part-motion:icon-fit-right}
+ .brush-icon[data-icon=simplify] path:first-child{--part-motion:icon-slide}
+ .brush-icon[data-icon=prototype]{--part-motion:icon-float}
+ .brush-icon[data-icon=automation] path:first-child{--part-motion:icon-turn}
+ .brush-icon[data-icon=grow] path:last-child{--part-motion:icon-grow}
+ .brush-icon[data-icon=compass] path:nth-child(2){--part-motion:icon-needle}
+ .brush-icon[data-icon=network]{--part-motion:icon-pulse}
+ .brush-icon[data-icon=finish] path:last-child{--part-motion:icon-laugh}
+ .brush-icon[data-icon=banner] path:last-child{--part-motion:icon-slide}
+ .brush-icon[data-icon=print] path:last-child{--part-motion:icon-paper}
+ .brush-icon[data-icon=journey] path:last-child{--part-motion:icon-slide}
+ .brush-icon[data-icon=test] path:last-child{--part-motion:icon-check}
+ .brush-icon[data-icon=imageword] path:last-child{--part-motion:icon-fit-left}
+ .brush-icon[data-icon=book] path:nth-child(2){--part-motion:icon-page}
+}
+@keyframes icon-arrive{0%{transform:rotate(-3deg) scale(1)}45%{transform:rotate(3deg) scale(1.2)}100%{transform:rotate(0) scale(1.14)}}
+@keyframes icon-ink{0%,100%{opacity:1}35%{opacity:.45}65%{opacity:1}}
+@keyframes icon-shiver{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-3px) rotate(-3deg)}40%,80%{transform:translateX(3px) rotate(3deg)}}
+@keyframes icon-laugh{0%,100%{transform:translateY(0)}25%,65%{transform:translateY(-7px) rotate(3deg)}45%,85%{transform:translateY(1px) rotate(-2deg)}}
+@keyframes icon-slide{0%,100%{transform:translateX(0)}40%{transform:translateX(7px)}70%{transform:translateX(-3px)}}
+@keyframes icon-pulse{0%,100%{transform:scale(1)}35%{transform:scale(1.13)}65%{transform:scale(.96)}}
+@keyframes icon-rays{0%,100%{transform:scale(1)}45%{transform:scale(1.2);opacity:.55}}
+@keyframes icon-point{0%,100%{transform:rotate(0)}45%{transform:rotate(-9deg)}}
+@keyframes icon-fan{0%,100%{transform:translate(0) rotate(0)}45%{transform:translate(4px,-4px) rotate(7deg)}}
+@keyframes icon-broadcast{0%,100%{transform:translateX(0);opacity:1}45%{transform:translateX(8px);opacity:.4}}
+@keyframes icon-wave{0%,100%{transform:skewY(0)}35%{transform:skewY(5deg)}70%{transform:skewY(-4deg)}}
+@keyframes icon-write{0%,100%{transform:translate(0) rotate(0)}35%{transform:translate(5px,3px) rotate(-7deg)}70%{transform:translate(-3px,1px) rotate(4deg)}}
+@keyframes icon-clap{0%,100%{transform:rotate(0)}40%{transform:rotate(-7deg)}65%{transform:rotate(3deg)}}
+@keyframes icon-fit-left{0%,100%{transform:translateX(0)}45%{transform:translateX(6px)}}
+@keyframes icon-fit-right{0%,100%{transform:translateX(0)}45%{transform:translateX(-6px)}}
+@keyframes icon-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes icon-turn{0%{transform:rotate(0)}100%{transform:rotate(180deg)}}
+@keyframes icon-grow{0%,100%{transform:scaleY(1)}45%{transform:scaleY(1.18) translateY(-3px)}}
+@keyframes icon-needle{0%,100%{transform:rotate(0)}30%{transform:rotate(28deg)}65%{transform:rotate(-14deg)}}
+@keyframes icon-paper{0%,100%{transform:translateY(0)}45%{transform:translateY(8px)}}
+@keyframes icon-check{0%,100%{transform:scale(1)}35%{transform:scale(.7)}65%{transform:scale(1.15)}}
+@keyframes icon-page{0%,100%{transform:scaleX(1)}45%{transform:scaleX(.65)}}
+html[data-home-mode=dark] .offering-tile:is(:hover,:focus-visible):not([aria-expanded=true]){background:#302039;color:#edd5ff}
+@media(prefers-reduced-motion:reduce){.offering-tile,.offering-tile .brush-icon{transition:none}.offering-tile:is(:hover,:focus-visible) .brush-icon{transform:rotate(-3deg)}}
+/* The same drawn gestures also belong to linked editorial cards and their links. */
+.icon-motion-trigger .brush-icon{overflow:visible}
+.icon-motion-trigger .brush-icon path{transform-box:fill-box;transform-origin:center}
+@media(prefers-reduced-motion:no-preference){
+ .icon-motion-trigger:is(:hover,:focus-visible,:focus-within) .brush-icon{animation:icon-arrive .6s cubic-bezier(.2,.8,.2,1) both}
+ .icon-motion-trigger:is(:hover,:focus-visible,:focus-within) .brush-icon path{animation:var(--part-motion,icon-ink) .9s ease-in-out both}
+ .icon-motion-trigger:is(:hover,:focus-visible,:focus-within) .brush-icon path:nth-child(2){animation-delay:.07s}
+ .icon-motion-trigger:is(:hover,:focus-visible,:focus-within) .brush-icon path:nth-child(3){animation-delay:.14s}
+}

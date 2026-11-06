@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BrushIcon from '../../components/BrushIcon.astro';
+import { creativeTopics } from '../../data/creative-topics';
+import { publicContact } from '../../data/contact';
+import '../../styles/creative.css';
+export function getStaticPaths(){return creativeTopics.map(topic=>({params:{oblast:topic.slug},props:{topic}}));}
+const {topic}=Astro.props;
+---
+<BaseLayout title={`${topic.title} — Marek Stojka`} description={topic.intro} noindex={true}>
+ <div class="creative-page creative-topic-page">
+ <header class="creative-header"><a class="wordmark" href="/">kreativno<span aria-hidden="true">/</span></a><nav aria-label="Hlavní navigace"><a href="/kreativec#zapisnik">Zpátky do dílny</a></nav></header>
+ <main id="obsah" class="creative-topic-content"><BrushIcon kind={topic.icon}/><h1>{topic.title}</h1><p class="creative-topic-intro">{topic.intro}</p><div class="creative-topic-pending"><h2>Tady to teprve vznikne.</h2><p>Obsah této části připravuji.</p></div><a class="creative-topic-mail" href={`mailto:${publicContact.email}?subject=${encodeURIComponent(topic.title)}`}>Napište mi ↗</a></main>
+ 
+ </div>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+import { creativeCategories } from '../data/creative-categories';
+import { creativeArticles } from '../data/creative-articles';
+interface Props {article:(typeof creativeArticles)[number]; label:string;}
+const {article,label}=Astro.props;
+const related=creativeArticles.filter(item=>item.category===article.category&&item.slug!==article.slug);
+const index=creativeArticles.findIndex(item=>item.slug===article.slug);
+const next=creativeArticles[(index+1)%creativeArticles.length];
+const previous=creativeArticles[(index+creativeArticles.length-1)%creativeArticles.length];
+---
+<nav class="article-navigation" aria-label={label}>
+ <div><h2>V tomto článku</h2>{article.sections.map((section,index)=><a href={`#cast-${index+1}`}>{section.title}</a>)}</div>
+ <div><h2>Prozkoumat rubriky</h2>{creativeCategories.map(category=><a href={`/kreativec/magazin/${category.id}`} aria-current={category.id===article.category?'true':undefined}>{category.title}<span aria-hidden="true">↗</span></a>)}</div>
+ {related.length>0&&<div><h2>Ze stejné rubriky</h2>{related.map(item=><a href={`/kreativec/zapisnik/${item.slug}`}>{item.title}<span aria-hidden="true">↗</span></a>)}</div>}
+ {previous&&next&&<div class="article-neighbours"><a href={`/kreativec/zapisnik/${previous.slug}`}><span aria-hidden="true">←</span> Předchozí článek</a><a href={`/kreativec/zapisnik/${next.slug}`}>Další článek <span aria-hidden="true">→</span></a></div>}
+</nav>

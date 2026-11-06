@@ -1,0 +1,33 @@
+{
+  "title": "Co kdyby to bylo přesně naopak?",
+  "category": "svobodne",
+  "cover": "none",
+  "intro": "Na chvíli obrátit pravidla. Bez povinnosti dojít k praktickému výsledku.",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Obraťte samozřejmost.",
+      "paragraphs": [
+        "Knihovna, ze které si nic neodnesete. Budík, který vás nechá spát. Mapa, která ukazuje místa, kam nechcete jít. Co by takové věci mohly znamenat? Vyberte si jednu a chvíli u ní zůstaňte."
+      ]
+    },
+    {
+      "layout": "columns",
+      "title": "Nechte ji vyprávět.",
+      "paragraphs": [
+        "Napište, kdo by ji používal a proč. Třeba zjistíte, že mapa nežádoucích míst pomáhá někomu vyhnout se vlastní minulosti. Nebo že knihovna uchovává jen věty, které jí lidé přijdou říct."
+      ]
+    },
+    {
+      "layout": "highlight",
+      "title": "Nemusí z toho být produkt.",
+      "paragraphs": [
+        "Může zůstat jediný obraz, pár vět nebo otázka. Tenhle prostor je i pro nápady, u kterých zatím nevíte, k čemu by byly. Vraťte se k nim později a uvidíte, jestli vám ještě něco říkají."
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

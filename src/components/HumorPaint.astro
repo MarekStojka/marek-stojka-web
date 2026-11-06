@@ -1,0 +1,12 @@
+<span class="humor-ink-leak" data-humor-flow aria-hidden="true"><svg viewBox="0 0 14 46"><path fill="#a62691" d="M4 0H10V24C10 30 14 32 14 37A7 7 0 0 1 0 37C0 32 4 30 4 24Z"/><path fill="#e399cd" d="M6 2H7V27H6ZM3 35Q2 40 5 41"/></svg></span>
+<script>
+function setupHumorFlow(){
+ const flows=Array.from(document.querySelectorAll<HTMLElement>('[data-humor-flow]'));if(!flows.length)return;
+ const controller=new AbortController();const visible=new Set<Element>();
+ const sync=()=>flows.forEach(flow=>flow.classList.toggle('is-flowing',visible.has(flow)&&!document.hidden));
+ const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)visible.add(entry.target);else visible.delete(entry.target);});sync();},{rootMargin:'60px'});flows.forEach(flow=>observer.observe(flow));
+ document.addEventListener('visibilitychange',sync,{signal:controller.signal});
+ document.addEventListener('astro:before-swap',()=>{observer.disconnect();controller.abort();},{once:true,signal:controller.signal});
+}
+document.addEventListener('astro:page-load',setupHumorFlow);
+</script>

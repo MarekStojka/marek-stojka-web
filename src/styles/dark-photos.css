@@ -1,0 +1,32 @@
+/* Still studio photography; no continuous animation or interactive ash scene. */
+.dark-photo-hero { background:#0d0e0e; min-height:720px; }
+.hero-photo { position:absolute; inset:0; margin:0; pointer-events:none; }
+.hero-photo img { display:block; width:100%; height:100%; object-fit:contain; object-position:right center; mask-image:linear-gradient(to bottom,transparent 5%,#000 24%,#000 79%,transparent 100%); }
+.dark-photo-hero .hero-copy { top:32%; left:8%; right:5%; }
+.dark-photo-hero h1 { font-size:clamp(70px,8.7vw,144px); }
+.dark-photo-hero .hero-copy * { animation:none; }
+.dark-photo-hero h1>span:nth-child(2) { padding-left:8%; }
+.dark-photo-hero .hero-description { font-size:13px; line-height:1.8; color:#bdbbb6; }
+.dark-photo-hero .hero-link { margin-top:25px; font-size:12px; }
+.photo-hero-bottom { position:absolute; inset:auto 6% 35px; display:flex; justify-content:space-between; gap:25px; color:#a3a39c; font-size:12px; z-index:3; }
+.ash-book-project { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:8%; align-items:center; padding:110px 6% 100px; scroll-margin-top:30px; }
+.ash-book-project figure { margin:0; }
+.ash-book-project img { width:100%; height:auto; display:block; }
+.ash-book-project figcaption { font-size:11px; color:#84857e; margin-top:15px; }
+.ash-book-copy h2 { margin:12px 0 32px; font:400 clamp(46px,5vw,80px)/1 Georgia,serif; letter-spacing:-.05em; }
+.ash-book-copy .book-label { font-size:12px; color:#96998e; }
+.ash-book-copy>p { font-size:24px; line-height:1.45; }
+.ash-book-copy .book-note { max-width:320px; font-size:14px; line-height:1.8; color:#999b92; margin-top:28px; }
+@media(max-width:800px) {
+ .dark-photo-hero { height:100svh; min-height:750px; }
+ .dark-photo-hero .hero-copy { top:22%; left:7%; right:6%; }
+ .dark-photo-hero h1 { font-size:clamp(60px,12.3vw,88px); }
+ .dark-photo-hero .hero-description { font-size:12px; margin-top:24px; }
+ .dark-photo-hero .hero-link { margin-top:12px; }
+ .hero-photo { inset:38% -13% 4% -44%; }
+ .hero-photo img { object-position:right bottom; mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 75%,transparent); }
+ .photo-hero-bottom { bottom:26px; font-size:10px; }
+ .ash-book-project { grid-template-columns:1fr; gap:35px; padding:60px 6% 65px; }
+ .ash-book-copy h2 { font-size:55px; }
+ .ash-book-copy>p { font-size:23px; }
+}

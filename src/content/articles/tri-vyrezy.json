@@ -1,0 +1,33 @@
+{
+  "title": "Jeden obrázek, tři výřezy.",
+  "category": "cviceni",
+  "cover": "none",
+  "intro": "Zkuste najít tři různé situace na jediné fotografii. Stačí změnit, co necháte v rámu.",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Vyberte fotografii.",
+      "paragraphs": [
+        "Vezměte vlastní snímek, na kterém je více věcí. Udělejte tři výřezy. Jeden s hlavním motivem, druhý jen s detailem a třetí z místa, které byste běžně přehlédli."
+      ]
+    },
+    {
+      "layout": "columns",
+      "title": "Dejte jim titulek.",
+      "paragraphs": [
+        "Ke každému napište jednu větu. Nemusí popisovat skutečnost na fotografii. Může být začátkem příběhu nebo větou, kterou by někdo v zachycené situaci řekl."
+      ]
+    },
+    {
+      "layout": "highlight",
+      "title": "Položte je vedle sebe.",
+      "paragraphs": [
+        "Co mají vaše tři verze společného? A co je odlišuje? Zkuste jednu větu přesunout k jinému výřezu. Sledujte, jak se změní to, co v něm vidíte."
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

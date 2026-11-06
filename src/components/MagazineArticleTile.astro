@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import { creativePhotos } from '../data/creative-photos';
+import type { creativeArticles } from '../data/creative-articles';
+import { articleStatusLabel } from '../data/creative-articles';
+interface Props { article:(typeof creativeArticles)[number]; featured?:boolean; }
+const {article,featured=false}=Astro.props;
+---
+<a class:list={['article-photo-tile',{'article-photo-featured':featured}]} href={`/kreativec/zapisnik/${article.slug}`}>
+ <div class="article-object-photo">{article.image?<img src={article.image} width="1200" height="900" alt={article.imageAlt} loading={featured?'eager':'lazy'}/>:<Image src={creativePhotos[article.category]} width={featured?1200:750} format="webp" alt="" loading={featured?'eager':'lazy'}/>}</div>
+ <div class="article-tile-copy"><h2>{article.title}</h2><p>{article.intro}</p>{articleStatusLabel(article)&&<p class="article-tile-status">{articleStatusLabel(article)}</p>}<span class="article-tile-read">Číst článek <span aria-hidden="true">↗</span></span></div>
+</a>

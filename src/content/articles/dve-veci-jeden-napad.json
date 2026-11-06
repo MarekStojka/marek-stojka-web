@@ -1,0 +1,34 @@
+{
+  "title": "Dvě věci, které k sobě nepatří.",
+  "category": "cviceni",
+  "cover": "none",
+  "intro": "Deštník a paměť. Výtah a les. Krátký pokus se spojením věcí, které by se běžně nepotkaly.",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Vyberte si dvojici.",
+      "paragraphs": [
+        "Rozhlédněte se a vyberte předmět. Potom k němu přidejte něco nehmotného: pocit, vzpomínku nebo vlastnost. Pro tento pokus třeba deštník a paměť. Nehledejte správnou dvojici. Vyberte takovou, u které vás napadne alespoň jedna otázka."
+      ]
+    },
+    {
+      "layout": "columns",
+      "title": "Půjčte jedné věci schopnost té druhé.",
+      "paragraphs": [
+        "Co by si mohl pamatovat deštník? Místa, kde pršelo? Lidi, pod kterými se schovával? Zkusme z toho udělat začátek příběhu. Nebo předmět, který po otevření ukáže mapu společných procházek.",
+        "Stejnou dvojici můžete proměnit také v reklamu, ilustraci nebo hru. V každé podobě bude důležité něco jiného. Projděte alespoň dvě, než si jednu vyberete."
+      ]
+    },
+    {
+      "layout": "highlight",
+      "title": "Změňte jednu podmínku.",
+      "paragraphs": [
+        "Teď pokus otočte. Co kdyby ten deštník naopak pomáhal zapomínat? Jediná změna vytvořila jiné zadání. Vraťte se ke své dvojici a zkuste jednu její vlastnost převrátit. Pokud se nikam neposunete, klidně vyměňte obě slova. Cílem tohoto cvičení je zkoušet možnosti."
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

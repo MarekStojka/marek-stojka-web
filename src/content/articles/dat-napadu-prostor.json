@@ -1,0 +1,36 @@
+{
+  "title": "Dát nápadu chvíli prostor.",
+  "category": "obecne",
+  "cover": "candid",
+  "intro": "Co když první nápad nemusí být dobrý? Může zatím jen ukázat směr, kterým stojí za to se podívat.",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Nejdřív ho dostaňte ven.",
+      "paragraphs": [
+        "Zkuste si vybavit nápad, který jste zavrhli ještě dřív, než jste ho někomu řekli. Možná byl příliš obyčejný. Možná příliš divný. Co by se stalo, kdybyste mu místo hodnocení věnovali jeden malý pokus?",
+        "Napište jednu větu nebo udělejte rychlou skicu. Nemusí to být prezentace. Stačí podoba, ke které se můžete vrátit a nad kterou už nemusíte přemýšlet jen v hlavě."
+      ]
+    },
+    {
+      "layout": "columns-3",
+      "title": "Položte mu konkrétní otázku.",
+      "paragraphs": [
+        "Místo „je to dobré?“ zkuste otázku „co mě na tom vlastně zajímá?“. Je to nezvyklé spojení, jedna věta, nebo způsob, jak něco ukázat?",
+        "Vyberte právě tuhle drobnost a rozviňte ji ve druhém pokusu.",
+        "Další verze může být úplně jiná než první. Neznamená to, že první byla zbytečná. Pomohla pojmenovat, co chcete hledat dál."
+      ]
+    },
+    {
+      "layout": "highlight",
+      "title": "Malý pokus na závěr.",
+      "paragraphs": [
+        "Vezměte jednu rozepsanou myšlenku. Pět minut ji pouze rozvíjejte. Napište tři podoby, aniž byste některou mazali. Potom si u každé označte jedinou věc, kterou chcete zachovat. Co z těchto tří věcí vznikne společně?"
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

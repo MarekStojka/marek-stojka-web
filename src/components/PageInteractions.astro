@@ -1,0 +1,47 @@
+  <script>
+    let cleanup = () => {};
+    function initializePage() {
+    cleanup();
+    const controller = new AbortController();
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    }, { threshold: 0.08 });
+    if (!reducedMotion.matches) {
+      document.documentElement.classList.add('motion-ready');
+      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    }
+    function revealDisclosure(target: HTMLElement | null) {
+      const details = target?.dataset.disclosure ? document.getElementById(target.dataset.disclosure) : target;
+      if (details instanceof HTMLDetailsElement) details.open = true;
+    }
+    // Hash targets inside native disclosures must be opened before scrolling.
+    function openTarget() {
+      let id = location.hash.slice(1);
+      try { id = decodeURIComponent(id); } catch { return; }
+      const target = document.getElementById(id);
+      revealDisclosure(target);
+      if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' }));
+    }
+    window.addEventListener('hashchange', openTarget, { signal: controller.signal });
+    if (location.hash) openTarget();
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+      const target = document.getElementById(link.hash.slice(1));
+      revealDisclosure(target);
+    }));
+    document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((element) => {
+      element.addEventListener('pointermove', (event) => {
+        if (event.pointerType !== 'mouse' || reducedMotion.matches) return;
+        const rect = element.getBoundingClientRect();
+        element.style.translate = `${(event.clientX - rect.left - rect.width / 2) * .16}px ${(event.clientY - rect.top - rect.height / 2) * .16}px`;
+      });
+      element.addEventListener('pointerleave', () => { element.style.translate = '0px 0px'; });
+    });
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) { document.documentElement.classList.remove('motion-ready'); observer.disconnect(); }
+    }, { signal: controller.signal });
+    cleanup = () => { controller.abort(); observer.disconnect(); };
+    }
+    document.addEventListener('astro:page-load', initializePage);
+    initializePage();
+  </script>

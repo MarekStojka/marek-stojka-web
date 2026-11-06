@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorldAccordion from '../components/WorldAccordion';
+import HomeContent from '../components/HomeContent.astro';
+import { currentProject } from '../data/current-project';
+import { getImage } from 'astro:assets';
+import ashPile from '../assets/piles/popel.png';
+import pencilPile from '../assets/piles/pastelky.png';
+import creativePile from '../assets/piles/kreativec.png';
+import coffeePile from '../assets/piles/kava-v1.png';
+import '../styles/home.css';
+import '../styles/home-content.css';
+
+const pileSources = [
+  { id: 'temnota', image: ashPile, alt: 'Kupička šedého popela s jemným proužkem kouře na bílém pozadí.' },
+  { id: 'absurdita', image: pencilPile, alt: 'Kupička barevných odřezků z ořezaných pastelek na bílém pozadí.' },
+  { id: 'napady', image: creativePile, alt: 'Absurdní kupička: banánová slupka, pivní zátka, dudlík, kostka a malé kolečko.' },
+  { id: 'experimenty', image: coffeePile, alt: 'Kupička pražených kávových zrnek na bílém pozadí.' },
+];
+const tileArtwork = Object.fromEntries(await Promise.all(pileSources.map(async (pile) => {
+  const widths = [540, 1000];
+  const images = await Promise.all(widths.map((width) => getImage({ src: pile.image, width, format: 'webp', quality: 85 })));
+  return [pile.id, { src: images[1].src, srcSet: images.map((image, index) => `${image.src} ${widths[index]}w`).join(', '), width: pile.image.width, height: pile.image.height, alt: pile.alt }];
+})));
+
+---
+<BaseLayout theme="neutral" title="Marek Stojka — kreativno" description="Příběhy, nápady a věci, které ještě nemají vlastní přihrádku. Umím děsit. Mám rád humor. Jsem kreativec. Potkejme se.">
+  <header class="site-header home-header">
+    <a class="wordmark" href="/" aria-label="kreativno, úvod">kreativno<span aria-hidden="true">/</span></a>
+    <a class="header-current" href={currentProject.href}><span>Právě vzniká:</span> <strong>{currentProject.title}</strong></a>
+    <nav aria-label="Hlavní navigace"><a href="#o-mne">O mně</a><a href="#co-delam">S čím pomůžu</a><a href="#kontaktni-udaje">Kontakt</a></nav>
+  </header>
+  <main id="obsah" class="home-page">
+    <section id="svety" class="world-section home-worlds" aria-labelledby="main-title"><h1 id="main-title" class="visually-hidden">kreativno — čtyři tváře jednoho autora</h1><WorldAccordion tileArtwork={tileArtwork} client:load /><noscript><div class="noscript-worlds"><p>Prozkoumejte příběhy:</p><a href="/temnota">Umím děsit → Příběhy</a><a href="/humor">Mám rád humor → Knihy</a><a href="/kreativec">Jsem kreativec → Tvorba</a><a href="/potkejme-se">Potkejme se → Setkání a kontakt</a></div></noscript></section>
+    <HomeContent />
+    <section id="svety-znovu" class="world-section home-worlds home-worlds-repeat" aria-labelledby="repeat-worlds-title">
+      <h2 id="repeat-worlds-title" class="repeat-worlds-heading">Prohlédněte si mé světy</h2>
+      <WorldAccordion tileArtwork={tileArtwork} instanceId="bottom" client:visible />
+      <noscript><p class="repeat-worlds-noscript"><a href="/temnota">Prohlédnout příběhy →</a></p></noscript>
+    </section>
+  </main>
+
+</BaseLayout>

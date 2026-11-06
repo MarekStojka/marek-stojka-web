@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrushIcon from '../components/BrushIcon.astro';
+import NextMeeting from '../components/NextMeeting.astro';
+import { Image } from 'astro:assets';
+import coffee from '../assets/piles/kava-v1.png';
+import { creativeWorkshops } from '../data/creative-workshops';
+import { publicContact } from '../data/contact';
+import '../styles/meet.css';
+const mail=(subject:string)=>`mailto:${publicContact.email}?subject=${encodeURIComponent(subject)}`;
+const consultations=[
+ {title:'Nápad a jeho směr.',icon:'compass' as const,text:'Máte námět a chcete prozkoumat, co by z něj mohlo vzniknout? Můžeme hledat další možnosti a pojmenovat první konkrétní krok.',subject:'Konzultace: nápad a jeho směr'},
+ {title:'Slova, která potřebujete.',icon:'words' as const,text:'Text, slogan nebo způsob, jak představit vlastní projekt. Společně se můžeme podívat na to, co chcete říct a komu.',subject:'Konzultace: texty a komunikace'},
+ {title:'Web, značka a obraz.',icon:'ux' as const,text:'Chcete probrat podobu značky, nápad na web nebo vizuální komunikaci? Napište mi, co řešíte a kde potřebujete další pohled.',subject:'Konzultace: web a značka'},
+];
+---
+<BaseLayout title="Potkejme se — Marek Stojka" description="Workshopy, konzultace, připravované knihy a přímý kontakt na Marka Stojku.">
+<div class="meet-page">
+ <header class="meet-header"><a class="wordmark" href="/">kreativno<span aria-hidden="true">/</span></a><nav aria-label="Navigace setkání"><a href="#pristi-setkani">Naživo</a><a href="#konzultace">Konzultace</a><a href="#knihy">Knihy</a><a href="#kontakt">Kontakt</a></nav></header>
+ <main id="obsah">
+  <section class="meet-hero" aria-labelledby="meet-title"><div><a class="meet-back" href="/#svety"><span aria-hidden="true">←</span> Zpátky do mých světů</a><h1 id="meet-title">Potkejme<br /><em>se.</em></h1><p>U kávy, nad nápadem.<br />Nebo u společného tvoření.</p><a class="meet-text-link" href="#pristi-setkani">Najděte si svou příležitost <span aria-hidden="true">↓</span></a></div><figure><Image src={coffee} width={1100} format="webp" alt="Kupička pražených kávových zrnek na bílém pozadí." loading="eager"/></figure></section>
+  <NextMeeting/>
+  <section class="meet-live" id="setkani" aria-labelledby="live-title"><div class="meet-live-intro"><BrushIcon kind="training"/><h2 id="live-title">Naživo.<br /><em>A s nápady.</em></h2><p class="meet-lead">Nejbližší příležitosti k setkání najdete právě tady.</p><p>Připravuji čtyři živé workshopy kreativity. Každý má vlastní téma a může fungovat samostatně; společně vedou od odvahy začít až k první podobě nápadu.</p><p>První termíny a místo teprve připravuji. Podívejte se zatím, co bychom mohli společně zkoušet.</p><a class="meet-text-link" href={mail('Zájem o setkání a workshopy')}>Mám zájem o setkání <span aria-hidden="true">↗</span></a></div><div class="meet-workshops">{creativeWorkshops.map(workshop=><a href={`/kreativec/workshopy/${workshop.slug}`} style={{'--meet-tile':workshop.color}}><BrushIcon kind={workshop.icon}/><div><h3>{workshop.title}</h3><p>{workshop.intro}</p></div><span aria-hidden="true">↗</span></a>)}</div></section>
+  <section class="meet-consultations" id="konzultace" aria-labelledby="consult-title"><header><h2 id="consult-title">Vezměte s sebou<br /><em>to, co řešíte.</em></h2><div><p class="meet-lead">Nemusíte přicházet s hotovým zadáním.</p><p>Stačí popsat, kde jste a s čím chcete pohnout. Nejdřív si ujasníme téma, rozsah i podobu spolupráce. Konzultaci domluvíme osobně nebo online podle možností.</p></div></header><div class="meet-consult-grid">{consultations.map(item=><a href={mail(item.subject)}><BrushIcon kind={item.icon}/><h3>{item.title}</h3><p>{item.text}</p><span class="meet-text-link">Napsat mi o tom <span aria-hidden="true">↗</span></span></a>)}</div></section>
+  <section class="meet-books" id="knihy" aria-labelledby="books-title"><div><BrushIcon kind="book"/><h2 id="books-title">Potkat se můžeme<br /><em>i mezi řádky.</em></h2><p>Pracuji na příbězích, které mají různé nálady. Některé vás zavedou do tmy, jiné si pohrávají s absurditou a humorem.</p><p>Jakmile budou knihy dostupné, přibudou tady možnosti objednání. Zatím si můžete prohlédnout, co vzniká, nebo mi napsat o konkrétním titulu.</p><a class="meet-text-link" href={mail('Zájem o připravovanou knihu')}>Napsat o knize <span aria-hidden="true">↗</span></a></div><div class="meet-book-links"><a class="meet-moonika" href="/temnota#moonika"><h3>Moonika</h3><p>Dívka s nadpřirozenými schopnostmi. Příběh, který se obrací přímo ke čtenáři.</p><p>Plánované vydání 2027</p><span>Prohlédnout knihu <span aria-hidden="true">↗</span></span></a><div><a href="/temnota">Temná strana <span aria-hidden="true">↗</span></a><a href="/humor">Mám rád humor <span aria-hidden="true">↗</span></a></div></div></section>
+
+ </main>
+</div>
+</BaseLayout>

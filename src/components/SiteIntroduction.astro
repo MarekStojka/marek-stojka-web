@@ -1,0 +1,16 @@
+---
+import CreativeAtelier from './CreativeAtelier.astro';
+interface World { id: string; title: string; anchor: string; description: string; href?: string; linkLabel?: string; }
+interface Props { worlds: readonly World[]; }
+const { worlds } = Astro.props;
+---
+<section class="site-introduction" id="o-webu" aria-labelledby="site-intro-title">
+  <span id="o-mne" class="site-intro-anchor" aria-hidden="true"></span>
+  <span id="autor" class="site-intro-anchor" aria-hidden="true"></span>
+  <span id="zkusenosti" class="site-intro-anchor" aria-hidden="true"></span>
+  <CreativeAtelier />
+  <details class="site-intro-worlds" id="world-overview">
+    <summary>Čtyři polohy mé tvorby</summary>
+    <div class="site-intro-world-list">{worlds.map((world) => <article id={world.anchor} data-disclosure="world-overview"><h3>{world.title}</h3><p>{world.description}</p>{world.href && <a href={world.href}>{world.linkLabel}</a>}</article>)}</div>
+  </details>
+</section>

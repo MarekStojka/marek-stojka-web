@@ -1,0 +1,56 @@
+<div id="paper-passage" transition:persist="paper-passage" hidden aria-hidden="true"><svg preserveAspectRatio="none"><path class="tear-shadow" fill="#080808"/><path class="tear-black" fill="#080808"/><path class="tear-rim" fill="#f6f3ed" fill-rule="evenodd"/><path class="tear-fibres" fill="none" stroke="#cfcac2" stroke-width=".7"/></svg></div>
+<script>
+ import { navigate } from 'astro:transitions/client';
+ const layer=document.querySelector<HTMLElement>('#paper-passage')!;
+ const svg=layer.querySelector('svg')!;
+ const black=svg.querySelector<SVGPathElement>('.tear-black')!;
+ const rim=svg.querySelector<SVGPathElement>('.tear-rim')!;
+ const shadow=svg.querySelector<SVGPathElement>('.tear-shadow')!;
+ const fibres=svg.querySelector<SVGPathElement>('.tear-fibres')!;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ let busy=false;
+ document.addEventListener('click',async event=>{
+  const origin=event.target instanceof Element?event.target:null;
+  const entry=origin?.closest<HTMLElement>('[data-paper-entry]');
+  const href=entry instanceof HTMLAnchorElement?entry.href:entry?.dataset.paperHref;
+  if(!entry||!href||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||(entry instanceof HTMLAnchorElement&&entry.target==='_blank'))return;
+  if(reduced.matches){if(!(entry instanceof HTMLAnchorElement)){event.preventDefault();void navigate(href);}return;}
+  event.preventDefault();event.stopImmediatePropagation();if(busy)return;busy=true;
+  const trigger=origin?.closest<HTMLElement>('button,a')??entry;
+  const rect=entry.closest('.world')?.getBoundingClientRect()??entry.getBoundingClientRect();
+  const width=innerWidth,height=innerHeight;
+  const cx=event.detail===0?rect.left+rect.width/2:event.clientX;
+  const cy=event.detail===0?rect.top+rect.height/2:event.clientY;
+  const radius=Math.max(Math.hypot(cx,cy),Math.hypot(width-cx,cy),Math.hypot(cx,height-cy),Math.hypot(width-cx,height-cy))*1.45;
+  const rays=Array.from({length:112},(_,i)=>({angle:i/112*Math.PI*2+.003*Math.sin(i*4.17),rough:.91+.055*Math.sin(i*.18)+.025*Math.sin(i*.61)+.009*Math.sin(i*2.71),fibre:Math.sin(i*7.71)}));
+  svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+  let frame=0,cancelled=false,navigated=false,finish:(()=>void)|undefined;
+  const animations:Animation[]=[];
+  const cleanup=()=>{cancelAnimationFrame(frame);finish?.();animations.forEach(animation=>animation.cancel());layer.hidden=true;busy=false;document.removeEventListener('keydown',escape);};
+  const escape=(key:KeyboardEvent)=>{if(key.key==='Escape'&&!navigated){cancelled=true;cleanup();trigger.focus();}};
+  document.addEventListener('keydown',escape);
+  function draw(progress:number){
+   const ease=progress*progress*(3-2*progress);
+   const r=2+radius*ease,stretch=.14+.86*Math.min(1,progress*2.6);
+   const edge=2+12*Math.sin(Math.PI*progress);
+   const points=rays.map(ray=>({x:cx+Math.cos(ray.angle)*r*ray.rough*stretch,y:cy+Math.sin(ray.angle)*r*ray.rough,dx:Math.cos(ray.angle)*stretch,dy:Math.sin(ray.angle),fibre:ray.fibre}));
+   const polygon=(offset:number)=>points.map((point,i)=>`${i?'L':'M'}${(point.x+point.dx*offset*(.55+.45*Math.abs(point.fibre))).toFixed(1)} ${(point.y+point.dy*offset*(.55+.45*Math.abs(point.fibre))).toFixed(1)}`).join('')+'Z';
+   black.setAttribute('d',polygon(0));rim.setAttribute('d',polygon(edge)+polygon(0));
+   shadow.setAttribute('d',polygon(edge+7));shadow.style.opacity=String(.16*Math.sin(Math.PI*progress));
+   fibres.setAttribute('d',points.filter((_,i)=>i%2===0).map(point=>`M${point.x+point.dx*2} ${point.y+point.dy*2}l${point.dx*edge*.8+point.fibre*2} ${point.dy*edge*.8}`).join(''));
+  }
+  layer.hidden=false;layer.style.opacity='1';draw(0);
+  try{
+   const started=performance.now();
+   await new Promise<void>(resolve=>{finish=resolve;const tick=(now:number)=>{const progress=Math.min(1,(now-started)/1000);draw(progress);if(progress<1&&!cancelled)frame=requestAnimationFrame(tick);else resolve();};frame=requestAnimationFrame(tick);});
+   if(cancelled)return;
+   navigated=true;await navigate(href);
+   if(location.pathname!=='/kreativec')return;
+   const reveal=layer.animate([{opacity:1},{opacity:0}],{duration:600,easing:'ease-out',fill:'forwards'});animations.push(reveal);await reveal.finished;
+  }catch{if(!cancelled&&location.pathname!=='/kreativec')location.assign(href);}
+  finally{cleanup();}
+ },{capture:true});
+</script>
+<style is:global>
+#paper-passage{position:fixed;inset:0;z-index:10000;pointer-events:all;overflow:hidden}#paper-passage[hidden]{display:none}#paper-passage svg{display:block;width:100%;height:100%}
+</style>

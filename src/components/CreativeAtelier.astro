@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import atelier from '../assets/atelier/atelier-v1.png';
+---
+<div class="creative-atelier" data-atelier>
+  <header class="atelier-heading">
+    <h2 id="site-intro-title">Tady se mi<br />to všechno honí hlavou.</h2>
+    <div class="atelier-switch"><p id="atelier-switch-label">Co právě vymýšlím?</p><div role="group" aria-labelledby="atelier-switch-label"><button type="button" data-mode="reklama" aria-pressed="true">Reklamu</button><button type="button" data-mode="pribehy" aria-pressed="false">Příběhy</button><button type="button" data-mode="napady" aria-pressed="false">Co kdyby…</button></div></div>
+  </header>
+  <div class="atelier-floor">
+    <Image src={atelier} alt="Pracovní AI vizuál podle Markovy fotografie: Marek leží na bílé podlaze ateliéru s rukama za hlavou, vedle něj je zápisník." widths={[800,1400,2000]} sizes="(max-width:700px) 100vw, 95vw" width={2000} format="webp" quality={88} loading="lazy" class="atelier-photo" />
+    <div class="atelier-notes" data-notes>
+      <button class="atelier-note note-a" type="button" data-note="0"><span data-phrase>Dobré nápady<br />nespí.</span><span class="note-open" aria-hidden="true">+</span></button>
+      <button class="atelier-note note-b" type="button" data-note="1"><span data-phrase>Méně slov.<br />Víc v hlavě.</span><span class="note-open" aria-hidden="true">+</span></button>
+      <button class="atelier-note note-c" type="button" data-note="2"><span data-phrase>Co kdyby<br />to šlo jinak?</span><span class="note-open" aria-hidden="true">+</span></button>
+    </div>
+    <p class="atelier-study">Pracovní vizuál a návrhové texty</p>
+  </div>
+  <p class="visually-hidden" data-atelier-status aria-live="polite" aria-atomic="true"></p>
+  <div class="atelier-about"><p class="atelier-name">Marek Stojka.</p><p>Píšu, vymýšlím a zkouším, co všechno může vzniknout z jedné myšlenky. Tohle je místo pro mou tvorbu, rozpracované nápady a postupně i zápisky z jejich vzniku.</p><a href="#co-delam">Co můžeme vymyslet spolu</a></div>
+  <dialog class="atelier-dialog" aria-labelledby="atelier-detail-title"><form method="dialog"><button class="atelier-close" aria-label="Zavřít detail">Zavřít <span aria-hidden="true">×</span></button></form><p class="atelier-detail-kind" data-detail-kind></p><h3 id="atelier-detail-title"></h3><p data-detail-copy></p><a data-detail-link href="#co-delam">S čím pomůžu</a></dialog>
+  <noscript><p class="atelier-nojs">Píšu příběhy, vymýšlím reklamu a zkouším nové nápady. <a href="/temnota#moonika">Prohlédnout Mooniku</a> · <a href="#co-delam">S čím pomůžu</a></p></noscript>
+</div>
+<script>
+const sets = {
+  reklama: [
+    { phrase:'Dobré nápady\nnespí.', title:'Dobré nápady nespí.', kind:'Návrh sloganu', copy:'Krátká věta jako začátek reklamního konceptu. Tohle je pracovní ukázka pro návrh webu; skutečné reklamní práce tu doplním.', href:'#co-delam', link:'Vymyslím reklamu' },
+    { phrase:'Méně slov.\nVíc v hlavě.', title:'Méně slov. Víc v hlavě.', kind:'Návrh sloganu', copy:'Co všechno se dá říct několika slovy? Pracovní text pro vyzkoušení kompozice, nikoli hotová klientská práce.', href:'#co-delam', link:'Napíšu slogan' },
+    { phrase:'Co kdyby\nto šlo jinak?', title:'Co kdyby to šlo jinak?', kind:'Začátek konceptu', copy:'Změnit úhel pohledu a hledat další možnosti. Tady časem ukážu i cestu od zadání k výslednému nápadu.', href:'#co-delam', link:'Co můžeme vymyslet spolu' },
+  ],
+  pribehy: [
+    { phrase:'Moonika.', title:'Moonika', kind:'Kniha · Pracuji na ní', copy:'Na téhle knize právě pracuji. Její vlastní prostor najdete ve světě mých temnějších příběhů.', href:'/temnota#moonika', link:'Prohlédnout Mooniku' },
+    { phrase:'Mistrovství\nsmíchu.', title:'Mistrovství smíchu', kind:'Připravuji', copy:'Další připravovaný projekt. Konkrétní podobu a podrobnosti tu postupně doplním.', href:'/temnota', link:'Prohlédnout tvorbu' },
+    { phrase:'Armelie.\nPohovor.\nSraz zítra.', title:'Další příběhy', kind:'Knihy', copy:'Armelie, Pohovor a Sraz zítra. Další názvy z mé tvorby; jejich představení teprve doplním.', href:'/temnota', link:'Prohlédnout knihy' },
+  ],
+  napady: [
+    { phrase:'Co kdyby stín\npřišel dřív?', title:'Za dveřmi stál můj stín.', kind:'Pracovní mikropříběh', copy:'Přišel dřív než já.\n\nJedna drobná změna obyčejné situace a začíná nový příběh. Text je ukázkou interakce tohoto návrhu.', href:'#co-delam', link:'Pojďme hledat nápady' },
+    { phrase:'Nápad si\nnevybere čas.', title:'Místo pro rozpracované věci', kind:'Zápisník', copy:'Chci tady zachycovat i to, co ještě není hotové: myšlenky, otázky a malé pokusy. Pravidelné zápisky budou přibývat postupně.', href:'#co-delam', link:'Co můžeme vymyslet spolu' },
+    { phrase:'A co napadne\nvás?', title:'Zkusme nový úhel pohledu.', kind:'Kreativní myšlení', copy:'Společně procvičíme nové úhly pohledu a práci s nápady.', href:'#co-delam', link:'S čím pomůžu' },
+  ],
+};
+function setupAtelier() {
+ const root=document.querySelector<HTMLElement>('[data-atelier]'); if(!root)return;
+ const controller=new AbortController();const {signal}=controller;
+ const dialog=root.querySelector<HTMLDialogElement>('dialog')!;
+ const notes=[...root.querySelectorAll<HTMLButtonElement>('[data-note]')];
+ const modes=[...root.querySelectorAll<HTMLButtonElement>('[data-mode]')];
+ let active:keyof typeof sets='reklama';
+ modes.forEach(button=>button.addEventListener('click',()=>{
+  const mode=button.dataset.mode as keyof typeof sets; if(!(mode in sets)||mode===active)return;active=mode;
+  modes.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  notes.forEach((note,index)=>{note.querySelector('[data-phrase]')!.textContent=sets[active][index].phrase;});
+  root.querySelector('[data-atelier-status]')!.textContent=`${button.textContent}: ${sets[active].map(item=>item.title).join(' ' )}`;
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)notes.forEach((note,index)=>note.animate([{opacity:.2,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,delay:index*35,easing:'ease-out'}));
+ },{signal}));
+ notes.forEach((note,index)=>note.addEventListener('click',()=>{
+  const item=sets[active][index];root.querySelector('[data-detail-kind]')!.textContent=item.kind;
+  root.querySelector('#atelier-detail-title')!.textContent=item.title;
+  root.querySelector('[data-detail-copy]')!.textContent=item.copy;
+  const link=root.querySelector<HTMLAnchorElement>('[data-detail-link]')!;link.href=item.href;link.textContent=item.link;
+  dialog.showModal();
+ },{signal}));
+ dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}},{signal});
+ root.querySelector('[data-detail-link]')!.addEventListener('click',()=>dialog.close(),{signal});
+ document.addEventListener('astro:before-swap',()=>{dialog.close();controller.abort();},{once:true,signal});
+}
+document.addEventListener('astro:page-load',setupAtelier);
+</script>

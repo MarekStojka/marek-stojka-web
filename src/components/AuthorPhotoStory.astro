@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import candid from '../assets/portraits/marek-momentka-v1.png';
+import portrait from '../assets/portraits/marek-portret-par-v1.png';
+import '../styles/author-photo-story.css';
+---
+<section class="home-sheet author-photo-story" id="o-mne" aria-labelledby="author-story-title">
+ <div class="author-spread">
+  <div class="author-story-copy"><p class="author-story-name">Marek Stojka.</p><h2 id="author-story-title">Za nápady<br /><em>jsem já.</em></h2><p>Píšu příběhy, vymýšlím reklamu a dávám nápadům podobu. Baví mě spojovat věci, které k sobě na první pohled nepatří.</p><a href="#co-delam" class="home-text-link">Co můžeme vymyslet <span aria-hidden="true">↘</span></a></div>
+  <div class="author-photo-pair">
+  <figure class="author-candid"><Image src={candid} widths={[600,1000,1400]} sizes="(max-width:700px) 45vw, 44vw" width={1400} format="webp" quality={88} alt="Marek u pracovního stolu, s úsměvem se dívá stranou. V popředí leží modrý motýl." loading="lazy" /></figure>
+  <figure class="author-companion"><Image src={portrait} widths={[350,650]} sizes="(max-width:700px) 45vw, 44vw" width={650} format="webp" quality={88} alt="Doprovodný portrét Marka v černém tričku na světlém pozadí." loading="lazy" /></figure>
+  <svg class="author-photo-marks" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
+   <path class="photo-pencil" d="M70 530 C175 490 255 625 363 553 S435 529 472 570 M86 555 C180 510 266 636 365 577" />
+   <path class="photo-pencil" d="M815 518 C900 476 1050 480 1090 532 C1124 583 1002 620 900 591 C806 561 832 511 1038 506" />
+   <path class="photo-ink" d="M555 620l27 7 9-17 13 18 21-6-4 22 30 17-31 2 12 23-27-7-20 17-4-23-30 5 11-24z" />
+   <path class="photo-ink" d="M560 669l-9 15 9 5 5-17zm79-51 9-8 4 7-9 9z" />
+  </svg>
+  </div>
+ </div>
+</section>

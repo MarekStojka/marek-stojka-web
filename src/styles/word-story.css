@@ -1,0 +1,26 @@
+.word-story { margin:var(--sheet-gap) var(--sheet-inset) 0; background:#fff; padding:40px max(6%,calc((100% - 1280px)/2)) 38px; color:#191919; }
+.word-story-heading { display:flex; align-items:baseline; justify-content:space-between; gap:25px; }
+.word-story-heading h2 { font-size:18px; font-weight:500; letter-spacing:-.035em; margin:0; }
+.word-story-heading>p { font-size:13px; color:#777; margin:0; }
+.word-story-stage { padding-block:75px 60px; }
+.word-story-sentence { margin:0; font-size:clamp(43px,7.6vw,108px); font-weight:450; letter-spacing:-.065em; line-height:1.22; }
+.word-story-trigger { display:inline-block; vertical-align:baseline; padding:0 0 .035em; border:0; border-bottom:2px solid #a2a29c; background:none; color:inherit; font:inherit; letter-spacing:inherit; line-height:1; text-align:left; cursor:pointer; transition:border-color .2s; }
+.word-story-trigger:hover { border-color:#191919; }
+.word-story-trigger:focus-visible { outline:2px solid #555; outline-offset:9px; }
+.word-story-word { display:inline-block; animation:word-story-in .25s ease-out both; }
+.word-story-continuation { min-height:2.8em; font-size:clamp(20px,2.2vw,30px); line-height:1.45; letter-spacing:-.025em; color:#777; margin:35px 0 0; max-width:720px; animation:word-story-in .3s ease-out both; }
+.word-story-hint { font-size:12px; color:#777; margin:0; }
+@keyframes word-story-in { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:800px) {
+ .word-story { padding:28px 6% 28px; }
+ .word-story-heading { display:block; }
+ .word-story-heading h2 { font-size:17px; }
+ .word-story-heading>p { margin-top:9px; font-size:12px; }
+ .word-story-stage { padding-block:50px 35px; }
+ .word-story-sentence { font-size:clamp(37px,8.7vw,64px); }
+ .word-story-continuation { margin-top:30px; min-height:3.1em; font-size:21px; }
+ .word-story-hint { font-size:11px; }
+}
+@media(max-width:359px) { .word-story-sentence { font-size:33px; } }
+@media(prefers-reduced-motion:reduce) { .word-story-word,.word-story-continuation { animation:none; } .word-story-trigger { transition:none; } }
+@media(scripting:none) { .word-story-hint { display:none; } .word-story-trigger { border:0; pointer-events:none; } }

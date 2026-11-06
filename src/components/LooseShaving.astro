@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import shaving from '../assets/humor/odrezek-magenta-v1.png';
+interface Props { x:string; y:string; tilt?:string; size?:number; }
+const {x,y,tilt='-15deg',size=120}=Astro.props;
+---
+<button type="button" class="loose-shaving" data-loose-shaving style={{left:x,top:y,'--shaving-tilt':tilt,'--shaving-size':`${size}px`}} aria-label="Volný odřezek pastelky. Přetáhněte ho stranou nebo posuňte šipkami. Home vrátí původní polohu."><Image src={shaving} width={260} format="webp" alt="" draggable="false" loading="lazy"/></button>
+<script>
+function setupLooseShavings(){
+ const controller=new AbortController();
+ document.querySelectorAll<HTMLButtonElement>('[data-loose-shaving]').forEach(button=>{
+  let x=0,y=0,startX=0,startY=0,oldX=0,oldY=0,dragged=false,active=false;
+  const area=button.closest<HTMLElement>('[data-shaving-area]')!;
+  function move(nextX:number,nextY:number){
+   const rect=button.getBoundingClientRect(),bounds=area.getBoundingClientRect();
+   const baseX=rect.left-bounds.left-x,baseY=rect.top-bounds.top-y;
+   x=Math.max(-baseX,Math.min(bounds.width-baseX-rect.width,nextX));
+   y=Math.max(-baseY,Math.min(bounds.height-baseY-rect.height,nextY));
+   button.style.setProperty('--shaving-x',`${x}px`);button.style.setProperty('--shaving-y',`${y}px`);
+  }
+  button.addEventListener('pointerdown',event=>{if(event.button!==0)return;active=true;dragged=false;startX=event.clientX;startY=event.clientY;oldX=x;oldY=y;button.setPointerCapture(event.pointerId);button.classList.add('is-held');},{signal:controller.signal});
+  button.addEventListener('pointermove',event=>{if(!active)return;const dx=event.clientX-startX,dy=event.clientY-startY;if(Math.hypot(dx,dy)>4)dragged=true;move(oldX+dx,oldY+dy);},{signal:controller.signal});
+  const release=()=>{active=false;button.classList.remove('is-held');};
+  button.addEventListener('pointerup',release,{signal:controller.signal});button.addEventListener('pointercancel',release,{signal:controller.signal});button.addEventListener('lostpointercapture',release,{signal:controller.signal});
+  button.addEventListener('click',()=>{if(!dragged)move(x+35,y);dragged=false;},{signal:controller.signal});
+  button.addEventListener('keydown',event=>{const step=event.shiftKey?40:15;if(event.key==='Home'){event.preventDefault();move(0,0);}else if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)){event.preventDefault();move(x+(event.key==='ArrowLeft'?-step:event.key==='ArrowRight'?step:0),y+(event.key==='ArrowUp'?-step:event.key==='ArrowDown'?step:0));}},{signal:controller.signal});
+ });
+ document.addEventListener('astro:before-swap',()=>controller.abort(),{once:true,signal:controller.signal});
+}
+document.addEventListener('astro:page-load',setupLooseShavings);
+</script>

@@ -1,0 +1,9 @@
+---
+import ArticlePresentation from '../../components/ArticlePresentation.astro';
+import { allCreativeArticles } from '../../data/creative-articles';
+export function getStaticPaths() {
+ return import.meta.env.DEV ? allCreativeArticles.map(article => ({ params: { slug: article.slug }, props: { article } })) : [];
+}
+const { article } = Astro.props;
+---
+<ArticlePresentation article={article} preview/>

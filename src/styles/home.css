@@ -1,0 +1,190 @@
+/* Neutral author frame. World identities belong inside the four panels only. */
+html[data-theme="neutral"] { color: #191919; background: #f6f6f4; }
+.homepage-neutral { color: #191919; background: #f6f6f4; --line: #00000024; --paper: #f6f6f4; --ink: #191919; --muted: #666; }
+.homepage-neutral ::selection { color: #fff; background: #333; }
+.homepage-neutral :focus-visible { outline-color: currentColor; outline-width: 2px; outline-offset: 6px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.homepage-neutral .home-header { height: 76px; margin: 0 30px; border: 0; gap: 36px; }
+.homepage-neutral .home-header .wordmark { font-size: 18px; }
+.homepage-neutral .home-header .wordmark>span { color: #8b8b8b; }
+.homepage-neutral .home-header .header-note { color: #737373; font-size: 9px; }
+.homepage-neutral .home-header nav { font-size: 11px; }
+.homepage-neutral .home-worlds { margin: 0 20px; }
+.homepage-neutral .home-worlds .worlds { height: calc(100svh - 126px); min-height: 560px; border: 0; gap: var(--sheet-gap); }
+.homepage-neutral .home-worlds .world { border: 0; color: var(--card-ink); background: var(--card-bg); }
+.homepage-neutral .home-worlds .worlds.has-active .world.is-active { background: var(--card-bg); }
+.homepage-neutral .world-temnota { --card-bg: #101212; --card-ink: #e0dcd3; --card-muted: #ada89d; }
+.homepage-neutral .world-absurdita { --card-bg: #e5e0eb; --card-ink: #322d3d; --card-muted: #696073; }
+.homepage-neutral .world-napady { --card-bg: #ecece8; --card-ink: #252525; --card-muted: #62625b; }
+.homepage-neutral .world-experimenty { --card-bg: #dce3e1; --card-ink: #263431; --card-muted: #566963; }
+.homepage-neutral .world-top { top: 24px; left: 24px; right: 24px; color: var(--card-muted); font-size: 10px; }
+.homepage-neutral .world-top>span:first-child { font-size: 8px; letter-spacing: .045em; }
+.homepage-neutral .home-worlds .world h2 { bottom: 28px; left: 24px; right: 24px; }
+.homepage-neutral .world h2 button { font-size: clamp(25px,2.7vw,47px); font-weight: 500; letter-spacing: -.065em; padding: 8px 0; min-height: 48px; }
+.homepage-neutral .world-temnota h2 button { font-family: Georgia,serif; font-weight: 400; letter-spacing: -.045em; }
+.homepage-neutral .world-absurdita h2 button { font-family: Georgia,serif; font-style: italic; font-weight: 400; letter-spacing: -.045em; }
+.homepage-neutral .toggle-mark { font: 300 25px 'Manrope Variable',sans-serif; }
+.homepage-neutral .world.is-active h2 button { font-size: clamp(37px,4vw,62px); }
+.homepage-neutral .worlds.has-active .world:not(.is-active) h2 { left: 50%; right: auto; bottom: 31px; }
+.homepage-neutral .worlds.has-active .world:not(.is-active) h2 button { font-size: 31px; }
+.homepage-neutral .worlds.has-active .world:not(.is-active) .world-top>span:first-child { display: none; }
+.homepage-neutral .home-worlds .world-details { bottom: 128px; left: 28px; right: 28px; max-width: 440px; }
+.homepage-neutral .world-tagline { font: 400 clamp(25px,2.8vw,43px)/1.13 Georgia,serif; letter-spacing: -.045em; max-width: 440px; margin-bottom: 17px; }
+.homepage-neutral .world-description { color: var(--card-muted); font-size: 12px; max-width: 340px; line-height: 1.75; margin-bottom: 22px; }
+.homepage-neutral .world-cta { font-size: 12px; border-color: currentColor; padding: 13px 0; max-width: 320px; }
+.homepage-neutral .world-art { opacity: 1; }
+.homepage-neutral .world.is-active .world-art { opacity: .25; }
+.homepage-neutral .world-temnota.is-active .world-art { opacity: .6; }
+.homepage-neutral .worlds.has-active .world:not(.is-active) .world-art { opacity: .48; }
+.homepage-neutral .dark-type { top: 37%; left: 8%; right: 7%; color: #d4cec2; font: 400 clamp(32px,3.7vw,67px)/.99 Georgia,serif; letter-spacing: -.065em; }
+.homepage-neutral .dark-type>span:first-child { margin: 0; }
+.homepage-neutral .dark-type>span:nth-child(2) { padding-left: 12%; }
+.homepage-neutral .dark-type em { font-weight: 400; }
+.homepage-neutral .dark-type { transition: opacity .4s; }
+.homepage-neutral .world-temnota.is-active .dark-type { opacity: 0; }
+.ash-preview { position: absolute; inset: 0; width: 100%; height: 100%; fill: #d1cabd; opacity: .65; }
+.ash-preview g { transform-origin: 55% 50%; animation: ash-preview-drift 18s ease-in-out infinite alternate; }
+@keyframes ash-preview-drift { from { transform: translateY(20px) rotate(-3deg); } to { transform: translateY(-25px) rotate(5deg); } }
+.homepage-neutral .art-caption { position: absolute; top: 67%; left: 10%; right: 10%; font: 8px/1.6 'Courier New',monospace; color: var(--card-muted); letter-spacing: .09em; }
+.homepage-neutral .world.is-active .art-caption { opacity: 0; }
+.homepage-neutral .absurd-type { top: 26%; left: 15%; font-size: clamp(90px,10.5vw,185px); line-height: .78; color: #70617d; transform: rotate(-12deg); }
+.homepage-neutral .absurd-type>span:nth-child(2) { margin-left: -7%; }
+.homepage-neutral .absurd-type i { font-size: .9em; margin-top: 10px; margin-left: 55%; color: #9c8dab; }
+.homepage-neutral .world-absurdita .art-caption { top: 75%; }
+.homepage-neutral .idea-type { top: 29%; left: 9%; font-size: clamp(87px,10.7vw,190px); line-height: .87; font-weight: 750; letter-spacing: -.095em; color: #b63892; }
+.homepage-neutral .idea-type>span:last-child { font: 750 .84em/1 'Manrope Variable',sans-serif; letter-spacing: -.095em; }
+.homepage-neutral .type-dot { color: #252525; }
+.homepage-neutral .world-napady .art-caption { top: 72%; }
+.homepage-neutral .art-experimenty { background-image: linear-gradient(#31453e12 1px,transparent 1px),linear-gradient(90deg,#31453e12 1px,transparent 1px); background-size: 40px 40px; }
+.homepage-neutral .experiment-type { inset: 24% 8% 33%; color: #3c514a; }
+.homepage-neutral .experiment-grid { font-size: 12px; opacity: .5; }
+.homepage-neutral .experiment-orbit { height: 210px; width: 210px; max-width: 90%; aspect-ratio: 1; }
+.homepage-neutral .experiment-center { font-size: 100px; font-weight: 200; }
+.homepage-neutral .world-experimenty .art-caption { top: 72%; }
+.homepage-neutral .world-cursor { color: #fff; background: #222; }
+.homepage-neutral .below-worlds { margin: 0 30px; min-height: 50px; padding: 15px 0; color: #666; font-size: 8px; align-items: center; }
+.homepage-neutral .home-intro { margin: 0 7%; padding: 115px 0 35px; }
+.homepage-neutral .home-intro-top { color: #666; font-size: 9px; }
+.homepage-neutral .home-intro h2 { margin: 44px 0 35px; font: 400 clamp(70px,10.3vw,178px)/.96 Georgia,serif; letter-spacing: -.067em; }
+.homepage-neutral .home-intro h2>em { color: #7a7a7a; font-weight: 400; padding-left: 12%; }
+.homepage-neutral .home-intro-bottom { padding-left: 12%; }
+.homepage-neutral .home-intro-bottom>p { color: #333; font-size: 18px; letter-spacing: -.025em; }
+.homepage-neutral .home-intro-bottom>a { font-size: 9px; }
+.homepage-neutral .section-shell { filter: grayscale(1); }
+.homepage-neutral .section-label,.homepage-neutral .about-copy>p:nth-child(2),.homepage-neutral .about-copy>.mono,.homepage-neutral .absurd-aside>.mono,.homepage-neutral .absurd-aside>p>span,.homepage-neutral .projects-heading .mono,.homepage-neutral .project-category,.homepage-neutral .project-number,.homepage-neutral .project-description>.mono,.homepage-neutral .project-description>p:last-child,.homepage-neutral .contact-pending { color: #666; }
+.homepage-neutral .outline-type,.homepage-neutral .accent,.homepage-neutral .absurd-punctuation,.homepage-neutral .contact h2 span,.homepage-neutral .contact-symbol { color: #777; }
+.homepage-neutral .site-footer { border-color: var(--line); }
+.homepage-neutral .site-footer>.mono { color: #666; }
+@media(max-width:1100px) and (min-width:701px) {
+  .homepage-neutral .world-top>span:first-child { display: none; }
+  .homepage-neutral .world-top>span:last-child { margin-left: auto; }
+  .homepage-neutral .world-top { left: 18px; right: 18px; }
+  .homepage-neutral .home-worlds .world h2 { left: 18px; right: 18px; }
+  .homepage-neutral .world h2 button { font-size: 26px; }
+  .homepage-neutral .worlds.has-active .world:not(.is-active) h2 { left: 50%; }
+  .homepage-neutral .worlds.has-active .world:not(.is-active) h2 button { font-size: 27px; }
+  .homepage-neutral .experiment-orbit { width: 160px; height: 160px; }
+}
+@media(max-width:700px) {
+  .homepage-neutral .home-header { margin: 0 20px; height: 72px; gap: 20px; }
+  .homepage-neutral .home-header .wordmark { font-size: 16px; }
+  .homepage-neutral .home-header nav { font-size: 11px; gap: 22px; }
+  .homepage-neutral .home-worlds { margin: 0 12px; }
+  .homepage-neutral .home-worlds .worlds { height: calc(100svh - 122px); min-height: 620px; gap: var(--sheet-gap); }
+  .homepage-neutral .home-worlds .world { flex: 1 1 0% !important; min-height: 96px; height: auto; transition: flex-grow .75s cubic-bezier(.22,.8,.2,1); }
+  .homepage-neutral .home-worlds .worlds.has-active .world.is-active { flex-grow: 4.5 !important; min-height: 315px; height: auto; }
+  .homepage-neutral .world-top { top: 15px; left: 20px; right: 20px; font-size: 8px; }
+  .homepage-neutral .world-top>span:first-child { display: block; font-size: 7px; }
+  .homepage-neutral .home-worlds .world h2,.homepage-neutral .home-worlds .world.is-active h2,.homepage-neutral .home-worlds .worlds.has-active .world:not(.is-active) h2 { top: 43px; bottom: auto; left: 20px; right: 20px; transform: none; }
+  .homepage-neutral .world h2 button,.homepage-neutral .worlds.has-active .world:not(.is-active) h2 button { font-size: 30px; min-height: 44px; writing-mode: initial; transform: none; width: 100%; }
+  .homepage-neutral .world.is-active h2 button { font-size: 35px; }
+  .homepage-neutral .worlds.has-active .world:not(.is-active) h2 button { font-size: 25px; }
+  .homepage-neutral .worlds.has-active .world:not(.is-active) .world-top>span:first-child { display: block; }
+  .homepage-neutral .home-worlds .world-details { left: 20px; right: 20px; bottom: 20px; }
+  .homepage-neutral .world-tagline { font-size: 24px; margin-bottom: 12px; max-width: 300px; }
+  .homepage-neutral .world-description { font-size: 11px; line-height: 1.6; margin-bottom: 12px; }
+  .homepage-neutral .world-cta { font-size: 11px; padding: 10px 0; max-width: 280px; }
+  .homepage-neutral .world-art { left: 42%; opacity: .8; }
+  .homepage-neutral .world.is-active .world-art { left: 17%; opacity: .16; }
+  .homepage-neutral .world-temnota.is-active .world-art { opacity: .5; }
+  .homepage-neutral .worlds.has-active .world:not(.is-active) .world-art { opacity: .35; }
+  .homepage-neutral .dark-type { font-size: 34px; top: 26%; left: 7%; }
+  .homepage-neutral .absurd-type { font-size: 87px; top: -7%; left: 14%; }
+  .homepage-neutral .idea-type { font-size: 93px; top: 2%; left: 4%; }
+  .homepage-neutral .art-caption { display: none; }
+  .homepage-neutral .experiment-type { inset: 4% 10% 4%; }
+  .homepage-neutral .experiment-orbit { height: 105px; width: 105px; }
+  .homepage-neutral .experiment-center { font-size: 58px; }
+  .homepage-neutral .world.is-active .dark-type { font-size: 54px; top: 16%; }
+  .homepage-neutral .world.is-active .absurd-type,.homepage-neutral .world.is-active .idea-type { font-size: 110px; top: 12%; }
+  .homepage-neutral .below-worlds { margin: 0 20px; min-height: 50px; gap: 15px; font-size: 7px; }
+  .homepage-neutral .home-intro { margin: 0 7%; padding: 75px 0 20px; }
+  .homepage-neutral .home-intro-top { font-size: 8px; }
+  .homepage-neutral .home-intro h2 { font-size: clamp(48px,11.5vw,77px); margin: 32px 0 26px; line-height: 1.03; }
+  .homepage-neutral .home-intro h2>em { padding-left: 8%; }
+  .homepage-neutral .home-intro-bottom { padding-left: 0; }
+  .homepage-neutral .home-intro-bottom>p { font-size: 15px; }
+  .homepage-neutral .home-intro-bottom>a { font-size: 8px; }
+}
+@media(prefers-reduced-motion:reduce) { .ash-preview g { animation: none; } }
+
+/* Personal phrases replace category nouns and decorative numbering. */
+.homepage-neutral .world-top>span:first-child { margin-left:0; }
+.homepage-neutral .world-top>span:last-child { margin-left:auto; }
+.homepage-neutral .world h2 button>span:first-child { min-width:0; text-wrap:balance; }
+@media(min-width:701px) {
+ .homepage-neutral .worlds.is-resting h2 button { font-size:clamp(24px,2.5vw,40px); }
+}
+@media(max-width:440px) {
+ .homepage-neutral .world h2 button { font-size:26px; line-height:1.06; }
+}
+
+/* Matched white studio photographs replace the previous four art directions. */
+.homepage-neutral .home-worlds .world { --card-bg:#fff; --card-ink:#191919; --card-muted:#777; background:#fff; border:1px solid #0000000b; }
+.homepage-neutral .world-temnota h2 button,.homepage-neutral .world-absurdita h2 button { font-family:'Manrope Variable',sans-serif; font-style:normal; font-weight:500; letter-spacing:-.065em; }
+.homepage-neutral .world .pile-art { inset:90px 0 165px; opacity:1; transform:none; display:flex; align-items:center; justify-content:center; z-index:-1; }
+.homepage-neutral .world.is-active .pile-art,.homepage-neutral .worlds.has-active .world:not(.is-active) .pile-art { opacity:1; }
+.pile-photo { display:block; width:min(100%,420px); height:100%; object-fit:contain; object-position:center; }
+.homepage-neutral .worlds.has-active .world:not(.is-active) .pile-photo { opacity:.6; transition:opacity .5s; }
+.homepage-neutral .world-top { color:#777; }
+.homepage-neutral .world-description { color:#5c5c5c; }
+@media(max-width:700px) {
+ .homepage-neutral .world .pile-art { inset:8px 0 8px 49%; }
+ .homepage-neutral .world.is-active .pile-art { inset:60px 0 auto 48%; height:120px; }
+ .homepage-neutral .world.is-active .world-details { max-width:100%; }
+}
+@media(prefers-reduced-motion:reduce) { .pile-photo { transition:none; } }
+
+/* Shared sheet spacing: panel gutters and the next white section stay identical. */
+.homepage-neutral { --sheet-gap:6px; --sheet-inset:20px; }
+@media(max-width:700px) { .homepage-neutral { --sheet-gap:5px; --sheet-inset:12px; } }
+
+/* The homepage uses readable navigation, without decorative micro labels. */
+.homepage-neutral .home-header .header-note{font-family:inherit;font-size:15px;letter-spacing:-.025em}
+.homepage-neutral .home-header nav{font-size:14px}
+@media(max-width:700px){.homepage-neutral .home-header nav{font-size:13px}}
+
+/* On phones an opened world becomes a full-height sheet of its own. */
+@media(max-width:700px){
+ .homepage-neutral .home-worlds .worlds{height:auto;min-height:0;overflow:visible}
+ .homepage-neutral .home-worlds .world{flex:none!important;height:clamp(165px,24svh,240px);min-height:0;transition:none;scroll-margin-top:12px}
+ .homepage-neutral .home-worlds .worlds.has-active .world:not(.is-active){height:128px;min-height:0}
+ .homepage-neutral .home-worlds .worlds.has-active .world.is-active{flex:none!important;height:calc(100svh - 24px);min-height:560px}
+ .homepage-neutral .home-worlds .world.is-active h2{top:25px}
+ .homepage-neutral .home-worlds .world.is-active .pile-art{inset:110px 5% 270px;height:auto}
+ .homepage-neutral .home-worlds .world.is-active .pile-photo{width:min(100%,420px);opacity:1}
+ .homepage-neutral .home-worlds .world-details{bottom:30px;left:24px;right:24px}
+ .homepage-neutral .home-worlds .world-tagline{font-size:clamp(27px,7vw,36px);max-width:420px}
+ .homepage-neutral .home-worlds .world-description{font-size:14px}
+ .homepage-neutral .home-worlds .world-cta{font-size:15px;min-height:44px;max-width:none}
+}
+
+/* Jeden klidný odkaz na aktuální tvorbu mezi značkou a navigací. */
+.homepage-neutral .home-header{display:grid;grid-template-columns:1fr auto 1fr;gap:24px}
+.homepage-neutral .home-header nav{justify-self:end}
+.header-current{justify-self:center;display:flex;align-items:baseline;gap:7px;font-size:14px;letter-spacing:-.025em;white-space:nowrap;padding:12px 0}
+.header-current>span{color:#737373}.header-current>strong{font-weight:550;border-bottom:1px solid #b9b9b9;transition:border-color .2s}
+.header-current:hover>strong{border-color:currentColor}
+html[data-home-mode=dark] .header-current>span{color:#a5a5a0}
+@media(max-width:1000px){.homepage-neutral .home-header{grid-template-columns:1fr 1fr;height:auto;min-height:98px;row-gap:0;padding:12px 0 10px}.homepage-neutral .home-header .wordmark{grid-column:1;grid-row:1}.homepage-neutral .home-header nav{grid-column:2;grid-row:1}.header-current{grid-column:1/-1;grid-row:2;padding:7px 0 0;font-size:14px}}
+@media(prefers-reduced-motion:reduce){.header-current>strong{transition:none}}

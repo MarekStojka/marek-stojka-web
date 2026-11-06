@@ -1,0 +1,127 @@
+<div id="ash-passage" transition:persist="ash-passage" hidden aria-hidden="true"><div class="ash-shade"></div><canvas></canvas></div>
+<div id="ash-passage-status" class="visually-hidden" role="status" aria-live="polite" transition:persist="ash-passage-status"></div>
+<script>
+  import { navigate } from 'astro:transitions/client';
+  import { createAshTextures } from '../lib/ashTexture';
+  const layer = document.querySelector<HTMLDivElement>('#ash-passage')!;
+  const surface = layer.querySelector('canvas')!;
+  const shade = layer.querySelector<HTMLDivElement>('.ash-shade')!;
+  const status = document.querySelector<HTMLDivElement>('#ash-passage-status')!;
+  const ctx = surface.getContext('2d');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const flakes = createAshTextures();
+  let running = false;
+  let seed = 831;
+  const random = () => { seed = seed * 16807 % 2147483647; return (seed - 1) / 2147483646; };
+  type Grain = { x: number; y: number; size: number; depth: number; angle: number; sprite: number };
+  const cache = new Map<string,{ cutout: HTMLCanvasElement; grains: Grain[] }>();
+  function prepare(source: HTMLImageElement) {
+    const key = source.currentSrc || source.src;
+    const cached = cache.get(key); if (cached) return cached;
+    const cutout = document.createElement('canvas'); cutout.width = 180; cutout.height = Math.round(180 * source.naturalHeight / source.naturalWidth);
+    const dc = cutout.getContext('2d', { willReadFrequently: true })!;
+    dc.drawImage(source,0,0,cutout.width,cutout.height);
+    const pixels = dc.getImageData(0,0,cutout.width,cutout.height);
+    const samples: Grain[] = [];
+    for (let y=0;y<cutout.height;y++) for (let x=0;x<cutout.width;x++) {
+      const i=(y*cutout.width+x)*4;
+      const tone=Math.max(pixels.data[i],pixels.data[i+1],pixels.data[i+2]);
+      pixels.data[i+3]=Math.round(Math.max(0,Math.min(1,(250-tone)/28))*255);
+      if (x%2===0 && y%2===0 && tone<210 && y>cutout.height*.4) samples.push({x:x/cutout.width,y:y/cutout.height,size:.8+random()*2,depth:.3+random()*.7,angle:random()*Math.PI*2,sprite:Math.floor(random()*flakes.length)});
+    }
+    dc.putImageData(pixels,0,0);
+    const stride=Math.max(1,Math.ceil(samples.length/240));
+    const result={cutout,grains:samples.filter((_,index)=>index%stride===0)};
+    cache.set(key,result);return result;
+  }
+  function warm(candidate?: HTMLImageElement | null) { const source=candidate??document.querySelector<HTMLImageElement>('.world-temnota .pile-photo');if(source?.complete&&source.naturalWidth)prepare(source); }
+  document.addEventListener('astro:page-load',()=>setTimeout(warm,250));
+  document.addEventListener('pointerover',event=>{const card=(event.target as Element).closest('.world-temnota');if(!running&&card)warm(card.querySelector<HTMLImageElement>('.pile-photo'));},{passive:true});
+  setTimeout(warm,250);
+
+  document.addEventListener('click',async(event)=>{
+    const link=(event.target as Element).closest<HTMLElement>('[data-ash-entry]');
+    const href=link instanceof HTMLAnchorElement?link.href:link?.dataset.ashHref;
+    const trigger=(event.target as Element).closest<HTMLElement>('button,a')||link;
+    if(!link||!href||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||(link instanceof HTMLAnchorElement&&(link.target==='_blank'||link.hasAttribute('download'))))return;
+    event.preventDefault();event.stopImmediatePropagation();
+    if(running)return;
+    if(!ctx||reduced.matches){void navigate(href);return;}
+    running=true;
+    const source=link.closest('.world')?.querySelector<HTMLImageElement>('.pile-photo');
+    if(!source){running=false;void navigate(href);return;}
+    if(!source.complete||!source.naturalWidth){try{await source.decode();}catch{running=false;void navigate(href);return;}}
+    const prepared=prepare(source),width=innerWidth,height=innerHeight;
+    const rect=source.getBoundingClientRect(),fit=Math.min(rect.width/source.naturalWidth,rect.height/source.naturalHeight);
+    const iw=source.naturalWidth*fit,ih=source.naturalHeight*fit;
+    const left=rect.left+(rect.width-iw)/2,top=rect.top+(rect.height-ih)/2;
+    const ox=left+iw*.5,oy=top+ih*.66;
+    surface.width=width;surface.height=height;
+    layer.hidden=false;layer.dataset.phase='gust';
+    status.textContent='Vstupujete do světa příběhů.';
+    source.style.visibility='hidden';document.documentElement.dataset.ashPassage='active';
+    let frame=0,cancelled=false,navigated=false,timeout=0;
+    const animations:Animation[]=[];
+    const restore=()=>{
+      cancelAnimationFrame(frame);clearTimeout(timeout);for(const animation of animations)animation.cancel();
+      layer.hidden=true;delete layer.dataset.phase;source.style.visibility='';running=false;
+      delete document.documentElement.dataset.ashPassage;status.textContent='';
+      document.removeEventListener('keydown',cancel);document.removeEventListener('astro:before-swap',settle);
+      document.dispatchEvent(new Event('ash-arrive'));
+    };
+    const cancel=(key:KeyboardEvent)=>{if(key.key==='Escape'&&!navigated){cancelled=true;restore();trigger?.focus();}};
+    const settle=(swap:Event)=>{
+      const incoming=(swap as Event & {newDocument:Document}).newDocument;
+      incoming.documentElement.dataset.ashPassage='active';
+      incoming.querySelector('.dark-hero')?.setAttribute('data-ash-arrived','');
+    };
+    document.addEventListener('keydown',cancel);document.addEventListener('astro:before-swap',settle);
+    // A single breath: grains lift, approach the lens, and pass out of frame.
+    // The plain dark veil replaces large rotating cloud textures.
+    const curtain=shade.animate([{opacity:0,offset:0},{opacity:0,offset:.15},{opacity:.2,offset:.48},{opacity:1,offset:1}],{duration:1000,easing:'cubic-bezier(.35,0,.55,1)',fill:'forwards'});
+    animations.push(curtain);
+    const start=performance.now();
+    function draw(now:number){
+      if(!ctx||cancelled)return;
+      const t=Math.min(1,(now-start)/1000),lift=t*t;
+      ctx.clearRect(0,0,width,height);
+      ctx.globalAlpha=Math.max(0,1-t*3.8);ctx.drawImage(prepared.cutout,left,top-lift*80,iw,ih);
+      for(const grain of prepared.grains){
+        const flight=Math.max(0,(t-.05)/.95);
+        const perspective=1/(1-flight*grain.depth*.96);
+        const radius=flight*flight*Math.hypot(width,height)*grain.depth*.9;
+        const x=ox+(left+grain.x*iw-ox)*perspective+Math.cos(grain.angle)*radius+lift*width*.12;
+        const y=oy+(top+grain.y*ih-oy)*perspective+Math.sin(grain.angle)*radius-lift*height*.32;
+        const size=grain.size*perspective*(1+flight*4);
+        ctx.globalAlpha=Math.min(1,t*9)*(.3+grain.depth*.6);
+        ctx.drawImage(flakes[grain.sprite],x,y,size,size);
+      }
+      ctx.globalAlpha=1;
+      if(t<1)frame=requestAnimationFrame(draw);
+    }
+    frame=requestAnimationFrame(draw);
+    try{
+      await curtain.finished;if(cancelled)return;
+      cancelAnimationFrame(frame);ctx.clearRect(0,0,width,height);layer.dataset.phase='covered';navigated=true;
+      timeout=window.setTimeout(()=>{restore();location.assign(href);},8000);
+      await navigate(href);
+      if(location.pathname!==new URL(href).pathname){restore();return;}
+      // The destination ash loop stays still until this light compositor fade ends.
+      document.querySelector<HTMLElement>('#main-title')?.focus({preventScroll:true});
+      layer.dataset.phase='revealing';
+      const reveal=layer.animate([{opacity:1},{opacity:0}],{duration:650,easing:'ease-out',fill:'forwards'});
+      animations.push(reveal);await reveal.finished;restore();
+    }catch{if(!cancelled){restore();location.assign(href);}}
+  },{capture:true});
+</script>
+<style is:global>
+ #ash-passage{position:fixed;inset:0;z-index:10000;overflow:hidden;pointer-events:auto;cursor:progress;isolation:isolate;}
+ #ash-passage[hidden]{display:none;}
+ .ash-shade{position:absolute;inset:0;background:#0d0e0e;opacity:0;}
+ #ash-passage canvas{position:absolute;inset:0;display:block;width:100%;height:100%;}
+ #ash-passage[data-phase=revealing]{will-change:opacity;}
+ html[data-ash-passage] .hero-copy *,[data-ash-arrived] .hero-copy *{animation:none!important;}
+ ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal;}
+ html[data-ash-passage]::view-transition-group(root){animation:none;}
+ @media(prefers-reduced-motion:reduce){#ash-passage{display:none;}}
+</style>

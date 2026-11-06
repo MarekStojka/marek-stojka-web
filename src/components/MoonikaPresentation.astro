@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { moonika, moonikaPreviewQuotes, moonikaPreviewReviews } from '../data/moonika';
+import book from '../assets/dark/kniha-popel-v1.png';
+import flatlay from '../assets/dark/popel-flatlay-v1.png';
+import detail from '../assets/dark/moonika-detail-v1.png';
+import side from '../assets/dark/moonika-hrana-v1.png';
+import opened from '../assets/dark/moonika-otevrena-v1.png';
+import '../styles/moonika.css';
+const quotes = moonika.quotes.length ? moonika.quotes : moonikaPreviewQuotes;
+const reviews = moonika.reviews.length ? moonika.reviews : moonikaPreviewReviews;
+import { publicContact } from '../data/contact';
+const { email } = publicContact;
+---
+<div class="moonika-page moonika-inline">
+   <section class="dark-hero moonika-hero" aria-labelledby="moonika-book-title">
+    <Image class="moonika-hero-photo" src={book} widths={[800,1300,1800]} sizes="100vw" width={1800} format="webp" quality={88} loading="lazy" alt="Pracovní vizuální studie Mooniky: černá kniha v kupičce jemného šedého popela na tmavém pozadí." />
+    <div class="moonika-hero-copy"><p>{moonika.author}</p><h2 id="moonika-book-title">{moonika.title}</h2><p class="moonika-release">Vydání {moonika.release}</p><a class="moonika-link" href="#o-pribehu">Otevřít příběh <span aria-hidden="true">↓</span></a></div>
+   </section>
+   <section class="moonika-story moonika-shell" id="o-pribehu" aria-labelledby="moonika-story-title">
+    <h2 id="moonika-story-title">Za obálkou.</h2>
+    <div>{moonika.annotation?<p class="moonika-lead">{moonika.annotation}</p>:<><p class="moonika-lead">{moonika.introduction}</p><p>Knihu připravuji k vydání v roce {moonika.release}. Podrobnou anotaci příběhu představím později.</p></>}<a class="moonika-link" href="#ukazka">K prvním stránkám <span aria-hidden="true">↘</span></a></div>
+   </section>
+   <section class="moonika-material" aria-labelledby="moonika-material-title">
+    <div class="moonika-shell moonika-gallery-heading"><h2 id="moonika-material-title">Zblízka.</h2><p>Popel. Papír. Stopa.</p></div>
+    <div class="moonika-photo-pair"><figure><Image src={detail} widths={[600,1000,1500]} sizes="(max-width:700px) 100vw, 60vw" width={1500} format="webp" quality={90} alt="Vizuální studie detailu černé vazby, papíru a drobných zrnek popela." loading="lazy" /></figure><figure><Image src={flatlay} widths={[600,1000]} sizes="(max-width:700px) 100vw, 40vw" width={1000} format="webp" quality={88} alt="Vizuální studie zavřené černé knihy s obloukem popela na světlém podkladu, pohled shora." loading="lazy" /></figure></div>
+    <p class="moonika-visual-note">Pracovní vizuální studie připravované knihy. Finální obálku a fotografie představím později.</p>
+   </section>
+   <section class="moonika-quotes moonika-shell" aria-labelledby="moonika-quotes-title">
+    <h2 id="moonika-quotes-title">Mezi řádky.</h2>
+    {!moonika.quotes.length&&<p class="moonika-demo-note">Ukázkové texty pro představu o podobě webu. Nejde o citace z rukopisu Mooniky.</p>}
+    <div class="moonika-quote-list">{quotes.map(quote=><figure><blockquote><p><span aria-hidden="true">„</span>{quote.text}<span aria-hidden="true">“</span></p></blockquote>{'source' in quote&&quote.source&&<figcaption>{quote.source}</figcaption>}</figure>)}</div>
+   </section>
+   <section class="moonika-reading moonika-shell" id="ukazka" aria-labelledby="moonika-reading-title">
+    <div class="moonika-reading-heading"><h2 id="moonika-reading-title">První stránky.</h2><p>{moonika.excerpt?'Ukázka z knihy':'Ukázku připravuji.'}</p></div>
+    {moonika.excerpt?<article class="moonika-excerpt"><h3>{moonika.excerpt.title}</h3>{moonika.excerpt.paragraphs.slice(0,3).map(text=><p>{text}</p>)}{moonika.excerpt.paragraphs.length>3&&<details><summary>Pokračovat ve čtení</summary>{moonika.excerpt.paragraphs.slice(3).map(text=><p>{text}</p>)}</details>}</article>:<div class="moonika-excerpt-pending"><p>Ještě chvíli<br /><em>pod obálkou.</em></p><p>Ukázku z Mooniky tu otevřu, jakmile bude připravená.</p></div>}
+   </section>
+   <figure class="moonika-open-book"><Image src={opened} widths={[800,1400,1800]} sizes="100vw" width={1800} format="webp" quality={88} alt="Pracovní vizuální studie otevřené knihy s prázdnými krémovými listy a jemnou stopou popela." loading="lazy" /></figure>
+   <section class="moonika-author moonika-shell" aria-labelledby="moonika-author-title"><h2 id="moonika-author-title">Z mé<br /><em>temnější stránky.</em></h2><div><p class="moonika-lead">{moonika.authorNote}</p><a class="moonika-link" href="#obsah">Zpátky ke knihám <span aria-hidden="true">↗</span></a></div></section>
+   <figure class="moonika-side-photo"><Image src={side} widths={[600,1000,1400]} sizes="(max-width:700px) 90vw, 1200px" width={1400} format="webp" quality={88} alt="Pracovní fotografická studie: hrana zavřené černé knihy, krémové stránky a jemný popel na tmavém stole." loading="lazy" /></figure>
+   <section class="moonika-reviews moonika-shell" aria-labelledby="moonika-reviews-title">
+    <h2 id="moonika-reviews-title">Očima čtenářů.</h2>
+    <div>{!moonika.reviews.length&&<p class="moonika-demo-note">Demonstrační recenze pro náhled rozvržení. Nejde o skutečná hodnocení knihy.</p>}{reviews.map(review=><figure class="moonika-review"><blockquote><p><span aria-hidden="true">„</span>{review.text}<span aria-hidden="true">“</span></p></blockquote><figcaption>{review.author}{review.source&&<><br />{review.source}</>}{'url' in review&&review.url&&<a href={review.url}>Celá recenze <span aria-hidden="true">↗</span></a>}</figcaption></figure>)}</div>
+   </section>
+   <section class="moonika-release-section moonika-shell" id="vydani" aria-labelledby="moonika-release-title"><div><p>Plánované vydání</p><h2 id="moonika-release-title">{moonika.release}<span aria-hidden="true">.</span></h2></div><div class="moonika-release-copy"><h3>Až bude připravená.</h3><p>O vydání Mooniky tu budu průběžně informovat.</p>{email?<a class="moonika-link" href={`mailto:${email}?subject=${encodeURIComponent('Moonika — zpráva o vydání')}`}>Napište mi o vydání <span aria-hidden="true">↗</span></a>:<><p class="moonika-notify-pending">Možnost nechat si poslat zprávu o vydání připravuji.</p><a class="moonika-link" href="/#kontakt">Kontakt na autora <span aria-hidden="true">↗</span></a></>}</div></section>
+
+</div>

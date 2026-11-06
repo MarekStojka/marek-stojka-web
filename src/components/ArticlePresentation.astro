@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MagazineHeader from '../components/MagazineHeader.astro';
+import ArticleNavigation from '../components/ArticleNavigation.astro';
+import BrushIcon from '../components/BrushIcon.astro';
+import { creativeCategories } from '../data/creative-categories';
+import '../styles/creative-editorial.css';
+import { Image } from 'astro:assets';
+import { creativeArticles, articleStatusLabel, type CreativeArticle } from '../data/creative-articles';
+import candid from '../assets/portraits/marek-momentka-v1.png';
+import drawing from '../assets/artwork/marek-stojka-surrealni-portret.png';
+import '../styles/creative-studio.css';
+interface Props { article: CreativeArticle; preview?: boolean; }
+const {article,preview=false}=Astro.props;
+const category=creativeCategories.find(item=>item.id===article.category)!;
+const next=creativeArticles[(creativeArticles.findIndex(item=>item.slug===article.slug)+1)%creativeArticles.length];
+---
+<BaseLayout title={`${article.title} — Magazín o kreativitě`} description={article.intro} noindex={preview || article.status !== 'published'}>
+<div class="studio-page editorial-page editorial-reading-page" style={{'--rubric-color':category.color,'--rubric-accent':category.accent}}><MagazineHeader/>{preview&&<div class="editor-preview-bar"><strong>Náhled uložené verze</strong><a href={`/keystatic/collection/articles/item/${article.slug}`} data-astro-reload>← Zpět do editoru</a></div>}<main id="obsah"><div class="article-reading-layout"><aside class="article-desktop-rail"><ArticleNavigation article={article} label="Navigace článku a rubrik"/></aside><div class="article-reading-body"><details class="article-mobile-navigation"><summary>Obsah článku a další rubriky <span aria-hidden="true">⌄</span></summary><ArticleNavigation article={article} label="Mobilní navigace článku a rubrik"/></details><article class="magazine-article"><header><a href={`/kreativec/magazin/${article.category}`}>← {article.topic}</a>{articleStatusLabel(article)&&<p class="magazine-draft">{articleStatusLabel(article)}</p>}<h1>{article.title}</h1><p class="magazine-article-lead">{article.intro}</p></header>{article.image?<figure class="magazine-article-photo"><img src={article.image} alt={article.imageAlt} width="1400" height="1000" style="width:100%;height:auto"/></figure>:article.cover!=='none'&&<figure class="magazine-article-photo"><Image src={article.cover==='candid'?candid:drawing} width={1400} format="webp" alt={article.cover==='candid'?'Marek u pracovního stolu.':'Originální kresba Marka Stojky.'}/></figure>}<div class="magazine-prose">{article.sections.map((section,index)=><section id={`cast-${index+1}`} class:list={['article-content-block',`article-block-${section.layout}`]}>
+ {(section.layout==='highlight'||section.layout==='icon')&&<BrushIcon kind="spark"/>}<h2>{section.title}</h2><div class="article-block-paragraphs">{section.paragraphs.map(paragraph=><p>{paragraph}</p>)}</div>
+ </section>)}</div>{next&&<footer class="magazine-article-next"><p>Další čtení</p><a href={`/kreativec/zapisnik/${next.slug}`}>{next.title} ↗</a></footer>}</article></div></div></main></div>
+</BaseLayout>

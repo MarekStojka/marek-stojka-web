@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image, getImage } from 'astro:assets';
+import DarkWorks from '../components/DarkWorks';
+import StickyNote from '../components/StickyNote.astro';
+import HumorPaint from '../components/HumorPaint.astro';
+import { humorBooks, humorBookDetails } from '../data/humor';
+import LooseShaving from '../components/LooseShaving.astro';
+import bookPhoto from '../assets/humor/kniha-pastelky-v1.png';
+import '../styles/dark-library.css';
+import '../styles/humor.css';
+const og=await getImage({src:bookPhoto,width:1200,format:'webp'});
+---
+<BaseLayout title="Mám rád humor — kreativno" description="Humorová tvorba Marka Stojky: Autokatastrofa, All Demente, Hospovídky a (S)Rande. Logika šla na oběd." ogImage={og.src} ogWidth={1200} ogHeight={800} ogAlt="Pracovní fotografická studie bílé knihy v barevných odřezcích z pastelek.">
+ <div class="humor-page">
+  <header class="site-header"><a class="wordmark" href="/" aria-label="kreativno, úvod">kreativno<span aria-hidden="true">/</span></a><nav aria-label="Hlavní navigace"><a href="/#svety">Všechny světy <span aria-hidden="true">↗</span></a><a href="#autokatastrofa" data-humor-book-link="autokatastrofa">Knihy</a><a href="#kontaktni-udaje">Kontakt</a></nav></header>
+  <main id="obsah">
+   <section class="dark-hero dark-library-hero humor-hero" data-shaving-area aria-labelledby="main-title">
+    <div class="humor-hero-stream" data-humor-flow aria-hidden="true"><svg viewBox="0 0 30 800" preserveAspectRatio="none"><defs><linearGradient id="hero-stream-ink" x1="0" x2="1"><stop stop-color="#80208c"/><stop offset=".5" stop-color="#bd2c9f"/><stop offset="1" stop-color="#da6cbb"/></linearGradient></defs><path fill="url(#hero-stream-ink)" d="M10-20H17V640C17 665 27 677 27 693C27 716 1 716 1 693C1 677 10 665 10 640Z"/><path fill="#f1a0da" opacity=".7" d="M12 0H14V645H12Z"/></svg></div>
+    <div class="humor-hero-thread" data-humor-flow aria-hidden="true"><svg viewBox="0 0 12 500" preserveAspectRatio="none"><path fill="#7937b9" d="M5-10H8V330C8 344 12 351 12 360A6 6 0 0 1 0 360C0 351 5 344 5 330Z"/></svg></div>
+    <div class="dark-library-intro"><h1 id="main-title" tabindex="-1">Humor.<br /><em>Bez dozoru.</em></h1><div class="humor-intro-aside"><div class="humor-paint-copy"><p>Logika šla na oběd.<br />Já zatím píšu.</p></div><StickyNote text="Mám to v hlavě." reply="Jen nevím přesně kde." color="#f5e779" tilt="7deg" /></div></div>
+    <div class="humor-library-wrap"><HumorPaint />
+     <DarkWorks works={humorBooks} client:load />
+     <div class="humor-library-notes"><StickyNote text="Nenechte se rozhodit." reply="Od toho jsem tu já." color="#f6bfcf" tilt="-8deg" /><StickyNote text="Tady se jde na věc." reply="Oklikou." color="#cde4fa" tilt="6deg" /></div>
+    </div>
+    <LooseShaving x="44%" y="39%" tilt="-28deg" size={120}/><LooseShaving x="82%" y="75%" tilt="70deg" size={95}/>
+   </section>
+   <div class="humor-margin-note"><StickyNote text="Má to hloubku." reply="Už v tom zase lítám." color="#d7edba" tilt="-6deg" /></div>
+   <div class="humor-presentations">
+    {humorBooks.map((book,index)=><div id={book.id} data-humor-book={book.id} data-shaving-area hidden={index!==0} role="region" aria-label={book.title} tabindex="-1" style={{'--book-accent':book.color}}>
+     <section class="humor-book-hero" aria-labelledby={`${book.id}-title`}><Image src={bookPhoto} widths={[700,1200,1600]} sizes="(max-width:700px) 95vw, 1200px" width={1600} format="webp" alt={`Pracovní vizuální studie pro ${book.title}: bílá kniha v barevných odřezcích. Finální obálka zatím není představená.`} loading="lazy"/><div><p>Marek Stojka</p><h2 id={`${book.id}-title`}>{book.title}</h2><a href={`#${book.id}-pribeh`}>Pod obálku <span aria-hidden="true">↓</span></a></div></section>
+     <section class="humor-book-story" id={`${book.id}-pribeh`}><HumorPaint /><h2>Vážně?<br /><em>To se ještě uvidí.</em></h2><div><p class="humor-lead">{humorBookDetails[book.id]?.annotation ?? `${book.title} patří do mé humorové tvorby.`}</p>{humorBookDetails[book.id]?.note&&<p>{humorBookDetails[book.id].note}</p>}{humorBookDetails[book.id]?.volumes?.map(volume=><div class="humor-volume"><h3>{volume.title}</h3><p>{volume.description}</p></div>)}{!humorBookDetails[book.id]&&<p>Anotaci a ukázku této knihy představím později.</p>}</div></section>
+     <div class="humor-photo-pair"><figure><Image src={bookPhoto} width={1000} format="webp" alt="Detail pracovní fotografické studie knihy a barevných dřevěných spirálek." loading="lazy" /></figure></div>
+     <p class="humor-study-note">Pracovní vizuální studie. Finální obálku a fotografie knihy doplním později.</p>
+     <section class="humor-book-ending"><h2>Smích<br /><em>bude následovat.</em></h2><div><p>Tohle je zatím otevřená kapitola.</p><a href="#kontaktni-udaje">Napište mi <span aria-hidden="true">↗</span></a><a href="#obsah">Zpátky ke knihám <span aria-hidden="true">↑</span></a></div></section>
+     <LooseShaving x="7%" y="48%" tilt="145deg" size={110}/>
+    </div>)}
+   </div>
+  </main>
+  <div class="humor-closing-note"><StickyNote text="Zůstane to mezi námi." reply="A každým, kdo to přečte." color="#f5e779" tilt="4deg" /></div>
+  
+ </div>
+</BaseLayout>
+<script>
+function setupHumorBooks(){
+ const panels=Array.from(document.querySelectorAll<HTMLElement>('[data-humor-book]'));
+ if(!panels.length)return;
+ const controller=new AbortController();
+ function show(id:string){if(!panels.some(panel=>panel.dataset.humorBook===id))return;panels.forEach(panel=>panel.hidden=panel.dataset.humorBook!==id);}
+ function hash(){show(location.hash.slice(1));}hash();
+ window.addEventListener('book:select',event=>show((event as CustomEvent<string>).detail),{signal:controller.signal});
+ window.addEventListener('hashchange',hash,{signal:controller.signal});
+ document.addEventListener('click',event=>{const link=(event.target as Element).closest<HTMLElement>('[data-humor-book-link]');if(link?.dataset.humorBookLink)show(link.dataset.humorBookLink);},{signal:controller.signal});
+ document.addEventListener('astro:before-swap',()=>controller.abort(),{once:true,signal:controller.signal});
+}
+document.addEventListener('astro:page-load',setupHumorBooks);
+</script>

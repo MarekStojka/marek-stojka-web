@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import { creativeArticles } from '../data/creative-articles';
+import { creativeCategories } from '../data/creative-categories';
+import { publicContact } from '../data/contact';
+import candid from '../assets/portraits/marek-momentka-v1.png';
+import drawing from '../assets/artwork/marek-stojka-surrealni-portret.png';
+const topics=[{id:'all',title:'Všechno'},...creativeCategories];
+---
+<section class="creativity-magazine" id="zapisnik" data-magazine aria-labelledby="magazine-title">
+ <div class="magazine-heading"><h2 id="magazine-title">Magazín<br /><em>o kreativitě.</em></h2><div><p>Od každodenních nápadů po odborné souvislosti.<br />Chci tu postupně otevřít kreativitu ze všech stran.</p><p class="magazine-draft">První články jsou pracovní návrhy textů k doladění.</p></div></div>
+ <div class="magazine-topics" aria-label="Rubriky magazínu">{topics.map((topic,index)=><button type="button" data-magazine-topic={topic.id} aria-pressed={index===0}>{topic.title}</button>)}</div>
+ <div class="magazine-categories">{creativeCategories.map(category=><section class={`magazine-category magazine-category-${category.id}`} data-magazine-section={category.id} style={{'--category-bg':category.color,'--category-accent':category.accent}} aria-labelledby={`category-${category.id}`}>
+  <header class="magazine-category-heading"><h3 id={`category-${category.id}`}>{category.title}</h3><p>{category.intro}</p></header>
+  <div class="magazine-category-content">{creativeArticles.filter(article=>article.category===category.id).map(article=><article class="magazine-card magazine-featured" data-magazine-article={category.id}>
+   <a href={`/kreativec/zapisnik/${article.slug}`} aria-labelledby={`article-${article.slug}`}>
+    {article.cover!=='none'&&<figure><Image src={article.cover==='candid'?candid:drawing} width={1100} format="webp" alt={article.cover==='candid'?'Marek u pracovního stolu.':'Originální surrealistická kresba Marka Stojky.'} loading="lazy"/></figure>}
+    {article.slug==='dve-veci-jeden-napad'&&<div class="magazine-word-image" aria-hidden="true">Deštník<br /><span>+ paměť</span></div>}
+    {article.slug==='jedna-veta-tri-hlasy'&&<div class="magazine-type-image" aria-hidden="true"><span>Zítra.</span><em>Zítra?</em><strong>Zítra!</strong></div>}
+    <div class="magazine-card-copy"><h4 id={`article-${article.slug}`}>{article.title}</h4><p>{article.intro}</p><span class="magazine-read">Číst dál <span aria-hidden="true">↗</span></span></div>
+   </a>
+  </article>)}
+  {category.pending&&<div class="magazine-pending"><p>{category.pending}</p>{category.id==='spoluprace'&&<><a href={`mailto:${publicContact.email}?subject=${encodeURIComponent('Spolupráce — magazín o kreativitě')}`}>Napište mi ↗</a><p class="magazine-agency-note">Tvořím také pro agentury. Konkrétní práce mohu ukázat podle možností zveřejnění.</p></>}</div>}
+  </div>
+ </section>)}</div>
+ <p class="visually-hidden" data-magazine-status aria-live="polite"></p>
+</section>
+<script>
+function setupMagazine(){
+ const root=document.querySelector('[data-magazine]');if(!root)return;
+ const controller=new AbortController();const signal=controller.signal;
+ const buttons=Array.from(root.querySelectorAll<HTMLButtonElement>('[data-magazine-topic]'));
+ const sections=Array.from(root.querySelectorAll<HTMLElement>('[data-magazine-section]'));
+ buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));sections.forEach(section=>section.hidden=button.dataset.magazineTopic!=='all'&&section.dataset.magazineSection!==button.dataset.magazineTopic);root.querySelector('[data-magazine-status]')!.textContent=button.dataset.magazineTopic==='all'?'Zobrazeny všechny rubriky.':`Zobrazena rubrika: ${button.textContent}`;},{signal}));
+ document.addEventListener('astro:before-swap',()=>controller.abort(),{once:true,signal});
+}
+document.addEventListener('astro:page-load',setupMagazine);
+</script>

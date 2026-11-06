@@ -1,0 +1,34 @@
+{
+  "title": "Jedna věta. Tři různé hlasy.",
+  "category": "svobodne",
+  "cover": "none",
+  "intro": "Jak by stejnou věc řekl kamarád, průvodce nebo někdo, kdo vám nechce prozradit všechno?",
+  "sections": [
+    {
+      "layout": "text",
+      "title": "Začněte obyčejně.",
+      "paragraphs": [
+        "Vyberte jednoduchou zprávu. Třeba „zítra otevíráme“. Potom si představte, komu ji říkáte a v jaké situaci. Zkuste tři krátké verze se stejným sdělením a odlišným tónem."
+      ]
+    },
+    {
+      "layout": "columns",
+      "title": "Vyměňte mluvčího.",
+      "paragraphs": [
+        "Kamarád může napsat: „Zítra už můžeš přijít.“ Průvodce spíš řekne: „Od zítřka vás čekáme uvnitř.“ Tajemný vypravěč třeba jen poznamená: „Zítra se dveře otevřou.“ Jsou to pracovní pokusy, u kterých stojí za to sledovat hlavně rozdíly.",
+        "Co se změnilo? Oslovení, délka, jistota nebo informace, kterou věta nechává nevyřčenou? Napište si vedle každé verze jednu takovou vlastnost."
+      ]
+    },
+    {
+      "layout": "highlight",
+      "title": "Vyberte hlas pro svou situaci.",
+      "paragraphs": [
+        "Teď se vraťte k tomu, co opravdu potřebujete sdělit. Která verze odpovídá lidem, ke kterým mluvíte? Co jim pomůže pochopit podstatu? Zkuste poslední úpravu: ponechte vybraný tón, ale škrtněte jedno zbytečné slovo."
+      ]
+    }
+  ],
+  "status": "demo",
+  "publishedOn": null,
+  "image": null,
+  "imageAlt": ""
+}

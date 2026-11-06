@@ -1,0 +1,107 @@
+<section class="circle-hero" data-circle-hero aria-labelledby="main-title">
+ <div class="circle-copy">
+  <h1 id="main-title">Co se vám vybaví,<br /> když vidíte <em>kruh?</em></h1>
+  <form class="circle-answer" data-circle-form>
+   <label for="circle-association">Vaše první myšlenka.</label>
+   <div class="circle-input-row"><input id="circle-association" name="association" type="text" maxlength="100" required autocomplete="off" placeholder="Cokoli vás napadne…"/><button type="submit" aria-label="Podívat se na kruh jinak"><span aria-hidden="true">↗</span></button></div>
+  </form>
+  <div class="circle-reveal" data-circle-reveal hidden aria-live="polite" aria-atomic="true">
+   <p class="circle-other-thought" data-circle-success>Z kruhu vzniká <strong data-circle-meaning>oko.</strong></p>
+   <p data-circle-unknown hidden>Tuhle představu zatím neumím nakreslit. Zkuste třeba oko, hodiny nebo pizzu.</p>
+   <button type="button" data-circle-next>Zkusit jinou kresbu <span aria-hidden="true">↗</span></button>
+   <p class="circle-point">Stejný tvar. Jiná představa.</p>
+  </div>
+ </div>
+ <div class="circle-stage" aria-hidden="true">
+  <svg viewBox="0 0 500 500" fill="none">
+   <g class="circle-detail circle-eye"><path d="M28 250Q250 18 472 250Q250 482 28 250Z"/><circle cx="250" cy="250" r="46" class="circle-pupil"/><circle cx="267" cy="233" r="11" class="circle-highlight"/></g>
+   <g class="circle-detail circle-planet"><ellipse cx="250" cy="250" rx="215" ry="48" transform="rotate(-28 250 250)"/><circle cx="424" cy="93" r="8"/><path d="M75 87v25m-12-12h25M385 390v32m-16-16h32"/></g>
+   <g class="circle-detail circle-sun"><path d="M250 38v35m0 354v35M38 250h35m354 0h35M100 100l25 25m250 250 25 25M100 400l25-25m250-250 25-25M169 54l14 33m134 326 14 33M54 331l33-14m326-134 33-14M54 169l33 14m326 134 33 14M169 446l14-33M317 87l14-33"/></g>
+   <g class="circle-detail circle-clock"><path d="M250 144v18m106 88h-18m-88 106v-18m-106-88h18M250 185v65l50 30"/><circle cx="250" cy="250" r="5"/></g>
+   <g class="circle-detail circle-pizza"><path d="m250 250-60-99m60 99 111-34m-111 34-53 103m53-103 76 87m-76-87-113-16m113 16 31-111"/><circle cx="222" cy="190" r="10"/><circle cx="312" cy="255" r="12"/><circle cx="232" cy="316" r="11"/><circle cx="175" cy="272" r="9"/><circle cx="293" cy="179" r="8"/></g>
+   <g class="circle-detail circle-ball"><path d="m250 206 42 31-16 49h-52l-16-49Z M250 206v-72m42 103 69-22m-85 71 42 58m-94-58-42 58m26-107-69-22M182 155l-12 43-35 17m183-60 12 43 35 17m-4 70-45 13-9 53m-114 0-9-53-45-13"/></g>
+   <g class="circle-detail circle-face"><path d="M200 207q15-18 30 0m40 0q15-18 30 0M198 280q52 65 104 0"/><circle cx="215" cy="226" r="4"/><circle cx="285" cy="226" r="4"/></g>
+   <g class="circle-detail circle-donut"><path d="M250 218c44-3 48 64 2 65-45 2-44-63-2-65ZM173 196l13 10m98-40 5 14m38 80-15 5m-86 68 9-13m-70-52 16 1m98 42 13 7m-60-119 13 9"/></g>
+   <g class="circle-detail circle-flower"><path d="M250 366v105m0-45q-60-3-66-43 50-5 66 43m0 20q58-1 65-42-49-2-65 42"/><circle cx="250" cy="250" r="32"/><path d="M250 218c-80-81-101 12-32 32-104 40-23 110 32 32 46 100 114 17 32-32 100-47 9-113-32-32Z"/></g>
+   <g class="circle-detail circle-target"><circle cx="250" cy="250" r="77"/><circle cx="250" cy="250" r="38"/><path d="m250 250 150-150m-30-10 1 39 39 1"/></g>
+   <g class="circle-detail circle-wheel"><circle cx="250" cy="250" r="12"/><path d="M250 146v92m0 24v92m-104-104h92m24 0h92M177 177l65 65m16 16 65 65m-146 0 65-65m16-16 65-65M250 134v-13"/></g>
+   <g class="circle-detail circle-plate"><circle cx="250" cy="250" r="86"/><path d="M92 140v80m-13-80v49q13 27 26 0v-49m-13 80v140m311-220v220m0-220q-39 50 0 101"/></g>
+   <g class="circle-detail circle-moon"><path d="M268 135q-125 115 22 223"/><circle cx="312" cy="204" r="9"/><circle cx="325" cy="275" r="14"/><circle cx="280" cy="307" r="7"/><path d="M89 108v28m-14-14h28m300 240v26m-13-13h26"/></g>
+   <g class="circle-detail circle-ring"><circle cx="250" cy="250" r="94"/><path d="m220 136-15-35 45-35 45 35-15 35m-75-35h90m-45-35-13 35 13 35 13-35Z"/></g>
+   <circle class="circle-base" cx="250" cy="250" r="116"/>
+  </svg>
+ </div>
+</section>
+<script>
+function setupCircleHero(){
+ const root=document.querySelector<HTMLElement>('[data-circle-hero]');if(!root)return;
+ const form=root.querySelector<HTMLFormElement>('[data-circle-form]')!;
+ const input=form.querySelector<HTMLInputElement>('input')!;
+ const reveal=root.querySelector<HTMLElement>('[data-circle-reveal]')!;
+ const success=root.querySelector<HTMLElement>('[data-circle-success]')!;
+ const unknown=root.querySelector<HTMLElement>('[data-circle-unknown]')!;
+ const controller=new AbortController();const signal=controller.signal;
+ const drawings=[
+  {mode:'eye',word:'oko',match:/\b(oko|oci|ocicko|eye)\b/},
+  {mode:'planet',word:'planeta',match:/\b(planeta|saturn|zeme|vesmir)\b/},
+  {mode:'sun',word:'slunce',match:/\b(slunce|slunicko|sun)\b/},
+  {mode:'clock',word:'hodiny',match:/\b(hodiny|hodinky|cas|budik)\b/},
+  {mode:'pizza',word:'pizza',match:/\b(pizza|pizzu|pizzy)\b/},
+  {mode:'ball',word:'míč',match:/\b(mic|balon|fotbal|kopacak)\b/},
+  {mode:'face',word:'obličej',match:/\b(oblicej|smajlik|smejici|usmev|tvar|hlava)\b/},
+  {mode:'donut',word:'donut',match:/\b(donut|kobliha|koblihu|koblizek)\b/},
+  {mode:'flower',word:'květina',match:/\b(kvetina|kytka|kvet|kyticka)\b/},
+  {mode:'target',word:'terč',match:/\b(terc|cil|sipky)\b/},
+  {mode:'wheel',word:'kolo',match:/\b(kolo|pneumatika|pneumatiku|rafek)\b/},
+  {mode:'plate',word:'talíř',match:/\b(talir|talirek|jidlo)\b/},
+  {mode:'moon',word:'měsíc',match:/\b(mesic|luna|moon)\b/},
+  {mode:'ring',word:'prsten',match:/\b(prsten|prstynek|snubni|zasnubni)\b/},
+ ];let timer:ReturnType<typeof setTimeout>|undefined;let current=-1;
+ root.querySelectorAll('.circle-detail path,.circle-detail circle,.circle-detail ellipse').forEach(shape=>shape.setAttribute('pathLength','1'));
+ const draw=()=>{
+  const answer=input.value.trim();if(!answer){reveal.hidden=true;root.removeAttribute('data-circle-view');root.querySelectorAll('.circle-detail').forEach(shape=>shape.classList.remove('is-current'));return;}
+  const normalized=answer.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  current=drawings.findIndex(item=>item.match.test(normalized));reveal.hidden=false;success.hidden=current<0;unknown.hidden=current>=0;
+  root.querySelectorAll('.circle-detail').forEach(shape=>shape.classList.remove('is-current'));
+  if(current<0){root.removeAttribute('data-circle-view');return;}
+  const item=drawings[current];root.dataset.circleView=item.mode;root.querySelector(`.circle-${item.mode}`)?.classList.add('is-current');root.querySelector('[data-circle-meaning]')!.textContent=item.word+'.';
+ }
+ form.addEventListener('submit',event=>{event.preventDefault();clearTimeout(timer);draw();},{signal});
+ input.addEventListener('input',event=>{clearTimeout(timer);if(!(event as InputEvent).isComposing)timer=setTimeout(draw,450);},{signal});
+ input.addEventListener('compositionend',()=>{clearTimeout(timer);timer=setTimeout(draw,450);},{signal});
+ root.querySelector('[data-circle-next]')?.addEventListener('click',()=>{current=(current+1)%drawings.length;input.value=drawings[current].word;draw();},{signal});
+ document.addEventListener('astro:before-swap',()=>{clearTimeout(timer);controller.abort();},{once:true,signal});
+}
+document.addEventListener('astro:page-load',setupCircleHero);
+</script>
+<style>
+.circle-hero{position:relative;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:5%;min-height:calc(100svh - 115px);padding:70px 6%;overflow:hidden}
+.circle-hero .circle-copy{position:relative;z-index:1;min-width:0}
+.circle-hero h1{font-family:'Manrope Variable',sans-serif;font-size:clamp(43px,5.2vw,85px);line-height:1.08;letter-spacing:-.075em;max-width:820px}
+.circle-hero h1 em{display:block;font:italic 400 1.25em/1.05 Georgia,serif;letter-spacing:-.065em;color:#7433c7}
+.circle-answer{margin-top:55px;max-width:470px}
+.circle-answer label{display:block;font-size:18px;margin-bottom:18px;color:#666}
+.circle-input-row{display:flex;align-items:center;gap:20px;border-bottom:1px solid #999}
+.circle-input-row input{min-width:0;flex:1;border:0;border-radius:0;background:transparent;color:#222;padding:18px 0;font:inherit;font-size:clamp(20px,2vw,28px);outline-offset:0}
+.circle-hero .circle-input-row button{border:0;display:grid;place-items:center;flex-shrink:0;width:56px;height:56px;padding:0;background:#222;color:white;border-radius:50%;font-size:32px;transition:background .2s,transform .2s}
+.circle-input-row button:hover{background:#7433c7;transform:rotate(8deg)}
+.circle-stage{width:100%;max-width:650px;justify-self:center;aspect-ratio:1}
+.circle-stage svg{display:block;width:100%;height:100%;overflow:visible;stroke:#222;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.circle-base{stroke-width:3.3;transition:stroke .6s}
+.circle-detail{opacity:0;transform:scale(.92);transform-origin:250px 250px;transition:opacity .65s,transform .85s cubic-bezier(.2,.8,.2,1);stroke:#7433c7}
+.circle-pupil{fill:#7433c7;stroke:none}.circle-highlight{fill:white;stroke:none}
+.circle-detail.is-current{opacity:1;transform:scale(1)}
+.circle-detail path,.circle-detail circle,.circle-detail ellipse{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.6,.2,1)}
+.circle-detail.is-current path,.circle-detail.is-current circle,.circle-detail.is-current ellipse{stroke-dashoffset:0}
+[data-circle-view] .circle-base{stroke:#7433c7}
+.circle-reveal{margin-top:35px;max-width:540px;overflow-wrap:anywhere}
+.circle-hero .circle-your-thought{font-size:18px;color:#777;margin:0 0 10px}
+.circle-your-thought q{quotes:'„' '“'}
+.circle-hero .circle-other-thought{font-size:clamp(28px,3vw,44px);color:#222;letter-spacing:-.045em;line-height:1.2;margin:0 0 15px}
+.circle-other-thought strong{font:italic 400 1.3em Georgia,serif;color:#7433c7}
+.circle-hero .circle-reveal button{font-size:16px;gap:35px}
+.circle-hero .circle-point{font-size:18px;line-height:1.5;margin:25px 0 0;color:#555}
+@media(max-width:1000px){.circle-hero{padding-block:55px;grid-template-columns:1.2fr 1fr}.circle-stage{width:120%}}
+@media(max-width:700px){.circle-hero{grid-template-columns:1fr;gap:0;padding:40px 7% 45px;min-height:calc(100svh - 130px);align-content:start}.circle-hero h1{font-size:clamp(36px,8.8vw,57px)}.circle-hero h1 br{display:none}.circle-stage{grid-row:1;width:100%;max-width:270px;margin:-20px auto -15px}.circle-copy{grid-row:2}.circle-answer{margin-top:30px}.circle-input-row input{font-size:22px}.circle-answer label{font-size:16px;margin-bottom:8px}.circle-hero .circle-input-row button{width:48px;height:48px;font-size:27px}.circle-reveal{margin-top:25px}.circle-hero .circle-other-thought{font-size:32px}.circle-hero .circle-point{font-size:17px}.circle-hero .circle-your-thought{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.circle-detail,.circle-base,.circle-input-row button,.circle-detail path,.circle-detail circle,.circle-detail ellipse{transition:none}}
+</style>

@@ -1,0 +1,47 @@
+---
+interface Props { email?: string; authorName: string; }
+const { email, authorName } = Astro.props;
+---
+<footer id="kontakt" class="author-finale" aria-label="Kontakt a závěr webu" data-author-footer>
+  <div class="finale-inner">
+    <div class="finale-contact">
+      <div><h2>Máte nápad?</h2>{email ? <a class="finale-email" href={`mailto:${email}`}>{email}<span aria-hidden="true">↗</span></a> : <p>Kontaktní e-mail brzy doplním.</p>}</div>
+      <a class="finale-up" href="#obsah" aria-label="Zpátky na začátek"><span aria-hidden="true">↑</span></a>
+    </div>
+    <div class="finale-signature" aria-label={authorName}>{authorName}<span aria-hidden="true">.</span></div>
+    <div class="finale-bottom"><span>kreativno / pracovní název</span><span>© {new Date().getFullYear()} {authorName}</span><a href="#svety">Čtyři tváře <span aria-hidden="true">↗</span></a></div>
+  </div>
+</footer>
+<script>
+  function initializeFooter() {
+  document.querySelectorAll<HTMLElement>('[data-author-footer]').forEach((footer) => {
+    if (footer.dataset.bound) return;
+    footer.dataset.bound = 'true';
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    let frame: number | null = null;
+    let x = 0, y = 0;
+    footer.addEventListener('pointermove', (event) => {
+      if (event.pointerType !== 'mouse' || reduced.matches) return;
+      const rect = footer.getBoundingClientRect();
+      x = event.clientX - rect.left; y = event.clientY - rect.top;
+      if (frame !== null) return;
+      frame = requestAnimationFrame(() => {
+        footer.style.setProperty('--ink-x', `${x}px`);
+        footer.style.setProperty('--ink-y', `${y}px`);
+        footer.dataset.pointer = 'true';
+        frame = null;
+      });
+    });
+    footer.addEventListener('pointerleave', () => {
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+      delete footer.dataset.pointer;
+    });
+    const preference = () => { if (reduced.matches) delete footer.dataset.pointer; };
+    reduced.addEventListener('change', preference);
+    document.addEventListener('astro:before-swap', () => { if (frame !== null) cancelAnimationFrame(frame); reduced.removeEventListener('change', preference); }, { once: true });
+  });
+  }
+  document.addEventListener('astro:page-load', initializeFooter);
+  initializeFooter();
+</script>

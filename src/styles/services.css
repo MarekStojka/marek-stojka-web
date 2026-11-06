@@ -1,0 +1,33 @@
+/* Direct, full-width typography. Interactions are native disclosures. */
+.author-offer,.author-connect { width:min(1280px,88%); margin-inline:auto; scroll-margin-top:40px; }
+.author-offer { padding-block:40px 85px; }
+.author-offer>h2 { margin:0 0 35px; font-size:21px; font-weight:450; letter-spacing:-.04em; }
+.offer-item { border-top:1px solid #0003; }
+.offer-item:last-child { border-bottom:1px solid #0003; }
+.offer-item summary { display:flex; justify-content:space-between; align-items:center; gap:35px; list-style:none; padding-block:23px; cursor:pointer; font-size:clamp(30px,4.1vw,60px); font-weight:450; line-height:1.13; letter-spacing:-.065em; }
+.offer-item summary::-webkit-details-marker { display:none; }
+.offer-item summary>span:first-child { max-width:24ch; transition:transform .3s cubic-bezier(.2,.8,.2,1); }
+.offer-plus { flex-shrink:0; display:block; font-size:clamp(30px,3vw,43px); font-weight:300; color:#666; transition:transform .3s; }
+.offer-item[open] .offer-plus { transform:rotate(45deg); color:#191919; }
+.offer-item[open] summary { padding-bottom:16px; }
+.offer-item>p { max-width:46ch; margin:0 80px 28px 0; font-size:18px; line-height:1.7; color:#626262; }
+.offer-item summary:focus-visible,.personal-experience summary:focus-visible { outline:2px dashed #666; outline-offset:6px; }
+.author-connect { border-top:1px solid #0003; padding-block:50px 70px; }
+.author-connect h2 { margin:0 0 25px; font-size:clamp(45px,7.8vw,112px); font-weight:450; line-height:1.03; letter-spacing:-.075em; }
+.author-connect h2 span { display:inline-block; margin-left:.3em; font-weight:300; }
+.author-connect>p { color:#737373; font-size:14px; margin:0; }
+.connect-email { display:inline-block; padding-bottom:7px; border-bottom:1px solid; font-size:clamp(18px,2.3vw,30px); letter-spacing:-.04em; overflow-wrap:anywhere; max-width:100%; }
+@media(hover:hover) and (pointer:fine) {
+ .offer-item summary:hover>span:first-child { transform:translateX(10px); }
+ .offer-item summary:hover .offer-plus { transform:rotate(90deg); color:#191919; }
+ .offer-item[open] summary:hover .offer-plus { transform:rotate(135deg); }
+}
+@media(max-width:800px) {
+ .author-offer { padding-block:15px 48px; }
+ .author-offer>h2 { font-size:18px; margin-bottom:24px; }
+ .offer-item summary { font-size:clamp(28px,5.4vw,42px); padding-block:22px; gap:22px; }
+ .offer-item>p { font-size:16px; margin:0 30px 23px 0; }
+ .author-connect { padding-block:35px 45px; }
+ .author-connect h2 { font-size:clamp(42px,9.5vw,72px); }
+}
+@media(prefers-reduced-motion:reduce) { .offer-item summary>span { transition:none; } }

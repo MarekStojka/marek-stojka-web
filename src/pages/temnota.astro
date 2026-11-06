@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AshScene from '../components/AshScene';
+import DarkWorks from '../components/DarkWorks';
+import MoonikaPresentation from '../components/MoonikaPresentation.astro';
+import '../styles/dark-library.css';
+---
+<BaseLayout title="Umím děsit — kreativno" description="Příběhy, které nemusí končit dobře. Temná autorská poloha Marka Stojky a připravovaná kniha Moonika." ogImage="/og-temnota.png" ogAlt="kreativno — Umím děsit. Temná strana.">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="kreativno, úvod">kreativno<span aria-hidden="true">/</span></a>
+    <span class="header-note mono">AUTOR / TEMNÁ STRANA</span>
+    <nav aria-label="Hlavní navigace"><a href="/#svety">Všechny světy <span aria-hidden="true">↗</span></a><a href="#moonika" data-select-book="moonika">Moonika</a><a href="#kontaktni-udaje">Kontakt</a></nav>
+  </header>
+  <main id="obsah">
+    <section class="dark-hero dark-library-hero" aria-labelledby="main-title">
+      <AshScene client:load />
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="dark-library-intro">
+        <h1 id="main-title" tabindex="-1">Temná<br /><em>strana.</em></h1>
+        <p>Mám i svou smutnou a depresivní stránku. Dávám jí prostor v tom, co tvořím a píšu.</p>
+      </div>
+      <DarkWorks client:load />
+    </section>
+    <div class="book-presentations">
+      <div id="moonika" data-book-panel="moonika" role="region" aria-label="Moonika" tabindex="-1"><MoonikaPresentation /></div>
+      {[{id:'mistrovstvi-smichu',title:'Mistrovství smíchu',status:'Hotovo 70 %',annotation:'Jaký smysl má radost ve světě, kde i smích podléhá pravidlům? V dystopické společnosti roku 2088 vyvolávají neznámé značky na rukou lidí strach i otázky. Hlavní hrdina hledá jejich význam a s ním i hranici mezi vlastní svobodou a poslušností systému.',note:'Absurdní situace a režimy v příběhu vycházejí z reálných jevů. I soutěž v mistrovství smíchu má svůj skutečný předobraz.'},{id:'armelie',title:'Armelie',status:'Vydání 2027–2028',annotation:'Děsivé příběhy jedné malé holčičky vyprávěné ve verších. Armelie propojuje dětský pohled s temnými náměty a podobou básní.',note:'Rukopis je dopsaný a prochází přepracováním stylu.'},{id:'pohovor',title:'Pohovor',status:'Hotovo 10 %',annotation:'Jeden pracovní pohovor. Čím déle trvá, tím méně je jasné, jestli by o tu práci měl vůbec někdo stát. Šílený a absurdní rozhovor postupně odhaluje, o jaké místo se uchazeč vlastně zajímá.',note:'Konkrétní pozici příběh odkrývá postupně. Tady ji předem neprozradím.'},{id:'sraz-zitra',title:'Sraz zítra',status:'Hotovo 40 %',annotation:'Velká láska zachycená v drobných okamžicích. Večeře, schůzky a společné chvíle, které muž zapisuje do deníku věnovaného Andree. Jeho paměť totiž nedokáže nové vzpomínky udržet. Co pro druhé přetrvá samo, musí on svěřit stránkám.',note:'Příběh má podobu mužského deníku. Námět pracuje s poruchou ukládání nových vzpomínek.'}].map(book=><section id={book.id} data-book-panel={book.id} class="book-pending moonika-page moonika-shell" role="region" aria-label={book.title} tabindex="-1" hidden><p>{book.status}</p><h2>{book.title}</h2><p class="book-annotation">{book.annotation ?? 'Představení této knihy připravuji.'}</p>{book.note&&<p class="book-author-note">{book.note}</p>}</section>)}
+    </div>
+    <script>
+      let cleanupBooks: (() => void) | undefined;
+      function initBooks() {
+        cleanupBooks?.();
+        const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-book-panel]'));
+        function show(id: string) { if (!panels.some(panel => panel.dataset.bookPanel === id)) return; panels.forEach(panel => { panel.hidden = panel.dataset.bookPanel !== id; }); }
+        function selected(event: Event) { show((event as CustomEvent<string>).detail); }
+        function link(event: Event) { const target=(event.target as Element).closest<HTMLElement>('[data-select-book]'); if(target?.dataset.selectBook) show(target.dataset.selectBook); }
+        function hash() { show(location.hash.slice(1)); }
+        hash();
+        window.addEventListener('hashchange',hash);
+        window.addEventListener('book:select', selected);
+        document.addEventListener('click',link);
+        cleanupBooks=()=>{ window.removeEventListener('hashchange',hash); window.removeEventListener('book:select',selected); document.removeEventListener('click',link); };
+      }
+      document.addEventListener('astro:page-load',initBooks);
+      document.addEventListener('astro:before-swap',()=>cleanupBooks?.());
+    </script>
+  </main>
+  
+</BaseLayout>

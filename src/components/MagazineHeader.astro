@@ -1,0 +1,4 @@
+---
+import { creativeCategories } from '../data/creative-categories';
+---
+<header class="editorial-header"><a class="wordmark" href="/">kreativno<span aria-hidden="true">/</span></a><nav aria-label="Navigace magazínu"><a href="/kreativec">Úvod</a><details class="editorial-menu"><summary>Rubriky <span aria-hidden="true">⌄</span></summary><div>{creativeCategories.map(category=><a href={`/kreativec/magazin/${category.id}`}>{category.title}</a>)}</div></details><a href="/kreativec#workshopy">Workshopy</a><a href="/kreativec#o-magazinu">O magazínu</a></nav></header>

@@ -1,0 +1,9 @@
+---
+import ArticlePresentation from '../../../components/ArticlePresentation.astro';
+import { creativeArticles } from '../../../data/creative-articles';
+export function getStaticPaths() {
+ return creativeArticles.map(article => ({ params: { slug: article.slug }, props: { article } }));
+}
+const { article } = Astro.props;
+---
+<ArticlePresentation article={article}/>

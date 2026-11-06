@@ -1,0 +1,22 @@
+---
+interface Props { text: string; reply: string; color?: string; tilt?: string; class?: string; }
+const { text, reply, color='#f5e779', tilt='-5deg', class:className='' }=Astro.props;
+---
+<button type="button" class:list={['humor-note',className]} style={{'--note-paper':color,'--note-tilt':tilt}} data-humor-note aria-pressed="false">
+ <span data-note-front>{text}</span><span data-note-back hidden>{reply}</span>
+</button>
+<script>
+function setupHumorNotes(){
+ const notes=document.querySelectorAll<HTMLButtonElement>('[data-humor-note]');
+ if(!notes.length)return;
+ const controller=new AbortController();
+ notes.forEach(note=>note.addEventListener('click',()=>{
+  const flipped=note.getAttribute('aria-pressed')!=='true';
+  note.setAttribute('aria-pressed',String(flipped));
+  note.querySelector<HTMLElement>('[data-note-front]')!.hidden=flipped;
+  note.querySelector<HTMLElement>('[data-note-back]')!.hidden=!flipped;
+ },{signal:controller.signal}));
+ document.addEventListener('astro:before-swap',()=>controller.abort(),{once:true,signal:controller.signal});
+}
+document.addEventListener('astro:page-load',setupHumorNotes);
+</script>

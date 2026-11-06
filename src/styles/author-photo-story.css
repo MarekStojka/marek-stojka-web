@@ -1,0 +1,16 @@
+.author-photo-story{padding:75px 7% 65px}
+.author-spread{max-width:1350px;margin:auto}
+.author-story-copy{display:grid;grid-template-columns:1fr 1fr;gap:20px 10%;margin-bottom:45px;align-items:start}
+.author-story-name{font-size:19px;margin:0;letter-spacing:-.03em;grid-column:1/-1}
+.author-story-copy h2{grid-column:1;grid-row:2/4;font-size:clamp(47px,5.2vw,79px);font-weight:450;line-height:1.04;letter-spacing:-.07em;margin:0}.author-story-copy h2 em{font:italic 400 1.08em/.98 Georgia,serif;letter-spacing:-.06em}
+.author-story-copy>p:not(.author-story-name){grid-column:2;font-size:18px;line-height:1.8;letter-spacing:-.025em;max-width:440px;color:#666;margin:4px 0 0}
+.author-story-copy .home-text-link{grid-column:2;font-size:15px;gap:25px;justify-self:start;margin-top:0}
+.author-photo-pair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.author-photo-pair figure{margin:0;min-width:0;width:100%;height:clamp(360px,48vw,660px);overflow:hidden;background:#c4c2bf}
+.author-photo-pair img{width:100%;height:100%;display:block;object-fit:cover;filter:grayscale(1) contrast(1.04)}
+.author-candid img{object-position:50% 43%}.author-companion img{object-position:50% 0%}
+.author-photo-marks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.photo-pencil{stroke:#f7f5ee;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.photo-ink{fill:#161717}
+html[data-home-mode=dark] .author-story-copy>p:not(.author-story-name){color:#b9b9b4}
+@media(max-width:700px){.author-photo-story{padding:45px 6% 35px}.author-story-copy{display:block;margin-bottom:30px}.author-story-name{font-size:18px;margin-bottom:20px}.author-story-copy h2{font-size:53px;margin-bottom:24px}.author-story-copy>p:not(.author-story-name){font-size:17px;margin-bottom:20px}.author-story-copy .home-text-link{font-size:15px}.author-photo-pair{gap:5px}.author-photo-pair figure{height:auto;aspect-ratio:3/4}.photo-pencil{stroke-width:1.8}}

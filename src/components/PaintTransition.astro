@@ -1,0 +1,51 @@
+<div id="paint-passage" transition:persist="paint-passage" hidden aria-hidden="true"><svg viewBox="0 0 1440 1000" preserveAspectRatio="none"><defs><linearGradient id="pour-violet" x2="0" y2="1"><stop stop-color="#552199"/><stop offset="1" stop-color="#9345d1"/></linearGradient><linearGradient id="pour-magenta" x2="0" y2="1"><stop stop-color="#a91883"/><stop offset="1" stop-color="#dc40a4"/></linearGradient></defs><path class="paint-pour" fill="url(#pour-violet)"/><path class="paint-pour" fill="url(#pour-magenta)"/></svg></div>
+<script>
+import { navigate } from 'astro:transitions/client';
+const layer=document.querySelector<HTMLElement>('#paint-passage')!;
+const pours=Array.from(layer.querySelectorAll<SVGPathElement>('.paint-pour'));
+const media=matchMedia('(prefers-reduced-motion: reduce)');
+let busy=false;
+document.addEventListener('click',async event=>{
+ const link=(event.target as Element).closest<HTMLElement>('[data-paint-entry]');
+ const href=link instanceof HTMLAnchorElement?link.href:link?.dataset.paintHref;
+ const trigger=(event.target as Element).closest<HTMLElement>('button,a')||link;
+ if(!link||!href||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||(link instanceof HTMLAnchorElement&&link.target==='_blank'))return;
+ if(media.matches){if(!(link instanceof HTMLAnchorElement)){event.preventDefault();void navigate(href);}return;}
+ event.preventDefault();event.stopImmediatePropagation();if(busy)return;busy=true;
+ let navigated=false,cancelled=false,frame=0;
+ let finishPour:(()=>void)|undefined;
+ const animations:Animation[]=[];
+ const cleanup=()=>{cancelAnimationFrame(frame);finishPour?.();animations.forEach(a=>a.cancel());layer.hidden=true;busy=false;document.removeEventListener('keydown',escape);};
+ const escape=(key:KeyboardEvent)=>{if(key.key==='Escape'&&!navigated){cancelled=true;cleanup();trigger?.focus();}};
+ document.addEventListener('keydown',escape);
+ layer.hidden=false;
+ try{
+  layer.style.opacity='1';
+  const start=performance.now();
+  await new Promise<void>(resolve=>{
+   finishPour=resolve;
+   function pour(now:number){
+    const elapsed=now-start;
+    pours.forEach((path,index)=>{
+     const t=Math.max(0,Math.min(1,(elapsed-index*110)/1100));
+     const eased=t*t*(3-2*t),base=-230+eased*1470,swell=Math.sin(t*Math.PI);
+     const points=[0,180,420,680,940,1200,1440].map((x,i)=>({x,y:base+swell*(Math.sin(i*1.8+index*.7)*110+Math.sin(i*.85)*145)}));
+     let d=`M0 -100H1440V${points[6].y}`;
+     for(let i=5;i>=0;i--){const right=points[i+1],left=points[i],middle=(left.x+right.x)/2;d+=`C${middle} ${right.y} ${middle} ${left.y} ${left.x} ${left.y}`;}
+     path.setAttribute('d',d+'Z');
+    });
+    if(elapsed<1210&&!cancelled)frame=requestAnimationFrame(pour);else resolve();
+   }
+   frame=requestAnimationFrame(pour);
+  });
+  if(cancelled)return;
+  navigated=true;await navigate(href);
+  if(location.pathname!=='/humor'){cleanup();return;}
+  const reveal=layer.animate([{opacity:1},{opacity:0}],{duration:550,easing:'ease-out',fill:'forwards'});animations.push(reveal);await reveal.finished;
+ }catch{if(!cancelled&&location.pathname!=='/humor')location.assign(href);}
+ finally{cleanup();}
+},{capture:true});
+</script>
+<style is:global>
+#paint-passage{position:fixed;inset:0;z-index:10000;overflow:hidden;pointer-events:all}#paint-passage[hidden]{display:none}#paint-passage svg{display:block;width:100%;height:100%}
+</style>
