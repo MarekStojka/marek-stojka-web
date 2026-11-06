@@ -6,7 +6,7 @@ import { readdirSync, readFileSync, rmSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative, sep } from 'node:path';
 
-const site = process.env.SITE_URL;
+const site = process.env.SITE_URL?.trim() || undefined;
 if (site && !/^https?:\/\//.test(site)) throw new Error('SITE_URL musí být úplná URL včetně https://');
 
 const localAdmin = {
