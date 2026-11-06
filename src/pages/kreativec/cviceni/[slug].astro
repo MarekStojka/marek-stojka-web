@@ -1,0 +1,48 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MagazineHeader from '../../../components/MagazineHeader.astro';
+import { creativeExercises, exerciseGroups, exerciseSources, type CreativeExercise } from '../../../data/creative-exercises';
+import { withBase } from '../../../lib/site-path';
+import '../../../styles/creative-editorial.css';
+import '../../../styles/creative-exercises.css';
+
+export const getStaticPaths = (() => creativeExercises.map((exercise, index) => ({ params: { slug: exercise.slug }, props: { exercise, index } }))) satisfies GetStaticPaths;
+interface Props { exercise: CreativeExercise; index: number; }
+const { exercise, index } = Astro.props;
+const source = exerciseSources[exercise.source];
+const previous = creativeExercises[index - 1];
+const next = creativeExercises[index + 1];
+const directory = withBase('/kreativec/magazin/cviceni');
+---
+<BaseLayout title={`${exercise.title} — Kreativní cvičení`} description={exercise.assignment} theme="neutral">
+  <div class="editorial-page exercise-detail-page">
+    <MagazineHeader />
+    <main id="obsah">
+      <header class="exercise-hero">
+        <a class="exercise-back" href={directory}>← Všechna kreativní cvičení</a>
+        <p class="exercise-position">{exerciseGroups[exercise.group]} · Cvičení {index + 1} z {creativeExercises.length}</p>
+        <h1>{exercise.title}</h1>
+        <p class="exercise-lead">{exercise.assignment}</p>
+        <dl class="exercise-facts"><div><dt>Čas</dt><dd>Přibližně {exercise.minutes} minut</dd></div><div><dt>Pro koho</dt><dd>{exercise.participants}</dd></div></dl>
+      </header>
+      <div class="exercise-reading-layout">
+        <aside class="exercise-sidebar" aria-label="Příprava a obsah cvičení">
+          <section aria-labelledby="materials-heading"><h2 id="materials-heading">Pomůcky</h2><ul>{exercise.materials.map(material => <li>{material}</li>)}</ul></section>
+          <nav aria-label="Obsah cvičení"><a href="#zadani">Zadání</a><a href="#postup">Postup</a><a href="#priklad">Příklad</a><a href="#zamysleni">Co si odnést</a><a href="#zdroj">Autor a zdroj</a></nav>
+        </aside>
+        <article class="exercise-body">
+          <section id="zadani"><h2>Zadání</h2><p>{exercise.assignment}</p></section>
+          <section id="postup"><h2>Postup</h2><ol class="exercise-steps">{exercise.steps.map(step => <li>{step}</li>)}</ol></section>
+          <section id="priklad" class="exercise-example"><h2>Příklad</h2><p>{exercise.example}</p><p class="exercise-example-note">Modelový příklad pro toto zadání, nikoli citace z původního zdroje nebo jediné správné řešení.</p></section>
+          <section id="zamysleni"><h2>Co si odnést</h2><p>{exercise.reflection}</p></section>
+          <section id="zdroj" class="exercise-source"><h2>Autor a zdroj</h2><p>{exercise.credit}</p><a href={source.url} data-astro-reload>{source.title} <span aria-hidden="true">↗</span></a><p class="exercise-example-note">Zadání, postup a příklad jsou vlastním českým redakčním zpracováním pro tento web. Odhad času se vztahuje k této verzi, včetně krátkého zamyšlení. Původní metoda může mít jiný rozsah.</p></section>
+        </article>
+      </div>
+      <nav class="exercise-neighbours" aria-label="Další kreativní cvičení">
+        {previous ? <a href={withBase(`/kreativec/cviceni/${previous.slug}`)}><span>← Předchozí cvičení</span><strong>{previous.title}</strong></a> : <a href={directory}><span>← Zpět do rubriky</span><strong>Všech {creativeExercises.length} cvičení</strong></a>}
+        {next ? <a href={withBase(`/kreativec/cviceni/${next.slug}`)}><span>Další cvičení →</span><strong>{next.title}</strong></a> : <a href={directory}><span>Vyberte si další směr →</span><strong>Všech {creativeExercises.length} cvičení</strong></a>}
+      </nav>
+    </main>
+  </div>
+</BaseLayout>

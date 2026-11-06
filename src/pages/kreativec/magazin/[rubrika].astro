@@ -2,6 +2,8 @@
 import { withBase } from '../../../lib/site-path';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import MagazineHeader from '../../../components/MagazineHeader.astro';
+import ExerciseDirectory from '../../../components/ExerciseDirectory.astro';
+import { creativeExercises } from '../../../data/creative-exercises';
 import MagazineArticleTile from '../../../components/MagazineArticleTile.astro';
 import { creativeCategories } from '../../../data/creative-categories';
 import { creativeArticles } from '../../../data/creative-articles';
@@ -12,10 +14,10 @@ const {category}=Astro.props;
 const articles=creativeArticles.filter(article=>article.category===category.id);
 const [featured,...remaining]=articles;
 ---
-<BaseLayout title={`${category.title} — Magazín o kreativitě`} description={category.intro} noindex={!articles.some(article=>article.status==='published')}>
-<div class="editorial-page editorial-category-page" style={{'--rubric-accent':category.accent,'--rubric-color':category.color}}><MagazineHeader/><main id="obsah">
- <header class="editorial-rubric-heading"><a class="editorial-back-link" href={withBase('/kreativec#zapisnik')}><span aria-hidden="true">←</span> Zpět na přehled magazínu</a><h1>{category.title}</h1><p>{category.intro}</p></header>
- {featured ? <><section class="rubric-featured-tile" aria-label="Hlavní příspěvek"><MagazineArticleTile article={featured} featured/></section>
+<BaseLayout title={`${category.title} — Magazín o kreativitě`} description={category.intro} noindex={category.id!=='cviceni' && !articles.some(article=>article.status==='published')}>
+<div class:list={["editorial-page editorial-category-page", {"exercise-catalog-page": category.id==='cviceni'}]} style={{'--rubric-accent':category.accent,'--rubric-color':category.color}}><MagazineHeader/><main id="obsah">
+ <header class="editorial-rubric-heading"><a class="editorial-back-link" href={withBase('/kreativec#zapisnik')}><span aria-hidden="true">←</span> Zpět na přehled magazínu</a><h1>{category.title}</h1><p>{category.id==='cviceni' ? `${creativeExercises.length} způsobů, jak rozhýbat nápady. Psaním, kreslením, jiným pohledem i společnou tvorbou.` : category.intro}</p></header>
+ {category.id==='cviceni' ? <><ExerciseDirectory />{articles.length>0 && <section class="rubric-article-tiles" aria-labelledby="exercise-reading-title"><h2 id="exercise-reading-title">Čtení ke cvičením.</h2><div class="rubric-article-grid">{articles.map(article=><MagazineArticleTile article={article}/>)}</div></section>}</> : featured ? <><section class="rubric-featured-tile" aria-label="Hlavní příspěvek"><MagazineArticleTile article={featured} featured/></section>
  <section class="rubric-article-tiles" aria-labelledby="posts-title"><h2 id="posts-title">Další čtení z rubriky.</h2>{remaining.length?<div class="rubric-article-grid">{remaining.map(article=><MagazineArticleTile article={article}/>)}</div>:<p>Další články teprve připravuji.</p>}</section></> : <section class="editorial-empty"><h2>{category.id==='spoluprace'?'Co můžeme otevřít společně?':'První příspěvek teprve vznikne.'}</h2><p>{category.pending}</p>{category.id==='spoluprace'&&<a href={`mailto:${publicContact.email}`}>Napište mi ↗</a>}<p class="editorial-draft">Tady bude hlavní aktuální příspěvek a pod ním přehled dalších článků.</p></section>}
 
  <nav class="editorial-other-rubrics" aria-label="Další rubriky"><h2>Kam dál?</h2>{creativeCategories.filter(item=>item.id!==category.id).map(item=><a href={withBase(`/kreativec/magazin/${item.id}`)}>{item.title} ↗</a>)}</nav>

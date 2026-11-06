@@ -1,0 +1,69 @@
+---
+import { creativeExercises, exerciseGroups } from '../data/creative-exercises';
+import { withBase } from '../lib/site-path';
+import '../styles/creative-exercises.css';
+---
+<section class="exercise-library" aria-label="Knihovna kreativních cvičení" data-motion-skip>
+  <exercise-directory>
+    <div class="exercise-filters" data-filters hidden>
+      <div><label for="exercise-search">Najít cvičení</label><input id="exercise-search" type="search" placeholder="Název, téma nebo autor…" autocomplete="off" aria-controls="exercise-list" /></div>
+      <div><label for="exercise-group">Co chcete zkoušet?</label><select id="exercise-group" aria-controls="exercise-list"><option value="">Všechna témata</option>{Object.entries(exerciseGroups).map(([id, title]) => <option value={id}>{title}</option>)}</select></div>
+      <button type="button" data-reset>Zrušit filtry</button>
+    </div>
+    <div class="exercise-library-intro"><p>Vyberte si z {creativeExercises.length} cvičení. Stačí chuť něco zkusit; výsledek nemusí být dokonalý. U každého najdete postup, ukázku a původ metody.</p><p class="exercise-count" role="status" aria-live="polite" aria-atomic="true" data-count>Zobrazeno: {creativeExercises.length} z {creativeExercises.length}</p></div>
+    <ol id="exercise-list" class="exercise-grid">
+      {creativeExercises.map((exercise, index) => <li data-exercise data-group={exercise.group} data-search={`${exercise.title} ${exercise.assignment} ${exercise.credit} ${exerciseGroups[exercise.group]} ${exercise.participants}`}>
+        <a href={withBase(`/kreativec/cviceni/${exercise.slug}`)} class="exercise-card">
+          <div class="exercise-card-top"><span>{String(index + 1).padStart(2, '0')}</span><span>{exerciseGroups[exercise.group]}</span></div>
+          <h2>{exercise.title}</h2>
+          <p>{exercise.assignment}</p>
+          <div class="exercise-card-bottom"><span>Přibližně {exercise.minutes} min</span><span aria-hidden="true">↗</span></div>
+        </a>
+      </li>)}
+    </ol>
+    <p class="exercise-no-results" data-empty hidden>Pro tento výběr tu žádné cvičení není. Zkuste jiné slovo nebo zrušte filtry.</p>
+    <p class="exercise-editorial-note">Česká zadání a modelové příklady jsou redakční adaptace. Časy jsou orientační pro zde popsanou verzi. Cvičení nejsou diagnostické testy ani příslib měřitelného zvýšení kreativity.</p>
+  </exercise-directory>
+</section>
+<script>
+  class ExerciseDirectory extends HTMLElement {
+    private controller?: AbortController;
+    connectedCallback() {
+      this.controller?.abort();
+      this.controller = new AbortController();
+      const { signal } = this.controller;
+      const search = this.querySelector<HTMLInputElement>('input[type="search"]');
+      const group = this.querySelector<HTMLSelectElement>('select');
+      const count = this.querySelector<HTMLElement>('[data-count]');
+      const empty = this.querySelector<HTMLElement>('[data-empty]');
+      const filters = this.querySelector<HTMLElement>('[data-filters]');
+      const reset = this.querySelector<HTMLButtonElement>('[data-reset]');
+      if (!search || !group || !count || !empty || !filters || !reset) return;
+      const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('cs').trim();
+      const entries = [...this.querySelectorAll<HTMLElement>('[data-exercise]')].map(element => ({ element, text: normalize(element.dataset.search ?? '') }));
+      const update = () => {
+        const words = normalize(search.value).split(/\s+/).filter(Boolean);
+        let visible = 0;
+        for (const { element, text } of entries) {
+          const match = (!group.value || element.dataset.group === group.value) && words.every(word => text.includes(word));
+          element.hidden = !match;
+          if (match) visible++;
+        }
+        count.textContent = `Zobrazeno: ${visible} z ${entries.length}`;
+        empty.hidden = visible > 0;
+      };
+      search.addEventListener('input', update, { signal });
+      group.addEventListener('change', update, { signal });
+      reset.addEventListener('click', () => {
+        search.value = '';
+        group.value = '';
+        update();
+        search.focus();
+      }, { signal });
+      filters.hidden = false;
+      update();
+    }
+    disconnectedCallback() { this.controller?.abort(); }
+  }
+  if (!customElements.get('exercise-directory')) customElements.define('exercise-directory', ExerciseDirectory);
+</script>
