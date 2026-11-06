@@ -4,13 +4,56 @@ import BrushIcon from './BrushIcon.astro';
 import { creativeWorkshops } from '../data/creative-workshops';
 import { publicContact } from '../data/contact';
 ---
-<section class="workshop-offer" id="workshopy" aria-labelledby="workshops-title">
- <header><h2 id="workshops-title">Kreativitu<br /><em>zkusíme naživo.</em></h2><div><p class="editorial-lead">Připravuji čtyři praktické workshopy. Každý může stát samostatně, společně tvoří cestu od prvního pokusu k rozpracovanému nápadu.</p><p>Živě, v malé skupině a s prostorem pro vlastní práci. Plán počítá přibližně se třemi hodinami na téma včetně přestávky. Termíny, místo a cenu teprve doplním.</p></div></header>
- <div class="workshop-offer-grid">{creativeWorkshops.map(workshop=><a class="workshop-offer-card icon-motion-trigger" style={{'--workshop-color':workshop.color}} href={withBase(`/kreativec/workshopy/${workshop.slug}`)}><BrushIcon kind={workshop.icon}/><h3>{workshop.title}</h3><p>{workshop.intro}</p><span>Prozkoumat workshop <span aria-hidden="true">↗</span></span></a>)}</div>
- <div class="workshop-offer-bottom"><p>Nemusíte absolvovat celý cyklus. Vyberte si téma, které právě potřebujete. Všechny čtyři workshopy jsou zatím v přípravě.</p><a href={`mailto:${publicContact.email}?subject=${encodeURIComponent('Zájem o kreativní workshopy')}`}>Mám zájem nebo otázku <span aria-hidden="true">↗</span></a></div>
+<section class="creative-workshops" id="workshopy" aria-labelledby="workshops-title">
+  <header class="creative-workshops-intro">
+    <h2 id="workshops-title">Kreativitu<br /><em>zkusíme naživo.</em></h2>
+    <p>Čtyři připravované workshopy. Vyberte si téma, které právě potřebujete.</p>
+    <p class="creative-workshops-state">Živě, v malé skupině. Termíny, místo a cenu teprve doplním.</p>
+    <a class="creative-workshops-contact" href={`mailto:${publicContact.email}?subject=${encodeURIComponent('Zájem o kreativní workshopy')}`}>Mám zájem nebo otázku <span aria-hidden="true">↗</span></a>
+  </header>
+  <div class="creative-workshop-list">
+    {creativeWorkshops.map(workshop => <a class="creative-workshop-row icon-motion-trigger" href={withBase(`/kreativec/workshopy/${workshop.slug}`)} aria-labelledby={`workshop-${workshop.slug}`}>
+      <BrushIcon kind={workshop.icon}/>
+      <div><h3 id={`workshop-${workshop.slug}`}>{workshop.title}</h3><p>{workshop.intro}</p></div>
+      <span class="creative-workshop-arrow" aria-hidden="true">↗</span>
+    </a>)}
+    <p class="creative-workshop-note">Každý workshop stojí samostatně. Můžete začít kterýmkoli.</p>
+  </div>
 </section>
 <style>
-.workshop-offer{padding:65px 6% 40px}.workshop-offer>header{display:grid;grid-template-columns:1fr 1fr;gap:10%;margin-bottom:45px}.workshop-offer h2{font-size:clamp(43px,4.6vw,74px)}.workshop-offer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--editorial-gap)}.workshop-offer-card{background:var(--workshop-color);padding:40px 9%;display:flex;flex-direction:column;align-items:flex-start}.workshop-offer-card :global(svg){width:95px;height:95px;margin-bottom:30px;transition:transform .3s}.workshop-offer-card:hover :global(svg){transform:rotate(-6deg)}.workshop-offer-card h3{font-size:clamp(32px,3vw,46px);max-width:440px}.workshop-offer-card p{font-size:19px;max-width:480px}.workshop-offer-card>span{display:flex;gap:35px;border-bottom:1px solid #888;padding:12px 0;margin-top:auto}.workshop-offer-bottom{display:flex;align-items:center;justify-content:space-between;gap:40px;padding-top:25px}.workshop-offer-bottom p{font-size:16px;max-width:650px}.workshop-offer-bottom a{display:flex;gap:25px;border-bottom:1px solid #aaa;padding:12px 0;flex-shrink:0}
-@media(max-width:700px){.workshop-offer{padding:40px 7% 30px}.workshop-offer>header,.workshop-offer-grid{grid-template-columns:1fr}.workshop-offer>header{gap:25px;margin-bottom:30px}.workshop-offer-card{padding:30px 8%}.workshop-offer-card h3{font-size:35px}.workshop-offer-card :global(svg){width:80px;height:80px}.workshop-offer-bottom{display:block}.workshop-offer-bottom a{width:fit-content}}
-@media(prefers-reduced-motion:reduce){.workshop-offer-card :global(svg){transition:none}.workshop-offer-card:hover :global(svg){transform:none}}
+  .creative-workshops { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: 7%; padding: clamp(50px, 6vw, 95px) 6%; }
+  .creative-workshops-intro { padding-top: 15px; }
+  .creative-workshops-intro h2 { font-size: clamp(40px, 4.2vw, 70px); text-wrap: balance; }
+  .creative-workshops-intro>p { max-width: 30ch; margin: 28px 0 0; font-size: 21px; line-height: 1.55; }
+  .creative-workshops-intro .creative-workshops-state { font-size: 16px; margin-top: 20px; }
+  .creative-workshops-contact { display: inline-flex; gap: 25px; align-items: center; padding: 12px 0; margin-top: 24px; border-bottom: 1px solid #999; font-size: 16px; }
+  .creative-workshop-row { display: grid; grid-template-columns: 65px minmax(0, 1fr) 28px; align-items: center; gap: 25px; padding: 30px 12px; border-top: 1px solid #d2d2cf; transition: background .2s; }
+  .creative-workshop-row:hover,.creative-workshop-row:focus-visible { background: #f4f3f1; }
+  .creative-workshop-row :global(.brush-icon) { width: 65px; height: 65px; }
+  .creative-workshop-row h3 { font-size: clamp(27px, 2.5vw, 39px); text-wrap: balance; }
+  .creative-workshop-row p { margin: 13px 0 0; max-width: 40ch; font-size: 17px; line-height: 1.55; }
+  .creative-workshop-arrow { align-self: start; padding-top: 3px; font-size: 27px; transition: transform .2s; }
+  .creative-workshop-row:hover .creative-workshop-arrow { transform: translate(3px, -3px); }
+  .creative-workshop-note { border-top: 1px solid #d2d2cf; margin: 0; padding: 24px 12px 0; font-size: 15px; }
+  @media (max-width: 1000px) {
+    .creative-workshops { grid-template-columns: 1fr; gap: 40px; }
+    .creative-workshops-intro>p { max-width: 45ch; }
+    .creative-workshops-intro h2 { font-size: 56px; }
+  }
+  @media (max-width: 700px) {
+    .creative-workshops { padding: 40px 7%; gap: 32px; }
+    .creative-workshops-intro { padding-top: 0; }
+    .creative-workshops-intro h2 { font-size: 43px; }
+    .creative-workshops-intro>p { font-size: 19px; margin-top: 22px; }
+    .creative-workshop-row { grid-template-columns: 40px minmax(0, 1fr) 24px; gap: 14px; padding: 25px 0; }
+    .creative-workshop-row :global(.brush-icon) { width: 40px; height: 40px; align-self: start; }
+    .creative-workshop-row h3 { font-size: 27px; }
+    .creative-workshop-row p { font-size: 16px; }
+    .creative-workshop-arrow { font-size: 23px; }
+    .creative-workshop-note { padding: 20px 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .creative-workshop-row,.creative-workshop-arrow { transition: none; }
+    .creative-workshop-row:hover .creative-workshop-arrow { transform: none; }
+  }
 </style>

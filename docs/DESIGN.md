@@ -445,3 +445,13 @@ Ověřeno: npm run build pro kořen i projektový podadresář, nulové chyby As
 Na výslovný pokyn „Nahraj na git“ byl commit 0e57508 nahrán do main přes přihlášený GitHub Desktop. Publikování Publish website (run 42303106284) i Check and build (run 42303106164) úspěšné. Veřejná adresa https://marekstojka.github.io/marek-stojka-web/ vrací HTTP 200; v prohlížeči ověřena homepage a animovaný vstup na /marek-stojka-web/kreativec/ včetně obrázků, bez chyb konzole. Git CLI nemá vlastní uložené přihlášení; GitHub Desktop funguje. Doplněk GitHub je nainstalovaný, jeho nástroje ale v tomto chatu nebyly zpřístupněné.
 
 Původní automatické pages build and deployment přes Jekyll stále souběžně selhává. Nové workflow Astro publikuje úspěšně i tak. Nastavení Source doporučeno přepnout na GitHub Actions; v tomto kroku nebylo vzdálené nastavení změněno. Další push do main spouští připravené automatické nasazení.
+
+## Banán přes šířku a krátké odpovědi — 6. 11. 2026
+
+Nový pokyn se týká výslovně `/kreativec`. Pod osmi původními rubrikami je nyní jeden bílý fotografický list přes celou šířku rámce s existujícím banánem se zátkami a větou „I divný věci můžou být dobrým nápadem.“. Původní úvodní odstavec, tři pilíře Číst / Zkoušet / Sdílet i dlouhý výklad kreativity jsou odstraněné. Textový obsah začíná pod fotografií otázkou „Co je vlastně ta kreativita?“ a šesti krátkými odpověďmi. Jde o pracovní redakční copy, nikoli schválenou odbornou definici. Dlaždice mají tři sloupce na desktopu, dva do 1000 px a jeden do 700 px. Zdroj `MagazineIntroduction.astro`, styly jsou lokální v komponentě.
+
+Workshopy mají nový pracovní návrh: úvod a skutečný kontaktní odkaz vlevo, čtyři široké odkazové řádky s ikonou, názvem a krátkým popisem vpravo. Na tabletu/mobilu se skládají pod sebe. `WorkshopOffer.astro` stále čerpá ze stejných dat; detailní programy se nemění. Žádný termín, místo ani cena nepřibyly. `/potkejme-se` používá vlastní přehled, tato změna se jí netýká.
+
+Velká fotografie lahve mezi workshopy a medailonkem odstraněná. Autor výslovně upřesnil, že lahev v horní dlaždici Nástroje a inspirace ZATÍM ZŮSTÁVÁ; horní dlaždice chce upravit později. Zachovat všech osm rubrik a jejich současné motivy do dalšího zadání. Medailonek a společná patička beze změn. Nové bitmapy nevznikly; původ banánu je nadále v `CREATIVE-STILL-LIFE.md`.
+
+Ověřeno v místním náhledu: desktop 1280 px, široká obrazovka 2560 px a mobil 390/320 px, fotografie bez useknutého motivu, bez vodorovného přesahu, navigace na workshopy a otevření detailu klávesnicí. Náhledy `nahled-kreativec-zatisi.jpg`, `nahled-kreativec-odpovedi.jpg`, `nahled-kreativec-mobile.jpg` a `nahled-workshopy.jpg`. Změna je lokální, v tomto kroku se na GitHub nenahrávala.
