@@ -134,3 +134,9 @@
  .editorial-page main>.editorial-object-break{padding:0 7% 30px}.editorial-object-break img{height:340px}
  .editorial-page main>.editorial-person-tiles{padding-top:40px;padding-bottom:40px}
 }
+
+/* Medailonek: fotografie / samostatný nadpis / osobní text. */
+.editorial-person-heading{display:flex;align-items:center;padding:35px 12%;background:#fff}
+.editorial-person-heading h2{font-size:clamp(38px,3.3vw,64px);margin:0;text-wrap:balance}
+@media(max-width:1100px){.editorial-person-heading{padding:35px 10%}}
+@media(max-width:700px){.editorial-person-heading{padding:30px 0 0}.editorial-person-heading h2{font-size:39px}.editorial-person-tiles>.editorial-person-story{padding-top:25px}}

@@ -497,3 +497,10 @@ Přehled nabízí hledání bez diakritiky včetně autorů a pět témat: nápa
 Nová rubrika a všech 50 detailů jsou zahrnuté do produkčního sestavení a sitemap. Dosavadní demo články mají nadále původní režim: pouze lokální návrhy, nezveřejňují se spolu se cvičeními. Detail má návrat do rubriky, obsahové kotvy a předchozí/další cvičení. Implementace: `ExerciseDirectory.astro`, `pages/kreativec/cviceni/[slug].astro`, `creative-exercises.css` a větev rubriky v `pages/kreativec/magazin/[rubrika].astro`.
 
 Ověřeno 50 unikátních detailů, vyplnění všech polí, zdroje, odkazy a sitemap; desktop 1440 px, mobil 390/320 px, hledání podle autora i bez diakritiky, kombinace filtrů, prázdný výsledek, klávesnicový vstup, návrat a další cvičení. Bez chyb konzole nebo vodorovného přesahu. Náhledy `nahled-cviceni.jpg`, `nahled-cviceni-detail.jpg`, `nahled-cviceni-mobile.jpg` a `nahled-cviceni-priklad-mobile.jpg`. Autor následně výslovně zadal „na git“: nahrání těchto změn do `main` a navazující automatické nasazení je autorizované. Produkční kontrola prošla: 81 HTML stránek, 2136 místních URL, 82 Astro souborů bez chyb a varování.
+
+
+## Medailonek bez citátu a vzdušnější banán — 8. 11. 2026
+
+Na výslovný pokyn je citát vedle osobní fotografie odstraněný. Tři bloky na širokém monitoru jsou fotografie / nadpis „A kde v tom jsem já?“ / osobní text s odkazem na okénko. Nadpis je samostatný header se stávajícím ID person-title, text a fotografie beze změn. Na tabletu fotografie a nadpis vedle sebe, osobní text pod nimi; mobil vše pod sebou. Bílá plocha a společné odsazení zůstávají.
+
+Fotografická sekce s banánem zachovává původní výšku i nadpis, obraz je zúžený na 78 % (mobil 84 %), vycentrovaný. Motiv má více bílého prostoru; zdrojový snímek není upravovaný. Kontrola 1920 px a 390 px: bez vodorovného přesahu, citát chybí, nadpis jediný, fotografie načtené, konzole bez chyb. Aktuální snímky: nahled-medailonek-layout.png a nahled-kreativec-banan.png.

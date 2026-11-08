@@ -16,7 +16,7 @@ const answers = [
 <section class="creativity-photo" id="o-magazinu" aria-labelledby="banana-title">
   <h2 id="banana-title">I divný věci můžou být<br /><em>dobrým nápadem.</em></h2>
   <figure>
-    <Image src={banana} widths={[640, 1000, 1536]} sizes="(max-width: 700px) calc(100vw - 24px), calc(100vw - 40px)" width={1536} format="webp" quality={90} alt="Banán, na kterém jako pasažéři balancují tři pivní zátky." loading="lazy" />
+    <Image src={banana} widths={[640, 1000, 1536]} sizes="(max-width: 700px) 80vw, 76vw" width={1536} format="webp" quality={90} alt="Banán, na kterém jako pasažéři balancují tři pivní zátky." loading="lazy" />
   </figure>
 </section>
 <section class="creativity-answers" aria-labelledby="creativity-title">
@@ -30,8 +30,8 @@ const answers = [
   .creativity-photo { padding: clamp(40px, 5vw, 85px) 0 0; overflow: hidden; }
   .creativity-photo h2 { position: relative; z-index: 1; padding: 0 6%; text-align: center; font-size: clamp(42px, 5.2vw, 90px); text-wrap: balance; }
   .creativity-photo h2 em { color: inherit; }
-  .creativity-photo figure { margin: 20px 0 0; }
-  .creativity-photo img { display: block; width: 100%; height: max(360px, 38vw); object-fit: cover; object-position: center 55%; }
+  .creativity-photo figure { margin: 20px 0 0; height: max(360px, 38vw); display: flex; align-items: center; justify-content: center; }
+  .creativity-photo img { display: block; width: 78%; height: 100%; object-fit: cover; object-position: center 55%; }
   .creativity-answers { padding: clamp(48px, 6vw, 100px) 6%; }
   .creativity-answers h2 { margin: 0 0 clamp(35px, 4vw, 65px); text-align: center; font-size: clamp(44px, 5vw, 80px); }
   .creativity-answer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--editorial-gap); }
@@ -44,8 +44,8 @@ const answers = [
   @media (max-width: 700px) {
     .creativity-photo { padding-top: 38px; }
     .creativity-photo h2 { padding: 0 7%; font-size: clamp(32px, 8.8vw, 48px); }
-    .creativity-photo img { height: clamp(250px, 65vw, 420px); }
-    .creativity-photo figure { margin-top: 15px; }
+    .creativity-photo img { width: 84%; height: 100%; }
+    .creativity-photo figure { margin-top: 15px; height: clamp(250px, 65vw, 420px); }
     .creativity-answers { padding: 45px 7%; }
     .creativity-answers h2 { font-size: 43px; margin-bottom: 32px; }
     .creativity-answer-grid { grid-template-columns: 1fr; }
