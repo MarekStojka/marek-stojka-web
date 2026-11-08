@@ -1,0 +1,8 @@
+---
+interface Props { label: string; html: string; }
+const { label, html } = Astro.props;
+---
+<details class="visual-more">
+  <summary>{label}<span aria-hidden="true">+</span></summary>
+  <div class="visual-more-body" set:html={html} />
+</details>

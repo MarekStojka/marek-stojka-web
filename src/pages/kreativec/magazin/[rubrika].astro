@@ -3,7 +3,8 @@ import { withBase } from '../../../lib/site-path';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import MagazineHeader from '../../../components/MagazineHeader.astro';
 import ExerciseDirectory from '../../../components/ExerciseDirectory.astro';
-import CreativityOverview from '../../../components/CreativityOverview.astro';
+import CreativityOverview from '../../../components/CreativityReader.astro';
+import CreativitySources from '../../../components/CreativitySources.astro';
 import CreativityDefinitions from '../../../components/CreativityDefinitions.astro';
 import CreativityContext from '../../../components/CreativityContext.astro';
 import { creativeExercises } from '../../../data/creative-exercises';
@@ -27,5 +28,6 @@ const [featured,...remaining]=articles;
 
  </>}
  <nav class="editorial-other-rubrics" aria-label="Další rubriky"><h2>Kam dál?</h2>{creativeCategories.filter(item=>item.id!==category.id).map(item=><a href={withBase(`/kreativec/magazin/${item.id}`)}>{item.title} ↗</a>)}</nav>
+ {category.id==='obecne' && <CreativitySources />}
 </main></div>
 </BaseLayout>

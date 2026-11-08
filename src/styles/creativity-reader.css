@@ -1,0 +1,134 @@
+/* Jeden směr čtení. Fotografie a barvy oddělují témata bez mřížky karet. */
+.creativity-overview-page main { gap: 0; background: #fff; }
+.creativity-overview-page main > .overview-hero { position: relative; min-height: calc(100svh - 115px); padding: 26px 5% 35px; display: flex; flex-direction: column; }
+.overview-back { display: inline-flex; align-items: center; gap: 14px; align-self: flex-start; min-height: 44px; font-size: 16px; }
+.overview-back > span { font-size: 25px; }
+.creativity-overview-page .overview-hero h1 { text-align: center; font-size: clamp(33px, 3.4vw, 53px); letter-spacing: -.045em; margin: 18px 0 0; }
+.creativity-overview-page .overview-hero h1 em { white-space: nowrap; }
+.guide-orbit { width: min(100%, 1160px); height: clamp(440px, 57svh, 620px); margin: auto; position: relative; }
+.guide-paper { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: clamp(250px, 29vw, 380px); aspect-ratio: 1; padding: 0; border: 0; background: transparent; cursor: pointer; border-radius: 50%; }
+.guide-paper:disabled { cursor: default; }
+.guide-paper img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+.guide-paper:not(:disabled):hover img { transform: rotate(5deg) scale(1.04); }
+.guide-paper:focus-visible { outline: 3px solid #7433c7; outline-offset: 6px; }
+.guide-question { position: absolute; display: block; width: clamp(185px, 19vw, 265px); padding: 12px 5px; font-size: clamp(21px, 2vw, 30px); font-weight: 450; line-height: 1.25; letter-spacing: -.035em; text-wrap: balance; rotate: var(--tilt); transition: color .2s, translate .2s; }
+.guide-question span { display: inline-block; margin-left: 8px; font-size: .7em; color: #7433c7; }
+.guide-question:hover { color: #7433c7; translate: 0 -4px; }
+.guide-question-1 { left: 11%; top: 3%; --tilt: -5deg; }
+.guide-question-2 { right: 10%; top: 4%; --tilt: 4deg; }
+.guide-question-3 { left: 0; top: 40%; --tilt: -3deg; }
+.guide-question-4 { right: 0; top: 41%; --tilt: 3deg; }
+.guide-question-5 { left: 10%; bottom: 3%; --tilt: 4deg; }
+.guide-question-6 { right: 9%; bottom: 3%; --tilt: -4deg; }
+.guide-hero-bottom { text-align: center; margin-top: 18px; }
+.creativity-overview-page .guide-hero-bottom p { font-size: 17px; color: #555; margin: 0; }
+.creativity-overview-page .overview-text-link { display: inline-flex; align-items: center; gap: 25px; padding: 12px 0; margin-top: 12px; border-bottom: 1px solid currentColor; font-size: 17px; line-height: 1.5; }
+.overview-text-link:hover,.overview-back:hover,.overview-contents a:hover { color: #7433c7; }
+.creativity-overview-page main > .overview-contents { padding: 24px max(6%, calc((100% - 760px) / 2)); background: #f6f6f4; }
+.overview-chapter-picker > summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; font-size: 20px; list-style: none; }
+.overview-chapter-picker > summary::-webkit-details-marker { display: none; }
+.overview-chapter-picker > summary > span:last-child { font-size: 28px; }
+.overview-chapter-picker[open] > summary > span:last-child { rotate: 45deg; }
+.overview-contents ol { display: grid; grid-template-columns: 1fr 1fr; column-gap: 35px; margin: 20px 0 0; padding: 0; list-style: none; counter-reset: chapter; }
+.overview-contents li { counter-increment: chapter; border-top: 1px solid #ddd; }
+.overview-contents ol a { display: grid; grid-template-columns: 24px 1fr 16px; gap: 8px; align-items: baseline; padding: 14px 0; min-height: 52px; font-size: 16px; line-height: 1.5; }
+.overview-contents ol a::before { content: counter(chapter, decimal-leading-zero); font-size: 12px; color: #666; }
+.overview-notes-link { display: inline-block; padding: 12px 0 0; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; color: #555; }
+.creativity-overview-page main > .guide-chapter { padding: 66px 6%; }
+.guide-prose { max-width: 760px; margin-inline: auto; }
+.creativity-overview-page .guide-prose h2 { font-size: clamp(34px, 3.2vw, 48px); font-weight: 500; letter-spacing: -.04em; line-height: 1.15; text-wrap: balance; margin: 0 0 28px; }
+.creativity-overview-page .guide-prose p,.creativity-overview-page .guide-prose li { font-size: 21px; line-height: 1.75; color: #343434; letter-spacing: -.008em; }
+.creativity-overview-page .guide-prose p { margin: 0 0 24px; }
+.creativity-overview-page .guide-prose > :last-child { margin-bottom: 0; }
+.creativity-overview-page .guide-prose .guide-lead { font-size: 27px; line-height: 1.5; color: #222; letter-spacing: -.025em; }
+.guide-prose strong { font-weight: 650; }
+.guide-prose ul,.guide-prose ol { margin: 0 0 26px; padding-left: 25px; }
+.guide-prose ul { list-style: disc; }.guide-prose ol { list-style: decimal; }
+.guide-prose li { padding-left: 8px; margin: 14px 0; }
+.guide-photo { width: min(100%, 900px); margin: 42px auto 0; background: #fff; }
+.guide-photo-wide { width: min(100%, 1050px); }
+.guide-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3/2; object-fit: contain; background: #fff; }
+.guide-photo figcaption { font-size: 15px; line-height: 1.6; color: #555; text-align: center; margin-top: 12px; }
+.guide-photo figcaption span { display: block; font-size: 12px; color: #666; margin-top: 3px; }
+.creativity-overview-page main > .guide-purple { background: #4623db; padding-block: 82px; color: #fff; }
+.creativity-overview-page .guide-purple .guide-prose h2 { color: #fff; font-size: clamp(45px, 5.4vw, 76px); font-weight: 500; }
+.creativity-overview-page .guide-purple .guide-prose h2 em { color: #f9df28; }
+.creativity-overview-page .guide-purple .guide-prose p { color: #fff; }
+.creativity-overview-page main > .guide-with-banner { padding: 0; }
+.guide-color-banner { padding: 76px 8%; background: #f9df28; color: #32105b; }
+.creativity-overview-page .guide-color-banner h2 { max-width: 1050px; margin: 0 auto; text-align: center; font-size: clamp(52px, 7.6vw, 110px); font-weight: 600; line-height: 1.08; letter-spacing: -.055em; text-wrap: balance; }
+.creativity-overview-page .guide-color-banner h2 em { color: #32105b; white-space: nowrap; }
+.guide-with-banner > .guide-prose { padding-top: 66px; padding-bottom: 16px; width: 88%; }
+.creativity-overview-page main > .guide-lime { background: #b9ff3d; padding-block: 82px; }
+.creativity-overview-page .guide-lime .guide-prose h2 { font-size: clamp(45px, 5vw, 70px); color: #243019; }
+.creativity-overview-page .guide-lime .guide-prose p,.creativity-overview-page .guide-lime .guide-prose li { color: #243019; }
+.creativity-overview-page main > .guide-finish { background: #f6f6f4; }
+.guide-next { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 14px 30px; margin-top: 32px; }
+.guide-next a { display: inline-flex; gap: 24px; align-items: center; padding: 14px 0; font-size: 18px; border-bottom: 1px solid #444; }
+.guide-next a:hover { color: #7433c7; }
+.guide-chapter,.overview-contents,.overview-sources { scroll-margin-top: 16px; }
+.guide-chapter:focus,.overview-contents:focus,.overview-sources:focus { outline: none; }
+.creativity-overview-page main > .editorial-other-rubrics { border-top: 6px solid #f6f6f4; }
+.creativity-overview-page main > .overview-sources { padding: 48px 6%; border-top: 1px solid #ddd; }
+.creativity-overview-page .overview-sources h2 { font-size: 32px; letter-spacing: -.035em; margin-bottom: 30px; }
+.overview-sources > ol { list-style: decimal; padding-left: 24px; margin: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 60px; }
+.overview-sources > ol > li { padding-left: 6px; min-width: 0; font-size: 15px; }
+.creativity-overview-page .overview-sources h3 { font-size: 20px; line-height: 1.3; letter-spacing: -.025em; margin-bottom: 12px; }
+.overview-sources ul { list-style: none; padding: 0; margin: 0; }.overview-sources ul li { margin: 7px 0; }
+.overview-sources ul a { font-size: 15px; line-height: 1.7; text-decoration: underline; text-decoration-color: #aaa; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.creativity-overview-page .overview-sources p { font-size: 14px; line-height: 1.7; margin: 12px 0 0; color: #555; }
+.overview-note-back { display: inline-flex; gap: 14px; align-items: center; min-height: 44px; font-size: 14px; }
+.overview-sources a:hover { color: #7433c7; }
+.creativity-overview-page .overview-sources .overview-editorial-note { max-width: 110ch; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 24px; }
+@media(max-width: 1000px) {
+  .guide-orbit { height: 500px; }
+  .guide-question { font-size: 22px; width: 190px; }
+  .guide-question-1,.guide-question-5 { left: 5%; }
+  .guide-question-2,.guide-question-6 { right: 5%; }
+  .guide-paper { width: 280px; }
+}
+@media(max-width: 700px) {
+  .creativity-overview-page main > .overview-hero { padding: 18px 6% 30px; min-height: 0; }
+  .overview-back { font-size: 14px; }
+  .creativity-overview-page .overview-hero h1 { font-size: clamp(30px, 7.5vw, 44px); margin-top: 23px; }
+  .guide-orbit { height: auto; min-height: 0; margin-top: 25px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: auto 210px auto auto; column-gap: 16px; row-gap: 16px; align-items: center; }
+  .guide-questions { display: contents; }
+  .guide-question { position: static; width: auto; font-size: clamp(17px, 4.5vw, 22px); padding: 12px 0; --tilt: 0deg; }
+  .guide-question-1 { grid-column: 1; grid-row: 1; --tilt: -4deg; }
+  .guide-question-2 { grid-column: 2; grid-row: 1; --tilt: 4deg; }
+  .guide-question-3 { grid-column: 1; grid-row: 3; }
+  .guide-question-4 { grid-column: 2; grid-row: 3; }
+  .guide-question-5 { grid-column: 1; grid-row: 4; }
+  .guide-question-6 { grid-column: 2; grid-row: 4; }
+  .guide-paper { position: static; grid-column: 1 / -1; grid-row: 2; justify-self: center; width: 230px; transform: none; }
+  .guide-hero-bottom { margin-top: 20px; }
+  .creativity-overview-page .guide-hero-bottom p { font-size: 15px; }
+  .creativity-overview-page .overview-text-link { font-size: 16px; }
+  .creativity-overview-page main > .overview-contents { padding: 20px 7%; }
+  .overview-contents ol,.overview-sources > ol { grid-template-columns: 1fr; }
+  .creativity-overview-page main > .guide-chapter { padding: 42px 7%; }
+  .creativity-overview-page .guide-prose h2 { font-size: clamp(30px, 7.8vw, 39px); margin-bottom: 24px; }
+  .creativity-overview-page .guide-prose p,.creativity-overview-page .guide-prose li { font-size: 18px; line-height: 1.75; }
+  .creativity-overview-page .guide-prose .guide-lead { font-size: 23px; line-height: 1.5; }
+  .guide-photo { width: 116%; max-width: 116%; margin: 26px -8% 0; }
+  .guide-photo figcaption { padding: 0 6%; font-size: 13px; }
+  .creativity-overview-page main > .guide-purple,.creativity-overview-page main > .guide-lime { padding-block: 48px; }
+  .creativity-overview-page .guide-purple .guide-prose h2,.creativity-overview-page .guide-lime .guide-prose h2 { font-size: clamp(39px, 10vw, 58px); }
+  .creativity-overview-page main > .guide-with-banner { padding: 0; }
+  .guide-color-banner { padding: 50px 7%; }
+  .creativity-overview-page .guide-color-banner h2 { font-size: clamp(45px, 11vw, 70px); }
+  .guide-with-banner > .guide-prose { width: 86%; padding-top: 42px; padding-bottom: 0; }
+  .guide-next { gap: 12px; }.guide-next a { font-size: 16px; }
+  .creativity-overview-page main > .overview-sources { padding: 35px 7%; }
+}
+@media(prefers-reduced-motion: reduce) {
+  .guide-question,.guide-paper img { transition: none; }
+  .guide-question:hover { translate: none; }.guide-paper:not(:disabled):hover img { transform: none; }
+}
+@media print {
+  .overview-hero,.overview-contents,.overview-text-link,.overview-note-back,.guide-next { display: none; }
+  .creativity-overview-page main > .guide-chapter { padding: 24px 0; }
+  .creativity-overview-page main > .guide-purple,.creativity-overview-page main > .guide-lime,.guide-color-banner { background: #fff; color: #222; }
+  .creativity-overview-page .guide-purple .guide-prose p,.creativity-overview-page .guide-purple .guide-prose h2,.creativity-overview-page .guide-purple .guide-prose h2 em { color: #222; }
+  .overview-sources > ol { grid-template-columns: 1fr; }
+}

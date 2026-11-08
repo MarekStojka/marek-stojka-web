@@ -1,0 +1,60 @@
+---
+const notes = [
+  {
+    chapter: 'Co je kreativita', target: 'co-je-kreativita',
+    sources: [{ title: 'Runco a Jaeger: The Standard Definition of Creativity (2012)', url: 'https://doi.org/10.1080/10400419.2012.650092' }],
+    note: 'Vymezení novosti a účinnosti je srozumitelné shrnutí, nikoli doslovná citace.',
+  },
+  {
+    chapter: 'Odkud se vzala', target: 'historie',
+    sources: [
+      { title: 'Smithsonian: Stone Tools', url: 'https://humanorigins.si.edu/evidence/behavior/stone-tools' },
+      { title: 'Smithsonian: Art & Music', url: 'https://humanorigins.si.edu/evidence/behavior/art-music' },
+      { title: 'Stanford Encyclopedia of Philosophy: Creativity', url: 'https://plato.stanford.edu/entries/creativity/' },
+    ],
+    note: 'Orientační výběr historie lidské tvorby a evropského filozofického pojetí. Psychologickou část doplňují práce Kaufmana a Beghetta a Teresy Amabile uvedené níže.',
+  },
+  {
+    chapter: 'Kdo je kreativní', target: 'kdo-tvori',
+    sources: [{ title: 'Kaufman a Beghetto: Beyond Big and Little (2009)', url: 'https://doi.org/10.1037/a0013688' }],
+    note: 'Volné vysvětlení modelu čtyř C. Situace na stránce jsou vlastní ilustrační příklady.',
+  },
+  {
+    chapter: 'Jak vzniká nápad', target: 'jak-vznika-napad',
+    sources: [{ title: 'Design Council: The Double Diamond', url: 'https://www.designcouncil.org.uk/resources/the-double-diamond/' }],
+    note: 'Volná aplikace na modelový příklad sousedského setkání. Kroky se mohou vracet a překrývat; nejsou pevným pořadím každého tvůrčího procesu.',
+  },
+  {
+    chapter: 'Co tvoření pomáhá', target: 'podminky',
+    sources: [{ title: 'Amabile: Componential Theory of Creativity (2012)', url: 'https://www.hbs.edu/ris/Publication%20Files/12-096.pdf' }],
+    note: 'Zjednodušené vysvětlení teoretického rámce, nikoli záruka výsledku.',
+  },
+  {
+    chapter: 'Jak ji rozvíjet', target: 'rozvijeni',
+    sources: [{ title: 'OECD: PISA 2022 Creative Thinking Framework (2024)', url: 'https://www.oecd.org/en/publications/pisa-2022-results-volume-iii_765ee8c2-en/full-report/component-15.html' }],
+    note: 'Rámec kreativního myšlení. Navazující úkoly jsou vlastní praktické návrhy.',
+  },
+  {
+    chapter: 'Tvoření s druhými', target: 'spolecne',
+    sources: [{ title: 'Diehl a Stroebe: Productivity Loss in Brainstorming Groups (1987)', url: 'https://doi.org/10.1037/0022-3514.53.3.497' }],
+    note: 'Podklad k vzájemnému blokování ve skupinovém brainstormingu. Navazující postup je praktické doporučení.',
+  },
+  {
+    chapter: 'Technologie a AI', target: 'technologie',
+    sources: [{ title: 'Doshi a Hauser: Generative AI Enhances Individual Creativity but Reduces the Collective Diversity of Novel Content (2024)', url: 'https://doi.org/10.1126/sciadv.adn5290' }],
+    note: 'Experiment s krátkými příběhy. Jeho výsledky nelze zobecnit na všechny nástroje a obory.',
+  },
+];
+---
+<section class="overview-sources" id="poznamky-a-zdroje" aria-labelledby="overview-sources-title" tabindex="-1">
+  <h2 id="overview-sources-title">Poznámky a zdroje</h2>
+  <ol>
+    {notes.map(note => <li>
+      <h3>{note.chapter}</h3>
+      <ul>{note.sources.map(source => <li><a href={source.url}>{source.title}</a></li>)}</ul>
+      <p>{note.note}</p>
+      <a class="overview-note-back" href={`#${note.target}`} data-guide-anchor>Zpět ke kapitole <span class="sr-only">{note.chapter}</span><span aria-hidden="true">↑</span></a>
+    </li>)}
+  </ol>
+  <p class="overview-editorial-note">Průvodce je pracovní redakční verze. Zátiší jsou AI fotografické studie sestavitelných aranží z běžných předmětů, nikoli Markovy fotografie. Příklady, otázky a praktické podněty jsou vlastní vysvětlení; nejsou citacemi z výzkumů ani popisem Markových zakázek. Sousedské setkání je modelová situace.</p>
+</section>

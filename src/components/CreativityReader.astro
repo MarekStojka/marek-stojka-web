@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import { withBase } from '../lib/site-path';
+import CreativityQuestionHero from './CreativityQuestionHero.astro';
+import GuideNavigation from './GuideNavigation.astro';
+import GuideColorMotion from './GuideColorMotion.astro';
+import GuideMore from './GuideMore.astro';
+import BrushIcon from './BrushIcon.astro';
+import { visualChapters, guideImages } from '../data/creativity-visual-guide';
+import '../styles/creativity-reader.css';
+import '../styles/creativity-visual-guide.css';
+const people = [
+  { icon: 'spark', label: 'Pro sebe' }, { icon: 'comedy', label: 'Pro běžný den' },
+  { icon: 'draw', label: 'V oboru' }, { icon: 'grow', label: 'S velkým dosahem' },
+] as const;
+const practice = [
+  { icon: 'words', label: 'Změňte otázku' }, { icon: 'journey', label: 'Najděte tři cesty' },
+  { icon: 'prototype', label: 'Upravte jeden pokus' },
+] as const;
+const firstSteps = [
+  { icon: 'compass', label: 'Vyberte otázku' }, { icon: 'connect', label: 'Najděte možnosti' },
+  { icon: 'prototype', label: 'Zkuste jednu' }, { icon: 'test', label: 'Podívejte se na výsledek' },
+] as const;
+---
+<CreativityQuestionHero />
+<nav class="overview-contents" id="prehled-kapitol" aria-labelledby="overview-contents-title" tabindex="-1">
+  <details class="overview-chapter-picker">
+    <summary><span id="overview-contents-title">Všech 14 témat</span><span aria-hidden="true">+</span></summary>
+    <ol>{visualChapters.map(chapter => <li><a data-guide-anchor href={`#${chapter.id}`}>{chapter.navTitle}<span aria-hidden="true">↗</span></a></li>)}</ol>
+  </details>
+  <a class="overview-notes-link" href="#poznamky-a-zdroje" data-guide-anchor>Poznámky a zdroje ↓</a>
+</nav>
+
+{visualChapters.map(chapter => <section
+  class:list={['guide-chapter', 'visual-chapter', ...chapter.layout.split(' ').filter(Boolean).map(layout => `visual-${layout}`)]}
+  id={chapter.id} aria-labelledby={`${chapter.id}-title`} tabindex="-1"
+  data-guide-color={chapter.layout === 'yellow' ? '' : undefined}
+>
+  {chapter.image ? <div class="visual-stage">
+    <figure class:list={['visual-photo', { 'visual-photo-paper': chapter.image.key === 'ball' }]}>
+      <Image src={guideImages[chapter.image.key]} alt={chapter.image.alt}
+        width={1200} widths={[400,700,1000,1200]}
+        sizes={chapter.layout.includes('wide') ? '(max-width: 700px) 94vw, 1100px' : '(max-width: 700px) 94vw, (max-width: 1000px) 65vw, 60vw'}
+        loading="lazy" />
+      <figcaption>{chapter.image.caption} <span>AI fotografická studie.</span></figcaption>
+    </figure>
+    <div class="visual-copy">
+      <h2 id={`${chapter.id}-title`}>{chapter.title}</h2>
+      <p class="visual-lead">{chapter.lead}</p>
+      <GuideMore label={chapter.detailLabel} html={chapter.details} />
+    </div>
+  </div> : <div class="visual-poster">
+    <h2 id={`${chapter.id}-title`}>{chapter.title}</h2>
+    <p class="visual-lead">{chapter.lead}</p>
+    <div class:list={['visual-symbols', { 'visual-symbols-three': chapter.kind === 'practice' }]}>
+      {(chapter.kind === 'people' ? people : chapter.kind === 'practice' ? practice : firstSteps).map((item,index) => <div>
+        <BrushIcon kind={item.icon} />
+        <p>{chapter.kind === 'finish' && <span class="visual-step-number">{index+1}.</span>}{item.label}</p>
+      </div>)}
+    </div>
+    <GuideMore label={chapter.detailLabel} html={chapter.details} />
+    {(chapter.kind === 'practice' || chapter.kind === 'finish') && <div class="visual-next">
+      <a href={withBase('/kreativec/magazin/cviceni')}>Vybrat si cvičení <span aria-hidden="true">↗</span></a>
+      {chapter.kind === 'finish' && <a href={withBase('/kreativec/magazin/odborne')}>Jít víc do hloubky <span aria-hidden="true">↗</span></a>}
+    </div>}
+    {chapter.kind === 'finish' && <a class="overview-text-link" data-guide-anchor href="#prehled-kapitol">Zpět na přehled témat <span aria-hidden="true">↑</span></a>}
+  </div>}
+</section>)}
+<GuideColorMotion />
+<GuideNavigation />

@@ -1,6 +1,6 @@
 # Obecně o kreativitě — podklady průvodce
 
-Pracovní redakční verze z 8. 11. 2026. Umístění `/kreativec/magazin/obecne`, komponenta `CreativityOverview.astro`. Autor přijal osnovu a zadal realizaci v současném stylu webu; formulace textů zatím nejsou finálně schválené. Žádné datum vydání, autorova kvalifikace, zakázka ani zkušenost nejsou domyšlené.
+Pracovní redakční verze z 8. 11. 2026. Umístění `/kreativec/magazin/obecne`, aktuální komponenta `CreativityReader.astro`. Autor přijal osnovu a následně zadal přirozenější přepis a koncepci; formulace textů zatím nejsou finálně schválené. Žádné datum vydání, autorova kvalifikace, zakázka ani zkušenost nejsou domyšlené. Předchozí dlaždicový `CreativityOverview.astro` je archivní.
 
 ## Podklady a jejich rozsah
 
@@ -16,8 +16,12 @@ Pracovní redakční verze z 8. 11. 2026. Umístění `/kreativec/magazin/obecne
 
 ## Vlastní redakční materiál
 
-Situace s předsíní, příběhem, plakátem, sousedským setkáním a schůzkou jsou modelové příklady. Otázky k odpovědnosti jsou redakční podněty, nikoli právní stanovisko. Praktické návrhy, přechodové věty a drobné úkoly nepředstírají převzatou vědeckou metodu ani její ověřené účinky. Neobsahuje dlouhé citace nebo převzaté tabulky. U odborných pasáží jsou odkazy přímo v textu, na konci je poznámka o pracovní verzi a původu příkladů.
+Situace s předsíní, příběhem, plakátem, sousedským setkáním a schůzkou jsou modelové příklady. Otázky k odpovědnosti jsou redakční podněty, nikoli právní stanovisko. Praktické návrhy a drobné úkoly nepředstírají převzatou vědeckou metodu ani její ověřené účinky. Neobsahuje dlouhé citace nebo převzaté tabulky. V revizi z 8. 11. 2026 jsou všechny odkazy přesunuté do posledního bloku Poznámky a zdroje (CreativitySources.astro), spolu s poznámkou o pracovní verzi a původu příkladů. Osm číslovaných poznámek zachovává všech deset původních URL a odkazuje zpět na příslušné kapitoly. Průběžné bibliografické odkazy i závěrečné propojovací věty byly na žádost autora odstraněné.
 
 ## Vizuály a chování
 
-Použita existující AI fotografická studie bílé zmačkané koule `obecne-v1.png`, nikoli nová fotografie či autorovo dílo. Původ viz PAPER-PHOTOS.md. Bez nových bitmap, formuláře, ukládání údajů nebo další animační smyčky. Obsah a kotvy fungují bez JavaScriptu, odhalování přebírá společný SiteMotion; příklad používá nativní details/summary. Blogový výpis této rubriky se nezobrazuje, původní články zůstávají uložené.
+Aktuální čtecí revize používá stávající papírovou kuličku uprostřed hero a šest otázek jako odkazy na kapitoly. Vstupní animaci lze zopakovat kliknutím na kuličku; bez JavaScriptu jsou otázky normální odkazy a kulička pouze obrázek. Tři barevné části navazují na homepage, jeden předěl jednou krátce vystřídá barvy. Reduced motion obě animace přeskočí, mimo výhled nebo skrytou kartu se zastaví, posluchače se uklízejí při navigaci. Žádné ukládání či odesílání dat.
+
+Čtyři doprovodná zátiší mají bílé pozadí: původní cihla a tři nové motivy (tužkový most, proměny papíru, svazek pastelek). Jsou viditelně označené jako AI fotografické studie; původ a přesné prompty v `CREATIVITY-GUIDE-PHOTOS.md` a `CREATIVITY-READER-PHOTOS.md`. Hrnek s loďkou je archivní. Nová verze shrnuje stejné odborné podklady do souvislejšího textu bez historických tabů a interaktivních kartiček. Modelové sousedské setkání a vysvětlující otázky nejsou skutečný projekt ani citace. Všech 14 témat i deset URL v posledních poznámkách zůstává. Blogový výpis této rubriky se nezobrazuje.
+
+Nejnovější revize na žádost autora převádí výklad do obrazového průvodce. U každého tématu je stručná redakční myšlenka; všech 35 odstavců a oba seznamy předchozí verze jsou zachované v nativních rozbaleních. Data `creativity-visual-guide.ts`, obsahové zdroje beze změny. Viditelných fotografických vstupů je nyní 11, další tři kapitoly používají vlastní štětcové ikony. Nové vizuály a jejich ilustrativní povaha jsou popsané v `CREATIVITY-VISUAL-GUIDE-PHOTOS.md`; kámen v zátiší není skutečný historický nález. Literatura zůstává pouze v posledním bloku.

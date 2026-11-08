@@ -1,0 +1,30 @@
+<script>
+function setupGuideColor() {
+  const root = document.querySelector<HTMLElement>('[data-guide-color]');
+  if (!root || root.dataset.initialized) return;
+  root.dataset.initialized = 'true';
+  const controller = new AbortController();
+  const { signal } = controller;
+  const media = matchMedia('(prefers-reduced-motion: reduce)');
+  let played = false;
+  let animation: Animation | undefined;
+  const stop = () => { animation?.cancel(); animation = undefined; };
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !played) {
+      played = true;
+      if (!media.matches && !document.hidden) animation = root.animate([
+        { backgroundColor: '#f9df28' }, { backgroundColor: '#fa82ae', offset: .33 },
+        { backgroundColor: '#b9ff3d', offset: .66 }, { backgroundColor: '#f9df28' },
+      ], { duration: 4200, easing: 'steps(1, end)' });
+    }
+    if (!entries[0].isIntersecting) stop();
+  }, { threshold: .3 });
+  observer.observe(root);
+  root.addEventListener('focusin', stop, { signal });
+  media.addEventListener('change', stop, { signal });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); }, { signal });
+  document.addEventListener('astro:before-swap', () => { stop(); observer.disconnect(); controller.abort(); delete root.dataset.initialized; }, { once: true, signal });
+}
+document.addEventListener('astro:page-load', setupGuideColor);
+setupGuideColor();
+</script>

@@ -4,7 +4,7 @@ import type { ComponentProps } from 'astro/types';
 interface Props {
   id: string;
   label: string;
-  items: readonly { label: string; title: string; text: string; icon: ComponentProps<typeof BrushIcon>['kind']; thought?: string }[];
+  items: readonly { label: string; title: string; text: string; icon: ComponentProps<typeof BrushIcon>['kind'] }[];
 }
 const { id, label, items } = Astro.props;
 ---
@@ -19,7 +19,6 @@ const { id, label, items } = Astro.props;
         <p class="guide-explorer-step">{item.label}</p>
         <h3 id={`${id}-title-${index}`}>{item.title}</h3>
         <p>{item.text}</p>
-        {item.thought && <p class="guide-explorer-thought">{item.thought}</p>}
       </div>
     </article>)}
   </div>

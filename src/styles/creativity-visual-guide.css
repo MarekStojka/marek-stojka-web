@@ -1,0 +1,97 @@
+/* Fotografie jsou hlavní obsah. Každé téma má krátký vstup a volitelný výklad. */
+.creativity-overview-page main > .visual-chapter { padding: 55px 5%; }
+.visual-stage { max-width: 1440px; margin-inline: auto; display: grid; grid-template-columns: minmax(0,1.65fr) minmax(0,1fr); align-items: center; gap: 5%; }
+.visual-photo { margin: 0; min-width: 0; background: #fff; }
+.visual-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3/2; object-fit: contain; }
+.visual-photo figcaption { padding: 8px 20px 12px; text-align: center; font-size: 13px; line-height: 1.5; color: #666; }
+.visual-photo figcaption span { display: block; font-size: 11px; margin-top: 3px; }
+.visual-copy { min-width: 0; }
+.creativity-overview-page .visual-copy h2 { font-size: clamp(34px,3.8vw,58px); line-height: 1.06; letter-spacing: -.045em; text-wrap: balance; margin: 0 0 24px; }
+.creativity-overview-page .visual-lead { font-size: clamp(19px,1.7vw,24px); line-height: 1.55; color: inherit; max-width: 37ch; margin: 0; }
+.visual-more { margin-top: 28px; border-top: 1px solid color-mix(in srgb,currentColor 28%,transparent); }
+.visual-more summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 56px; padding: 14px 0; font-size: 16px; line-height: 1.5; list-style: none; cursor: pointer; }
+.visual-more summary::-webkit-details-marker { display: none; }
+.visual-more summary > span { font-size: 25px; flex: none; }
+.visual-more[open] summary > span { rotate: 45deg; }
+.visual-more-body { max-width: 70ch; padding: 10px 0 14px; }
+.creativity-overview-page .visual-more-body p,.creativity-overview-page .visual-more-body li { font-size: 17px; line-height: 1.75; color: inherit; margin: 0 0 18px; }
+.visual-more-body p.guide-lead { font-weight: 550; }
+.visual-more-body ul,.visual-more-body ol { padding-left: 23px; margin: 20px 0; }
+.visual-more-body ul { list-style: disc; }.visual-more-body ol { list-style: decimal; }
+.visual-more-body li { padding-left: 6px; }
+.visual-more-body > :last-child { margin-bottom: 0; }
+.visual-reverse .visual-stage { grid-template-columns: minmax(0,1fr) minmax(0,1.65fr); }
+.visual-reverse .visual-photo { grid-column: 2; grid-row: 1; }
+.visual-reverse .visual-copy { grid-column: 1; grid-row: 1; }
+.creativity-overview-page main > .visual-open { background: #f6f6f4; }
+.visual-wide .visual-stage { display: flex; flex-direction: column; gap: 26px; max-width: 1120px; }
+.visual-wide .visual-photo { width: 100%; }
+.visual-wide .visual-photo img { max-height: 570px; }
+.visual-wide .visual-copy { width: min(100%,760px); text-align: center; }
+.visual-wide .visual-lead { max-width: 52ch; margin-inline: auto; }
+.visual-wide .visual-more { max-width: 620px; margin-inline: auto; text-align: left; }
+.creativity-overview-page main > .visual-yellow { background: #f9df28; color: #32105b; }
+.visual-yellow .visual-stage { grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: 7%; }
+.visual-yellow .visual-photo img { max-height: 560px; }
+.visual-yellow .visual-copy h2 { font-size: clamp(46px,5.8vw,84px); }
+.creativity-overview-page main > .visual-compact { padding-block: 25px; }
+.visual-compact .visual-stage { max-width: 1050px; grid-template-columns: 1fr 1.3fr; }
+.visual-photo-paper img { height: 400px; aspect-ratio: auto; }
+.visual-poster { max-width: 1120px; margin-inline: auto; text-align: center; }
+.creativity-overview-page .visual-poster h2 { font-size: clamp(45px,6vw,88px); font-weight: 500; letter-spacing: -.05em; line-height: 1.08; text-wrap: balance; margin: 0 auto 24px; max-width: 950px; }
+.visual-poster .visual-lead { max-width: 48ch; margin-inline: auto; }
+.visual-symbols { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 35px; margin: 55px auto 40px; }
+.visual-symbols-three { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.visual-symbols svg { width: min(100%,140px); height: 140px; margin: 0 auto 18px; }
+.creativity-overview-page .visual-symbols p { font-size: 21px; line-height: 1.35; color: inherit; margin: 0; }
+.visual-poster .visual-more { max-width: 760px; margin-inline: auto; text-align: left; }
+.visual-step-number { margin-right: 9px; }
+.creativity-overview-page main > .visual-purple { background: #4623db; color: #fff; padding-block: 75px; }
+.visual-purple .visual-symbols { color: #f9df28; }
+.visual-purple .visual-symbols p { color: #fff; }
+.creativity-overview-page main > .visual-lime { background: #b9ff3d; color: #243019; padding-block: 75px; }
+.visual-next { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 28px; }
+.visual-next a { display: inline-flex; align-items: center; justify-content: space-between; gap: 32px; background: #222; color: #fff; font-size: 17px; line-height: 1.5; padding: 17px 23px; }
+.visual-next a:hover { background: #4b1887; }
+.visual-next + .overview-text-link { margin-top: 28px; }
+@media(max-width:1000px) {
+  .creativity-overview-page main > .visual-chapter { padding: 42px 5%; }
+  .visual-stage,.visual-reverse .visual-stage { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 4%; }
+  .visual-reverse .visual-stage { grid-template-columns: minmax(0,1fr) minmax(0,1.25fr); }
+  .creativity-overview-page .visual-copy h2 { font-size: 38px; }
+  .creativity-overview-page .visual-lead { font-size: 20px; }
+  .visual-more summary { font-size: 15px; }
+  .visual-symbols { gap: 24px; }.visual-symbols svg { height: 110px; }
+  .creativity-overview-page .visual-symbols p { font-size: 19px; }
+}
+@media(max-width:700px) {
+  .creativity-overview-page main > .visual-chapter { padding: 30px 6% 42px; }
+  .visual-stage,.visual-reverse .visual-stage,.visual-yellow .visual-stage,.visual-compact .visual-stage { display: flex; flex-direction: column; gap: 24px; }
+  .visual-photo { width: 114%; max-width: 114%; }
+  .visual-photo figcaption { font-size: 12px; padding: 6px 14px 0; }
+  .visual-photo figcaption span { font-size: 10px; }
+  .visual-copy { width: 100%; }
+  .creativity-overview-page .visual-copy h2 { font-size: clamp(33px,8.8vw,43px); margin-bottom: 18px; }
+  .creativity-overview-page .visual-lead { font-size: 19px; line-height: 1.55; max-width: none; }
+  .visual-more { margin-top: 22px; }.visual-more summary { font-size: 15px; }
+  .creativity-overview-page .visual-more-body p,.creativity-overview-page .visual-more-body li { font-size: 17px; }
+  .visual-wide .visual-copy { text-align: left; }.visual-wide .visual-photo { width: 114%; }
+  .visual-photo-paper img { height: 260px; }
+  .creativity-overview-page main > .visual-purple,.creativity-overview-page main > .visual-lime { padding-block: 45px; }
+  .creativity-overview-page .visual-poster h2 { font-size: clamp(40px,10vw,60px); }
+  .visual-symbols { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 22px; margin-block: 32px; }
+  .visual-symbols svg { width: 86px; height: 86px; margin-bottom: 12px; }
+  .creativity-overview-page .visual-symbols p { font-size: 17px; }
+  .visual-symbols-three { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+  .visual-symbols-three svg { width: 70px; height: 70px; }
+  .creativity-overview-page .visual-symbols-three p { font-size: 15px; }
+  .visual-next { flex-direction: column; }.visual-next a { font-size: 16px; }
+}
+@media print {
+  .creativity-overview-page main > .visual-chapter { padding: 20px 0; background: #fff; color: #222; }
+  .visual-stage { display: block !important; }.visual-photo { max-width: 500px; margin-inline: auto; }
+  .visual-more::details-content { display: block; content-visibility: visible; }
+  .visual-more summary { display: none; }.visual-more { border: 0; }
+  .visual-purple .visual-symbols,.creativity-overview-page .visual-purple .visual-symbols p { color: #222; }
+  .visual-next { display: none; }
+}
