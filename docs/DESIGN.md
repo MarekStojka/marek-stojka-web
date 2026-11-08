@@ -731,3 +731,10 @@ Autor mění sekci „Co může být užitečné?“ na centrovaný nadpis a čt
 Nadpis je uprostřed nad celou řadou. Bílé dlaždice odděluje původní šedá spára 6 px / 5 px mobil. Každá má stejně vysoký obrazový prostor a centrovanou fotografii nejvýše 230 px širokou; na mobilu nejvýše 210 px. Celé motivy bez ořezu, s dostatkem bílého okolí. Otázky začínají ve stejné výšce a jejich znění se nemění. Čtyři sloupce nad 1100 px, dva do 1100 px, jeden do 700 px. Pod řadou je vycentrované původní vysvětlení a zachovaný odkaz do odborné rubriky. Horní definice kreativity zůstává beze změny.
 
 Ověřeno 1440/800/390/320 px bez vodorovného přesahu, všechny čtyři fotografie načtené, shodné šířky dlaždic a zarovnané otázky. Proklik do odborné rubriky Enterem a návrat přes ClientRouter funkční. Produkční build úspěšný: 105 souborů bez chyb/varování/upozornění, 81 HTML, 2624 místních URL. Běžící náhled a kontrolní kopie obsahují stejné soubory. Snímky v README aktualizované; automatický push dle trvalého pokynu autora.
+
+
+## Nadpis až pod fotografiemi — 8. 11. 2026
+
+Autor odstranil nadpis „Co může být užitečné?“ nad čtyřmi fotografiemi a požádal vymyslet jiný až pod nimi. Sekce #co-je-uzitecne nyní začíná přímo dlaždicemi. Nový pracovní nadpis „Přínos má / spoustu podob.“ je centrovaný pod celou řadou, nad vysvětlením. Z prvního odstavce vypuštěna opakující se věta o různých podobách užitku; navazuje rovnou „Někdy něco usnadníme…“. Fotografie, otázky, jejich velikost, responzivní mřížka i odborný odkaz se nemění. ID nadpisu a přístupný název sekce zachované.
+
+Ověřeno na 1440 a 390 px: sekce začíná seznamem dlaždic, nový nadpis je až za všemi čtyřmi, bez vodorovného přesahu. Produkční build úspěšný: 105 souborů bez chyb/varování, 81 HTML a 2624 místních URL. Snímky v README aktualizované. Automatický push dle trvalého pokynu.
