@@ -10,13 +10,17 @@ const contactHref = `mailto:${publicContact.email}?subject=${encodeURIComponent(
   </div>
 </section>
 <style>
-  .creativity-help { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 8%; padding: clamp(45px, 5vw, 80px) 6%; }
+  :global(.editorial-page main) > .creativity-help { background: #7433c7; color: #fff; }
+  .creativity-help { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: clamp(56px, 6vw, 96px) 6%; text-align: center; }
   .creativity-help h2 { font-size: clamp(40px, 4vw, 64px); text-wrap: balance; }
-  .creativity-help p { max-width: 50ch; margin: 0; font-size: 21px; line-height: 1.65; }
-  .creativity-help a { display: inline-flex; gap: 24px; align-items: center; min-height: 48px; padding: 12px 0; margin-top: 20px; border-bottom: 1px solid #999; font-size: 18px; }
-  .creativity-help a:hover { border-color: #222; }
+  .creativity-help h2 em { color: inherit; }
+  .creativity-help > div { width: 100%; max-width: 760px; }
+  .creativity-help p { max-width: 50ch; margin: 0 auto; color: #fff; font-size: 21px; line-height: 1.65; }
+  .creativity-help a { display: inline-flex; gap: 30px; align-items: center; justify-content: center; min-height: 56px; padding: 17px 26px; margin-top: 30px; background: #fff; color: #222; font-size: 18px; }
+  .creativity-help a:hover { background: #f2eafa; }
+  .creativity-help a:focus-visible { outline: 2px solid #fff; outline-offset: 6px; }
   @media (max-width: 700px) {
-    .creativity-help { grid-template-columns: 1fr; gap: 25px; padding: 40px 7%; }
+    .creativity-help { gap: 24px; padding: 46px 7%; }
     .creativity-help h2 { font-size: 39px; }
     .creativity-help p { font-size: 19px; }
     .creativity-help a { font-size: 17px; }

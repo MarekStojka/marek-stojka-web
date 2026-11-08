@@ -470,3 +470,8 @@ Následné upřesnění (8. 11. 2026): papírová květina je o čtvrtinu větš
 
 
 Aktuální upřesnění (8. 11. 2026): nad čtyřmi fotografickými dlaždicemi už nadpis není. Nový „Přínos má spoustu podob.“ následuje až pod nimi. [Desktop](docs/nahled-kreativita-uzitek-dlazdice.jpg) a [mobil](docs/nahled-kreativita-uzitek-mobile.jpg) aktualizované. Ověřeno 1440/390 px, produkční build bez chyb.
+
+
+### Barevná spolupráce s navazujícím popisem — 8. 11. 2026
+
+[Kontaktní výzva](http://127.0.0.1:4321/kreativec#pomoc-s-kreativitou) je vycentrovaná na fialovém pozadí. Hned pod ní navazuje nový [popis pomoci](http://127.0.0.1:4321/kreativec#jak-pomuzu) ve třech blocích: zadání, možnosti a konkrétní podoba nápadu. Pracovní text bez vymyšlených klientů či výsledků. [Desktop](docs/nahled-kreativita-pomoc.png), [mobilní návaznost](docs/nahled-kreativita-pomoc-mobile.png), [popis na mobilu](docs/nahled-kreativita-jak-pomuzu-mobile.jpg). Ověřeno 1440/390/320 px a skutečný kontaktní odkaz. Produkční build bez chyb: 106 souborů, 81 HTML a 2624 místních URL.

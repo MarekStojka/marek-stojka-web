@@ -738,3 +738,14 @@ Ověřeno 1440/800/390/320 px bez vodorovného přesahu, všechny čtyři fotogr
 Autor odstranil nadpis „Co může být užitečné?“ nad čtyřmi fotografiemi a požádal vymyslet jiný až pod nimi. Sekce #co-je-uzitecne nyní začíná přímo dlaždicemi. Nový pracovní nadpis „Přínos má / spoustu podob.“ je centrovaný pod celou řadou, nad vysvětlením. Z prvního odstavce vypuštěna opakující se věta o různých podobách užitku; navazuje rovnou „Někdy něco usnadníme…“. Fotografie, otázky, jejich velikost, responzivní mřížka i odborný odkaz se nemění. ID nadpisu a přístupný název sekce zachované.
 
 Ověřeno na 1440 a 390 px: sekce začíná seznamem dlaždic, nový nadpis je až za všemi čtyřmi, bez vodorovného přesahu. Produkční build úspěšný: 105 souborů bez chyb/varování, 81 HTML a 2624 místních URL. Snímky v README aktualizované. Automatický push dle trvalého pokynu.
+
+
+## Barevná spolupráce a vysvětlení pomoci — 8. 11. 2026
+
+Autor chce sekci „S kreativitou vám pomůžu“ opět barevnou a lépe zarovnanou. CreativityHelp.astro nyní používá fialové pozadí #7433c7, bílé texty, vycentrovaný nadpis a odstavec, pod nimi bílé kontaktní tlačítko. Rozsah textu a skutečný mailto odkaz zůstávají. Bílé focus ohraničení je viditelné na fialové; bez další animace.
+
+Na doplňující otázku autor výslovně zvolil navázat popisem, jak s kreativitou pomůže, nikoli interaktivním cvičením nebo přehledem rubrik. Nová CreativityCollaboration.astro je hned pod barevnou sekcí, před medailonkem: „Od zadání / ke konkrétnímu nápadu.“ a tři krátké otevřené bloky Ujasníme si zadání / Najdeme různé možnosti / Dáme nápadu podobu. Vysvětlují postup a možné výstupy v rámci již potvrzené tvorby textů, grafiky a webů. Nejsou přidané zakázky, klienti, výsledky, ceny ani termíny. Pracovní copy, nikoli schválené finální znění. Tři sloupce nad 1000 px, pod sebou na menší šířce.
+
+Ověřeno 1440/390/320 px bez vodorovného přesahu, bílé texty na fialové, funkční cílová adresa kontaktu a správná návaznost sekcí. Nadpis přínosu z předchozího commitu zůstává pod čtyřmi fotografiemi. Produkční build: 106 souborů bez chyb/varování/upozornění, 81 HTML a 2624 místních URL. Zdroj odpovídá oběma kontrolním kopiím, aktuální náhledy v README. Push obou navazujících úprav je autorizovaný trvalým pokynem autora.
+
+V následné diskusi autor upřesňuje důraz webu na kreativitu obecně a knihy. Některé vlastní práce veřejně prezentovat nechce, protože do koncepce nezapadají. Z toho nevytvářet automaticky portfolio ani nevymýšlet ukázky. Doporučení držet spolupráci jako vedlejší možnost a případné relevantní ukázky řešit individuálně je zatím diskusní návrh; další struktura webu tím nebyla přestavěna.
