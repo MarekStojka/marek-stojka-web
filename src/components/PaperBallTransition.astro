@@ -1,0 +1,167 @@
+---
+import { getImage } from 'astro:assets';
+import { creativePhotos } from '../data/creative-photos';
+const ball = await getImage({ src: creativePhotos.obecne, width: 1086, format: 'webp' });
+---
+<div id="paper-ball-passage" transition:persist="paper-ball-passage" hidden aria-hidden="true">
+  <div class="paper-ball-backdrop"></div>
+  <img class="paper-ball-flight" data-src={ball.src} alt="" width="1086" height="1448" />
+</div>
+<script>
+  import { navigate } from 'astro:transitions/client';
+  import { samePage } from '../lib/site-path';
+
+  const layer = document.querySelector<HTMLElement>('#paper-ball-passage')!;
+  const image = layer.querySelector<HTMLImageElement>('.paper-ball-flight')!;
+  const backdrop = layer.querySelector<HTMLElement>('.paper-ball-backdrop')!;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let active: object | null = null;
+
+  async function decode(photo: HTMLImageElement) {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    try {
+      await Promise.race([
+        photo.decode(),
+        new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('Image not ready')), 2200); }),
+      ]);
+    } finally { clearTimeout(timer); }
+  }
+
+  async function enter(link: HTMLAnchorElement, source: HTMLImageElement) {
+    const run = { cancelled: false, skip: false, navigated: false, cleaned: false };
+    active = run;
+    const controller = new AbortController();
+    const { signal } = controller;
+    const animations = new Set<Animation>();
+    const previousVisibility = source.style.visibility;
+    const href = link.href;
+
+    function cleanup() {
+      if (run.cleaned) return;
+      run.cleaned = true;
+      controller.abort();
+      animations.forEach(animation => animation.cancel());
+      if (source.isConnected) source.style.visibility = previousVisibility;
+      layer.hidden = true;
+      delete layer.dataset.phase;
+      delete document.documentElement.dataset.paperBallLanding;
+      if (active === run) active = null;
+      document.dispatchEvent(new Event('paper-ball-arrive'));
+    }
+    function skip() {
+      run.skip = true;
+      animations.forEach(animation => animation.cancel());
+      layer.hidden = true;
+      delete document.documentElement.dataset.paperBallLanding;
+    }
+    function cancel() {
+      run.cancelled = true;
+      cleanup();
+      if (link.isConnected) link.focus({ preventScroll: true });
+    }
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        if (!run.navigated) cancel(); else skip();
+      } else if (['Tab',' ','ArrowUp','ArrowDown','PageUp','PageDown','Home','End'].includes(event.key)) event.preventDefault();
+    }, { signal });
+    window.addEventListener('wheel', event => event.preventDefault(), { passive: false, signal });
+    window.addEventListener('touchmove', event => event.preventDefault(), { passive: false, signal });
+    window.addEventListener('resize', skip, { signal });
+    reduced.addEventListener('change', () => { if (reduced.matches) skip(); }, { signal });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) skip(); }, { signal });
+    document.addEventListener('astro:before-preparation', event => {
+      const destination = (event as Event & { to: URL }).to;
+      if (destination && !samePage(destination.pathname, href)) cancel();
+    }, { signal });
+    document.addEventListener('astro:before-swap', event => {
+      const incoming = (event as Event & { newDocument: Document }).newDocument;
+      if (!run.cancelled && !run.skip && incoming.querySelector('[data-question-hero]')) {
+        incoming.documentElement.dataset.paperBallLanding = '';
+      }
+    }, { signal });
+
+    function frame(left: number, top: number, width: number, height: number, angle = 0) {
+      return { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px`, transform: `rotate(${angle}deg)` };
+    }
+    async function move(frames: Keyframe[], duration: number) {
+      const motion = image.animate(frames, { duration, easing: 'cubic-bezier(.22,.7,.25,1)', fill: 'forwards' });
+      animations.add(motion);
+      await motion.finished.catch(() => {});
+      if (!run.skip && !run.cancelled) Object.assign(image.style, frames[frames.length - 1]);
+      motion.cancel();
+      animations.delete(motion);
+    }
+
+    try {
+      image.src = image.dataset.src!;
+      await decode(image);
+      if (run.cancelled) return;
+      if (!run.skip) {
+        source.getAnimations().forEach(animation => animation.cancel());
+        const rect = source.getBoundingClientRect();
+        const width = Math.hypot(innerWidth, innerHeight) * 3.2;
+        const height = width * 4 / 3;
+        const covered = frame((innerWidth - width) / 2, (innerHeight - height) / 2, width, height, 14);
+        const start = frame(rect.left, rect.top, rect.width, rect.height);
+        Object.assign(image.style, start);
+        backdrop.style.opacity = '0';
+        layer.dataset.phase = 'growing';
+        layer.hidden = false;
+        source.style.visibility = 'hidden';
+        await move([
+          start,
+          { ...frame(rect.left - rect.width * .07, rect.top - 44, rect.width * 1.14, rect.height * 1.14, -12), offset: .18 },
+          covered,
+        ], 760);
+        if (run.cancelled) return;
+        if (!run.skip) {
+          backdrop.style.opacity = '1';
+          layer.dataset.phase = 'covered';
+        }
+      }
+
+      run.navigated = true;
+      await navigate(href, { sourceElement: link });
+      if (run.cancelled || !samePage(location.pathname, href)) return;
+      const target = document.querySelector<HTMLImageElement>('[data-question-hero] .guide-paper img');
+      document.querySelector<HTMLElement>('[data-question-hero] h1')?.focus({ preventScroll: true });
+      if (!target || run.skip) return;
+      await decode(target);
+      if (run.cancelled || run.skip) return;
+      const rect = target.getBoundingClientRect();
+      layer.dataset.phase = 'landing';
+      const fade = backdrop.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 240, fill: 'forwards' });
+      animations.add(fade);
+      await move([
+        { left: image.style.left, top: image.style.top, width: image.style.width, height: image.style.height, transform: image.style.transform },
+        { ...frame(rect.left + rect.width * .035, rect.top + rect.height * .035, rect.width * .93, rect.height * .93, -5), offset: .82 },
+        frame(rect.left, rect.top, rect.width, rect.height),
+      ], 840);
+    } catch {
+      if (!run.cancelled && !samePage(location.pathname, href)) {
+        cleanup();
+        location.assign(href);
+      }
+    } finally { cleanup(); }
+  }
+
+  // One delegated listener survives ClientRouter swaps; per-flight listeners are aborted above.
+  document.addEventListener('click', event => {
+    const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[data-paper-ball-entry]') : null;
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+    if (new URL(link.href).origin !== location.origin || reduced.matches) return;
+    const source = link.querySelector<HTMLImageElement>('img');
+    if (!source) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (!active) void enter(link, source);
+  }, { capture: true });
+</script>
+<style is:global>
+  #paper-ball-passage { position: fixed; inset: 0; z-index: 10020; overflow: hidden; pointer-events: all; }
+  #paper-ball-passage[hidden] { display: none; }
+  .paper-ball-backdrop { position: absolute; inset: 0; background: #fff; opacity: 0; }
+  .paper-ball-flight { position: absolute; display: block; max-width: none; object-fit: cover; transform-origin: center; }
+  html[data-paper-ball-landing] [data-question-hero] :is(.guide-paper,.guide-questions) { visibility: hidden; }
+</style>

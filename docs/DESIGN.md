@@ -667,3 +667,21 @@ Produkční sestavení této cílené revize prošlo: 101 kontrolovaných soubor
 Autor výslovně odstranil malé popisky u fotografií a zadal odeslání na GitHub. GuideVisualChapter.astro už nevykresluje figcaption u žádné z osmi fotografií průvodce, včetně okna a trojice karet. Přístupné alternativní texty zůstávají. Informace o AI původu ilustrací je společně v posledních poznámkách; předchozí požadavky označení přímo pod každou fotografií tím jsou překonané. Žádný jiný obsah se touto úpravou nemění. Aktualizované snímky okna a tří fotografických karet v README. Nahrání všech pěti předchozích cílených změn i této úpravy do main a navazující automatické zveřejnění je nyní autorizované.
 
 Finální kontrola po odstranění popisků: 101 souborů bez chyb a varování, 81 HTML a 2281 místních URL. Desktop a mobil bez vodorovného přesahu; v DOM žádný fotografický figcaption, všech osm fotografií zachovává neprázdný alt.
+
+
+## Menší ikony, papírové Kam dál a průlet kuličky — 8. 11. 2026
+
+Autor chce všechny velké ikony průvodce zhruba poloviční a vzdušnější. Rozměry štětcových ikon jsou nyní 70 px v ikonových řadách a 56 px ve třech textových dlaždicích; mobil 43 px, u řady tří symbolů 35 px. Text, obsahové rozložení a původní ikony zůstávají. Změna se týká průvodce, nikoli nabídky na homepage.
+
+Kam dál už není řada podtržených textových odkazů. Sdílená MagazineMoreRubrics.astro ukazuje sedm malých bílých dlaždic na šedé ploše se stejnými papírovými fotografiemi jako úvod magazínu. Každá má název, šipku a jeden nativní odkaz. Aktuální rubrika se vynechává. Sedm sloupců na širokém desktopu, čtyři do 1100 px a dva do 700 px. Hover/focus papír jen mírně nadzvedne, reduced motion je statický. Společná navigace je sjednocená ve všech rubrikách; literatura obecného průvodce zůstává až za ní, jako poslední obsahový blok.
+
+Nový výslovný pokyn přidává přechod z hlavní dlaždice Obecně o kreativitě na /kreativec do průvodce. PaperBallTransition.astro použije stejný průhledný fotografický asset jako zdrojová dlaždice i cílové hero. Kulička krátce nadskočí a přiblíží se přes celou obrazovku (760 ms), pod krytem proběhne Astro navigace, pak se vrátí do přesné polohy úvodní kuličky s drobným dosednutím (840 ms). Otázky se odhalí až poté; při tomto vstupu se nespustí druhá vstupní animace kuličky. Nejde o novou fotografii ani novou trvalou animační smyčku.
+
+Přechod používá jednu přetrvávající vrstvu a nativní Web Animations; po dokončení vrstvu skryje a uklidí dočasné posluchače. Čeká na dekódování obrázků s časovým limitem, chyba zachovává navigaci. Escape před přechodem na cílovou stránku vstup zruší, po navigaci animaci dokončí bez pohybu. Změna velikosti nebo skrytí karty animaci přeskočí. Reduced motion a modifikované kliknutí nechávají původní odkaz bez přechodu. Fokus po vstupu míří na nadpis. Stávající přechody popela, barvy a trhání papíru se nemění.
+
+Ověřeno v místním náhledu: myš i Enter, opakovaný vstup po návratu přes ClientRouter, Escape a obnovení původní dlaždice, skutečné zakrytí obrazovky, skrytí cílové kuličky a otázek během dosednutí a jejich správné odhalení. Mobilní vstup 390 px, rozložení 1440/800/390/320 px bez vodorovného přesahu, všechny papírové fotografie načtené a proklik Kam dál do odborné rubriky funkční. Konzole bez chyb/varování. Reduced motion je ošetřený v kódu, systémová předvolba při této kontrole nebyla měněná.
+
+Produkční npm run build s /marek-stojka-web/ prošel: 103 souborů bez chyb/varování/upozornění, 81 HTML stránek a 2611 místních URL. Sestavení běželo v synchronizované kontrolní kopii /private/tmp/marek-overview-verify; zdroje odpovídají hlavnímu projektu i náhledu na 4321. Aktuální snímky jsou v README. Tato revize je lokální; předchozí push 5a21b3e byl dokončen před těmito novými úpravami. Pracovní texty se neměnily.
+
+
+Autor následně tuto revizi přijal („Skvělý“) a výslovně zadal nahrání na GitHub. Push změn přechodu, menších ikon a papírového Kam dál do main včetně navazujícího automatického zveřejnění je autorizovaný. Obsahové texty se touto vizuální revizí neměnily.

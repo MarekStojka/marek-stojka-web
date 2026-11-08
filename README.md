@@ -426,3 +426,16 @@ Aktuální náhledy: [žlutá sekce s ikonami](docs/nahled-kreativita-zlute-ikon
 Produkční sestavení této cílené revize prošlo: 101 kontrolovaných souborů bez chyb, varování a upozornění; 81 HTML a 2281 lokálních URL s podadresářem /marek-stojka-web/. Zdrojové soubory a nový obrázek se shodují s běžícím náhledem i kontrolní kopií.
 
 Nejnovější upřesnění (8. 11. 2026): všechny malé popisky pod osmi fotografiemi průvodce jsou odstraněné; alternativní texty pro přístupnost a společná informace o AI původu v poznámkách zůstávají. Snímky okna, mobilního okna a tří fotografických karet výše aktualizované. Autor výslovně zadal odeslat celou cílenou revizi na GitHub; automatické nasazení navazuje na push do main.
+
+
+### Papírový přechod, menší ikony a Kam dál — 8. 11. 2026
+
+V [místním rozcestníku](http://127.0.0.1:4321/kreativec) otevřete Obecně o kreativitě. Papírová kulička vyskočí přes obrazovku a po načtení průvodce dosedne doprostřed hero; následně se objeví otázky. Funguje i Enter, Escape může vstup před navigací zrušit, reduced motion jde přímo. PaperBallTransition.astro je oddělený od stávajícího trhání papíru.
+
+Ikony průvodce jsou přibližně poloviční. [Kam dál](http://127.0.0.1:4321/kreativec/magazin/obecne#dalsi-rubriky) používá malé bílé dlaždice se stejnými papírovými fotografiemi jako úvod, sedm/čtyři/dva sloupce podle šířky. Zdroje jsou dál úplně dole.
+
+Aktuální náhledy: [přiblížení kuličky](docs/nahled-prechod-kulicka.jpg), [dosednutí do úvodu](docs/nahled-kreativita-otazky-hero.jpg), [úvod na mobilu](docs/nahled-kreativita-otazky-mobile.jpg), [menší ikony](docs/nahled-kreativita-zlute-ikony.jpg), [inspirace](docs/nahled-kreativita-inspirace-dlazdice.jpg), [první pokus](docs/nahled-kreativita-prvni-pokus-bloky.jpg), [papírové Kam dál](docs/nahled-kreativita-kam-dal-papir.jpg), [Kam dál na mobilu](docs/nahled-kreativita-kam-dal-mobile.jpg), [detail dlaždic](docs/nahled-kreativita-kam-dal-detail.jpg).
+
+Ověřena navigace myší i klávesnicí, návrat a opakovaný vstup, mobilní animace a rozložení 1440/800/390/320 px. Produkční build bez chyb: 103 souborů, 81 HTML, 2611 místních URL. Lokální revize po již zveřejněném commitu 5a21b3e.
+
+Autor následně přijal tuto vizuální revizi a zadal nahrání na GitHub; push do main včetně automatického zveřejnění je autorizovaný. Výše uvedené kontroly platí pro stejné zdroje.

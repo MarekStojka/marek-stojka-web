@@ -35,12 +35,12 @@
 .visual-poster .visual-lead { max-width: 48ch; margin-inline: auto; }
 .visual-symbols { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 35px; margin: 55px auto 40px; }
 .visual-symbols-three { grid-template-columns: repeat(3,minmax(0,1fr)); }
-.visual-symbols svg { width: min(100%,140px); height: 140px; margin: 0 auto 18px; }
+.visual-symbols svg { width: min(100%,70px); height: 70px; margin: 0 auto 22px; }
 .creativity-overview-page .visual-symbols p { font-size: 21px; line-height: 1.35; color: inherit; margin: 0; }
 .visual-poster .visual-more { max-width: 760px; margin-inline: auto; text-align: left; }
 .visual-topic-tiles { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--sheet-gap,6px); margin: 40px 0 32px; }
 .visual-topic-tile { background: #fff; padding: 34px 26px 38px; }
-.visual-topic-tile svg { width: 112px; height: 112px; margin: 0 auto 24px; color: #7433c7; }
+.visual-topic-tile svg { width: 56px; height: 56px; margin: 0 auto 28px; color: #7433c7; }
 .creativity-overview-page .visual-topic-tile h3 { font-size: clamp(26px,2.4vw,34px); line-height: 1.2; font-weight: 550; letter-spacing: -.035em; margin: 0 0 16px; }
 .creativity-overview-page .visual-topic-tile p { font-size: 18px; line-height: 1.6; color: #444; margin: 0 auto; max-width: 28ch; }
 .visual-blocks .visual-topic-tile { background: #f6f6f4; }
@@ -71,7 +71,7 @@
   .creativity-overview-page .visual-copy h2 { font-size: 38px; }
   .creativity-overview-page .visual-lead { font-size: 20px; }
   .visual-more summary { font-size: 15px; }
-  .visual-symbols { gap: 24px; }.visual-symbols svg { height: 110px; }
+  .visual-symbols { gap: 24px; }.visual-symbols svg { width: 55px; height: 55px; }
   .creativity-overview-page .visual-symbols p { font-size: 19px; }
   .creativity-overview-page main > .visual-chapter-row { grid-template-columns: 1fr; padding: 42px 5%; }
   .visual-card .visual-stage { display: grid; grid-template-columns: 1fr 1fr; height: auto; }
@@ -91,14 +91,14 @@
   .creativity-overview-page main > .visual-purple,.creativity-overview-page main > .visual-lime { padding-block: 45px; }
   .creativity-overview-page .visual-poster h2 { font-size: clamp(40px,10vw,60px); }
   .visual-symbols { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 22px; margin-block: 32px; }
-  .visual-symbols svg { width: 86px; height: 86px; margin-bottom: 12px; }
+  .visual-symbols svg { width: 43px; height: 43px; margin-bottom: 16px; }
   .creativity-overview-page .visual-symbols p { font-size: 17px; }
   .visual-symbols-three { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
-  .visual-symbols-three svg { width: 70px; height: 70px; }
+  .visual-symbols-three svg { width: 35px; height: 35px; }
   .creativity-overview-page .visual-symbols-three p { font-size: 15px; }
   .visual-topic-tiles { grid-template-columns: 1fr; gap: 5px; margin-block: 28px; }
   .visual-topic-tile { padding: 26px 24px; }
-  .visual-topic-tile svg { width: 86px; height: 86px; margin-bottom: 16px; }
+  .visual-topic-tile svg { width: 43px; height: 43px; margin-bottom: 20px; }
   .creativity-overview-page .visual-topic-tile h3 { font-size: 28px; margin-bottom: 12px; }
   .creativity-overview-page .visual-topic-tile p { font-size: 17px; }
   .creativity-overview-page main > .visual-chapter-row { padding: 24px 0; gap: 5px; }

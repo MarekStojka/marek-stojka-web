@@ -6,6 +6,7 @@ import { ClientRouter } from 'astro:transitions';
 import AshTransition from '../components/AshTransition.astro';
 import PaintTransition from '../components/PaintTransition.astro';
 import PaperTransition from '../components/PaperTransition.astro';
+import PaperBallTransition from '../components/PaperBallTransition.astro';
 import PageInteractions from '../components/PageInteractions.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteMotion from '../components/SiteMotion.astro';
@@ -53,6 +54,7 @@ const image = Astro.site ? new URL(withBase(ogImage), Astro.site) : undefined;
     <AshTransition />
     <PaintTransition />
     <PaperTransition />
+    <PaperBallTransition />
     <PageInteractions />
     <SiteMotion />
   </body>

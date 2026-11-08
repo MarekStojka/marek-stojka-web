@@ -13,7 +13,7 @@ const questions = [
 ---
 <header class="overview-hero" data-question-hero>
   <a class="overview-back" href={withBase('/kreativec#zapisnik')}><span aria-hidden="true">←</span> Zpět do magazínu</a>
-  <h1>Obecně <em>o kreativitě.</em></h1>
+  <h1 tabindex="-1">Obecně <em>o kreativitě.</em></h1>
   <div class="guide-orbit">
     <button class="guide-paper" type="button" aria-label="Znovu rozhýbat otázky kolem kuličky" title="Rozhýbat otázky" disabled>
       <Image src={creativePhotos.obecne} alt="Zmačkaná papírová kulička." width={600} widths={[280,440,600]} sizes="(max-width: 700px) 230px, 360px" loading="eager" />
@@ -38,7 +38,7 @@ function setupQuestionHero() {
   let animations: Animation[] = [];
   let entered = false;
   const stop = () => { animations.forEach(animation => animation.cancel()); animations = []; };
-  function reveal() {
+  function reveal(animatePaper = true) {
     stop();
     if (media.matches) return;
     animations = questions.map((question,index) => question.animate([
@@ -46,20 +46,21 @@ function setupQuestionHero() {
       { opacity: 1, transform: 'translateY(-5px) scale(1.035)', offset: .7 },
       { opacity: 1, transform: 'translateY(0) scale(1)' },
     ], { duration: 620, delay: index * 110, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.25,1)' }));
-    animations.push(image.animate([
+    if (animatePaper) animations.push(image.animate([
       { transform: 'rotate(-8deg) scale(.88)' },
       { transform: 'rotate(4deg) scale(1.04)', offset: .65 },
       { transform: 'rotate(0) scale(1)' },
     ], { duration: 740, easing: 'cubic-bezier(.2,.7,.25,1)' }));
   }
   button.disabled = false;
-  button.addEventListener('click', reveal, { signal });
+  button.addEventListener('click', () => reveal(), { signal });
   root.addEventListener('focusin', event => { if (event.target !== button) stop(); }, { signal });
   const observer = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !entered) { entered = true; reveal(); }
+    if (entries[0].isIntersecting && !entered && !document.documentElement.hasAttribute('data-paper-ball-landing')) { entered = true; reveal(); }
     if (!entries[0].isIntersecting) stop();
   }, { threshold: .15 });
   observer.observe(root);
+  document.addEventListener('paper-ball-arrive', () => { if (!entered) { entered = true; reveal(false); } }, { signal });
   media.addEventListener('change', stop, { signal });
   document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); }, { signal });
   document.addEventListener('astro:before-swap', () => { stop(); observer.disconnect(); controller.abort(); delete root.dataset.initialized; }, { once: true, signal });

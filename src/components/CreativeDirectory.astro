@@ -7,7 +7,7 @@ import { creativePhotos } from '../data/creative-photos';
 <section class="editorial-directory editorial-photo-directory" id="zapisnik" aria-labelledby="main-title" data-creative-directory data-site-intro>
   <h1 id="main-title" class="sr-only">Magazín o kreativitě — vyberte si téma</h1>
   <div class="editorial-topic-tiles">
-    {creativeCategories.map((category, index) => <a class="editorial-topic-tile" href={withBase(`/kreativec/magazin/${category.id}`)} data-motif={category.id}>
+    {creativeCategories.map((category, index) => <a class="editorial-topic-tile" href={withBase(`/kreativec/magazin/${category.id}`)} data-motif={category.id} data-paper-ball-entry={category.id === 'obecne' ? '' : undefined}>
       <div class="editorial-topic-photo"><Image src={creativePhotos[category.id]} width={850} format="webp" alt="" loading={index < 4 ? 'eager' : 'lazy'} /></div>
       <div class="editorial-topic-label"><h2>{category.title}</h2><span aria-hidden="true">↗</span></div>
     </a>)}
