@@ -685,3 +685,13 @@ Produkční npm run build s /marek-stojka-web/ prošel: 103 souborů bez chyb/va
 
 
 Autor následně tuto revizi přijal („Skvělý“) a výslovně zadal nahrání na GitHub. Push změn přechodu, menších ikon a papírového Kam dál do main včetně navazujícího automatického zveřejnění je autorizovaný. Obsahové texty se touto vizuální revizí neměnily.
+
+
+## Menší ikony jednotlivých kreativních cvičení — 8. 11. 2026
+
+Autor chce zmenšení ikon také v rubrice Kreativní cvičení, s výslovnou výjimkou prvních šesti dlaždic rozcestníku. Ikony jednotlivých cvičení v creative-exercises.css jsou nyní 55 × 55 px místo 110 × 110 px na desktopu a 48 × 48 px místo 95 × 95 px na mobilu. Velké úvodní ikony zůstávají 90 px / 70 px mobil. Velikost klikacích karet, jejich zarovnání, texty, časy i ikony samotné zůstávají; menší symbol má více volného prostoru kolem.
+
+Ověřeno 1440 a 390 px, naměřené velikosti ikon, žádný vodorovný přesah. Funguje kotva z úvodní dlaždice, rozbalení dalších cvičení Enterem, otevření detailu a návrat přes ClientRouter. Konzole bez chyb a varování. Produkční npm run build s /marek-stojka-web/ úspěšný: 103 souborů bez chyb/varování/upozornění, 81 HTML a 2611 místních URL. Synchronizovaný místní náhled na 4321. Aktuální snímky nahled-cviceni-mensi-ikony.jpg a nahled-cviceni-rychlovky-mobile.jpg. Tato navazující úprava je zatím lokální, předchozí push 3207bd2 se týkal papírového přechodu a obecného průvodce.
+
+
+Autor následně přijal menší ikony cvičení („Super“) a výslovně zadal push na GitHub. Nahrání této úpravy do main i navazující automatické zveřejnění jsou autorizované; výše popsané kontroly platí pro stejné zdroje.

@@ -439,3 +439,8 @@ Aktuální náhledy: [přiblížení kuličky](docs/nahled-prechod-kulicka.jpg),
 Ověřena navigace myší i klávesnicí, návrat a opakovaný vstup, mobilní animace a rozložení 1440/800/390/320 px. Produkční build bez chyb: 103 souborů, 81 HTML, 2611 místních URL. Lokální revize po již zveřejněném commitu 5a21b3e.
 
 Autor následně přijal tuto vizuální revizi a zadal nahrání na GitHub; push do main včetně automatického zveřejnění je autorizovaný. Výše uvedené kontroly platí pro stejné zdroje.
+
+
+Kreativní cvičení — menší ikony (8. 11. 2026): symboly jednotlivých cvičení jsou přibližně poloviční (55 px desktop / 48 px mobil), úvodních šest dlaždic má původní velké ikony (90 / 70 px). Klikací plocha, texty a struktura se nemění. [Místní náhled](http://127.0.0.1:4321/kreativec/magazin/cviceni#rychlovky), [desktop](docs/nahled-cviceni-mensi-ikony.jpg), [mobil](docs/nahled-cviceni-rychlovky-mobile.jpg). Ověřen desktop 1440 px, mobil 390 px, rozbalení klávesnicí, proklik do detailu a návrat. Produkční build bez chyb: 103 souborů, 81 HTML a 2611 místních URL. Lokální revize po commitu 3207bd2.
+
+Autor následně přijal menší ikony cvičení a výslovně zadal nahrání této revize na GitHub včetně navazujícího automatického zveřejnění.
