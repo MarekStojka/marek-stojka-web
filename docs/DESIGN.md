@@ -513,6 +513,26 @@ Autor odmítl podobu textových karet cvičení a dodal jako referenci ikonovou 
 
 Mřížka má 5 sloupců nad 1000 px, 3 pro 701–1000 px a 2 do 700 px. Všech 50 textů, zdrojů, detailů i hledání podle autora/tématu zůstává. Ověřeno 1440/1001/1000/390/320 px, stejné výšky karet, žádný přetékající název ani stránka, 50 ikon a odkazů, hledání Rodari, prázdný výsledek kombinace filtrů, reset, otevření detailu Enterem a návrat. Konzole bez chyb. Produkční build s projektovým podadresářem prošel: 81 HTML, 2136 místních URL, 83 Astro souborů bez chyb/varování. Aktualizované snímky `nahled-cviceni.jpg` a `nahled-cviceni-mobile.jpg`. Autor následně výslovně zadal „pushni to“; nahrání této vizuální revize do main a navazující automatické nasazení je autorizované.
 
+## Odborný úvod, osobní pohled a souvislosti — 8. 11. 2026
+
+Na nový požadavek patří před šest původních dlaždic odborné vymezení kreativity. `CreativityDefinitions.astro` zachovává otázku „Co je vlastně ta kreativita?“ a přidává dvě krátké citace Runca a Jaegera (2012) a Amabile (2012), autory, názvy publikací, stránku a odkaz na zdroj. České znění je viditelně označený vlastní překlad. Pod citacemi je stručné vysvětlení novosti, účinnosti a otevřeného úkolu. Ověřené podklady: `CREATIVITY-INTRO-SOURCES.md`.
+
+Původních šest dlaždic zůstává obsahově beze změny, nyní pod „A takhle ji vidím já.“ a s výslovným uvedením osobního pohledu. Následují dvě samostatné obecné sekce v `CreativityContext.astro`: „Kreativita má různé podoby“ (model čtyř C Kaufmana a Beghetta, zjednodušení a vlastní označené příklady) a „Co kreativita potřebuje?“ (čtyři složky teorie Amabile, vlastní vysvětlení). Druhá vede skutečným odkazem do rubriky cvičení. Až potom navazují stávající workshopy a medailonek.
+
+Bílé listy, šedé spáry, společné odsazení a střídání sans serifu s kurzívou zachované. Nové obecné sekce používají jemné dělicí linky; šest šedých dlaždic tak dál odlišuje osobní pohled. `creativity-introduction.css` skládá citace na mobilu pod sebe. Stávající `SiteMotion` odhaluje nové sekce při rolování, bez další animace nebo skriptu. Texty vysvětlení jsou pracovní návrh, nikoli dodatečně schválené autorovy formulace. Aktuální náhledy: `nahled-kreativita-definice.png`, `nahled-kreativec-odpovedi.jpg`, `nahled-kreativita-podoby.png`, `nahled-kreativita-podminky.png`, `nahled-kreativita-definice-mobile.png`.
+
+Ověřeno 1440/390/320 px: správné pořadí sekcí, citace a odkazy, žádná duplicitní ID ani vodorovný přesah, odhalení nových sekcí, klávesnicový vstup do rubriky cvičení a návrat. Konzole bez varování/chyb. Produkční build s projektovým podadresářem úspěšný: 81 HTML, 2137 místních URL, 85 Astro souborů bez chyb/varování. Tato obsahová revize zůstává lokální.
+
+## Čtivější úvod a odborná rubrika — 8. 11. 2026
+
+Autor následně požádal kompletně zjednodušit předchozí výklad. Nové `CreativityIntroduction.astro` pod původní otázkou uvádí jeho shrnutí: „Kreativita je vytvoření originálního nápadu, který je zároveň užitečný.“ Věta o množství odborných definic je převedená do přirozené češtiny, význam zadání zachovaný. Další krátký blok „Co ale znamená užitečný?“ se ptá na cihlu, nápad na text, příběh pro zasmání a obrázek; končí otázkou na čtenářův vlastní nápad. Otázky a navazující osobní komentář jsou pracovní redakční návrh, ne odborné citace.
+
+Pod otázkami je výzva „Chcete si o kreativitě přečíst víc odborně?“ a černé odkazové tlačítko do `/kreativec/magazin/odborne`. Do této rubriky jsou přesunuté všechny původní ověřené definice a dva odborné výklady včetně zdrojů. Původní prázdný stav rubriky tím nahrazuje skutečný obsah; případné budoucí články se zobrazí pod ním. Dosavadní pravidlo noindex pro rubriku bez publikovaného článku zůstává. Zdroje ani formulace citací se v této revizi neměnily.
+
+Úvod magazínu má nyní pořadí banán → stručné shrnutí → otázky a odborné CTA → šest osobních dlaždic → workshopy → medailonek. Delší modely už hlavní stránku neprodlužují. Minimalistické bílé listy, jemné linky, typografie a sdílené odhalování při posunu zachované. Aktuální snímky `nahled-kreativita-jednoduse.png`, `nahled-kreativita-otazky.png` a `nahled-kreativita-jednoduse-mobile.png`.
+
+Ověřeno 1440/390/320 px: bez vodorovného přesahu, čitelné otázky a CTA, obě nové sekce se odhalí při posunu. Tlačítko funguje klávesnicí na desktopu i mobilu a cílová rubrika skutečně obsahuje citace i oba výklady; návrat do úvodu funkční. Konzole bez chyb/varování. Produkční build s projektovým podadresářem prošel: 81 HTML stránek a 2237 lokálních URL, Astro bez chyb/varování. Úprava zůstává lokální.
+
 ## Výběr cvičení podle využití — 8. 11. 2026
 
 Autor odmítl dosavadní hledací pole a tematický select jako obtížné na používání. Nově požaduje úvodní dlaždice vedoucí na sekce podle využití, výslovně Pro jednotlivce / Pro skupiny / Rychlovky do 15 minut. Implementovaný pracovní návrh přidává Pro psaní / Pro kreslení / Pro hledání řešení. Šest bílých ikonových dlaždic má krátké vysvětlení, počet cvičení a šipku dolů; tři sloupce na desktopu a dva na mobilu. Zachovává štětcové ikony, šedé spáry a fialový hover/focus homepage.
@@ -522,3 +542,20 @@ Každá sekce má vlastní kotvu, úvod, návrat na výběr, prvních pět cvič
 `creative-exercises.ts` má explicitní metadata audience podle již uvedených účastníků: solo = celou zde popsanou verzi lze dokončit samostatně, group = dvojice, skupina nebo společné sdílení. Přemýšlení rukama vyžaduje druhého člověka k vyzkoušení a do solo nepatří. `exercise-collections.ts` sestavuje překrývající se redakční výběry; úvod výslovně vysvětluje, že nejde o další unikátní cvičení. Počty: 41 jednotlivci / 38 skupiny / 17 do 15 minut včetně / 10 psaní / 14 kreslení / 21 hledání řešení. Délka rychlovek se odvozuje ze stejných minut jako detail, nikoli z názvu metody. Zadání, příklady, časy a zdroje všech 50 cvičení nezměněné.
 
 Ověřeno pokrytí všech 50 unikátních cvičení, zařazení samostatných/skupinových variant, mez 15 minut, žádné duplicitní ID, kotvy, rozbalení Enterem, proklik na Ano, a… a návrat přes ClientRouter. Desktop 1440 px, tablet a mobil 390/320 px bez vodorovného přesahu; konzole bez chyb. Produkční build s projektovým podadresářem prošel: 81 HTML, 2228 lokálních URL, 87 Astro souborů bez chyb/varování. Náhledy `nahled-cviceni.jpg`, `nahled-cviceni-mobile.jpg` a `nahled-cviceni-rychlovky-mobile.jpg`. Autor následně výslovně zadal „pushni to“; nahrání této strukturální revize do main a automatické zveřejnění je autorizované.
+
+
+## Návaznost osobního výkladu a stručná pomoc — 8. 11. 2026
+
+Autor nechce na úvodu magazínu blok „Kreativitu zkusíme naživo“ ani rozpis čtyř workshopů. Nahrazuje jej jediná stručná sekce `CreativityHelp.astro`: „S kreativitou vám pomůžu.“ s krátkou výzvou ke společnému hledání nápadu a skutečným mailto odkazem. Podrobnější nabídka má přijít později; nepřidávat nyní výčet služeb, ceny ani termíny. Původní `WorkshopOffer.astro` zůstává ve zdrojích, ale není vložený do /kreativec. Workshopy dál existují na /potkejme-se#setkani a v samostatných detailech. Odkaz „Všechny workshopy“ v detailech vede na tento zachovaný přehled. Navigace magazínu nově nabízí Spolupráce → /kreativec#pomoc-s-kreativitou.
+
+Na autorovu otázku byla zpřesněná jednoduchá definice: „Kreativita je přicházet s něčím novým, co má zároveň nějaký přínos.“ Jde o srozumitelné shrnutí novosti a hodnoty/vhodnosti, nikoli doslovnou odbornou citaci. Širší znění zahrnuje nápad i výsledek tvorby. Přínos nemusí být jen praktický, což vysvětlují zachované otázky. Poslední otázka čtenáři nyní výslovně spojuje obě hlediska: co bylo na jeho nápadu nového a komu něco přinesl. Původní odborné citace a zdroje zůstávají v odborné rubrice.
+
+„A takhle ji vidím já“ nahrazuje přirozenější návaznost „Jak k takovému nápadu dojít?“ a krátký osobní úvod. Šest dlaždic nově propojuje jiný pohled, spojování a hledání možností s přínosem, vyzkoušením a úpravou nápadu: Podívat se jinak / Spojit dvě věci / Zkusit další možnost / Najít v tom smysl / Dát nápadu podobu / Zjistit, co přináší. Stejné rozložení a světlé plochy; texty jsou pracovní redakční návrh. Neoznačovat je za finálně schválené autorské formulace.
+
+Snímky: nahled-kreativec-odpovedi.jpg, nahled-kreativita-pomoc.png, nahled-kreativita-pomoc-mobile.png; aktualizované shrnutí na nahled-kreativita-jednoduse.png, nahled-kreativita-jednoduse-mobile.png a nahled-kreativita-otazky.png. Starší nahled-workshopy.jpg je historický.
+
+Ověření této revize dokončeno 8. 11. 2026: desktop 1440 px, mobil 390 a 320 px, funkční kotva Spolupráce i klávesnicí. Pod 400 px má hlavička značku a navigaci ve dvou řádcích; rozbalené rubriky se vejdou do obrazovky. Konzole bez chyb/varování. Produkční sestavení pro projektový podadresář prošlo: 81 HTML stránek, 2233 lokálních URL a 90 kontrolovaných souborů bez chyb/varování. Změny jsou lokální.
+
+Autor následně výslovně zadal „pushni“; nahrání zjednodušeného úvodu, odborné rubriky a stručné nabídky pomoci do main a navazující automatické zveřejnění je autorizované.
+
+Technická poznámka k náhledu: čtení závislostí v synchronizované složce se výrazně zpomalilo. Kontrola proto proběhla v `/private/tmp/marek-creativity-preview` s čistou instalací podle stejného package-lock.json a Node 22.23.4. Náhled na `http://127.0.0.1:4321` nyní běží z této dočasné kopie; zdroje projektu zůstávají v původním adresáři. Shoda upravených souborů byla ověřena. Další úpravy je nutné do dočasného náhledu promítnout, nebo po obnovení běžného čtení spustit náhled z originálu.

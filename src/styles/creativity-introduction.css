@@ -1,0 +1,61 @@
+.editorial-page .creativity-guide { padding: clamp(48px, 6vw, 100px) 6%; }
+.editorial-page .creativity-guide h2 { font-size: clamp(44px, 4.5vw, 76px); text-wrap: balance; }
+.creativity-guide-heading { max-width: 960px; margin: 0 auto clamp(40px, 5vw, 72px); text-align: center; }
+.editorial-page .creativity-guide-lead { max-width: 62ch; margin: 28px auto 0; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.6; }
+.creativity-definitions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); }
+.creativity-quote { margin: 0; border-top: 1px solid #282828; padding-top: 30px; display: flex; flex-direction: column; }
+.creativity-quote blockquote { margin: 0 0 28px; }
+.editorial-page .creativity-quote blockquote p { margin: 0; font-size: clamp(32px, 3.1vw, 49px); line-height: 1.28; letter-spacing: -.045em; color: #222; text-wrap: balance; }
+.editorial-page .creativity-quote--long blockquote p { font-size: clamp(28px, 2.5vw, 40px); }
+.creativity-quote figcaption { display: grid; gap: 9px; margin-top: auto; font-size: 15px; line-height: 1.6; color: #666; }
+.creativity-quote figcaption strong { color: #222; font-size: 18px; font-weight: 600; }
+.creativity-quote figcaption a { width: fit-content; color: #333; }
+.creativity-quote cite, .creativity-source cite { font-style: normal; }
+.creativity-quote a, .creativity-source a { text-decoration: underline; text-decoration-color: #aaa; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.creativity-quote a:hover, .creativity-source a:hover { text-decoration-color: currentColor; }
+.creativity-translation { font-size: 14px; }
+.creativity-definition-meaning { margin-top: clamp(40px, 5vw, 72px); padding-top: 32px; border-top: 1px solid #dededb; display: grid; grid-template-columns: 1fr 2fr; gap: 5%; }
+.editorial-page .creativity-definition-meaning h3 { font-size: clamp(32px, 3vw, 46px); }
+.creativity-definition-meaning p { margin: 0; max-width: 75ch; }
+.creativity-definition-meaning p + p { margin-top: 14px; }
+.creativity-guide-split { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 8%; margin-bottom: clamp(35px, 4vw, 60px); }
+.creativity-guide-copy p { margin: 0; max-width: 58ch; }
+.creativity-guide-copy p + p { margin-top: 15px; }
+.creativity-forms-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.creativity-form { border-top: 1px solid #282828; padding-top: 25px; }
+.editorial-page .creativity-form h3 { font-size: clamp(25px, 2vw, 32px); letter-spacing: -.05em; line-height: 1.15; }
+.creativity-form h3 span { display: block; margin-top: 14px; font-size: 16px; font-weight: 500; letter-spacing: 0; color: #666; }
+.creativity-form p { margin: 20px 0 0; }
+.editorial-page .creativity-form .creativity-example { font-size: 16px; line-height: 1.65; }
+.editorial-page .creativity-source { font-size: 14px; line-height: 1.7; color: #666; margin: 32px 0 0; max-width: 110ch; }
+.creativity-conditions { display: grid; grid-template-columns: 1fr 1fr; gap: 8%; align-items: start; }
+.creativity-conditions-intro > p { max-width: 46ch; margin: 28px 0 0; }
+.creativity-practice-link { display: inline-flex; align-items: center; gap: 24px; margin-top: 26px; padding: 12px 0; border-bottom: 1px solid #aaa; font-size: 17px; }
+.creativity-practice-link:hover { border-color: #222; }
+.creativity-conditions-list { margin: 0; }
+.creativity-conditions-list > div { padding: 25px 0; border-top: 1px solid #ccc; }
+.creativity-conditions-list > div:first-child { border-color: #282828; }
+.creativity-conditions-list > div:last-child { padding-bottom: 0; }
+.creativity-conditions-list dt { font-size: clamp(25px, 2.1vw, 32px); line-height: 1.2; letter-spacing: -.055em; }
+.creativity-conditions-list dd { margin: 12px 0 0; font-size: 18px; line-height: 1.65; color: #666; max-width: 56ch; }
+@media (max-width: 1000px) {
+  .creativity-forms-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+  .creativity-guide-split, .creativity-conditions { gap: 5%; }
+}
+@media (max-width: 700px) {
+  .editorial-page .creativity-guide { padding: 45px 7%; }
+  .editorial-page .creativity-guide h2 { font-size: clamp(35px, 9vw, 47px); }
+  .creativity-definitions-grid, .creativity-guide-split, .creativity-conditions, .creativity-definition-meaning { grid-template-columns: 1fr; gap: 32px; }
+  .creativity-guide-heading { margin-bottom: 35px; }
+  .editorial-page .creativity-guide-lead { font-size: 18px; margin-top: 23px; }
+  .creativity-quote { padding-top: 24px; }
+  .editorial-page .creativity-quote blockquote p { font-size: 32px; }
+  .editorial-page .creativity-quote--long blockquote p { font-size: 28px; }
+  .creativity-forms-grid { grid-template-columns: 1fr; gap: 30px; }
+  .creativity-form { padding-top: 22px; }
+  .editorial-page .creativity-form h3 { font-size: 29px; }
+  .creativity-form h3 span { margin-top: 10px; }
+  .creativity-form p { margin-top: 15px; }
+  .creativity-definition-meaning { margin-top: 36px; gap: 23px; }
+  .creativity-conditions-intro > p { margin-top: 23px; }
+}

@@ -1,16 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import banana from '../assets/creative-still-life/banan-zatky-v1.png';
-import WorkshopOffer from './WorkshopOffer.astro';
+import CreativityHelp from './CreativityHelp.astro';
+import CreativityIntroduction from './CreativityIntroduction.astro';
 
 // Pracovní redakční texty pro úvod magazínu, nikoli odborné definice.
 const answers = [
-  { title: 'Vidět jinak.', text: 'Podívat se na známou věc z nečekané strany.' },
-  { title: 'Spojovat nespojitelné.', text: 'Dát dohromady dvě věci, které se ještě nepotkaly.' },
-  { title: 'Ptát se „co kdyby?“', text: 'Na chvíli odložit to, jak se něco dělá obvykle.' },
-  { title: 'Zkoušet i divný věci.', text: 'Dát šanci nápadu dřív, než ho sami zavrhneme.' },
-  { title: 'Hledat další cestu.', text: 'Nespokojit se s první odpovědí, která nás napadne.' },
-  { title: 'Dát nápadu podobu.', text: 'Napsat ho. Nakreslit. Postavit. A zjistit, co umí.' },
+  { title: 'Podívat se jinak.', text: 'Co by šlo udělat jinak než obvykle? I malá změna pohledu může otevřít novou možnost.' },
+  { title: 'Spojit dvě věci.', text: 'Nemusím začínat od nuly. Někdy stačí dát známé věci do nečekané souvislosti.' },
+  { title: 'Zkusit další možnost.', text: 'První nápad beru jako začátek. Co dalšího by ještě mohlo fungovat?' },
+  { title: 'Najít v tom smysl.', text: 'Komu to pomůže? Koho to potěší? Co to usnadní? Hledám důvod, proč nápad stojí za to.' },
+  { title: 'Dát nápadu podobu.', text: 'Napíšu ho, nakreslím nebo si ho vyzkouším. Snáz pak poznám, co na něm funguje.' },
+  { title: 'Zjistit, co přináší.', text: 'Je v něm něco nového? A má to pro někoho smysl? Podle toho nápad dál upravuju.' },
 ];
 ---
 <section class="creativity-photo" id="o-magazinu" aria-labelledby="banana-title">
@@ -19,13 +20,17 @@ const answers = [
     <Image src={banana} widths={[640, 1000, 1536]} sizes="(max-width: 700px) 80vw, 76vw" width={1536} format="webp" quality={90} alt="Banán, na kterém jako pasažéři balancují tři pivní zátky." loading="lazy" />
   </figure>
 </section>
-<section class="creativity-answers" aria-labelledby="creativity-title">
-  <h2 id="creativity-title">Co je vlastně<br /><em>ta kreativita?</em></h2>
+<CreativityIntroduction />
+<section class="creativity-answers" id="muj-pohled-na-kreativitu" aria-labelledby="creativity-personal-title">
+  <header>
+    <h2 id="creativity-personal-title">Jak k takovému<br /><em>nápadu dojít?</em></h2>
+    <p class="creativity-personal-lead">Zkouším různé cesty. A průběžně se ptám, co je na nápadu nové a k čemu je dobrý. Tohle mi při tom pomáhá.</p>
+  </header>
   <div class="creativity-answer-grid">
     {answers.map(answer => <article class="creativity-answer"><h3>{answer.title}</h3><p>{answer.text}</p></article>)}
   </div>
 </section>
-<WorkshopOffer />
+<CreativityHelp />
 <style>
   .creativity-photo { padding: clamp(40px, 5vw, 85px) 0 0; overflow: hidden; }
   .creativity-photo h2 { position: relative; z-index: 1; padding: 0 6%; text-align: center; font-size: clamp(42px, 5.2vw, 90px); text-wrap: balance; }
@@ -33,7 +38,9 @@ const answers = [
   .creativity-photo figure { margin: 20px 0 0; height: max(360px, 38vw); display: flex; align-items: center; justify-content: center; }
   .creativity-photo img { display: block; width: 78%; height: 100%; object-fit: cover; object-position: center 55%; }
   .creativity-answers { padding: clamp(48px, 6vw, 100px) 6%; }
-  .creativity-answers h2 { margin: 0 0 clamp(35px, 4vw, 65px); text-align: center; font-size: clamp(44px, 5vw, 80px); }
+  .creativity-answers header { margin: 0 auto clamp(35px, 4vw, 65px); text-align: center; }
+  .creativity-answers h2 { font-size: clamp(44px, 5vw, 80px); }
+  .creativity-answers .creativity-personal-lead { max-width: 55ch; margin: 25px auto 0; font-size: 20px; }
   .creativity-answer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--editorial-gap); }
   .creativity-answer { padding: clamp(26px, 3vw, 48px); background: #f4f3f1; }
   .creativity-answer h3 { font-size: clamp(26px, 2.35vw, 38px); text-wrap: balance; }
@@ -47,7 +54,8 @@ const answers = [
     .creativity-photo img { width: 84%; height: 100%; }
     .creativity-photo figure { margin-top: 15px; height: clamp(250px, 65vw, 420px); }
     .creativity-answers { padding: 45px 7%; }
-    .creativity-answers h2 { font-size: 43px; margin-bottom: 32px; }
+    .creativity-answers h2 { font-size: 43px; }
+    .creativity-answers .creativity-personal-lead { font-size: 18px; margin-top: 23px; }
     .creativity-answer-grid { grid-template-columns: 1fr; }
     .creativity-answer { padding: 28px; }
     .creativity-answer h3 { font-size: 29px; }

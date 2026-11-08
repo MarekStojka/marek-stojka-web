@@ -1,0 +1,24 @@
+---
+import { publicContact } from '../data/contact';
+const contactHref = `mailto:${publicContact.email}?subject=${encodeURIComponent('Pomoc s kreativním nápadem')}`;
+---
+<section class="creativity-help" id="pomoc-s-kreativitou" aria-labelledby="creativity-help-title">
+  <h2 id="creativity-help-title">S kreativitou<br /><em>vám pomůžu.</em></h2>
+  <div>
+    <p>Máte nápad a nevíte, jak s ním dál? Nebo se potřebujete podívat na své zadání jinak? Můžeme společně hledat nové možnosti a vybrat ty, které dávají smysl.</p>
+    <a href={contactHref}>Napište mi, co řešíte <span aria-hidden="true">↗</span></a>
+  </div>
+</section>
+<style>
+  .creativity-help { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 8%; padding: clamp(45px, 5vw, 80px) 6%; }
+  .creativity-help h2 { font-size: clamp(40px, 4vw, 64px); text-wrap: balance; }
+  .creativity-help p { max-width: 50ch; margin: 0; font-size: 21px; line-height: 1.65; }
+  .creativity-help a { display: inline-flex; gap: 24px; align-items: center; min-height: 48px; padding: 12px 0; margin-top: 20px; border-bottom: 1px solid #999; font-size: 18px; }
+  .creativity-help a:hover { border-color: #222; }
+  @media (max-width: 700px) {
+    .creativity-help { grid-template-columns: 1fr; gap: 25px; padding: 40px 7%; }
+    .creativity-help h2 { font-size: 39px; }
+    .creativity-help p { font-size: 19px; }
+    .creativity-help a { font-size: 17px; }
+  }
+</style>

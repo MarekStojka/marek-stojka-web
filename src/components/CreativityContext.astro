@@ -1,0 +1,45 @@
+---
+import { withBase } from '../lib/site-path';
+const forms = [
+  { name: 'Vlastní objev', level: 'mini-c', text: 'Nové a osobně smysluplné porozumění při učení.', example: 'Třeba když si najdete vlastní přirovnání, díky kterému konečně pochopíte složitou věc.' },
+  { name: 'Každodenní nápad', level: 'little-c', text: 'Tvořivost v běžném životě, kterou mohou ocenit i druzí.', example: 'Třeba když vymyslíte hru, která zabaví děti během dlouhé cesty.' },
+  { name: 'Profesionální tvorba', level: 'Pro-c', text: 'Tvořivá práce opřená o rozvinutou odbornost a zkušenost.', example: 'Třeba když zkušený architekt navrhne neobvyklé řešení malého bytu.' },
+  { name: 'Průlom pro obor', level: 'Big-C', text: 'Výjimečná tvorba s trvalým historickým významem.', example: 'Objev nebo dílo, které promění celý obor a obstojí i s odstupem času.' },
+];
+const conditions = [
+  { title: 'Znalosti a zkušenosti', text: 'Materiál, ze kterého můžete stavět: co o tématu víte, co umíte a co jste už vyzkoušeli.' },
+  { title: 'Způsob přemýšlení', text: 'Schopnost měnit pohled, spojovat souvislosti a zkoušet i cesty, které nejsou na první pohled zřejmé.' },
+  { title: 'Vnitřní zájem', text: 'Zvědavost, radost z činnosti nebo osobní výzva. Důvod, proč se chcete úkolu věnovat.' },
+  { title: 'Podporující prostředí', text: 'Okolí, které dává nápadům prostor: možnost spolupracovat, určitou volnost a podporu při hledání.' },
+];
+---
+<section class="creativity-guide creativity-forms" id="podoby-kreativity" aria-labelledby="creativity-forms-title">
+  <header class="creativity-guide-split">
+    <h2 id="creativity-forms-title">Kreativita má<br /><em>různé podoby.</em></h2>
+    <div class="creativity-guide-copy">
+      <p>Od malého osobního objevu po dílo, které změní svět. Model čtyř C psychologů Jamese C. Kaufmana a Ronalda A. Beghetta pomáhá vidět kreativitu i tam, kde bychom ji jinak přehlédli.</p>
+      <p>Nejde o čtyři typy lidí. Je to způsob, jak rozlišit různou podobu a dosah tvořivosti.</p>
+    </div>
+  </header>
+  <div class="creativity-forms-grid">
+    {forms.map(form => <article class="creativity-form">
+      <h3>{form.name}<span>{form.level}</span></h3>
+      <p>{form.text}</p>
+      <p class="creativity-example">{form.example}</p>
+    </article>)}
+  </div>
+  <p class="creativity-source">Zjednodušené vysvětlení modelu a vlastní příklady podle: James C. Kaufman a Ronald A. Beghetto (2009), <a href="https://doi.org/10.1037/a0013688"><cite>Beyond Big and Little: The Four C Model of Creativity</cite> ↗</a>. Review of General Psychology, 13(1), 1–12.</p>
+</section>
+<section class="creativity-guide creativity-conditions" id="co-kreativita-potrebuje" aria-labelledby="creativity-conditions-title">
+  <div class="creativity-conditions-intro">
+    <h2 id="creativity-conditions-title">Co kreativita<br /><em>potřebuje?</em></h2>
+    <p>V teorii Teresy Amabile se potkávají čtyři složky: naše dovednosti, způsob uvažování, motivace a prostředí. Tvořivý výsledek vzniká jejich souhrou.</p>
+    <a class="creativity-practice-link" href={withBase('/kreativec/magazin/cviceni')}>Vyzkoušet kreativní cvičení <span aria-hidden="true">↗</span></a>
+  </div>
+  <div>
+    <dl class="creativity-conditions-list">
+      {conditions.map(condition => <div><dt>{condition.title}</dt><dd>{condition.text}</dd></div>)}
+    </dl>
+    <p class="creativity-source">Volně vysvětleno podle: Teresa M. Amabile (2012), <a href="https://www.hbs.edu/ris/Publication%20Files/12-096.pdf#page=3"><cite>Componential Theory of Creativity</cite> ↗</a>. Harvard Business School, Working Paper 12-096, oddíl The Components of Creativity.</p>
+  </div>
+</section>

@@ -2,4 +2,11 @@
 import { withBase } from '../lib/site-path';
 import { creativeCategories } from '../data/creative-categories';
 ---
-<header class="editorial-header"><a class="wordmark" href={withBase('/')}>kreativno<span aria-hidden="true">/</span></a><nav aria-label="Navigace magazínu"><a href={withBase('/kreativec')}>Úvod</a><details class="editorial-menu"><summary>Rubriky <span aria-hidden="true">⌄</span></summary><div>{creativeCategories.map(category=><a href={withBase(`/kreativec/magazin/${category.id}`)}>{category.title}</a>)}</div></details><a href={withBase('/kreativec#workshopy')}>Workshopy</a><a href={withBase('/kreativec#o-magazinu')}>O magazínu</a></nav></header>
+<header class="editorial-header"><a class="wordmark" href={withBase('/')}>kreativno<span aria-hidden="true">/</span></a><nav aria-label="Navigace magazínu"><a href={withBase('/kreativec')}>Úvod</a><details class="editorial-menu"><summary>Rubriky <span aria-hidden="true">⌄</span></summary><div>{creativeCategories.map(category=><a href={withBase(`/kreativec/magazin/${category.id}`)}>{category.title}</a>)}</div></details><a href={withBase('/kreativec#pomoc-s-kreativitou')}>Spolupráce</a><a href={withBase('/kreativec#o-magazinu')}>O magazínu</a></nav></header>
+<style>
+  @media (max-width: 400px) {
+    .editorial-header { height: auto; min-height: 95px; flex-wrap: wrap; gap: 0; padding: 18px 0 8px; }
+    .editorial-header nav { width: 100%; justify-content: space-between; gap: 10px; font-size: 14px; }
+    .editorial-menu > div { top: 100%; }
+  }
+</style>
