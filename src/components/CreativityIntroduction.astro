@@ -1,10 +1,15 @@
 ---
 import { withBase } from '../lib/site-path';
+import { Image } from 'astro:assets';
+import brick from '../assets/creative-still-life/uzitek-cihla-v1.png';
+import writing from '../assets/creative-still-life/uzitek-text-v1.png';
+import story from '../assets/creative-still-life/uzitek-pribeh-v1.png';
+import picture from '../assets/creative-still-life/uzitek-obrazek-v1.png';
 const questions = [
-  'Je to cihla, ze které postavíte dům?',
-  'Nebo nápad na text, který někomu pomůže pochopit složitou věc?',
-  'Je užitečný i příběh, který vás rozesměje?',
-  'A obrázek, u kterého se na chvíli zastavíte?',
+  { text: 'Je to cihla, ze které postavíte dům?', image: brick, alt: 'Samostatná cihla na bílém pozadí.' },
+  { text: 'Nebo nápad na text, který někomu pomůže pochopit složitou věc?', image: writing, alt: 'Listy papíru s fialovou tužkou na bílém pozadí.' },
+  { text: 'Je užitečný i příběh, který vás rozesměje?', image: story, alt: 'Otevřená kniha s růžovou záložkou na bílém pozadí.' },
+  { text: 'A obrázek, u kterého se na chvíli zastavíte?', image: picture, alt: 'Fialový a růžový abstraktní obrázek v bílém rámečku.' },
 ];
 ---
 <section class="creativity-simple" id="co-je-kreativita" aria-labelledby="creativity-title">
@@ -13,47 +18,68 @@ const questions = [
   <p class="creativity-simple-definition">Kreativita je přicházet s něčím <strong>novým,</strong> co má zároveň <strong>nějaký přínos.</strong></p>
 </section>
 <section class="creativity-questions" id="co-je-uzitecne" aria-labelledby="creativity-questions-title">
-  <div class="creativity-questions-layout">
+  <header class="creativity-questions-heading">
     <h2 id="creativity-questions-title">Co může být<br /><em>užitečné?</em></h2>
-    <div>
-      <ul class="creativity-question-list">
-        {questions.map(question => <li>{question}</li>)}
-      </ul>
-      <p class="creativity-question-thought">Za mě může mít užitek spoustu podob. Někdy něco usnadníme. Jindy někoho pobavíme, potěšíme nebo mu ukážeme věc jinak.</p>
-      <p class="creativity-question-prompt">A co váš poslední nápad? Co na něm bylo nového a komu něco přinesl?</p>
+  </header>
+  <ul class="creativity-question-list">
+    {questions.map(question => (
+      <li>
+        <figure>
+          <Image src={question.image} widths={[240, 480, 720]} sizes="(max-width: 700px) 210px, (max-width: 1100px) 230px, (max-width: 1500px) 16vw, 230px" width={720} format="webp" quality={90} alt={question.alt} loading="lazy" />
+        </figure>
+        <h3>{question.text}</h3>
+      </li>
+    ))}
+  </ul>
+  <div class="creativity-questions-closing">
+    <p class="creativity-question-thought">Za mě může mít užitek spoustu podob. Někdy něco usnadníme. Jindy někoho pobavíme, potěšíme nebo mu ukážeme věc jinak.</p>
+    <p class="creativity-question-prompt">A co váš poslední nápad? Co na něm bylo nového a komu něco přinesl?</p>
+    <div class="creativity-research-invitation">
+      <p>Chcete si o kreativitě přečíst víc odborně?</p>
+      <a href={withBase('/kreativec/magazin/odborne')}>O kreativitě odborně <span aria-hidden="true">↗</span></a>
     </div>
-  </div>
-  <div class="creativity-research-invitation">
-    <p>Chcete si o kreativitě přečíst víc odborně?</p>
-    <a href={withBase('/kreativec/magazin/odborne')}>O kreativitě odborně <span aria-hidden="true">↗</span></a>
   </div>
 </section>
 <style>
-  .creativity-simple, .creativity-questions { padding: clamp(45px, 5vw, 80px) 6%; }
+  .creativity-simple { padding: clamp(45px, 5vw, 80px) 6%; }
   .creativity-simple { text-align: center; }
   .creativity-simple h2, .creativity-questions h2 { font-size: clamp(42px, 4.5vw, 72px); text-wrap: balance; }
   .creativity-simple .creativity-simple-lead { max-width: 54ch; margin: 28px auto 0; font-size: clamp(19px, 1.6vw, 23px); }
   .creativity-simple .creativity-simple-definition { max-width: 35ch; margin: 30px auto 0; color: #222; font-size: clamp(29px, 3.1vw, 46px); line-height: 1.35; letter-spacing: -.045em; text-wrap: balance; }
   .creativity-simple-definition strong { font-weight: 650; }
-  .creativity-questions-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 8%; align-items: start; }
+  :global(.editorial-page main) > .creativity-questions { background: #f6f6f4; }
+  .creativity-questions-heading { padding: clamp(45px, 5vw, 80px) 6% 45px; text-align: center; background: #fff; }
   .creativity-questions h2 { font-size: clamp(37px, 3.7vw, 60px); }
-  .creativity-question-list { list-style: none; margin: 0; padding: 0; }
-  .creativity-question-list li { padding: 19px 0; border-bottom: 1px solid #dededb; font-size: clamp(22px, 1.9vw, 29px); line-height: 1.4; letter-spacing: -.035em; }
-  .creativity-question-list li:first-child { padding-top: 0; }
-  .creativity-questions .creativity-question-thought { max-width: 58ch; margin: 26px 0 0; font-size: 19px; }
-  .creativity-questions .creativity-question-prompt { margin: 16px 0 0; color: #222; font-size: 20px; }
+  .creativity-question-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--editorial-gap); list-style: none; margin: 0; padding: 0; }
+  .creativity-question-list li { padding: 20px clamp(22px, 2.2vw, 42px) 40px; background: #fff; text-align: center; }
+  .creativity-question-list figure { display: grid; place-items: center; height: clamp(210px, 20vw, 310px); margin: 0 0 22px; }
+  .creativity-question-list img { display: block; width: min(78%, 230px); height: 100%; object-fit: contain; }
+  .creativity-question-list h3 { max-width: 25ch; margin: 0 auto; font-size: clamp(21px, 1.6vw, 27px); line-height: 1.4; letter-spacing: -.035em; text-wrap: balance; }
+  .creativity-questions-closing { margin-top: var(--editorial-gap); padding: 40px 6% clamp(45px, 5vw, 80px); background: #fff; }
+  .creativity-questions .creativity-question-thought { max-width: 64ch; margin: 0 auto; font-size: 19px; text-align: center; }
+  .creativity-questions .creativity-question-prompt { max-width: 64ch; margin: 16px auto 0; color: #222; font-size: 20px; text-align: center; }
   .creativity-research-invitation { margin-top: 42px; padding-top: 30px; border-top: 1px solid #dededb; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
   .creativity-research-invitation p { margin: 0; color: #333; font-size: 21px; }
   .creativity-research-invitation a { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; flex-shrink: 0; padding: 17px 24px; min-height: 56px; background: #222; color: #fff; font-size: 18px; }
   .creativity-research-invitation a:hover { background: #4b1887; }
+  @media (max-width: 1100px) {
+    .creativity-question-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .creativity-question-list figure { height: 250px; }
+    .creativity-question-list h3 { font-size: 23px; }
+  }
   @media (max-width: 700px) {
-    .creativity-simple, .creativity-questions { padding: 40px 7%; }
+    .creativity-simple { padding: 40px 7%; }
     .creativity-simple h2 { font-size: clamp(35px, 9vw, 47px); }
     .creativity-simple .creativity-simple-lead { margin-top: 22px; font-size: 18px; }
     .creativity-simple .creativity-simple-definition { margin-top: 24px; font-size: 29px; }
-    .creativity-questions-layout { grid-template-columns: 1fr; gap: 30px; }
+    .creativity-questions-heading { padding: 40px 7% 25px; }
     .creativity-questions h2 { font-size: 36px; }
-    .creativity-question-list li { font-size: 23px; padding: 17px 0; }
+    .creativity-question-list { grid-template-columns: 1fr; }
+    .creativity-question-list li { padding: 10px 7% 32px; }
+    .creativity-question-list figure { height: 230px; margin-bottom: 10px; }
+    .creativity-question-list img { width: min(72%, 210px); }
+    .creativity-question-list h3 { font-size: 23px; }
+    .creativity-questions-closing { padding: 30px 7% 40px; }
     .creativity-questions .creativity-question-thought { font-size: 18px; }
     .creativity-questions .creativity-question-prompt { font-size: 19px; }
     .creativity-research-invitation { margin-top: 30px; padding-top: 25px; align-items: stretch; flex-direction: column; gap: 20px; }

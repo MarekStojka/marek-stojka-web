@@ -462,3 +462,8 @@ Autor 8. 11. 2026 výslovně zadal hotové úpravy po kontrole posílat rovnou n
 
 
 Následné upřesnění (8. 11. 2026): papírová květina je o čtvrtinu větší na desktopu (max. 500 px), mírně větší i na mobilu (84 % / max. 320 px). [Desktop](docs/nahled-kreativec-zatisi.jpg) a [mobil](docs/nahled-kreativec-kvetina-mobile.jpg) aktualizované. Kontrola 1440/390 px a produkční build úspěšné.
+
+
+### Čtyři fotografické otázky — 8. 11. 2026
+
+[Sekce Co může být užitečné?](http://127.0.0.1:4321/kreativec#co-je-uzitecne) má nadpis uprostřed a čtyři bílé fotografické dlaždice: cihla / text / příběh / obrázek. Menší centrované motivy na bílém pozadí, zarovnané otázky, čtyři/dva/jeden sloupec podle šířky. [Desktop](docs/nahled-kreativita-uzitek-dlazdice.jpg), [mobil](docs/nahled-kreativita-uzitek-mobile.jpg), [assety a prompty](docs/CREATIVITY-USEFULNESS-PHOTOS.md). Také původní snímek nahled-kreativita-otazky.png aktualizovaný. Ověřeno 1440/800/390/320 px a klávesnicový proklik do odborné rubriky i návrat. Produkční build bez chyb: 105 souborů, 81 HTML a 2624 místních URL.

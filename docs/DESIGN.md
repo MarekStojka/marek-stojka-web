@@ -722,3 +722,12 @@ Ověřeno 1440/800/390/320 px bez vodorovného přesahu, šest příkladů, zaro
 ## Mírné zvětšení papírové květiny — 8. 11. 2026
 
 Autor po zhlédnutí nové fotografie požádal ještě o její mírné zvětšení. Šířka v MagazineIntroduction.astro je nyní maximálně 500 px místo 400 px (+25 %), na mobilu 84 % dostupného prostoru / nejvýše 320 px místo 72 % / 280 px. Zdrojová fotografie, poměr na výšku, bílé pozadí a centrování zůstávají. Responzivní varianty 320/600/1000 px odpovídají novému zobrazení. Ověřeno 1440 a 390 px bez vodorovného přesahu; fotografie se zobrazuje celá. Produkční build úspěšný: 105 souborů bez chyb/varování, 81 HTML a 2608 místních URL. Náhled i kontrolní kopie synchronizované; snímky v README aktualizované. Push je součástí trvalého pokynu autora.
+
+
+## Čtyři fotografické dlaždice užitku — 8. 11. 2026
+
+Autor mění sekci „Co může být užitečné?“ na centrovaný nadpis a čtyři fotografické dlaždice vedle sebe. CreativityIntroduction.astro nyní používá čtyři nové AI fotografické studie: samostatnou cihlu, listy papíru s fialovou tužkou, otevřenou knihu s růžovou záložkou a bílý rám s fialovým/růžovým abstraktním obrázkem. Jde o fyzicky sestavitelné předměty na čistém bílém pozadí, nikoli o autorské fotografie či Markovu kresbu. Původ, projektové cesty a přesné prompty v CREATIVITY-USEFULNESS-PHOTOS.md. Bez malých popisků.
+
+Nadpis je uprostřed nad celou řadou. Bílé dlaždice odděluje původní šedá spára 6 px / 5 px mobil. Každá má stejně vysoký obrazový prostor a centrovanou fotografii nejvýše 230 px širokou; na mobilu nejvýše 210 px. Celé motivy bez ořezu, s dostatkem bílého okolí. Otázky začínají ve stejné výšce a jejich znění se nemění. Čtyři sloupce nad 1100 px, dva do 1100 px, jeden do 700 px. Pod řadou je vycentrované původní vysvětlení a zachovaný odkaz do odborné rubriky. Horní definice kreativity zůstává beze změny.
+
+Ověřeno 1440/800/390/320 px bez vodorovného přesahu, všechny čtyři fotografie načtené, shodné šířky dlaždic a zarovnané otázky. Proklik do odborné rubriky Enterem a návrat přes ClientRouter funkční. Produkční build úspěšný: 105 souborů bez chyb/varování/upozornění, 81 HTML, 2624 místních URL. Běžící náhled a kontrolní kopie obsahují stejné soubory. Snímky v README aktualizované; automatický push dle trvalého pokynu autora.
