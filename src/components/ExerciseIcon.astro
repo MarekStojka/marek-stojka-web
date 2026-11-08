@@ -1,0 +1,74 @@
+---
+import type { ComponentProps } from 'astro/types';
+import BrushIcon from './BrushIcon.astro';
+
+interface Props { slug: string; }
+const { slug } = Astro.props;
+
+// Reuse the homepage's drawn vocabulary. A few literal motifs need their own marks.
+const icons: Record<string, ComponentProps<typeof BrushIcon>['kind']> = {
+  'scamper': 'automation',
+  'nahodne-slovo': 'naming',
+  'spojte-dva-svety': 'connect',
+  'kombinacni-skrinka': 'prototype',
+  'myslenkova-mapa': 'network',
+  'vymysleni-s-omezenim': 'brand',
+  'provokace-po': 'spark',
+  'sest-myslicich-klobouku': 'compass',
+  'vejir-moznosti': 'presentation',
+  'musi-to-tak-byt': 'simplify',
+  'jak-bychom-mohli': 'words',
+  'inspirace-z-jineho-oboru': 'journey',
+  'vidim-myslim-zajima': 'imageword',
+  'cizi-perspektiva': 'compass',
+  'deset-a-dalsich-deset': 'draw',
+  'otazky-pro-predstavivost': 'words',
+  'rande-s-tvorivosti': 'grow',
+  'psani-bez-zastaveni': 'story',
+  'ranni-stranky': 'book',
+  'fantasticka-dvojice': 'connect',
+  'co-kdyby': 'spark',
+  'co-se-stalo-potom': 'journey',
+  'zakazane-pismeno': 'brand',
+  'slovnikovy-posun': 'naming',
+  'snehova-koule-ze-slov': 'grow',
+  'jedna-prihoda-pet-stylu': 'presentation',
+  'basen-ukryta-v-textu': 'book',
+  'kresleni-bez-pohledu': 'draw',
+  'nakreslete-prazdno': 'prototype',
+  'kresba-vzhuru-nohama': 'imageword',
+  'jeden-souvisly-tah': 'finish',
+  'frotaz': 'print',
+  'kolaz-protikladu': 'connect',
+  'automaticka-kresba': 'simplify',
+  'nahodny-otisk': 'draw',
+  'prekvapivy-material': 'prototype',
+  'napad-jako-komiks': 'script',
+  'brainstorming': 'spark',
+  'tiche-predavani-napadu': 'story',
+  'sam-ve-dvou-vsichni': 'network',
+  'jak-to-pokazit': 'automation',
+  'ano-a': 'voice',
+  'tajemna-spolecna-kresba': 'comedy',
+  'reseni-jako-scenka': 'training',
+  'pribeh-peti-symboly': 'imageword',
+  'slozte-silnejsi-napad': 'connect',
+  'premysleni-rukama': 'test',
+};
+const marks: Record<string, string[]> = {
+  'tricet-kruhu': [
+    'M41 18C5 16 4 67 39 69c37 1 39-50 2-51Zm0 8c26-1 27 36-1 35-27-1-25-36 1-35Z',
+    'M99 32c-35-3-38 49-3 51 36 3 40-48 3-51Zm-1 8c27 1 25 37-1 35-26-1-24-37 1-35Z',
+    'M60 78c-35-2-37 49-1 51 37 1 38-51 1-51Zm0 8c27 0 26 37-1 35-26-1-25-36 1-35Z',
+  ],
+  'jine-vyuziti-cihly': [
+    'm16 58 68-34 41 20-3 46-69 29-37-21Zm9 4 29 13 55-29-26-13Zm-1 9 1 22 24 12 1-23Zm34 11-1 24 58-23 2-28Z',
+    'm53 52 12-6 8 4-12 6Zm24-12 10-5 8 4-11 6Zm-5 20 12-6 8 4-13 6Zm24-12 9-4 7 4-10 5Z',
+  ],
+  'osm-napadu-za-osm-minut': [
+    'm13 31 115-3-3 84-111 3Zm8 7 1 69 96-3 2-68Z',
+    'm18 68 103-3 1 6-103 4ZM43 36l6-1-1 72-6 1Zm25-1 6-1-1 72-6 1Zm25-1 7-1-2 73-6 1Z',
+  ],
+};
+---
+{marks[slug] ? <svg class="brush-icon" viewBox="0 0 140 140" fill="currentColor" aria-hidden="true" focusable="false">{marks[slug].map(d => <path d={d} />)}</svg> : <BrushIcon kind={icons[slug] ?? 'spark'} />}

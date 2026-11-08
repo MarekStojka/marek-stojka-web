@@ -1,6 +1,8 @@
 ---
 import { creativeExercises, exerciseGroups } from '../data/creative-exercises';
 import { withBase } from '../lib/site-path';
+import ExerciseIcon from './ExerciseIcon.astro';
+import '../styles/icon-motion.css';
 import '../styles/creative-exercises.css';
 ---
 <section class="exercise-library" aria-label="Knihovna kreativních cvičení" data-motion-skip>
@@ -12,12 +14,11 @@ import '../styles/creative-exercises.css';
     </div>
     <div class="exercise-library-intro"><p>Vyberte si z {creativeExercises.length} cvičení. Stačí chuť něco zkusit; výsledek nemusí být dokonalý. U každého najdete postup, ukázku a původ metody.</p><p class="exercise-count" role="status" aria-live="polite" aria-atomic="true" data-count>Zobrazeno: {creativeExercises.length} z {creativeExercises.length}</p></div>
     <ol id="exercise-list" class="exercise-grid">
-      {creativeExercises.map((exercise, index) => <li data-exercise data-group={exercise.group} data-search={`${exercise.title} ${exercise.assignment} ${exercise.credit} ${exerciseGroups[exercise.group]} ${exercise.participants}`}>
-        <a href={withBase(`/kreativec/cviceni/${exercise.slug}`)} class="exercise-card">
-          <div class="exercise-card-top"><span>{String(index + 1).padStart(2, '0')}</span><span>{exerciseGroups[exercise.group]}</span></div>
+      {creativeExercises.map(exercise => <li data-exercise data-group={exercise.group} data-search={`${exercise.title} ${exercise.assignment} ${exercise.credit} ${exerciseGroups[exercise.group]} ${exercise.participants}`}>
+        <a href={withBase(`/kreativec/cviceni/${exercise.slug}`)} class="exercise-card icon-motion-trigger">
+          <span class="exercise-card-icon"><ExerciseIcon slug={exercise.slug} /></span>
           <h2>{exercise.title}</h2>
-          <p>{exercise.assignment}</p>
-          <div class="exercise-card-bottom"><span>Přibližně {exercise.minutes} min</span><span aria-hidden="true">↗</span></div>
+          <span class="exercise-card-time">Přibližně {exercise.minutes} min</span>
         </a>
       </li>)}
     </ol>

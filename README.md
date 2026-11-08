@@ -381,3 +381,5 @@ Přehled a detaily jsou zahrnuté do produkčního sestavení i sitemap; dřív�
 
 
 Aktuální medailonek (8. 11. 2026): fotografie / nadpis / osobní text, bez samostatného citátu. Banán v úvodu má větší bílé okraje při zachované výšce sekce. Náhledy: `docs/nahled-medailonek-layout.png`, `docs/nahled-kreativec-banan.png`.
+
+Kreativní cvičení (8. 11. 2026): přehled nyní navazuje na ikonové dlaždice homepage. Bílé karty bez rámečků, šedé spáry, štětcová ikona, viditelný název a čas; fialové zvýraznění a krátký pohyb jako na homepage. Mřížka 5/3/2 sloupce podle šířky. Detailní obsah všech 50 cvičení i filtry zachované. `ExerciseIcon.astro` používá původní sadu ikon a tři doplněné vlastní SVG motivy. Ověřeno na desktopu, tabletu i mobilu včetně klávesnice, produkční build bez chyb. Aktualizované náhledy `docs/nahled-cviceni.jpg` a `docs/nahled-cviceni-mobile.jpg`. Autor následně výslovně zadal tuto vizuální revizi nahrát na GitHub; push do main spouští automatické zveřejnění.
