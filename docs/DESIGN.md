@@ -645,3 +645,25 @@ Kompozice střídá velkou fotografii vedle krátkého textu, široký obraz př
 Ověřeno 1440/1001/800/700/390/320 px bez vodorovného přesahu, rozbalení a zavření Enterem na desktopu i mobilu, zachování celého výkladu, skutečné odkazy a navigace. Nový build úspěšný: 100 kontrolovaných souborů bez chyb/varování, 81 HTML a 2296 lokálních URL. Náhled na 4321 a kontrolní kopie synchronizované se zdrojem v hlavním projektu. Aktuální snímky v README.
 
 Autor následně výslovně zadal „hoď to na git“. Nahrání této obrazové revize, hero s otázkami, plynulých kotev a poznámek pod čarou do main je autorizované včetně navazujícího automatického zveřejnění. Pracovní texty tím nejsou označené za finálně schválené.
+
+
+## Cílené změny průvodce: ikony, trojice a okno — 8. 11. 2026
+
+Autor po zveřejnění obrazové verze zadal pět konkrétních úprav. Žlutá kapitola „Co když to půjde jinak?“ nově nemá fotografii lahve ani bílý obdélník: tři původní štětcové ikony s krátkými názvy jsou přímo na barevné ploše. Jednorázové střídání barvy zůstává. „Z čeho nápady rostou?“ tvoří tři stejné bílé dlaždice na šedé ploše (Všímat si / Ptát se proč / Spojovat), bez tužkového mostu. „První pokus nemusí být dobrý“ má tři šedé bloky na bílé ploše (Začněte nanečisto / Zmenšete úkol / Zkuste omezení), bez druhé fotografie papírové kuličky. Úvodní kulička s otázkami se nemění.
+
+„Dejte nápadu prostor“ používá nové fotografické otevřené okno s výhledem do zelené krajiny místo skicáku. Vnější průhlednost obrázku a průhledné figure dávají vyniknout šedému pozadí jako stěně bez bílé fotografické karty. Tento výslovný pokyn je výjimkou ze staršího pravidla bílého pozadí fotografií. Ilustrace je označená AI studie; asset, režim a přesný prompt v CREATIVITY-WINDOW-PHOTO.md. Skicák i ostatní nahrazené podklady zůstávají archivně.
+
+Tři celé kapitoly Tvoření s druhými / Technologie a AI / Nápad a odpovědnost jsou nyní vedle sebe ve stejně širokých fotografických kartách. Každá zachovává vlastní fotografii, nadpis, krátký úvod, rozbalení a původní kotvu. Na desktopu tři sloupce, do 1000 px jednotlivé řádky s fotografií vedle textu, do 700 px fotografie nad textem. Textové trojice se do 700 px skládají pod sebe. Spáry navazují na web, ikony jsou původní BrushIcon. Nové krátké popisy vycházejí z pracovního výkladu, nejsou schválené citace.
+
+GuideVisualChapter.astro odděluje vykreslení kapitoly; CreativityReader.astro seskupuje pouze sousední položky layout=card. Celkem zůstává 14 témat a všech 35 vysvětlujících odstavců i oba seznamy. Osm fotografických vstupů a šest grafických kapitol. Plynulý posun, nativní details, zdroje úplně dole, focus a reduced motion zachované.
+
+Ověřeno 1440/1001/800/390/320 px bez vodorovného přesahu, správné počty ikon a dlaždic, tři shodně široké i vysoké fotografické karty a rozbalení klávesnicí. Snímky aktuálních pěti úprav a mobilu v README. Tato následná revize je zatím lokální; předchozí push 5c3ac05 byl dokončen před těmito novými pokyny.
+
+Produkční sestavení této cílené revize prošlo: 101 kontrolovaných souborů bez chyb, varování a upozornění; 81 HTML a 2281 lokálních URL s podadresářem /marek-stojka-web/. Zdrojové soubory a nový obrázek se shodují s běžícím náhledem i kontrolní kopií.
+
+
+## Fotografie bez malých popisků a zveřejnění — 8. 11. 2026
+
+Autor výslovně odstranil malé popisky u fotografií a zadal odeslání na GitHub. GuideVisualChapter.astro už nevykresluje figcaption u žádné z osmi fotografií průvodce, včetně okna a trojice karet. Přístupné alternativní texty zůstávají. Informace o AI původu ilustrací je společně v posledních poznámkách; předchozí požadavky označení přímo pod každou fotografií tím jsou překonané. Žádný jiný obsah se touto úpravou nemění. Aktualizované snímky okna a tří fotografických karet v README. Nahrání všech pěti předchozích cílených změn i této úpravy do main a navazující automatické zveřejnění je nyní autorizované.
+
+Finální kontrola po odstranění popisků: 101 souborů bez chyb a varování, 81 HTML a 2281 místních URL. Desktop a mobil bez vodorovného přesahu; v DOM žádný fotografický figcaption, všech osm fotografií zachovává neprázdný alt.

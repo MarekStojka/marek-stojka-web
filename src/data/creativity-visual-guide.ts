@@ -1,16 +1,13 @@
 import banana from '../assets/creative-still-life/banan-zatky-v1.png';
-import bottle from '../assets/creative-still-life/lahev-vlastovka-v1.png';
 import brick from '../assets/creativity-guide/cihla-knihy-v1.png';
-import bridge from '../assets/creativity-guide/tuzka-most-v1.png';
 import paper from '../assets/creativity-guide/papir-pokusy-v1.png';
 import pencils from '../assets/creativity-guide/pastelky-spolu-v1.png';
-import ball from '../assets/creative-paper/obecne-v1.png';
 import tools from '../assets/creativity-guide/nastroje-v1.png';
-import desk from '../assets/creativity-guide/skicak-lupa-v1.png';
+import windowView from '../assets/creativity-guide/otevrene-okno-v1.png';
 import mouse from '../assets/creativity-guide/tuzka-mys-v1.png';
 import domino from '../assets/creativity-guide/domino-v1.png';
 
-export const guideImages = { banana, bottle, brick, bridge, paper, pencils, ball, tools, desk, mouse, domino };
+export const guideImages = { banana, brick, paper, pencils, tools, windowView, mouse, domino };
 // Vlastní redakční obsah. Delší výklad je dostupný v nativním details.
 // HTML je statický text tohoto projektu, nikoli obsah z formuláře nebo externího zdroje.
 export const visualChapters = [
@@ -76,13 +73,9 @@ export const visualChapters = [
     "title": "Co když to půjde jinak?",
     "lead": "Když známá cesta přestane fungovat, hodí se umět hledat další.",
     "detailLabel": "Proč někdy známý postup nestačí?",
-    "kind": "photo",
+    "kind": "possibilities",
     "layout": "yellow",
-    "image": {
-      "key": "bottle",
-      "alt": "Papírová vlaštovka položená na hrdle skleněné lahve na bílém pozadí.",
-      "caption": "Vlaštovka na hrdle lahve."
-    },
+    "image": null,
     "details": "<p>Dokud známý postup dobře funguje, není důvod ho za každou cenu měnit. Jenže někdy se změní podmínky. Máte méně času, menší prostor nebo před sebou problém, se kterým jste se ještě nesetkali. A právě tehdy se hodí umět hledat další možnosti.</p>\n<p>Představte si sousedské setkání. Místnost je malá, rozpočet omezený a lidé se moc neznají. Velká slavnost nepřipadá v úvahu. To ale ještě neznamená, že se nemůžete potkat. Možná jen potřebujete vymyslet jiný důvod, proč spolu začít mluvit.</p>"
   },
   {
@@ -106,13 +99,9 @@ export const visualChapters = [
     "title": "Z čeho nápady rostou?",
     "lead": "Ze spojení věcí, které už znáte. A z pozornosti k tomu, co ostatní snadno přehlédnou.",
     "detailLabel": "Jak pracovat s inspirací?",
-    "kind": "photo",
-    "layout": "",
-    "image": {
-      "key": "bridge",
-      "alt": "Tužka položená přes dvě růžové gumy jako most na bílém pozadí.",
-      "caption": "Tužka přes dvě gumy."
-    },
+    "kind": "inspiration",
+    "layout": "open inspiration",
+    "image": null,
     "details": "<p>Z toho, co znáte, zažijete a čeho si všimnete. Z věty zaslechnuté v tramvaji, z knihy, z nečekané chyby i z obyčejného předmětu na stole. Inspirace nemusí být zvláštní stav. Může začít docela prostou pozorností.</p>\n<p>Když vás něco zaujme, zkuste si říct proč. Místo „Ten plakát je hezký“ třeba „To jedno velké slovo přečtu i z druhé strany ulice“. S takovým postřehem už můžete dál pracovat. Neberete cizí hotový výsledek, ale hledáte princip, který pomůže i vám.</p>\n<p>A někdy stačí spojit dvě známé věci. Tužka a dvě gumy se promění v malý most. Není to převratný vynález, ale jednoduchý způsob, jak si vyzkoušet jiný pohled na něco běžného.</p>"
   },
   {
@@ -122,11 +111,11 @@ export const visualChapters = [
     "lead": "Pomáhají zkušenosti, vlastní zájem a možnost něco vyzkoušet bez okamžitého hodnocení.",
     "detailLabel": "Co pomáhá nápadům vznikat?",
     "kind": "photo",
-    "layout": "reverse open",
+    "layout": "reverse open window",
     "image": {
-      "key": "desk",
-      "alt": "Otevřený skicák, fialová tužka a lupa na bílém pozadí.",
-      "caption": "Skicák, tužka a lupa."
+      "key": "windowView",
+      "alt": "Otevřené bílé okno s výhledem na zelenou krajinu a oblohu, zasazené do šedého pozadí stránky.",
+      "caption": "Otevřené okno."
     },
     "details": "<p>Je snazší něco rozvíjet, když se máte o co opřít. Znalosti a zkušenosti dávají nápadům materiál. Ochota měnit pohled vám pomáhá hledat i mimo první řešení. A vlastní zájem dává důvod pokračovat, když se práce zkomplikuje.</p>\n<p>Podobně o tvorbě uvažuje psycholožka Teresa Amabile. Vedle dovedností, způsobu myšlení a motivace zdůrazňuje také prostředí. Záleží na tom, zda máte prostor něco zkusit, položit otázku nebo přinést nedokončený návrh. Nápadům se těžko daří tam, kde je každý první pokus hned konečnou zkouškou.</p>"
   },
@@ -136,13 +125,9 @@ export const visualChapters = [
     "title": "První pokus nemusí být dobrý.",
     "lead": "Má vám hlavně ukázat, co zkusit dál. Klidně začněte nanečisto.",
     "detailLabel": "Co zkusit, když se nedaří?",
-    "kind": "photo",
-    "layout": "compact",
-    "image": {
-      "key": "ball",
-      "alt": "Zmačkaná papírová kulička na bílém pozadí.",
-      "caption": "Papírová kulička."
-    },
+    "kind": "barriers",
+    "layout": "blocks",
+    "image": null,
     "details": "<p>Někdy čekáte na správnou náladu. Jindy vyřadíte každou myšlenku dřív, než dostane tvar. „To už někdo udělal.“ „Je to moc obyčejné.“ „První verze přece musí být dobrá.“ Takové věty umějí práci zastavit ještě před začátkem.</p>\n<p>Zkuste prvnímu pokusu dát menší úkol. Nemusí nikoho nadchnout. Má vám jen ukázat, co je na nápadu zajímavé a kde zatím nefunguje. Místo celé knihy napište jeden rozhovor. Místo dokonalého návrhu si načrtněte tři hrubé možnosti.</p>\n<p>Někdy také pomůže omezení: sto slov, jediná barva, deset minut. Ne jako povinnost být rychle kreativní, ale jako menší prostor, ve kterém se snáz rozhoduje. Pokud vám takové omezení nepomáhá, změňte ho.</p>"
   },
   {
@@ -163,7 +148,7 @@ export const visualChapters = [
     "lead": "Nejdřív si dejte prostor přemýšlet samostatně. Potom nápady propojte.",
     "detailLabel": "Jak tvořit společně?",
     "kind": "photo",
-    "layout": "",
+    "layout": "card",
     "image": {
       "key": "pencils",
       "alt": "Svazek barevných pastelek s gumičkou a jedna pastelka vedle na bílém pozadí.",
@@ -178,7 +163,7 @@ export const visualChapters = [
     "lead": "Tužka, počítač i AI otevírají možnosti. Vy rozhodujete, co z nich dává smysl.",
     "detailLabel": "Co o tom říká výzkum?",
     "kind": "photo",
-    "layout": "reverse",
+    "layout": "card",
     "image": {
       "key": "mouse",
       "alt": "Fialová dřevěná tužka a bílá počítačová myš na bílém pozadí.",
@@ -193,7 +178,7 @@ export const visualChapters = [
     "lead": "Originalita není všechno. Zvažte také, komu nápad pomůže a koho může zasáhnout.",
     "detailLabel": "Na co se před zveřejněním zeptat?",
     "kind": "photo",
-    "layout": "wide",
+    "layout": "card",
     "image": {
       "key": "domino",
       "alt": "Řada domina přerušená růžovou gumou na bílém pozadí.",
@@ -213,3 +198,5 @@ export const visualChapters = [
     "details": "<p>Vybavte si drobnost, která vás dnes zdržela, zmátla nebo zaujala. Vezměte papír a věnujte jí pár minut.</p>\n<ol><li>Napište, co chcete změnit a pro koho.</li><li>Najděte tři odlišné možnosti.</li><li>Vyberte jednu a zkuste ji v nejmenší možné podobě.</li><li>Podívejte se, co přinesla. Co byste příště upravili?</li></ol>\n<p>Nemusí z toho vzniknout nic velkého. Pro začátek stačí zjistit něco, co jste před pokusem nevěděli.</p>"
   }
 ] as const;
+
+export type VisualChapter = typeof visualChapters[number];
