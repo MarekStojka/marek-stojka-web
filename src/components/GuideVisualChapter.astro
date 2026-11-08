@@ -42,7 +42,7 @@ const firstSteps = [
     <figure class="visual-photo">
       <Image src={guideImages[chapter.image.key]} alt={chapter.image.alt}
         width={1200} widths={[400,700,1000,1200]}
-        sizes={chapter.layout.includes('wide') ? '(max-width: 700px) 94vw, 1100px' : '(max-width: 700px) 94vw, (max-width: 1000px) 65vw, 60vw'}
+        sizes={chapter.layout.split(' ').includes('card') ? '(max-width: 700px) 52vw, (max-width: 1000px) 26vw, (min-width: 1800px) 320px, 17vw' : chapter.layout.includes('wide') ? '(max-width: 700px) 94vw, 1100px' : '(max-width: 700px) 94vw, (max-width: 1000px) 65vw, 60vw'}
         loading="lazy" />
     </figure>
     <div class="visual-copy">

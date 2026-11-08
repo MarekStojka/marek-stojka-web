@@ -444,3 +444,12 @@ Autor následně přijal tuto vizuální revizi a zadal nahrání na GitHub; pus
 Kreativní cvičení — menší ikony (8. 11. 2026): symboly jednotlivých cvičení jsou přibližně poloviční (55 px desktop / 48 px mobil), úvodních šest dlaždic má původní velké ikony (90 / 70 px). Klikací plocha, texty a struktura se nemění. [Místní náhled](http://127.0.0.1:4321/kreativec/magazin/cviceni#rychlovky), [desktop](docs/nahled-cviceni-mensi-ikony.jpg), [mobil](docs/nahled-cviceni-rychlovky-mobile.jpg). Ověřen desktop 1440 px, mobil 390 px, rozbalení klávesnicí, proklik do detailu a návrat. Produkční build bez chyb: 103 souborů, 81 HTML a 2611 místních URL. Lokální revize po commitu 3207bd2.
 
 Autor následně přijal menší ikony cvičení a výslovně zadal nahrání této revize na GitHub včetně navazujícího automatického zveřejnění.
+
+
+### Jedna fotografie autora a menší obrazové karty — 8. 11. 2026
+
+V [představení na homepage](http://127.0.0.1:4321/#o-mne) zůstává jen momentka u pracovního stolu. Pravý ateliérový portrét je odstraněný ze sekce, zdroj zůstává archivně. Na desktopu je fotografie vedle textu, na mobilu pod ním. [Aktuální představení](docs/nahled-autor.jpg), [mobil](docs/nahled-autor-jedna-fotografie-mobile.jpg).
+
+[Tři fotografické karty průvodce](http://127.0.0.1:4321/kreativec/magazin/obecne#spolecne) mají menší centrované obrázky s bílým okolím: 62 % obrazového prostoru, maximálně 320 px. Nadpisy jsou stále zarovnané. [Desktop](docs/nahled-kreativita-tri-fotografie.jpg), [mobil](docs/nahled-kreativita-tri-fotografie-mobile.jpg). Ověřena navigace, rozbalení klávesnicí a šířky 2400/1440/800/390 px. Produkční build bez chyb: 103 souborů, 81 HTML, 2608 místních URL. Lokální změny po commitu ad72c9c.
+
+Autor 8. 11. 2026 výslovně zadal hotové úpravy po kontrole posílat rovnou na GitHub, bez dalšího samostatného potvrzení. Platí i pro jednu fotografii autora a menší obrazové karty výše. Po pushi se kontroluje automatické sestavení a zveřejnění.

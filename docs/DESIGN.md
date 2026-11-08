@@ -695,3 +695,15 @@ Ověřeno 1440 a 390 px, naměřené velikosti ikon, žádný vodorovný přesah
 
 
 Autor následně přijal menší ikony cvičení („Super“) a výslovně zadal push na GitHub. Nahrání této úpravy do main i navazující automatické zveřejnění jsou autorizované; výše popsané kontroly platí pro stejné zdroje.
+
+
+## Jedna fotografie autora a menší obrazové karty — 8. 11. 2026
+
+Autor výslovně odstranil pravý ateliérový portrét z dvojice na homepage. Tento pokyn nahrazuje dřívější požadavek dvou rovnocenných fotografií. V AuthorPhotoStory.astro zůstává pouze původní retušovaná momentka u pracovního stolu, černobílá přes CSS, v celém původním poměru 4:5. Na desktopu je vlevo a text představení vpravo; do 700 px text nad fotografií. Odstraněna pravá kruhová kresba a černý flek přes zaniklý spoj, levý bílý tah zachovaný. Zdroj odstraněného portrétu a původní originály zůstávají archivně. Text, kotva #o-mne a CTA na #co-delam zachované. Ověřena jedna načtená fotografie, desktop 1440 px, mobil 390 px bez přesahu a proklik CTA.
+
+Další pokyn se vztahuje konkrétně na trojici fotografických karet Tvoření s druhými / Technologie a AI / Nápad a odpovědnost v obecném průvodci. Fotografie nyní zabírají 62 % šířky svého obrazového prostoru, nejvýše 320 px; jsou centrované vodorovně i svisle. Stejný prostor poměru 3:2 s maximální výškou 280 px ponechává bílé okolí jako na úvodních dlaždicích a drží nadpisy ve stejné výšce. Tři fotografie i texty zůstávají, mění se pouze jejich velikost v kartách. Responzivní sizes odpovídá menším obrázkům, ostatní fotografie průvodce se nemění.
+
+Ověřeno 2400/1440/800/390 px bez vodorovného přesahu, tři shodné obrazové prostory a zarovnané nadpisy na desktopu, rozbalení a sbalení textu Enterem na mobilu. Konzole bez chyb/varování. Produkční npm run build pro obě navazující změny prošel: 103 souborů bez chyb/varování/upozornění, 81 HTML a 2608 místních URL s /marek-stojka-web/. Kontrolní kopie i náhled na 4321 mají stejné zdroje. Aktualizované snímky v README. Změny jsou lokální po již zveřejněném commitu ad72c9c; nový push zatím nebyl zadaný.
+
+
+Autor nově výslovně zadal průběžné odesílání všech hotových úprav rovnou na GitHub. Po relevantní kontrole a úspěšném produkčním buildu již nečekat na samostatný pokyn k pushi do existujícího main; automatické zveřejnění je součástí autorizace. Tento pokyn zahrnuje také právě dokončené odstranění druhého portrétu a zmenšení fotografií v trojici karet. Preference je zapsaná i v AGENTS.md.

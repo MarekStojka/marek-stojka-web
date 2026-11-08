@@ -248,3 +248,8 @@ PaperTransition.astro přidává vstup přes celou dlaždici Jsem kreativec v ob
 
 - Poslední revize 5. 11. 2026: 8 bílých stejně velkých dlaždic kreativity (nově Nástroje a inspirace / inspirace), desktop 4+4, tablet 2, mobil 1. Fotografie zvětšené. Jen navazující sekce nově smějí střídat pastelové podklady (levandulová/růžová), medailonek bílý. Animované BrushIcon přes icon-motion-trigger se stejnými pohyby jako homepage. Kruhový experiment odpojen ze všech aktivních článkových/rubrikových pozvánek, prototyp archivně zachovat.
 - Kontakt a patičku sdílí všechny veřejné stránky přes SiteFooter v BaseLayout. Jeden e-mail/telefon, černá plocha; Moje světy jen mimo homepage. Nevkládat další globální patičky do jednotlivých stránek. Homepage témata zůstávají, její původní černý kontaktní blok nahrazen odkazem na společnou patičku. Předmět mailto dál mění ContactSection přes data-shared-contact-email. Zachovat unikátní kontakt/kontaktni-udaje/spojme-se kotvy.
+
+
+## Průběžné odesílání na GitHub — aktuální pokyn 8. 11. 2026
+
+Autor výslovně zadal „úpravy házej rovnou na git“. Hotové úpravy zadané autorem po relevantní kontrole a úspěšném npm run build rovnou commitnout a pushnout do stávajícího repozitáře MarekStojka/marek-stojka-web, větev main. Nečekat na další samostatný pokyn k pushi. Autorizace zahrnuje navazující automatické zveřejnění; ověřit Check and build a Publish website. Starší požadavky čekat na potvrzení před odesláním změn tohoto existujícího webu jsou tím překonané.

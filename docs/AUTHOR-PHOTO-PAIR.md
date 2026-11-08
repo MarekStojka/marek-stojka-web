@@ -2,7 +2,7 @@
 
 Reálné fotografie dodané Markem. Obě upravené vestavěným ImageGen (identity-preserve), nikoli nová osoba či nová póza. Originály zachovány v src/assets/portraits/original/. Nové soubory: src/assets/portraits/marek-momentka-v1.png a src/assets/portraits/marek-portret-par-v1.png. Světlo, vyvážení barev, ořez, úklid rušivého pozadí; portrét má nově černé tričko. Výstupy posouzené vizuálně. Jde o AI retuše původních fotografií, nikoli neupravené originály.
 
-Na webu se oba snímky zobrazují stejně velké, černobíle pomocí CSS. Štětcové tahy jsou samostatné vlastní SVG překryvy, nikoli součást zdrojových fotografií. Tváře zůstávají volné. Dřívější skládačka ani malý nakloněný portrét se nevracejí.
+Původní návrh zobrazoval oba snímky stejně velké, černobíle pomocí CSS. Na výslovný pokyn autora z 8. 11. 2026 je v představení na homepage pouze momentka u stolu; doprovodný portrét zůstává archivní. Na desktopu je momentka vedle textu, na mobilu pod ním. Štětcové tahy jsou samostatné vlastní SVG překryvy, nikoli součást zdrojových fotografií. Tváře zůstávají volné. Dřívější skládačka ani malý nakloněný portrét se nevracejí.
 
 ## Prompt — momentka
 
