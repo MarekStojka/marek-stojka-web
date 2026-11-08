@@ -1,8 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import paperFlower from '../assets/creative-still-life/papirova-kvetina-v1.png';
-import CreativityHelp from './CreativityHelp.astro';
-import CreativityCollaboration from './CreativityCollaboration.astro';
 import CreativityIntroduction from './CreativityIntroduction.astro';
 
 import { creativityExamples } from '../data/creativity-examples';
@@ -32,8 +30,6 @@ import { creativityExamples } from '../data/creativity-examples';
     ))}
   </div>
 </section>
-<CreativityHelp />
-<CreativityCollaboration />
 <style>
   .creativity-photo { padding: clamp(40px, 5vw, 85px) 0 40px; overflow: hidden; }
   .creativity-photo h2 { position: relative; z-index: 1; padding: 0 6%; text-align: center; font-size: clamp(42px, 5.2vw, 90px); text-wrap: balance; }

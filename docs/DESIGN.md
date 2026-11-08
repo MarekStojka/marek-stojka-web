@@ -749,3 +749,14 @@ Na doplňující otázku autor výslovně zvolil navázat popisem, jak s kreativ
 Ověřeno 1440/390/320 px bez vodorovného přesahu, bílé texty na fialové, funkční cílová adresa kontaktu a správná návaznost sekcí. Nadpis přínosu z předchozího commitu zůstává pod čtyřmi fotografiemi. Produkční build: 106 souborů bez chyb/varování/upozornění, 81 HTML a 2624 místních URL. Zdroj odpovídá oběma kontrolním kopiím, aktuální náhledy v README. Push obou navazujících úprav je autorizovaný trvalým pokynem autora.
 
 V následné diskusi autor upřesňuje důraz webu na kreativitu obecně a knihy. Některé vlastní práce veřejně prezentovat nechce, protože do koncepce nezapadají. Z toho nevytvářet automaticky portfolio ani nevymýšlet ukázky. Doporučení držet spolupráci jako vedlejší možnost a případné relevantní ukázky řešit individuálně je zatím diskusní návrh; další struktura webu tím nebyla přestavěna.
+
+
+## Tři fialové dlaždice až za medailonkem, homepage vynechat — 8. 11. 2026
+
+Autor rozděluje dosavadní fialovou výzvu na tři dlaždice: původní „S kreativitou vám pomůžu.“ s nezměněným textem, spolupráce na projektu „Vytvořme něco společně.“ a zájem o vzdělávání „Rozvíjejte svou kreativitu.“. Dlaždice mají stejnou fialovou #7433c7, bílé texty a bílé kontaktní odkazy. Tři sloupce nad 1000 px, na menších šířkách jeden; nadpisy, odstavce i tlačítka se na desktopu zarovnávají pomocí subgrid. Spára navazuje na 6/5 px zbytku stránky. Bez nových obrázků nebo animací.
+
+Pod trojicí zůstává nezměněný proces CreativityCollaboration.astro. Sdílená sestava CreativitySupport.astro se vkládá bezprostředně za autorův medailonek. Z MagazineIntroduction byla původní nabídka odstraněna; na /kreativec je nyní pořadí příklady → medailonek → tři dlaždice → proces → zdroje. Na poslední upřesnění autora je homepage výslovně VÝJIMKA a zůstává beze změny. Prověřené ostatní veřejné stránky medailonek nemají, proto na ně sestava nebyla přidána. Pravidlo pro případné další medailonky je zapsané také v AGENTS.md.
+
+Nové copy je pracovní návrh. Kurzy/workshopy se připravují; CTA vyjadřuje zájem, ne rezervaci dostupného kurzu. Všechny tři odkazy používají centrální skutečný veřejný e-mail a vlastní předmět. Nejsou přidané klientské ukázky, výsledky, ceny, termíny ani portfolio.
+
+Ověřeno 1440/1001/390/320 px bez vodorovného přesahu, stejné výšky a zarovnání dlaždic, bílý focus kontaktu, proklik Spolupráce Enterem z úvodu a správné cílové adresy. Žádná duplicitní ID, zdroje stále poslední sekce. Na homepage za medailonkem nadále následuje #co-delam a nové bloky tam nejsou. Konzole bez chyb/varování. Produkční npm run build prošel: 107 souborů bez chyb/varování/upozornění, 81 HTML a 2624 místních URL s /marek-stojka-web/. Náhled a kontrolní kopie synchronizované. Aktuální snímky v README; push a navazující zveřejnění jsou autorizované trvalým pokynem autora.

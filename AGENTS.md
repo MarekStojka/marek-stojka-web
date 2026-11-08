@@ -253,3 +253,8 @@ PaperTransition.astro přidává vstup přes celou dlaždici Jsem kreativec v ob
 ## Průběžné odesílání na GitHub — aktuální pokyn 8. 11. 2026
 
 Autor výslovně zadal „úpravy házej rovnou na git“. Hotové úpravy zadané autorem po relevantní kontrole a úspěšném npm run build rovnou commitnout a pushnout do stávajícího repozitáře MarekStojka/marek-stojka-web, větev main. Nečekat na další samostatný pokyn k pushi. Autorizace zahrnuje navazující automatické zveřejnění; ověřit Check and build a Publish website. Starší požadavky čekat na potvrzení před odesláním změn tohoto existujícího webu jsou tím překonané.
+
+
+## Tři možnosti spolupráce za medailonkem — 8. 11. 2026
+
+Na obsahových stránkách s medailonkem autora hned za něj patří společná sestava CreativitySupport.astro: tři fialové dlaždice (původní pomoc s nápadem / spolupráce na projektu / zájem o kurzy kreativity), pod nimi dosavadní proces Od zadání ke konkrétnímu nápadu. Autor výslovně vyjmul HOMEPAGE — tam tuto sestavu za představení nepřidávat. Aktuálně se tedy používá na /kreativec; ostatní veřejné stránky medailonek nemají. Původní text první dlaždice i proces zachované, nové texty jsou pracovní. Kurzy/workshopy se připravují, zájem jde skutečným mailto s vlastním předmětem; nevymýšlet termíny, dostupnost ani rezervace. Zdroje zůstávají úplně dole.

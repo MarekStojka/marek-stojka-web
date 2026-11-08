@@ -475,3 +475,10 @@ Aktuální upřesnění (8. 11. 2026): nad čtyřmi fotografickými dlaždicemi 
 ### Barevná spolupráce s navazujícím popisem — 8. 11. 2026
 
 [Kontaktní výzva](http://127.0.0.1:4321/kreativec#pomoc-s-kreativitou) je vycentrovaná na fialovém pozadí. Hned pod ní navazuje nový [popis pomoci](http://127.0.0.1:4321/kreativec#jak-pomuzu) ve třech blocích: zadání, možnosti a konkrétní podoba nápadu. Pracovní text bez vymyšlených klientů či výsledků. [Desktop](docs/nahled-kreativita-pomoc.png), [mobilní návaznost](docs/nahled-kreativita-pomoc-mobile.png), [popis na mobilu](docs/nahled-kreativita-jak-pomuzu-mobile.jpg). Ověřeno 1440/390/320 px a skutečný kontaktní odkaz. Produkční build bez chyb: 106 souborů, 81 HTML a 2624 místních URL.
+
+
+### Tři možnosti spolupráce za medailonkem — 8. 11. 2026
+
+Na [/kreativec](http://127.0.0.1:4321/kreativec#pomoc-s-kreativitou) je hned za představením autora trojice fialových dlaždic: pomoc s nápadem, spolupráce na projektu a zájem o připravované kurzy kreativity. Pod nimi zůstává původní proces, zdroje jsou stále úplně dole. Homepage je výslovná výjimka a nemění se. Pro další obsahové stránky s medailonkem je sestava sdílená v CreativitySupport.astro.
+
+[Desktop](docs/nahled-kreativita-pomoc.png), [dlaždice na mobilu](docs/nahled-kreativita-pomoc-mobile.png), [kurzy a navazující proces](docs/nahled-kreativita-kurzy-mobile.png). Tři zarovnané sloupce nad 1000 px, na menších šířkách pod sebou. Každý kontaktní odkaz má vlastní předmět; kurzy zatím bez rezervací a termínů. Ověřeno 1440/1001/390/320 px, navigace klávesnicí, homepage bez nových bloků, konzole bez chyb. Produkční build: 107 souborů bez chyb/varování/upozornění, 81 HTML a 2624 místních URL.

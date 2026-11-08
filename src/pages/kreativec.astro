@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import MagazineHeader from '../components/MagazineHeader.astro';
 import MagazineIntroduction from '../components/MagazineIntroduction.astro';
 import CreativityExamplesSources from '../components/CreativityExamplesSources.astro';
+import CreativitySupport from '../components/CreativitySupport.astro';
 import CreativeDirectory from '../components/CreativeDirectory.astro';
 import { Image } from 'astro:assets';
 import candid from '../assets/portraits/marek-momentka-v1.png';
@@ -15,6 +16,7 @@ import '../styles/creative-editorial.css';
  <CreativeDirectory />
  <MagazineIntroduction/>
  <section id="autor" class="editorial-person editorial-person-tiles" aria-labelledby="person-title"><figure><Image src={candid} width={1000} format="webp" alt="Marek Stojka u pracovního stolu." loading="lazy"/></figure><header class="editorial-person-heading"><h2 id="person-title">A kde v tom<br /><em>jsem já?</em></h2></header><div class="editorial-person-story"><p class="editorial-lead">Skromně si myslím, že jsem kreativní od narození. A mám být po kom — oba moji rodiče jsou tvořiví.</p><p>Vědomě jsem kreativitu začal využívat na vysoké škole. Zjistil jsem, že nápadité zpracování dokáže dát tématu šanci vyniknout i vedle silné konkurence, která všechno dělá „tak, jak se má“.</p><p>Jako grafik jsem se pak s kreativitou setkával denně. Někdy přišla snadno. Jindy jsem hledal, jak ji probudit. Začal jsem si všímat drobností, které mi při tom pomáhaly.</p><p>A právě ty chci předávat dál. Každý malý objev, nový pohled i zkušenost, která může někomu dalšímu otevřít cestu k vlastnímu nápadu.</p><a href={withBase('/kreativec/magazin/okenko')}>Moje kreativní okénko ↗</a></div></section>
+ <CreativitySupport />
  <CreativityExamplesSources />
 </main></div>
 </BaseLayout>
