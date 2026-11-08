@@ -6,7 +6,7 @@ Nová AI fotografická studie vytvořená vestavěným ImageGen 8. 11. 2026; nej
 - Původní výstup: `/Users/marekstojka/.codex/generated_images/01a1ba56-3719-7482-898a-03a733e8f283/exec-d06699e3-c737-4e24-8de6-7e5298e33d1d.png`.
 - Provedení: vestavěný nástroj, nová fotografie bez vstupního editovaného obrázku. Původní výstup zachovaný, do projektu zkopírovaný beze změn; Astro vytváří responzivní WebP.
 - Motiv je fyzicky sestavitelný: bílý zmačkaný papír nasazený na fialovou tužku v malé skleněné váze. Bez viditelných malých popisků podle předchozího pokynu; přístupný alternativní text zůstává.
-- Zobrazení nejvýše 400 px široké, na mobilu nejvýše 280 px, celý motiv bez ořezu a s bílým okolím.
+- Na následný pokyn autora zvětšeno na nejvýše 500 px šířky (z původních 400 px), na mobilu 84 % dostupného prostoru, nejvýše 320 px. Celý motiv bez ořezu a s bílým okolím.
 
 ## Přesný prompt
 

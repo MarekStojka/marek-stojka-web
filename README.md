@@ -459,3 +459,6 @@ Autor 8. 11. 2026 výslovně zadal hotové úpravy po kontrole posílat rovnou n
 [Úvod magazínu](http://127.0.0.1:4321/kreativec#o-magazinu) má místo banánu menší fotografii papírové květiny na výšku, na bílém pozadí. [Desktop](docs/nahled-kreativec-zatisi.jpg), [mobil](docs/nahled-kreativec-kvetina-mobile.jpg), [původ a prompt](docs/CREATIVE-PAPER-FLOWER.md). Banán v obecném průvodci zůstává.
 
 [Šest cest k nápadu](http://127.0.0.1:4321/kreativec#muj-pohled-na-kreativitu) doplňují krátké ověřené příklady vynálezů. Zdrojové odkazy jsou společně až dole v rozbalení. [Desktop](docs/nahled-kreativec-odpovedi.jpg), [mobil](docs/nahled-kreativec-priklady-mobile.jpg), [zdroje a hranice zjednodušení](docs/CREATIVITY-EXAMPLES-SOURCES.md). Pracovní parafráze, nikoli citace. Ověřeno 1440/800/390/320 px, šest příkladů, rozbalení klávesnicí a konzole bez chyb. Produkční build úspěšný: 105 souborů bez chyb/varování, 81 HTML a 2608 místních URL. Nahrání na GitHub je autorizované trvalým pokynem výše.
+
+
+Následné upřesnění (8. 11. 2026): papírová květina je o čtvrtinu větší na desktopu (max. 500 px), mírně větší i na mobilu (84 % / max. 320 px). [Desktop](docs/nahled-kreativec-zatisi.jpg) a [mobil](docs/nahled-kreativec-kvetina-mobile.jpg) aktualizované. Kontrola 1440/390 px a produkční build úspěšné.

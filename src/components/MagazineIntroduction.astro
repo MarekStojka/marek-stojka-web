@@ -9,7 +9,7 @@ import { creativityExamples } from '../data/creativity-examples';
 <section class="creativity-photo" id="o-magazinu" aria-labelledby="creativity-still-life-title">
   <h2 id="creativity-still-life-title">I divný věci můžou být<br /><em>dobrým nápadem.</em></h2>
   <figure>
-    <Image src={paperFlower} widths={[320, 600, 800]} sizes="(max-width: 700px) 68vw, 400px" width={800} format="webp" quality={90} alt="Papírová květina ze zmačkaného papíru a fialové tužky v malé skleněné váze." loading="lazy" />
+    <Image src={paperFlower} widths={[320, 600, 1000]} sizes="(max-width: 420px) 80vw, (max-width: 700px) 320px, 500px" width={1000} format="webp" quality={90} alt="Papírová květina ze zmačkaného papíru a fialové tužky v malé skleněné váze." loading="lazy" />
   </figure>
 </section>
 <CreativityIntroduction />
@@ -36,7 +36,7 @@ import { creativityExamples } from '../data/creativity-examples';
   .creativity-photo { padding: clamp(40px, 5vw, 85px) 0 40px; overflow: hidden; }
   .creativity-photo h2 { position: relative; z-index: 1; padding: 0 6%; text-align: center; font-size: clamp(42px, 5.2vw, 90px); text-wrap: balance; }
   .creativity-photo h2 em { color: inherit; }
-  .creativity-photo figure { margin: 28px auto 0; width: min(70%, 400px); }
+  .creativity-photo figure { margin: 28px auto 0; width: min(70%, 500px); }
   .creativity-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4/5; object-fit: contain; }
   .creativity-answers { padding: clamp(48px, 6vw, 100px) 6%; }
   .creativity-answers header { margin: 0 auto clamp(35px, 4vw, 65px); text-align: center; }
@@ -56,7 +56,7 @@ import { creativityExamples } from '../data/creativity-examples';
   @media (max-width: 700px) {
     .creativity-photo { padding-top: 38px; }
     .creativity-photo h2 { padding: 0 7%; font-size: clamp(32px, 8.8vw, 48px); }
-    .creativity-photo figure { margin-top: 22px; width: min(72%, 280px); }
+    .creativity-photo figure { margin-top: 22px; width: min(84%, 320px); }
     .creativity-answers { padding: 45px 7%; }
     .creativity-answers h2 { font-size: 43px; }
     .creativity-answers .creativity-personal-lead { font-size: 18px; margin-top: 23px; }
