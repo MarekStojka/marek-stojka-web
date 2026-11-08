@@ -1,70 +1,47 @@
 ---
-import { creativeExercises, exerciseGroups } from '../data/creative-exercises';
-import { withBase } from '../lib/site-path';
-import ExerciseIcon from './ExerciseIcon.astro';
+import { creativeExercises } from '../data/creative-exercises';
+import { exerciseCollections } from '../data/exercise-collections';
+import BrushIcon from './BrushIcon.astro';
+import ExerciseCard from './ExerciseCard.astro';
 import '../styles/icon-motion.css';
 import '../styles/creative-exercises.css';
 ---
 <section class="exercise-library" aria-label="Knihovna kreativních cvičení" data-motion-skip>
-  <exercise-directory>
-    <div class="exercise-filters" data-filters hidden>
-      <div><label for="exercise-search">Najít cvičení</label><input id="exercise-search" type="search" placeholder="Název, téma nebo autor…" autocomplete="off" aria-controls="exercise-list" /></div>
-      <div><label for="exercise-group">Co chcete zkoušet?</label><select id="exercise-group" aria-controls="exercise-list"><option value="">Všechna témata</option>{Object.entries(exerciseGroups).map(([id, title]) => <option value={id}>{title}</option>)}</select></div>
-      <button type="button" data-reset>Zrušit filtry</button>
+  <div class="exercise-chooser" id="exercise-list">
+    <div class="exercise-chooser-heading">
+      <h2>Co se vám právě hodí?</h2>
+      <p>Vyberte si podle lidí, času nebo toho, co chcete tvořit. Dlaždice vás posune rovnou k příslušným cvičením.</p>
     </div>
-    <div class="exercise-library-intro"><p>Vyberte si z {creativeExercises.length} cvičení. Stačí chuť něco zkusit; výsledek nemusí být dokonalý. U každého najdete postup, ukázku a původ metody.</p><p class="exercise-count" role="status" aria-live="polite" aria-atomic="true" data-count>Zobrazeno: {creativeExercises.length} z {creativeExercises.length}</p></div>
-    <ol id="exercise-list" class="exercise-grid">
-      {creativeExercises.map(exercise => <li data-exercise data-group={exercise.group} data-search={`${exercise.title} ${exercise.assignment} ${exercise.credit} ${exerciseGroups[exercise.group]} ${exercise.participants}`}>
-        <a href={withBase(`/kreativec/cviceni/${exercise.slug}`)} class="exercise-card icon-motion-trigger">
-          <span class="exercise-card-icon"><ExerciseIcon slug={exercise.slug} /></span>
-          <h2>{exercise.title}</h2>
-          <span class="exercise-card-time">Přibližně {exercise.minutes} min</span>
-        </a>
-      </li>)}
-    </ol>
-    <p class="exercise-no-results" data-empty hidden>Pro tento výběr tu žádné cvičení není. Zkuste jiné slovo nebo zrušte filtry.</p>
-    <p class="exercise-editorial-note">Česká zadání a modelové příklady jsou redakční adaptace. Časy jsou orientační pro zde popsanou verzi. Cvičení nejsou diagnostické testy ani příslib měřitelného zvýšení kreativity.</p>
-  </exercise-directory>
+    <nav class="exercise-collection-nav" aria-label="Vybrat cvičení podle využití">
+      {exerciseCollections.map(collection => <a href={`#${collection.id}`} class="exercise-collection-link icon-motion-trigger">
+        <BrushIcon kind={collection.icon} />
+        <strong>{collection.title}</strong>
+        <span>{collection.subtitle}</span>
+        <span class="exercise-collection-count">{collection.exercises.length} cvičení <span aria-hidden="true">↓</span></span>
+      </a>)}
+    </nav>
+    <p class="exercise-selection-note">{creativeExercises.length} různých cvičení, šest cest k výběru. Některá najdete ve více sekcích.</p>
+  </div>
+  <div class="exercise-collections">
+    {exerciseCollections.map(collection => <section id={collection.id} class="exercise-collection" aria-labelledby={`${collection.id}-title`} tabindex="-1">
+      <header class="exercise-collection-heading">
+        <div><h2 id={`${collection.id}-title`}>{collection.title}</h2><p>{collection.intro}</p></div>
+        <div class="exercise-collection-meta"><span>{collection.exercises.length} cvičení{collection.id === 'rychlovky' && ' · do 15 minut'}</span><a href="#exercise-list">Zpět na výběr <span aria-hidden="true">↑</span></a></div>
+      </header>
+      <ul class="exercise-grid">
+        {collection.exercises.slice(0, 5).map(exercise => <li><ExerciseCard exercise={exercise} /></li>)}
+      </ul>
+      {collection.exercises.length > 5 && <details class="exercise-collection-more">
+        <summary>
+          <span class="exercise-show-more">Zobrazit všechna cvičení v této sekci <span>({collection.exercises.length})</span></span>
+          <span class="exercise-show-less">Sbalit na prvních 5 cvičení</span>
+          <span class="exercise-expand-mark" aria-hidden="true">+</span>
+        </summary>
+        <ul class="exercise-grid">
+          {collection.exercises.slice(5).map(exercise => <li><ExerciseCard exercise={exercise} /></li>)}
+        </ul>
+      </details>}
+    </section>)}
+  </div>
+  <p class="exercise-editorial-note">Česká zadání a modelové příklady jsou redakční adaptace. Časy jsou orientační pro zde popsanou verzi. Cvičení nejsou diagnostické testy ani příslib měřitelného zvýšení kreativity.</p>
 </section>
-<script>
-  class ExerciseDirectory extends HTMLElement {
-    private controller?: AbortController;
-    connectedCallback() {
-      this.controller?.abort();
-      this.controller = new AbortController();
-      const { signal } = this.controller;
-      const search = this.querySelector<HTMLInputElement>('input[type="search"]');
-      const group = this.querySelector<HTMLSelectElement>('select');
-      const count = this.querySelector<HTMLElement>('[data-count]');
-      const empty = this.querySelector<HTMLElement>('[data-empty]');
-      const filters = this.querySelector<HTMLElement>('[data-filters]');
-      const reset = this.querySelector<HTMLButtonElement>('[data-reset]');
-      if (!search || !group || !count || !empty || !filters || !reset) return;
-      const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('cs').trim();
-      const entries = [...this.querySelectorAll<HTMLElement>('[data-exercise]')].map(element => ({ element, text: normalize(element.dataset.search ?? '') }));
-      const update = () => {
-        const words = normalize(search.value).split(/\s+/).filter(Boolean);
-        let visible = 0;
-        for (const { element, text } of entries) {
-          const match = (!group.value || element.dataset.group === group.value) && words.every(word => text.includes(word));
-          element.hidden = !match;
-          if (match) visible++;
-        }
-        count.textContent = `Zobrazeno: ${visible} z ${entries.length}`;
-        empty.hidden = visible > 0;
-      };
-      search.addEventListener('input', update, { signal });
-      group.addEventListener('change', update, { signal });
-      reset.addEventListener('click', () => {
-        search.value = '';
-        group.value = '';
-        update();
-        search.focus();
-      }, { signal });
-      filters.hidden = false;
-      update();
-    }
-    disconnectedCallback() { this.controller?.abort(); }
-  }
-  if (!customElements.get('exercise-directory')) customElements.define('exercise-directory', ExerciseDirectory);
-</script>

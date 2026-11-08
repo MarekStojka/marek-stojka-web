@@ -59,6 +59,7 @@ export interface CreativeExercise {
   group: keyof typeof exerciseGroups;
   minutes: number;
   participants: string;
+  audience: ('solo' | 'group')[];
   materials: string[];
   assignment: string;
   steps: string[];
@@ -73,6 +74,7 @@ export interface CreativeExercise {
 export const creativeExercises: CreativeExercise[] = [
   {
     slug: 'tricet-kruhu', title: 'Třicet kruhů', group: 'napady', minutes: 10,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Papír s 30 podobně velkými kruhy', 'Tužka', 'Časovač'],
     assignment: 'Proměňte co nejvíce stejných kruhů v různé věci. Nejde o krásnou kresbu, ale o šíři možností.',
     steps: ['Připravte si třicet kruhů a nastavte tři minuty na samotné kreslení.', 'Dokreslujte rozpoznatelné motivy. Jakmile jeden dokončíte, pokračujte k dalšímu; detaily nechte na později.', 'Po zazvonění porovnejte nejen počet, ale i druhy nápadů. Označte tři, které jsou od ostatních nejvzdálenější.'],
@@ -82,6 +84,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'jine-vyuziti-cihly', title: 'K čemu ještě může být cihla?', group: 'napady', minutes: 10,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Papír', 'Tužka', 'Časovač'],
     assignment: 'Najděte co nejrůznější neobvyklá použití obyčejné cihly. Můžete pracovat jen s představou, skutečnou cihlu nepotřebujete.',
     steps: ['Během tří minut zapisujte možnosti bez průběžného výběru a bez obvyklého použití ke stavbě zdi.', 'Rozdělte odpovědi podle principu: využívají hmotnost, tvar, povrch, barvu, nebo něco jiného?', 'Přidejte tři možnosti z dosud nepoužité skupiny. U jedné popište, jak by opravdu fungovala.'],
@@ -91,6 +94,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'osm-napadu-za-osm-minut', title: 'Osm nápadů za osm minut', group: 'napady', minutes: 12,
+    audience: ['solo', 'group'],
     participants: 'Samostatně, případně se společným sdílením', materials: ['Papír A4', 'Tužka', 'Časovač'],
     assignment: 'Najděte osm odlišných řešení jednoho zadání. Vyzkoušejte například pozvánku na sousedské setkání.',
     steps: ['Přeložte papír na osm polí a napište si jednu konkrétní otázku, kterou budete řešit.', 'Nastavte osm minut. Každému poli věnujte přibližně minutu a načrtněte jiné řešení, ne jen jinou barvu.', 'Vyberte dvě nejrozdílnější varianty a každou vysvětlete jednou větou.'],
@@ -100,6 +104,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'scamper', title: 'SCAMPER: předělejte známou věc', group: 'napady', minutes: 25,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i v týmu', materials: ['Papír', 'Tužka', 'Předmět nebo popis služby'],
     assignment: 'Projděte známou věc sedmi různými zásahy. Zkuste tak navrhnout novou podobu hrnku, diáře nebo návštěvy knihovny.',
     steps: ['Zapište, co upravujete a komu to má sloužit.', 'Ke každému podnětu napište možnost: nahradit, spojit, přizpůsobit, pozměnit, použít jinak, odebrat, přeskupit či obrátit.', 'Vyberte dva zásahy, které se doplňují. Načrtněte výsledek a vysvětlete, co přináší uživateli.'],
@@ -109,6 +114,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'nahodne-slovo', title: 'Náhodné slovo jako odrazový můstek', group: 'napady', minutes: 15,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve dvojici', materials: ['Kniha nebo slovník', 'Papír', 'Tužka'],
     assignment: 'Použijte náhodné slovo k nalezení nové cesty v problému, se kterým se právě nehýbete.',
     steps: ['Napište problém. Pak otevřete knihu a bez vybírání vezměte první podstatné jméno na stránce.', 'Sepište pět jeho vlastností nebo asociací, i když s problémem zatím nesouvisejí.', 'Každou vlastnost zkuste přeložit do návrhu řešení. Rozpracujte alespoň jednu nečekanou vazbu.'],
@@ -118,6 +124,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'spojte-dva-svety', title: 'Spojte dva světy', group: 'napady', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i v malé skupině', materials: ['Papír', 'Tužka'],
     assignment: 'Přeneste jednu výraznou vlastnost cizího prostředí do věci, kterou navrhujete.',
     steps: ['Určete, co vašemu návrhu chybí: hravost, přehlednost, osobní kontakt nebo jiná konkrétní vlastnost.', 'Najděte prostředí, které tuto vlastnost má. Spojte obě do otázky: jak by vypadalo naše řešení jako…?', 'Navrhněte tři podoby spojení a u každé popište jeden konkrétní zážitek návštěvníka.'],
@@ -127,6 +134,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'kombinacni-skrinka', title: 'Kombinační skříňka', group: 'napady', minutes: 25,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Papír nebo tabulka', 'Tužka'],
     assignment: 'Rozložte návrh na několik vlastností a skládáním jejich možností objevte kombinace, které by vás nenapadly najednou.',
     steps: ['Vyberte čtyři vlastnosti návrhu. U setkání to může být místo, činnost, počet lidí a způsob sdílení.', 'Ke každé napište tři varianty. Z každého řádku vyberte jednu a takto sestavte pět různých kombinací.', 'Vylučte neslučitelné kombinace. Jednu zajímavou upravte tak, aby byla uskutečnitelná.'],
@@ -136,6 +144,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'myslenkova-mapa', title: 'Myšlenková mapa', group: 'napady', minutes: 15,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Větší papír', 'Tužky nebo fixy'],
     assignment: 'Rozvětvěte jedno téma tak, abyste viděli jeho různé stránky i vztahy mezi nimi.',
     steps: ['Doprostřed papíru napište nebo nakreslete téma. Přidejte hlavní větve s krátkými klíčovými slovy.', 'Každou větev rozvíjejte dalšími asociacemi. Střídejte slova, jednoduché značky a obrázky.', 'Propojte dvě vzdálené větve, které se mohou ovlivnit. Z tohoto spojení napište nový nápad.'],
@@ -145,6 +154,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'vymysleni-s-omezenim', title: 'Vymýšlení s omezením', group: 'napady', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Papír', 'Tužka'],
     assignment: 'Přidejte si jedno záměrné omezení a zjistěte, jak mění vaše řešení.',
     steps: ['Napište zadání a jedno běžné řešení.', 'Zaveďte omezení, například bez obrazovky, bez slov nebo jen ze tří částí. Vymyslete pět variant, které ho dodrží.', 'Omezení zase uvolněte a vyberte princip, který stojí za zachování i bez něj.'],
@@ -154,6 +164,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'provokace-po', title: 'Provokace „PO“', group: 'napady', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Papír', 'Tužka'],
     assignment: 'Použijte záměrně nezvyklé tvrzení jako začátek cesty k praktickému nápadu.',
     steps: ['Napište běžné pravidlo svého tématu. Potom ho popřete nebo výrazně proměňte a označte tvrzení PO.', 'Nehodnoťte zatím jeho proveditelnost. Zkoumejte, co by se změnilo, co by odpadlo a jaký přínos by to mohlo mít.', 'Vyberte jeden nalezený princip a přepracujte ho do uskutečnitelného návrhu.'],
@@ -163,6 +174,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'sest-myslicich-klobouku', title: 'Šest myslících klobouků', group: 'perspektiva', minutes: 30,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i v týmu', materials: ['Papír se šesti oddíly', 'Tužka', 'Konkrétní návrh k posouzení'],
     assignment: 'Prozkoumejte návrh různými způsoby myšlení, aniž by se fakta, obavy a nové možnosti překřikovaly.',
     steps: ['Modrým pohledem stanovte otázku a pořadí práce. Bílým sepište známá fakta a informace, které chybějí.', 'Zeleným vytvářejte alternativy, žlutým hledejte přínosy, černým konkrétní rizika. Každému pohledu dejte samostatný prostor.', 'Červeným vyjádřete pocity bez nutnosti obhajoby. Modrým uzavřete, co se má zjistit nebo udělat dál. Ve skupině používejte vždy stejný klobouk společně.'],
@@ -172,6 +184,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'vejir-moznosti', title: 'Vějíř možností', group: 'perspektiva', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve dvojici', materials: ['Větší papír', 'Tužka'],
     assignment: 'Ustupte od prvního konkrétního řešení k jeho účelu a otevřete jiné cesty ke stejnému cíli.',
     steps: ['Napište řešení, které vás napadlo jako první. Vedle něj odpovězte: čeho tím chceme dosáhnout?', 'Od tohoto obecnějšího účelu rozvětvěte alespoň tři různé přístupy. Pokud jsou podobné, ustupte ještě o úroveň výš.', 'Ke každému přístupu navrhněte dvě konkrétní provedení a jedno vyberte k vyzkoušení.'],
@@ -181,6 +194,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'musi-to-tak-byt', title: 'Musí to tak opravdu být?', group: 'perspektiva', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i v týmu', materials: ['Papír', 'Tužka'],
     assignment: 'Prověřte samozřejmosti, které nenápadně určují podobu vašeho řešení.',
     steps: ['Sepište pět vět začínajících „Musí…“. Například: workshop musí probíhat vsedě.', 'U každé rozlište skutečnou nutnost, praktický důvod a pouhý zvyk. Potřebné podmínky nezahazujte.', 'U jednoho zvyku navrhněte alternativu. Napište, co by přinesla a co by bylo nutné ověřit.'],
@@ -190,6 +204,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'jak-bychom-mohli', title: 'Jak bychom mohli…?', group: 'perspektiva', minutes: 15,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i v týmu', materials: ['Papír', 'Tužka', 'Konkrétní pozorování nebo problém'],
     assignment: 'Proměňte problém v otázku, která umožňuje více řešení a zároveň má jasné hranice.',
     steps: ['Popište konkrétní potíž a člověka, kterého se týká. Oddělte pozorování od svých domněnek.', 'Napište pět otázek začínajících „Jak bychom mohli…?“. Do otázky předem nevkládejte svůj oblíbený výrobek či postup.', 'Vyberte otázku, ke které dokážete rychle vymyslet tři různá řešení, ale stále víte, pro koho jsou.'],
@@ -199,6 +214,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'inspirace-z-jineho-oboru', title: 'Inspirace z jiného oboru', group: 'perspektiva', minutes: 45,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve dvojici', materials: ['Zápisník', 'Tužka', 'Možnost pozorovat jiné prostředí'],
     assignment: 'Hledejte inspiraci tam, kde se řeší podobná potřeba, ale jinými prostředky.',
     steps: ['Pojmenujte potřebu: rychle se zorientovat, čekat bez nudy nebo bezpečně předat informaci.', 'Vyberte jiné dostupné prostředí se stejnou potřebou a pozorujte, co konkrétně funguje. Zapisujte jednání, ne jen vzhled.', 'Popište princip bez názvu původního místa a navrhněte jeho využití ve svém tématu.'],
@@ -208,6 +224,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'vidim-myslim-zajima', title: 'Vidím — myslím si — zajímá mě', group: 'perspektiva', minutes: 10,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Fotografie, obraz nebo předmět', 'Papír', 'Tužka'],
     assignment: 'Podívejte se na jeden výjev a rozlište to, co skutečně vidíte, od významu, který mu sami přisuzujete.',
     steps: ['Chvíli výjev pozorujte. Zapište konkrétní viditelné detaily bez vysvětlování jejich příčin.', 'Vedle nich připojte své možné výklady. Vracejte se k detailům, ze kterých vycházíte.', 'Sepište otázky, které zůstávají otevřené. Vyberte jednu, kterou by stálo za to dále zkoumat.'],
@@ -217,6 +234,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'cizi-perspektiva', title: 'Vstupte do cizí perspektivy', group: 'perspektiva', minutes: 15,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Obrázek nebo popis situace', 'Papír', 'Tužka'],
     assignment: 'Prozkoumejte situaci z pohledu jiné postavy nebo předmětu. Berte výsledek jako představovanou možnost, ne jako znalost cizí mysli.',
     steps: ['Vyberte perspektivu, kterou běžně nesledujete, například čekajícího člověka nebo lavičky na nádraží.', 'Sepište, co z tohoto místa může být vnímáno, co může být známo a na čem může záležet.', 'Napište krátký monolog. Potom označte, co vychází z pozorování a co jste si domysleli.'],
@@ -226,6 +244,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'deset-a-dalsich-deset', title: 'Deset postřehů. A dalších deset.', group: 'perspektiva', minutes: 10,
+    audience: ['solo', 'group'],
     participants: 'Samostatně, případně se sdílením ve dvojici', materials: ['Obraz nebo předmět', 'Papír', 'Tužka'],
     assignment: 'Vraťte se k témuž obrazu podruhé a všimněte si toho, co první rychlý pohled minul.',
     steps: ['Nejméně půl minuty se v tichu dívejte a poté zapište deset konkrétních postřehů.', 'Znovu se podívejte. Zaměřte se také na okraje, mezery, vztahy tvarů a drobné rozdíly.', 'Doplňte deset nových postřehů bez opakování prvního seznamu. Porovnejte obě kola.'],
@@ -235,6 +254,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'otazky-pro-predstavivost', title: 'Otázky, které otevírají představivost', group: 'perspektiva', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Běžný předmět', 'Papír', 'Tužka'],
     assignment: 'Proměňte obyčejnou věc v začátek překvapivé otázky a prozkoumejte, co z ní plyne.',
     steps: ['Vyberte předmět a napište o něm několik běžných otázek.', 'Tři otázky přetvořte tak, aby změnily jeho podmínky, vlastnosti nebo roli.', 'Jednu rozpracujte kresbou, scénkou či odstavcem. Na konci pojmenujte nový pohled na původní předmět.'],
@@ -244,6 +264,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'rande-s-tvorivosti', title: 'Rande s vlastní tvořivostí', group: 'perspektiva', minutes: 60,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Volný čas', 'Případně zápisník'],
     assignment: 'Vydejte se sami za něčím, co vás láká nebo těší, bez povinnosti získat podklad pro práci.',
     steps: ['Vyberte dostupnou činnost ze zvědavosti: návštěvu papírnictví, poslech neznámé hudby nebo hledání zajímavých tvarů na procházce.', 'Vyhraďte jí souvislý čas. Nezařazujte do něj vyřizování povinností a nesnažte se hned tvořit výstup.', 'Po návratu si můžete zapsat jeden vjem, ke kterému se chcete vrátit. Pro pravidelnou podobu si domluvte další výpravu se sebou.'],
@@ -253,6 +274,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'psani-bez-zastaveni', title: 'Deset minut bez zastavení', group: 'psani', minutes: 15,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Papír a tužka nebo textový editor', 'Časovač'],
     assignment: 'Deset minut pište bez opravování. Dejte vzniknout materiálu ještě předtím, než ho začnete posuzovat.',
     steps: ['Vyberte volné téma nebo začátek věty a nastavte deset minut.', 'Pište bez návratů a škrtání. Když se zaseknete, popište samotné zaseknutí a pokračujte.', 'Po skončení si text přečtěte a označte jednu živou větu nebo myšlenku. Teprve teď se rozhodněte, zda ji chcete rozvinout.'],
@@ -262,6 +284,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'ranni-stranky', title: 'Ranní stránky', group: 'psani', minutes: 25,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Sešit', 'Tužka'],
     assignment: 'Ráno rukou zaplňte tři stránky tím, co vám běží hlavou. Text není určený k hodnocení ani ke zveřejnění.',
     steps: ['Připravte si sešit na místo, kde můžete ráno chvíli psát bez vyrušování.', 'Napište tři stránky souvislého proudu myšlenek. Mohou se týkat obyčejných starostí, plánů i zdánlivých maličkostí.', 'Sešit zavřete. Nemusíte hledat pointu ani text opravovat; při dalším ranním psaní začněte znovu.'],
@@ -271,6 +294,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'fantasticka-dvojice', title: 'Fantastická dvojice', group: 'psani', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně nebo ve dvojici', materials: ['Papír', 'Tužka', 'Dvě nesouvisející slova'],
     assignment: 'Spojte dvě vzdálená slova do příběhu, ve kterém jsou obě skutečně důležitá.',
     steps: ['Vyberte dvě podstatná jména z odlišných světů; ve dvojici může každý napsat jedno, aniž zná druhé.', 'Zkoušejte mezi nimi různé vztahy: jedno je uvnitř druhého, hledá ho, patří mu nebo se ho bojí.', 'Vyberte vztah a napište krátkou scénu s postavou, přáním a překážkou. Obě slova musí ovlivnit dění.'],
@@ -280,6 +304,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'co-kdyby', title: 'Co kdyby…?', group: 'psani', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Papír', 'Tužka'],
     assignment: 'Změňte jedno pravidlo známého světa a domyslete, co to udělá s běžným životem konkrétní postavy.',
     steps: ['Napište fantastickou hypotézu. Změňte jen jednu podmínku, zbytek světa zatím ponechte známý.', 'Sepište pět následků: pro práci, vztahy, běžné návyky nebo pravidla soužití.', 'Vyberte člověka, kterému změna zkomplikuje konkrétní přání, a napište scénu jeho rozhodnutí.'],
@@ -289,6 +314,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'co-se-stalo-potom', title: 'Co se stalo potom?', group: 'psani', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně nebo ve dvojici', materials: ['Známá pohádka', 'Papír', 'Tužka'],
     assignment: 'Začněte tam, kde známá pohádka obvykle končí. Prozkoumejte důsledky jejího šťastného rozuzlení.',
     steps: ['Shrňte konec vybrané pohádky jednou větou.', 'Sepište, co se změnilo pro tři postavy. Najděte novou povinnost, ztrátu nebo nesplněné přání.', 'Napište první scénu pokračování. Navazujte na původní události, ale dejte postavě nový konkrétní problém.'],
@@ -298,6 +324,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'zakazane-pismeno', title: 'Text se zakázaným písmenem', group: 'psani', minutes: 20,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Papír a tužka nebo textový editor'],
     assignment: 'Napište krátkou scénu bez jednoho písmene. Omezení dodržte, ale zachovejte srozumitelný děj.',
     steps: ['Vyberte písmeno a předem určete, zda zákaz platí i pro jeho varianty s diakritikou.', 'Napište pět až osm vět. Když slovo nejde použít, změňte výraz nebo přestavte celou větu.', 'Text zkontrolujte písmeno po písmenu. Nakonec opravte místa, která jsou sice správná, ale neobratná.'],
@@ -307,6 +334,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'slovnikovy-posun', title: 'Slovníkový posun S+7', group: 'psani', minutes: 25,
+    audience: ['solo', 'group'],
     participants: 'Samostatně nebo ve dvojici', materials: ['Krátký vlastní text', 'Slovník s pevným pořadím hesel', 'Papír', 'Tužka'],
     assignment: 'Vyměňte podstatná jména v textu podle pevného pravidla a sledujte, jak se promění význam.',
     steps: ['Napište tři jednoduché věty a označte všechna podstatná jména. Zvolte konkrétní slovník.', 'Pro každé jméno najděte sedmé následující podstatné jméno v pořadí hesel. Pracujte se základním tvarem.', 'Náhrady dosaďte a upravte jejich skloňování, případně nezbytnou shodu. Přečtěte výsledek a vyberte obraz pro další text.'],
@@ -316,6 +344,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'snehova-koule-ze-slov', title: 'Sněhová koule ze slov', group: 'psani', minutes: 15,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Papír', 'Tužka'],
     assignment: 'Vytvořte drobný text, v němž každé další slovo obsahuje o jedno písmeno více.',
     steps: ['Pište vždy jedno slovo na řádek. Začněte jedním písmenem a postupujte k délce dva, tři, čtyři a dál.', 'Zkuste dojít alespoň k šesti řádkům a zachovat mezi slovy nějaký vztah. Diakritické písmeno počítejte jako jedno.', 'Ověřte délky. Potom zkuste druhou verzi se stejným počtem řádků, ale jinou náladou.'],
@@ -325,6 +354,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'jedna-prihoda-pet-stylu', title: 'Jedna příhoda, pět stylů', group: 'psani', minutes: 30,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Papír nebo textový editor'],
     assignment: 'Převyprávějte stejnou událost pěti způsoby. Fakta zachovejte, proměňujte hlas a způsob podání.',
     steps: ['Zapište stručné jádro události: kdo, co, kde a s jakým výsledkem.', 'Napište verzi jako zprávu, milostný dopis, horor, reklamu a úřední oznámení. Každé stačí několik vět.', 'Porovnejte volbu slov, rytmus, míru detailu a vztah ke čtenáři. Opravte verze, které se liší jen přídavnými jmény.'],
@@ -334,6 +364,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'basen-ukryta-v-textu', title: 'Báseň ukrytá v textu', group: 'psani', minutes: 20,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Vytištěný vlastní nebo volně použitelný text', 'Tužka', 'Tmavý fix'],
     assignment: 'Najděte nový krátký text uvnitř starého. Tvořte výběrem slov a odstraňováním okolí.',
     steps: ['Přejeďte stránku očima a lehce označte slova, která vás přitahují.', 'Poskládejte z nich sdělení v původním pořadí čtení. Než začnete černit, ověřte, že zbylá slova fungují spolu.', 'Zakryjte nepotřebný text. Ponechte zřetelnou cestu čtení a pojmenujte vzniklou báseň.'],
@@ -343,6 +374,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'kresleni-bez-pohledu', title: 'Kreslení bez pohledu na papír', group: 'obraz', minutes: 10,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Papír', 'Tužka', 'Ruka nebo jednoduchý předmět jako model'],
     assignment: 'Sledujte předmět očima a přenášejte jeho obrys na papír bez kontroly kresby.',
     steps: ['Položte papír tak, abyste na něj nemuseli vidět. Vyberte výchozí bod na obrysu modelu.', 'Pomalu posouvejte oči po obrysu a současně veďte tužku. Dvě minuty se na papír nepodívejte.', 'Prohlédněte si výsledek a zopakujte cvičení na jiném detailu. Neopravujte první kresbu do „správné“ podoby.'],
@@ -352,6 +384,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'nakreslete-prazdno', title: 'Nakreslete prázdno', group: 'obraz', minutes: 20,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Papír', 'Tužka', 'Židle nebo rostlina'],
     assignment: 'Kreslete tvary volného prostoru mezi částmi předmětu místo samotného předmětu.',
     steps: ['Vyberte předmět s mezerami a dívejte se na něj ze stálého místa.', 'Najděte jednu mezeru a zakreslete její obrys. Postupně přidávejte sousední prázdné tvary.', 'Mezery lehce vystínujte. Až nakonec se podívejte, jaký předmět jejich okolí vytvořilo.'],
@@ -361,6 +394,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'kresba-vzhuru-nohama', title: 'Kresba vzhůru nohama', group: 'obraz', minutes: 20,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Jednoduchá čárová předloha', 'Papír', 'Tužka'],
     assignment: 'Kopírujte obrácenou předlohu podle vztahů linií a tvarů, nikoli podle toho, jak se zobrazené věci jmenují.',
     steps: ['Otočte předlohu o 180 stupňů. Vyberte jednoduchou kresbu s několika jasnými liniemi.', 'Postupujte po malých úsecích. Porovnávejte délky, úhly a mezery; předlohu zatím neotáčejte zpět.', 'Po dokončení otočte oba listy a porovnejte zejména proporce a místa, kde jste se začali řídit očekáváním.'],
@@ -370,6 +404,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'jeden-souvisly-tah', title: 'Jeden souvislý tah', group: 'obraz', minutes: 10,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Papír', 'Tužka', 'Běžný předmět'],
     assignment: 'Nakreslete předmět jednou nepřerušenou cestou tužky. Hledejte linie, které nejlépe vystihují jeho podobu.',
     steps: ['Vyberte jednoduchý předmět a krátce prohlédněte jeho obrys i vnitřní detaily.', 'Přiložte tužku a až do konce ji nezvedejte. Vracejte se po již vzniklé linii, pokud potřebujete přejít jinam.', 'Vytvořte ještě dvě kratší verze. V poslední zkuste ponechat pouze nejdůležitější rysy.'],
@@ -379,6 +414,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'frotaz', title: 'Frotáž: obrázek z povrchu', group: 'obraz', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Tenký papír', 'Měkká tužka nebo voskovka', 'Několik reliéfních povrchů'],
     assignment: 'Nasbírejte kresby skutečných povrchů a použijte je jako začátky nového obrazu.',
     steps: ['Položte papír na povrch s texturou a boční stranou tužky ji jemně přeneste.', 'Vyzkoušejte tři různé povrchy. Otisky otáčejte a hledejte v nich tvary nebo části prostředí.', 'Jeden otisk doplňte několika čarami, případně spojte více otisků v jednu kompozici.'],
@@ -388,6 +424,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'kolaz-protikladu', title: 'Koláž dvou protikladů', group: 'obraz', minutes: 25,
+    audience: ['solo', 'group'],
     participants: 'Samostatně nebo ve dvojici', materials: ['Dvě vlastní nebo volně použitelné fotografie', 'Nůžky a lepidlo nebo grafický editor', 'Papír'],
     assignment: 'Spojte dva rozdílné výjevy tak, aby jejich setkání vyjádřilo nový názor nebo otázku.',
     steps: ['Vyberte dva obrazy, mezi nimiž je napětí: klid a shon, soukromí a veřejnost nebo příroda a výroba.', 'Zkoušejte měřítko a umístění. Hledejte spojení, které změní čtení obou obrazů, ne jen dva obrázky vedle sebe.', 'Výsledek ukažte někomu bez titulku. Potom porovnejte jeho čtení se svým záměrem.'],
@@ -397,6 +434,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'automaticka-kresba', title: 'Automatická kresba', group: 'obraz', minutes: 15,
+    audience: ['solo'],
     participants: 'Samostatně', materials: ['Papír', 'Tužka nebo pero', 'Časovač'],
     assignment: 'Začněte kreslit bez předem zvoleného námětu. Nechte další tah reagovat na to, co právě vzniklo.',
     steps: ['Nastavte tři minuty a začněte volnými liniemi. Nemusíte kreslit rozpoznatelnou věc.', 'Pokračujte bez mazání a průběžného vylepšování kompozice. Oči mohou zůstat otevřené.', 'Po skončení papír otočte do různých směrů. Najděte zajímavé místo a na druhém listu z něj rozviňte nový motiv.'],
@@ -406,6 +444,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'nahodny-otisk', title: 'Obraz z náhodného otisku', group: 'obraz', minutes: 25,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve skupině', materials: ['Dva pevnější papíry', 'Vodou ředitelná barva', 'Štětec', 'Podložka na stůl'],
     assignment: 'Vytvořte nepravidelný otisk mokré barvy a hledejte v něm zárodek obrazu.',
     steps: ['Na chráněném stole naneste na papír několik menších ploch barvy.', 'Přitiskněte druhý list, jemně přitlačte a opatrně listy oddělte. Porovnejte oba vzniklé otisky.', 'Po zaschnutí jeden otisk otočte a doplňte jen tolik detailů, aby se rozvinul nalezený motiv.'],
@@ -415,6 +454,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'prekvapivy-material', title: 'Předmět, který překvapí materiálem', group: 'obraz', minutes: 20,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i ve dvojici', materials: ['Papír', 'Tužka', 'Případně vzorky materiálů'],
     assignment: 'Změňte materiál známé věci tak, aby se proměnil i náš vztah k ní. Stačí návrh, nemusíte předmět vyrábět.',
     steps: ['Vyberte běžný předmět a napište očekávané vlastnosti: pevný, hladký, lehký nebo průhledný.', 'Přiřaďte mu materiál s protikladnými vlastnostmi. Nakreslete tři varianty.', 'U jedné popište, jak by se držela, používala a jaké pocity by vyvolávala. Rozlište praktický výrobek a výtvarný objekt.'],
@@ -424,6 +464,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'napad-jako-komiks', title: 'Nápad jako krátký komiks', group: 'obraz', minutes: 25,
+    audience: ['solo', 'group'],
     participants: 'Samostatně nebo ve dvojici', materials: ['Papír', 'Tužka', 'Konkrétní nápad'],
     assignment: 'Ukažte v několika scénách, jak člověk váš nápad potká, použije a co mu to přinese.',
     steps: ['Vyberte jednu osobu a konkrétní situaci. Rozdělte papír na šest polí.', 'Nakreslete výchozí potřebu, objevení řešení, první krok, použití, možný zádrhel a výsledek.', 'Nechte někoho převyprávět příběh podle obrázků. Doplňte chybějící souvislost, nikoli zbytečné výtvarné detaily.'],
@@ -433,6 +474,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'brainstorming', title: 'Brainstorming bez předčasného soudu', group: 'spolecne', minutes: 25,
+    audience: ['group'],
     participants: '3–8 lidí', materials: ['Papírky nebo společná tabule', 'Fixy', 'Časovač'],
     assignment: 'Vytvořte více různých možností k jedné otázce a oddělte jejich vznik od pozdějšího hodnocení.',
     steps: ['Dohodněte jednu srozumitelnou otázku a člověka, který bude hlídat čas a zachycení všech návrhů.', 'Deset minut přidávejte nápady bez kritiky. Navazujte na ostatní, dovolte neobvyklé návrhy a každý zaznamenejte samostatně.', 'Oznamte přechod k hodnocení. Podle společných kritérií vyberte dva nápady a určete, co by se u nich mělo ověřit.'],
@@ -442,6 +484,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'tiche-predavani-napadu', title: 'Tiché předávání nápadů', group: 'spolecne', minutes: 20,
+    audience: ['group'],
     participants: '3–6 lidí', materials: ['List papíru pro každého', 'Tužky', 'Časovač'],
     assignment: 'Rozvíjejte nápady psaním a předáváním listů. Prostor dostanou i myšlenky, které by v rychlé debatě zanikly.',
     steps: ['Na každý list napište stejnou otázku. Každý během tří minut přidá dva vlastní nápady.', 'Listy pošlete sousedovi. Ten návrhy rozvine, zkombinuje nebo přidá alternativu. Proveďte další dvě kola bez mluvení.', 'Vraťte listy původním autorům, společně přečtěte vývoj nápadů a vyberte možnosti k dopracování.'],
@@ -451,6 +494,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'sam-ve-dvou-vsichni', title: 'Sám — ve dvou — ve čtyřech — všichni', group: 'spolecne', minutes: 15,
+    audience: ['group'],
     participants: '4 a více lidí', materials: ['Papír a tužky', 'Časovač', 'Prostor pro dvojice a čtveřice'],
     assignment: 'Postupně propojte samostatné přemýšlení s diskusí celé skupiny, aby každý přinesl vlastní pohled.',
     steps: ['Položte společnou otázku. Každý má jednu minutu na tiché zapsání vlastních možností.', 'Dvě minuty pracujte ve dvojicích. Pak spojte dvojice do čtveřic a čtyři minuty rozvíjejte to nejpodstatnější.', 'Každá čtveřice sdílí jednu důležitou myšlenku. Zbývající čas věnujte podobnostem, rozdílům a dalšímu kroku.'],
@@ -460,6 +504,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'jak-to-pokazit', title: 'Jak to co nejlépe pokazit?', group: 'spolecne', minutes: 40,
+    audience: ['group'],
     participants: 'Malá skupina nebo tým', materials: ['Papírky', 'Fixy', 'Společná plocha'],
     assignment: 'Pojmenujte chování vedoucí k nejhoršímu výsledku a zjistěte, čemu se vaše skutečná praxe už podobá.',
     steps: ['Dohodněte nejhorší výsledek společného úkolu. Sepište, jak byste ho zaručeně dosáhli.', 'Projděte seznam bez obviňování jednotlivců. Označte, co nebo něco podobného už skutečně děláte.', 'Vyberte jednu věc, se kterou přestanete. Určete konkrétní první krok, odpovědnost a způsob ověření změny.'],
@@ -469,6 +514,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'ano-a', title: 'Ano, a…', group: 'spolecne', minutes: 10,
+    audience: ['group'],
     participants: '2–6 lidí', materials: ['Volitelně papír na zachycení výsledku'],
     assignment: 'Společně rozvíjejte vymyšlený záměr. Každý příspěvek přijme předchozí nabídku a přidá něco konkrétního.',
     steps: ['Dohodněte hravé téma, například neobvyklou kavárnu. První člověk vysloví jednoduchý návrh.', 'Střídejte se ve větách začínajících „Ano, a…“. Nezamaskujte odmítnutí za zdvořilý souhlas; skutečně na návrh navažte.', 'Po několika kolech shrňte vzniklý celek. Až potom odděleně diskutujte, co by šlo využít v praxi.'],
@@ -478,6 +524,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'tajemna-spolecna-kresba', title: 'Tajemná společná kresba', group: 'spolecne', minutes: 15,
+    audience: ['group'],
     participants: '3–6 lidí', materials: ['Papír složený do pásů', 'Tužka pro každého'],
     assignment: 'Vytvořte společnou kresbu, jejíž celek nikdo během práce nevidí.',
     steps: ['Rozdělte papír přehyby na tolik částí, kolik bude kreslících. Dohodněte například společnou postavu.', 'První nakreslí horní část a zakryje ji. Na další pás nechá přesahovat jen krátké spojovací čáry; takto pokračujte.', 'Až po posledním příspěvku papír rozložte. Dejte bytosti jméno a společně vymyslete, kde žije.'],
@@ -487,6 +534,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'reseni-jako-scenka', title: 'Vyzkoušejte řešení jako scénku', group: 'spolecne', minutes: 40,
+    audience: ['group'],
     participants: '9 a více lidí, včetně hráčů a pozorovatelů', materials: ['Prostor pro krátkou scénu', 'Papír a tužky', 'Volitelné jednoduché rekvizity'],
     assignment: 'Zahrajte konkrétní problém a zkoušejte jeho řešení v jednání, ne jen v debatě.',
     steps: ['Vyberte krátkou situaci a rozdělte role. Malá skupina ji odehraje, ostatní sledují konkrétní jednání a reakce.', 'Pozorovatelé v malých skupinách vyberou užitečné prvky a navrhnou jednu změnu. Připraví vlastní verzi scény.', 'Odehrajte další kola, kombinujte fungující prvky a zapište, co je potřeba ověřit s reálnými účastníky mimo hru.'],
@@ -496,6 +544,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'pribeh-peti-symboly', title: 'Příběh pěti symboly', group: 'spolecne', minutes: 30,
+    audience: ['group'],
     participants: '2 a více lidí', materials: ['Papír', 'Fixy'],
     assignment: 'Vyjádřete vlastní výzvu jednoduchými symboly a zjistěte, co v obrazu uvidí druzí.',
     steps: ['Domluvte symboly: kruh pro celistvost, obdélník pro podporu, trojúhelník pro cíl, spirálu pro změnu a hvězdicovou postavu pro vztahy.', 'Z těchto tvarů nakreslete bez slov příběh konkrétní výzvy. Můžete je opakovat a měnit jejich velikost či vztahy.', 'Ve dvojici nechte nejdřív druhého popsat vlastní čtení. Teprve potom vysvětlete svůj záměr a zaznamenejte překvapivé postřehy.'],
@@ -505,6 +554,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'slozte-silnejsi-napad', title: 'Složte silnější nápad z několika slabších', group: 'spolecne', minutes: 25,
+    audience: ['solo', 'group'],
     participants: 'Samostatně i v týmu', materials: ['Alespoň šest dřívějších nápadů', 'Papírky', 'Fix'],
     assignment: 'Nehledejte jen jednoho vítěze. Zkuste z užitečných částí více návrhů postavit lepší celek.',
     steps: ['Rozložte návrhy vedle sebe a seskupte je podle potřeb, které řeší.', 'U každého označte konkrétní silnou část. Spojte části z různých návrhů a napište, jak se doplňují.', 'Nový celek pojmenujte, načrtněte a zkontrolujte, zda drží pohromadě. Vyřaďte přídavky bez jasného přínosu.'],
@@ -514,6 +564,7 @@ export const creativeExercises: CreativeExercise[] = [
   },
   {
     slug: 'premysleni-rukama', title: 'Přemýšlení rukama', group: 'spolecne', minutes: 30,
+    audience: ['group'],
     participants: 'Samostatně a jeden člověk pro vyzkoušení', materials: ['Papír nebo karton', 'Lepicí páska', 'Tužka', 'Nůžky'],
     assignment: 'Vyrobte co nejjednodušší podobu nápadu, na které lze vyzkoušet jednu důležitou otázku.',
     steps: ['Určete, co potřebujete zjistit. Například zda člověk pochopí první krok použití.', 'Během deseti minut postavte hrubý model nebo papírovou obrazovku. Dělejte jen části potřebné k ověření otázky.', 'Nechte druhého člověka splnit krátký úkol, pozorujte bez napovídání a podle zjištění model upravte. Znovu vyzkoušejte změnu.'],
