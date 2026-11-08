@@ -1,0 +1,70 @@
+---
+import BrushIcon from './BrushIcon.astro';
+import type { ComponentProps } from 'astro/types';
+interface Props {
+  id: string;
+  label: string;
+  items: readonly { label: string; title: string; text: string; icon: ComponentProps<typeof BrushIcon>['kind']; thought?: string }[];
+}
+const { id, label, items } = Astro.props;
+---
+<div class="guide-explorer" data-guide-explorer>
+  <div class="guide-explorer-tabs" role="tablist" aria-label={label} hidden data-explorer-controls>
+    {items.map((item, index) => <button type="button" role="tab" id={`${id}-tab-${index}`} aria-controls={`${id}-panel-${index}`} aria-selected="false" tabindex="-1" data-explorer-tab={index}>{item.label}</button>)}
+  </div>
+  <div class="guide-explorer-panels">
+    {items.map((item, index) => <article class="guide-explorer-panel" id={`${id}-panel-${index}`} aria-labelledby={`${id}-title-${index}`} data-explorer-panel={index}>
+      <div class="guide-explorer-drawing"><BrushIcon kind={item.icon}/></div>
+      <div class="guide-explorer-copy">
+        <p class="guide-explorer-step">{item.label}</p>
+        <h3 id={`${id}-title-${index}`}>{item.title}</h3>
+        <p>{item.text}</p>
+        {item.thought && <p class="guide-explorer-thought">{item.thought}</p>}
+      </div>
+    </article>)}
+  </div>
+</div>
+<script>
+  let cleanup = () => {};
+  function setupExplorers() {
+    cleanup();
+    const controller = new AbortController();
+    cleanup = () => controller.abort();
+    document.querySelectorAll<HTMLElement>('[data-guide-explorer]').forEach(root => {
+      const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-explorer-tab]')];
+      const panels = [...root.querySelectorAll<HTMLElement>('[data-explorer-panel]')];
+      const controls = root.querySelector<HTMLElement>('[data-explorer-controls]');
+      if (!controls || tabs.length !== panels.length || !tabs.length) return;
+      let active = 0;
+      function select(index: number, focus = false) {
+        active = index;
+        tabs.forEach((tab, i) => {
+          tab.setAttribute('aria-selected', String(i === index));
+          tab.tabIndex = i === index ? 0 : -1;
+          panels[i].hidden = i !== index;
+          panels[i].setAttribute('role', 'tabpanel');
+          panels[i].setAttribute('aria-labelledby', tab.id);
+          panels[i].tabIndex = 0;
+        });
+        if (focus) tabs[index].focus();
+      }
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => select(index), { signal: controller.signal });
+        tab.addEventListener('keydown', event => {
+          const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+          if (!keys.includes(event.key)) return;
+          event.preventDefault();
+          const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 :
+            (active + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+          select(next, true);
+        }, { signal: controller.signal });
+      });
+      select(0);
+      controls.hidden = false;
+      root.classList.add('is-ready');
+    });
+  }
+  document.addEventListener('astro:page-load', setupExplorers);
+  document.addEventListener('astro:before-swap', () => cleanup());
+  setupExplorers();
+</script>

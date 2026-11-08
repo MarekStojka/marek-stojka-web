@@ -1,0 +1,145 @@
+/* Čtení po menších celcích, praktická zátiší a ručně ovládané ukázky. */
+.creativity-overview-page h2 { font-size: clamp(35px, 3.2vw, 49px); }
+.creativity-overview-page .overview-sheet p,
+.creativity-overview-page .overview-definitions dd { color: #424242; }
+.creativity-overview-page .overview-copy > p,
+.creativity-overview-page .overview-more-body > p,
+.creativity-overview-page .guide-explorer-copy > p,
+.creativity-overview-page .creativity-mix-results p { font-size: 19px; line-height: 1.75; }
+.creativity-overview-page .overview-copy > .overview-lead { font-size: clamp(27px, 2.7vw, 39px); line-height: 1.4; }
+.creativity-overview-page .overview-sheet .overview-source { color: #666; font-size: 14px; line-height: 1.7; }
+.creativity-overview-page main > .overview-contents { display: block; padding-top: 22px; padding-bottom: 22px; }
+.overview-chapter-picker > summary,
+.overview-more > summary,
+.overview-myths summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; list-style: none; cursor: pointer; }
+.overview-chapter-picker > summary::-webkit-details-marker,
+.overview-more > summary::-webkit-details-marker,
+.overview-myths summary::-webkit-details-marker { display: none; }
+.overview-chapter-picker > summary { min-height: 58px; }
+.overview-chapter-picker > summary strong { display: block; font-size: 24px; font-weight: 500; letter-spacing: -.035em; }
+.overview-chapter-picker > summary > span:first-child > span { display: block; color: #666; font-size: 15px; margin-top: 5px; }
+.overview-chapter-picker > summary > span:last-child,
+.overview-more > summary > span,
+.overview-myths summary > span { flex: none; font-size: 28px; line-height: 1; }
+.overview-chapter-picker[open] > summary > span:last-child,
+.overview-more[open] > summary > span,
+.overview-myths details[open] summary > span { transform: rotate(45deg); }
+.overview-chapter-picker[open] > ol { margin-top: 25px; }
+.overview-more { margin-top: 26px; border-top: 1px solid #d7d7d7; border-bottom: 1px solid #d7d7d7; }
+.overview-more > summary { min-height: 60px; padding: 15px 0; font-size: 17px; line-height: 1.5; }
+.overview-more-body { max-width: 68ch; padding: 4px 0 20px; }
+.overview-more-body p { margin: 0 0 20px; }
+.overview-more-body > :last-child { margin-bottom: 0; }
+.overview-more .overview-comparison { margin-top: 8px; grid-template-columns: 1fr; }
+.overview-more .overview-comparison > div { padding: 24px; }
+.creativity-overview-page .overview-more .overview-comparison h3 { font-size: 24px; }
+.overview-photo-story { display: grid; grid-template-columns: 1.1fr .9fr; gap: 6%; align-items: center; margin-top: 30px; }
+.overview-photo-story > * { min-width: 0; }
+.overview-photo-story figure { margin: 0; }
+.overview-photo-story img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
+.overview-photo-story figcaption { margin: 16px 0 0; font-size: 17px; line-height: 1.6; }
+.overview-photo-story figcaption span { display: block; font-size: 13px; color: #707070; }
+.overview-photo-story--reverse { grid-template-columns: .9fr 1.1fr; }
+.overview-photo-story--reverse figure { order: 2; }
+.overview-benefits { display: grid; gap: 26px; }
+.creativity-overview-page .overview-benefits h3 { font-size: 27px; }
+.creativity-overview-page .overview-benefits p { margin: 10px 0 0; font-size: 18px; line-height: 1.7; }
+.overview-cards > div > svg { display: block; width: 88px; height: 88px; margin-bottom: 24px; }
+.creativity-overview-page .overview-play-prompt { margin: 42px 0 0; max-width: 35ch; font-size: 25px; line-height: 1.45; letter-spacing: -.035em; }
+.overview-myths details { border-top: 1px solid #d7d7d7; }
+.overview-myths details:last-child { border-bottom: 1px solid #d7d7d7; }
+.overview-myths summary { min-height: 78px; padding: 20px 0; font-size: clamp(21px, 2vw, 29px); letter-spacing: -.035em; line-height: 1.4; }
+.creativity-overview-page .overview-myths p { max-width: 62ch; margin: 0 0 27px; font-size: 19px; line-height: 1.7; }
+
+.guide-explorer { margin-top: 32px; }
+.guide-explorer-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.guide-explorer-tabs button { flex: 1 1 auto; appearance: none; border: 1px solid #d5d5d5; background: #fff; color: #222; padding: 15px 19px; font: inherit; font-size: 16px; line-height: 1.4; cursor: pointer; }
+.guide-explorer-tabs button:hover { border-color: #7433c7; color: #7433c7; }
+.guide-explorer-tabs button[aria-selected="true"] { background: #222; color: #fff; border-color: #222; }
+.guide-explorer-panels { margin-top: 6px; }
+.guide-explorer-panel { display: grid; grid-template-columns: .65fr 1.35fr; align-items: center; gap: 6%; padding: 38px 5%; background: #f5f5f3; }
+.guide-explorer-panel + .guide-explorer-panel { margin-top: 6px; }
+.is-ready .guide-explorer-panel { min-height: 340px; margin-top: 0; }
+.guide-explorer-drawing { display: grid; place-items: center; }
+.guide-explorer-drawing svg { width: clamp(110px, 16vw, 190px); height: auto; }
+.is-ready .guide-explorer-step { display: none; }
+.guide-explorer-copy { max-width: 59ch; min-width: 0; }
+.creativity-overview-page .guide-explorer-copy h3 { font-size: clamp(27px, 2.5vw, 37px); line-height: 1.15; }
+.creativity-overview-page .guide-explorer-copy p { margin: 18px 0 0; }
+.creativity-overview-page .guide-explorer-copy .guide-explorer-thought { font-family: Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.4; color: #4b1887; }
+.guide-explorer [hidden], .creativity-mix [hidden] { display: none !important; }
+.guide-explorer button:focus-visible,
+.guide-explorer-panel:focus-visible,
+.creativity-overview-page summary:focus-visible { outline: 3px solid #7433c7; outline-offset: 4px; }
+
+.creativity-mix { margin: 36px 0 0; }
+.creativity-mix.is-ready { display: grid; grid-template-columns: 1fr 1fr; gap: 6%; align-items: center; }
+.creativity-mix-controls { min-width: 0; display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; border: 0; margin: 0; padding: 0; }
+.creativity-mix-controls legend { padding: 0; margin-bottom: 20px; font-size: 17px; }
+.creativity-mix-controls label { position: relative; display: block; cursor: pointer; }
+.creativity-mix-controls label > span { display: grid; justify-items: center; gap: 16px; padding: 34px 12px 18px; border: 1px solid #ccc; background: #fff; text-align: center; }
+.creativity-mix-controls input { position: absolute; top: 13px; right: 13px; width: 20px; height: 20px; margin: 0; accent-color: #222; cursor: pointer; }
+.creativity-mix-controls input:checked + span { background: #f5f5f3; border-color: #222; box-shadow: inset 0 0 0 1px #222; }
+.creativity-mix-controls input:focus-visible { outline: none; }
+.creativity-mix-controls label:has(input:focus-visible) > span { outline: 3px solid #7433c7; outline-offset: 4px; }
+.creativity-mix-controls svg { width: 90px; height: 90px; }
+.creativity-mix-controls strong { font-size: 17px; font-weight: 500; line-height: 1.4; }
+.creativity-mix-plus { font-size: 29px; }
+.creativity-mix-results > div { padding: 25px 0; }
+.creativity-mix.is-ready .creativity-mix-results { min-height: 250px; display: grid; align-items: center; }
+.creativity-overview-page .creativity-mix-results h3 { font-size: 32px; max-width: 20ch; }
+.creativity-overview-page .creativity-mix-results p { margin: 16px 0 0; max-width: 43ch; }
+
+@media (max-width: 1000px) {
+  .creativity-mix.is-ready { grid-template-columns: 1fr; gap: 22px; }
+  .creativity-mix-controls { max-width: 510px; }
+  .creativity-mix.is-ready .creativity-mix-results { min-height: 0; }
+  .creativity-mix-results > div { padding: 0; }
+  .creativity-overview-page .creativity-mix-results p { max-width: 64ch; }
+  .guide-explorer-panel { grid-template-columns: .45fr 1.55fr; }
+}
+@media (max-width: 800px) {
+  .overview-photo-story, .overview-photo-story--reverse { grid-template-columns: 1fr; gap: 32px; }
+  .overview-photo-story--reverse figure { order: 0; }
+  .overview-photo-story img { max-width: 590px; margin: 0 auto; }
+  .overview-photo-story figcaption { margin-top: 8px; }
+  .guide-explorer-panel { grid-template-columns: 1fr; gap: 20px; padding: 25px; }
+  .guide-explorer-drawing { place-items: start; }
+  .guide-explorer-drawing svg { width: 85px; }
+  .is-ready .guide-explorer-panel { min-height: 410px; align-content: start; }
+}
+@media (max-width: 700px) {
+  .creativity-overview-page h2 { font-size: clamp(34px, 8.7vw, 44px); }
+  .creativity-overview-page .overview-copy > p,
+  .creativity-overview-page .overview-more-body > p,
+  .creativity-overview-page .guide-explorer-copy > p,
+  .creativity-overview-page .creativity-mix-results p { font-size: 18px; line-height: 1.7; }
+  .creativity-overview-page .overview-copy > .overview-lead { font-size: 28px; line-height: 1.4; }
+  .overview-chapter-picker > summary strong { font-size: 22px; }
+  .overview-chapter-picker > summary > span:first-child > span { font-size: 14px; }
+  .overview-cards > div { display: grid; grid-template-columns: 64px 1fr; column-gap: 20px; align-items: center; }
+  .overview-cards > div > svg { width: 64px; height: 64px; margin: 0; }
+  .overview-cards > div > p { grid-column: 1 / -1; }
+  .overview-myths summary { min-height: 72px; gap: 20px; }
+  .guide-explorer-tabs { gap: 5px; }
+  .guide-explorer-tabs button { font-size: 15px; padding: 13px 12px; }
+  .guide-explorer-panel { padding: 24px 20px; }
+  .creativity-overview-page .guide-explorer-copy .guide-explorer-thought { font-size: 23px; }
+  .creativity-mix-controls { gap: 10px; }
+  .creativity-mix-controls label > span { padding: 37px 8px 17px; gap: 14px; }
+  .creativity-mix-controls svg { width: 68px; height: 68px; }
+  .creativity-mix-controls strong { font-size: 16px; }
+  .creativity-overview-page .creativity-mix-results h3 { font-size: 29px; }
+}
+@media (max-width: 350px) {
+  .creativity-mix-controls { gap: 6px; }
+  .creativity-mix-controls strong { font-size: 14px; }
+  .creativity-mix-controls svg { width: 60px; height: 60px; }
+  .overview-cards > div { padding: 20px; column-gap: 12px; }
+}
+@media print {
+  .guide-explorer [data-explorer-controls], .creativity-mix [data-mix-controls] { display: none !important; }
+  .guide-explorer [data-explorer-panel], .creativity-mix [data-mix-result] { display: grid !important; min-height: 0; margin-bottom: 12px; }
+  .creativity-mix.is-ready { display: block; }
+  .overview-more::details-content, .overview-myths details::details-content { display: block; content-visibility: visible; }
+}

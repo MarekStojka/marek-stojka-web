@@ -1,0 +1,51 @@
+---
+import BrushIcon from './BrushIcon.astro';
+const outcomes = [
+  { key: '11', title: 'Nápad, který něco přináší.', text: 'Novost a přínos se potkávají. Třeba vlastní obrázkový návod, díky kterému někdo konečně porozumí složité věci.' },
+  { key: '10', title: 'Překvapí. Co ale přinese?', text: 'Neobvyklost máme. Ještě hledejme, komu a v jaké situaci bude výsledek něco přinášet. Přínosem může být i zážitek nebo pobavení.' },
+  { key: '01', title: 'Funguje. Co je na něm nové?', text: 'Osvědčený návod může být užitečný i bez nové myšlenky. Má hodnotu, jen zatím nemáme důvod označit jeho zopakování za tvořivý výsledek.' },
+  { key: '00', title: 'Máme odkud začít.', text: 'Zkusme nejdřív určit, komu chceme něco přinést. Potom můžeme hledat jiný způsob, jak to udělat.' },
+];
+---
+<div class="creativity-mix" data-creativity-mix>
+  <fieldset class="creativity-mix-controls" data-mix-controls hidden>
+    <legend>Zkuste jednu složku vypnout.</legend>
+    <label><input type="checkbox" name="novost" checked data-mix-new /><span><BrushIcon kind="spark"/><strong>Něco nového</strong></span></label>
+    <span class="creativity-mix-plus" aria-hidden="true">+</span>
+    <label><input type="checkbox" name="prinos" checked data-mix-value /><span><BrushIcon kind="compass"/><strong>Nějaký přínos</strong></span></label>
+  </fieldset>
+  <div class="creativity-mix-results">
+    {outcomes.map(outcome => <div data-mix-result={outcome.key}><h3>{outcome.title}</h3><p>{outcome.text}</p></div>)}
+  </div>
+  <p class="sr-only" aria-live="polite" aria-atomic="true" data-mix-announcement></p>
+</div>
+<script>
+  let cleanup = () => {};
+  function setupMix() {
+    cleanup();
+    const controller = new AbortController();
+    cleanup = () => controller.abort();
+    document.querySelectorAll<HTMLElement>('[data-creativity-mix]').forEach(root => {
+      const novelty = root.querySelector<HTMLInputElement>('[data-mix-new]');
+      const value = root.querySelector<HTMLInputElement>('[data-mix-value]');
+      const controls = root.querySelector<HTMLElement>('[data-mix-controls]');
+      const announcement = root.querySelector<HTMLElement>('[data-mix-announcement]');
+      if (!novelty || !value || !controls) return;
+      function update(announce: boolean) {
+        const key = `${Number(novelty!.checked)}${Number(value!.checked)}`;
+        root.querySelectorAll<HTMLElement>('[data-mix-result]').forEach(result => {
+          result.hidden = result.dataset.mixResult !== key;
+          if (!result.hidden && announce && announcement) announcement.textContent = result.textContent;
+        });
+      }
+      novelty.addEventListener('change', () => update(true), { signal: controller.signal });
+      value.addEventListener('change', () => update(true), { signal: controller.signal });
+      update(false);
+      controls.hidden = false;
+      root.classList.add('is-ready');
+    });
+  }
+  document.addEventListener('astro:page-load', setupMix);
+  document.addEventListener('astro:before-swap', () => cleanup());
+  setupMix();
+</script>
