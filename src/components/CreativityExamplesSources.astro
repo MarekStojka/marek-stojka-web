@@ -1,0 +1,26 @@
+---
+import { creativityExamples } from '../data/creativity-examples';
+---
+<section class="creativity-example-sources" id="zdroje-prikladu" aria-labelledby="example-sources-title">
+  <details>
+    <summary><h2 id="example-sources-title">Zdroje k příkladům</h2><span aria-hidden="true">+</span></summary>
+    <p>Příběhy jsou zkrácené, aby ukázaly jednotlivé principy. Za každým vynálezem bylo víc práce, zkoušení a spolupráce, než se vejde do jedné dlaždice.</p>
+    <ol>
+      {creativityExamples.map(example => <li><a href={example.sourceUrl}>{example.sourceLabel}</a></li>)}
+    </ol>
+  </details>
+</section>
+<style>
+  .creativity-example-sources { padding: 35px 6%; }
+  summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 15px 0; list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  summary h2 { font-size: 25px; }
+  summary span { font-size: 28px; line-height: 1; }
+  details[open] summary span { transform: rotate(45deg); }
+  p { max-width: 75ch; margin: 15px 0 25px; font-size: 16px; }
+  ol { margin: 0; padding-left: 1.4em; }
+  li { padding: 8px 0 8px 8px; font-size: 16px; line-height: 1.6; }
+  a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: #aaa; }
+  a:hover { text-decoration-color: currentColor; }
+  @media (max-width: 700px) { .creativity-example-sources { padding: 25px 7%; } summary h2 { font-size: 23px; } }
+</style>

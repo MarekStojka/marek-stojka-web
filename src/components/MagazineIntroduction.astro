@@ -1,58 +1,62 @@
 ---
 import { Image } from 'astro:assets';
-import banana from '../assets/creative-still-life/banan-zatky-v1.png';
+import paperFlower from '../assets/creative-still-life/papirova-kvetina-v1.png';
 import CreativityHelp from './CreativityHelp.astro';
 import CreativityIntroduction from './CreativityIntroduction.astro';
 
-// Pracovní redakční texty pro úvod magazínu, nikoli odborné definice.
-const answers = [
-  { title: 'Podívat se jinak.', text: 'Co by šlo udělat jinak než obvykle? I malá změna pohledu může otevřít novou možnost.' },
-  { title: 'Spojit dvě věci.', text: 'Nemusím začínat od nuly. Někdy stačí dát známé věci do nečekané souvislosti.' },
-  { title: 'Zkusit další možnost.', text: 'První nápad beru jako začátek. Co dalšího by ještě mohlo fungovat?' },
-  { title: 'Najít v tom smysl.', text: 'Komu to pomůže? Koho to potěší? Co to usnadní? Hledám důvod, proč nápad stojí za to.' },
-  { title: 'Dát nápadu podobu.', text: 'Napíšu ho, nakreslím nebo si ho vyzkouším. Snáz pak poznám, co na něm funguje.' },
-  { title: 'Zjistit, co přináší.', text: 'Je v něm něco nového? A má to pro někoho smysl? Podle toho nápad dál upravuju.' },
-];
+import { creativityExamples } from '../data/creativity-examples';
 ---
-<section class="creativity-photo" id="o-magazinu" aria-labelledby="banana-title">
-  <h2 id="banana-title">I divný věci můžou být<br /><em>dobrým nápadem.</em></h2>
+<section class="creativity-photo" id="o-magazinu" aria-labelledby="creativity-still-life-title">
+  <h2 id="creativity-still-life-title">I divný věci můžou být<br /><em>dobrým nápadem.</em></h2>
   <figure>
-    <Image src={banana} widths={[640, 1000, 1536]} sizes="(max-width: 700px) 80vw, 76vw" width={1536} format="webp" quality={90} alt="Banán, na kterém jako pasažéři balancují tři pivní zátky." loading="lazy" />
+    <Image src={paperFlower} widths={[320, 600, 800]} sizes="(max-width: 700px) 68vw, 400px" width={800} format="webp" quality={90} alt="Papírová květina ze zmačkaného papíru a fialové tužky v malé skleněné váze." loading="lazy" />
   </figure>
 </section>
 <CreativityIntroduction />
 <section class="creativity-answers" id="muj-pohled-na-kreativitu" aria-labelledby="creativity-personal-title">
   <header>
     <h2 id="creativity-personal-title">Jak k takovému<br /><em>nápadu dojít?</em></h2>
-    <p class="creativity-personal-lead">Zkouším různé cesty. A průběžně se ptám, co je na nápadu nové a k čemu je dobrý. Tohle mi při tom pomáhá.</p>
+    <p class="creativity-personal-lead">Zkouším různé cesty. Tohle mi při tom pomáhá — a zjednodušené příběhy skutečných vynálezů ukazují, jak to může vypadat v praxi.</p>
   </header>
   <div class="creativity-answer-grid">
-    {answers.map(answer => <article class="creativity-answer"><h3>{answer.title}</h3><p>{answer.text}</p></article>)}
+    {creativityExamples.map(answer => (
+      <article class="creativity-answer">
+        <h3>{answer.title}</h3>
+        <p>{answer.text}</p>
+        <div class="creativity-example">
+          <h4>{answer.exampleTitle}</h4>
+          <p>{answer.example}</p>
+        </div>
+      </article>
+    ))}
   </div>
 </section>
 <CreativityHelp />
 <style>
-  .creativity-photo { padding: clamp(40px, 5vw, 85px) 0 0; overflow: hidden; }
+  .creativity-photo { padding: clamp(40px, 5vw, 85px) 0 40px; overflow: hidden; }
   .creativity-photo h2 { position: relative; z-index: 1; padding: 0 6%; text-align: center; font-size: clamp(42px, 5.2vw, 90px); text-wrap: balance; }
   .creativity-photo h2 em { color: inherit; }
-  .creativity-photo figure { margin: 20px 0 0; height: max(360px, 38vw); display: flex; align-items: center; justify-content: center; }
-  .creativity-photo img { display: block; width: 78%; height: 100%; object-fit: cover; object-position: center 55%; }
+  .creativity-photo figure { margin: 28px auto 0; width: min(70%, 400px); }
+  .creativity-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4/5; object-fit: contain; }
   .creativity-answers { padding: clamp(48px, 6vw, 100px) 6%; }
   .creativity-answers header { margin: 0 auto clamp(35px, 4vw, 65px); text-align: center; }
   .creativity-answers h2 { font-size: clamp(44px, 5vw, 80px); }
   .creativity-answers .creativity-personal-lead { max-width: 55ch; margin: 25px auto 0; font-size: 20px; }
   .creativity-answer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--editorial-gap); }
-  .creativity-answer { padding: clamp(26px, 3vw, 48px); background: #f4f3f1; }
+  .creativity-answer { display: grid; grid-template-rows: subgrid; grid-row: span 3; row-gap: 0; padding: clamp(26px, 3vw, 48px); background: #f4f3f1; }
   .creativity-answer h3 { font-size: clamp(26px, 2.35vw, 38px); text-wrap: balance; }
   .creativity-answer p { max-width: 28ch; margin: 20px 0 0; font-size: 18px; line-height: 1.55; }
+  .creativity-answer > p { margin-bottom: 28px; }
+  .creativity-example { padding-top: 23px; border-top: 1px solid #d7d5d2; }
+  .creativity-example h4 { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.35; letter-spacing: -.025em; }
+  .creativity-example p { margin-top: 12px; max-width: 36ch; color: #444; font-size: 17px; line-height: 1.65; }
   @media (max-width: 1000px) {
     .creativity-answer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 700px) {
     .creativity-photo { padding-top: 38px; }
     .creativity-photo h2 { padding: 0 7%; font-size: clamp(32px, 8.8vw, 48px); }
-    .creativity-photo img { width: 84%; height: 100%; }
-    .creativity-photo figure { margin-top: 15px; height: clamp(250px, 65vw, 420px); }
+    .creativity-photo figure { margin-top: 22px; width: min(72%, 280px); }
     .creativity-answers { padding: 45px 7%; }
     .creativity-answers h2 { font-size: 43px; }
     .creativity-answers .creativity-personal-lead { font-size: 18px; margin-top: 23px; }

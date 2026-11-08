@@ -707,3 +707,13 @@ Ověřeno 2400/1440/800/390 px bez vodorovného přesahu, tři shodné obrazové
 
 
 Autor nově výslovně zadal průběžné odesílání všech hotových úprav rovnou na GitHub. Po relevantní kontrole a úspěšném produkčním buildu již nečekat na samostatný pokyn k pushi do existujícího main; automatické zveřejnění je součástí autorizace. Tento pokyn zahrnuje také právě dokončené odstranění druhého portrétu a zmenšení fotografií v trojici karet. Preference je zapsaná i v AGENTS.md.
+
+## Menší fotografie na výšku a šest skutečných příkladů — 8. 11. 2026
+
+Autor chce v úvodu magazínu pod nadpisem „I divný věci můžou být dobrým nápadem.“ jinou fotografii, menší a spíše na výšku. Banán zde nahradila papírová květina: zmačkaný papír na fialové tužce v malé skleněné váze. Nová AI fotografická studie má čisté bílé pozadí, fyzicky sestavitelný motiv a poměr přibližně 4:5. Zobrazuje se celá, maximálně 400 px široká, na mobilu 72 % dostupného prostoru / nejvýše 280 px. Bez popisku, s přístupným alternativním textem. Původ a přesný prompt v CREATIVE-PAPER-FLOWER.md. Banán zůstává v obecném průvodci a jeho zdroj se nemaže.
+
+Další požadavek doplňuje šest dlaždic „Jak k takovému nápadu dojít?“ o stručné skutečné příklady: suchý zip / lepidlo v tyčince / bezsáčkový vysavač / Braillovo písmo / Wichterleho čočkostroj z Merkuru / Post-it. Původní názvy a vysvětlení zůstávají, pod jemnou linkou je název vynálezu a krátký příběh. Nadpisy i začátky příkladů jsou v každé řadě zarovnané; tři sloupce desktop, dva do 1000 px, jeden do 700 px. Žádná další fotografie ani animace.
+
+Jde o pracovní české parafráze ověřených zdrojů, nikoli citace vynálezců nebo schválené autorovy texty. Úvod výslovně mluví o zjednodušených příbězích. Přiřazení k principům je redakční ilustrace. Šest odkazů je výhradně v nativním rozbalení „Zdroje k příkladům“ jako poslední obsahová sekce /kreativec, za autorovým medailonkem a před společným kontaktním footerem. Podklady a hranice zjednodušení v CREATIVITY-EXAMPLES-SOURCES.md. Zdrojová data jsou společná pro dlaždice i bibliografii.
+
+Ověřeno 1440/800/390/320 px bez vodorovného přesahu, šest příkladů, zarovnání řad, načtená portrétní fotografie, rozbalení a sbalení zdrojů Enterem i jejich umístění na konci. Konzole bez chyb a varování. Produkční npm run build prošel: 105 kontrolovaných souborů bez chyb/varování/upozornění, 81 HTML, 2608 místních URL s /marek-stojka-web/. Kontrolní kopie a náhled na 4321 synchronizované. Snímky v README. Na základě trvalého pokynu je tato změna připravená k pushi společně s dosud neodeslanou revizí jedné fotografie autora a menších obrazových karet.

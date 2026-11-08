@@ -453,3 +453,9 @@ V [představení na homepage](http://127.0.0.1:4321/#o-mne) zůstává jen momen
 [Tři fotografické karty průvodce](http://127.0.0.1:4321/kreativec/magazin/obecne#spolecne) mají menší centrované obrázky s bílým okolím: 62 % obrazového prostoru, maximálně 320 px. Nadpisy jsou stále zarovnané. [Desktop](docs/nahled-kreativita-tri-fotografie.jpg), [mobil](docs/nahled-kreativita-tri-fotografie-mobile.jpg). Ověřena navigace, rozbalení klávesnicí a šířky 2400/1440/800/390 px. Produkční build bez chyb: 103 souborů, 81 HTML, 2608 místních URL. Lokální změny po commitu ad72c9c.
 
 Autor 8. 11. 2026 výslovně zadal hotové úpravy po kontrole posílat rovnou na GitHub, bez dalšího samostatného potvrzení. Platí i pro jednu fotografii autora a menší obrazové karty výše. Po pushi se kontroluje automatické sestavení a zveřejnění.
+
+### Papírová květina a příklady skutečných vynálezů — 8. 11. 2026
+
+[Úvod magazínu](http://127.0.0.1:4321/kreativec#o-magazinu) má místo banánu menší fotografii papírové květiny na výšku, na bílém pozadí. [Desktop](docs/nahled-kreativec-zatisi.jpg), [mobil](docs/nahled-kreativec-kvetina-mobile.jpg), [původ a prompt](docs/CREATIVE-PAPER-FLOWER.md). Banán v obecném průvodci zůstává.
+
+[Šest cest k nápadu](http://127.0.0.1:4321/kreativec#muj-pohled-na-kreativitu) doplňují krátké ověřené příklady vynálezů. Zdrojové odkazy jsou společně až dole v rozbalení. [Desktop](docs/nahled-kreativec-odpovedi.jpg), [mobil](docs/nahled-kreativec-priklady-mobile.jpg), [zdroje a hranice zjednodušení](docs/CREATIVITY-EXAMPLES-SOURCES.md). Pracovní parafráze, nikoli citace. Ověřeno 1440/800/390/320 px, šest příkladů, rozbalení klávesnicí a konzole bez chyb. Produkční build úspěšný: 105 souborů bez chyb/varování, 81 HTML a 2608 místních URL. Nahrání na GitHub je autorizované trvalým pokynem výše.
