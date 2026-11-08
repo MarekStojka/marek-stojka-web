@@ -559,3 +559,23 @@ Ověření této revize dokončeno 8. 11. 2026: desktop 1440 px, mobil 390 a 320
 Autor následně výslovně zadal „pushni“; nahrání zjednodušeného úvodu, odborné rubriky a stručné nabídky pomoci do main a navazující automatické zveřejnění je autorizované.
 
 Technická poznámka k náhledu: čtení závislostí v synchronizované složce se výrazně zpomalilo. Kontrola proto proběhla v `/private/tmp/marek-creativity-preview` s čistou instalací podle stejného package-lock.json a Node 22.23.4. Náhled na `http://127.0.0.1:4321` nyní běží z této dočasné kopie; zdroje projektu zůstávají v původním adresáři. Shoda upravených souborů byla ověřena. Další úpravy je nutné do dočasného náhledu promítnout, nebo po obnovení běžného čtení spustit náhled z originálu.
+
+## Zadání souvislého průvodce Obecně o kreativitě — 8. 11. 2026
+
+Autor výslovně nechce rubriku Obecně o kreativitě zatím jako klasický blog. Má jít o souvislé shrnutí na jedné stránce: co kreativita je, jak se vyvíjela, k čemu je a proč ji potřebujeme, alespoň deset přirozeně navazujících sekcí. Aktuálně požaduje pouze osnovu; stránka ani její zobrazení se v tomto kroku nemění.
+
+Připravený pracovní návrh má 14 sekcí: vymezení → historie tvorby a proměny jejího chápání → kdo a kde tvoří → přínosy → potřeba kreativity → proces nápadu → zdroje inspirace → podmínky → překážky a mýty → rozvíjení → spolupráce → technologie a AI → odpovědnost → první vlastní krok. Konkrétní osnova, nadpisy a budoucí texty dosud nejsou schválené. Historický a odborný výklad při psaní ověřit a doložit; obecný průvodce má zůstat srozumitelný a odkazovat na samostatnou odbornou rubriku i existující cvičení.
+
+## Souvislý průvodce Obecně o kreativitě — realizace 8. 11. 2026
+
+Autor přijal osnovu a zadal její realizaci ve stylu aktuálního webu. Rubrika `/kreativec/magazin/obecne` má nyní samostatný souvislý průvodce `CreativityOverview.astro` se 14 kapitolami. V této rubrice se nezobrazuje hlavní blogový článek ani další příspěvky; jejich zdrojová data zůstávají zachovaná. Ostatní rubriky se nemění. Úvod má původní bílou papírovou kouli, název rubriky a krátký perex. Následuje klikací přehled, definice, orientační historická osa, příklady přínosů, proces na příkladu sousedského setkání, podmínky, překážky, trénování, spolupráce, AI, odpovědnost a první vlastní pokus. Formulace jsou pracovní redakční verze, nikoli dodatečně schválené Markovy texty.
+
+`creativity-overview.css` zachovává bílé listy, šedé spáry 6/5 px, vnější okraje 20/12 px, Manrope s černou serifovou kurzívou a jemné linky. Obsah střídá dvousloupcové pasáže, časovou osu a šedé modelové příklady. Mobil skládá obsah do jednoho sloupce. Nevznikly nové obrázky ani další JavaScript. Kotvy jsou nativní a přebírají focus; příklad se rozbaluje přes details/summary. Stávající SiteMotion, reduced motion, ClientRouter a společná patička zůstávají.
+
+Odborné a historické pasáže mají konkrétní odkazy přímo u textu; podklady a hranice výkladu v `CREATIVITY-OVERVIEW-SOURCES.md`. Historie filozofického pojetí je výslovně orientační výběr evropské tradice, ne univerzální dějiny všech kultur. Příklady nejsou skutečné zakázky ani převzaté případové studie. AI pasáž vztahuje výsledek pouze na konkrétní experiment s krátkými příběhy. Původní režim noindex rubriky bez publikovaných článků je zachován; nepřidává se datum vydání ani položka sitemap.
+
+Kontrola: 14 sekcí, všechny obsahové kotvy existují, žádná duplicitní ID, načtená fotografie; desktop 1440 px, tablet 800 px, mobil 390/320 px bez vodorovného přesahu obsahu. Ověřeno ovládání kotvy a příkladu Enterem, skutečné prokliky do cvičení a odborné rubriky. Sestavení `npm run build` pro `/marek-stojka-web/` prošlo: 81 HTML, 2240 lokálních URL, 90 Astro souborů bez chyb/varování. Kvůli odloženým závislostem v iCloudu proběhlo v `/private/tmp/marek-overview-verify` se synchronizovanými zdroji a shodným package-lock.json; zdrojové změny jsou v projektu. Žádný push ani veřejné nasazení.
+
+Snímky `nahled-kreativita-pruvodce.jpg`, `nahled-kreativita-pruvodce-historie.jpg` a `nahled-kreativita-pruvodce-mobile.jpg`. Lokální náhled na 4321 používá existující kopii `/private/tmp/marek-creativity-preview`; byly do ní přeneseny čtyři změněné zdrojové soubory průvodce. Další úpravy dělat v hlavním projektu.
+
+Autor následně výslovně zadal „pushni to na git“; nahrání tohoto průvodce do main a navazující automatické zveřejnění je autorizované. Výše uvedené kontroly se vztahují ke stejné implementaci.

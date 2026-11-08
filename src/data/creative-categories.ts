@@ -1,5 +1,5 @@
 export const creativeCategories = [
- {id:'obecne',title:'Obecně o kreativitě',intro:'Nápady v každodenním životě. Srozumitelně, od první otázky.',color:'#c3a3f5',accent:'#4b1887',pending:''},
+ {id:'obecne',title:'Obecně o kreativitě',intro:'Co je kreativita, jak se vyvíjela a jak ji rozvíjet. Souvislý průvodce od první otázky k vlastnímu nápadu.',color:'#c3a3f5',accent:'#4b1887',pending:''},
  {id:'odborne',title:'O kreativitě odborně',intro:'Výzkum, pojmy a souvislosti. S odkazy ke zdrojům a prostorem pro různé pohledy.',color:'#9dd9c0',accent:'#15533f',pending:'První odborné téma připravuji. Každý text tu dostane prostor pro zdroje, vysvětlení i své limity.'},
  {id:'svobodne',title:'O kreativitě úplně svobodně',intro:'Co kdyby? Bez pevného zadání. Pro úvahy, odbočky a nečekaná spojení.',color:'#f1a0ca',accent:'#7a194b',pending:''},
  {id:'cviceni',title:'Kreativní cvičení',intro:'Méně o kreativitě přemýšlet. Chvíli ji zkoušet.',color:'#f2df75',accent:'#574700',pending:''},

@@ -1,0 +1,180 @@
+---
+import { Image } from 'astro:assets';
+import { creativePhotos } from '../data/creative-photos';
+import { withBase } from '../lib/site-path';
+import '../styles/creativity-overview.css';
+const chapters = [
+  ['co-je-kreativita', 'Co je kreativita'], ['historie', 'Odkud se vzala'],
+  ['kdo-tvori', 'Kdo je kreativní'], ['prinos', 'Co nám přináší'],
+  ['proc-ji-potrebujeme', 'Proč ji potřebujeme'], ['jak-vznika-napad', 'Jak vzniká nápad'],
+  ['inspirace', 'Z čeho nápady rostou'], ['podminky', 'Co tvoření pomáhá'],
+  ['prekazky', 'Co nás brzdí'], ['rozvijeni', 'Jak ji rozvíjet'],
+  ['spolecne', 'Tvoření s druhými'], ['technologie', 'Technologie a AI'],
+  ['odpovednost', 'Nápad a odpovědnost'], ['prvni-krok', 'Váš první krok'],
+];
+const sources = {
+  definition: 'https://doi.org/10.1080/10400419.2012.650092',
+  history: 'https://plato.stanford.edu/entries/creativity/',
+  tools: 'https://humanorigins.si.edu/evidence/behavior/stone-tools',
+  art: 'https://humanorigins.si.edu/evidence/behavior/art-music',
+  forms: 'https://doi.org/10.1037/a0013688',
+  conditions: 'https://www.hbs.edu/ris/Publication%20Files/12-096.pdf',
+  process: 'https://www.designcouncil.org.uk/resources/the-double-diamond/',
+  thinking: 'https://www.oecd.org/en/publications/pisa-2022-results-volume-iii_765ee8c2-en/full-report/component-15.html',
+  groups: 'https://doi.org/10.1037/0022-3514.53.3.497',
+  ai: 'https://doi.org/10.1126/sciadv.adn5290',
+};
+---
+<header class="overview-hero">
+  <a class="overview-back" href={withBase('/kreativec#zapisnik')}><span aria-hidden="true">←</span> Zpět na přehled magazínu</a>
+  <div class="overview-hero-layout">
+    <div>
+      <h1>Obecně<br /><em>o kreativitě.</em></h1>
+      <p>Co je, odkud se vzala a co s ní můžeme dělat. Od prvních lidských nápadů až k tomu vašemu.</p>
+      <a class="overview-text-link" href="#co-je-kreativita">Začít od začátku <span aria-hidden="true">↓</span></a>
+    </div>
+    <Image src={creativePhotos.obecne} alt="" width={440} widths={[280, 440, 660]} sizes="(max-width: 700px) 220px, 33vw" loading="eager" />
+  </div>
+</header>
+<nav class="overview-contents" id="prehled-kapitol" aria-labelledby="overview-contents-title" tabindex="-1">
+  <h2 id="overview-contents-title">Jedna stránka.<br /><em>Spousta souvislostí.</em></h2>
+  <div><p>Čtěte postupně, nebo začněte tím, co vám právě vrtá hlavou.</p>
+    <ol>{chapters.map(([id, title]) => <li><a href={`#${id}`}>{title}<span aria-hidden="true">↗</span></a></li>)}</ol>
+  </div>
+</nav>
+<section class="overview-sheet" id="co-je-kreativita" aria-labelledby="overview-definition-title" tabindex="-1">
+  <div class="overview-split">
+    <h2 id="overview-definition-title">Co je vlastně<br /><em>kreativita?</em></h2>
+    <div class="overview-copy">
+      <p class="overview-lead">Přicházet s něčím novým, co má zároveň nějaký přínos.</p>
+      <p>Tohle jednoduché shrnutí má dvě části. Nápad přináší něco neotřelého a zároveň dává v dané situaci smysl. Samotná podivnost nestačí. Stejně tak bezchybné opakování známého postupu ještě nemusí znamenat tvořivý výsledek.</p>
+      <p>Přínos přitom nemusíte měřit penězi ani ušetřenými minutami. Příběh může někoho rozesmát, obraz otevřít otázku a nečekané přirovnání pomoci s pochopením složité věci. Záleží na tom, co tvoříte a pro koho.</p>
+      <p class="overview-source">Srozumitelné shrnutí novosti a účinnosti podle <a href={sources.definition}>Runca a Jaegera: The Standard Definition of Creativity (2012)</a>. Nejde o doslovnou citaci.</p>
+    </div>
+  </div>
+  <div class="overview-comparison">
+    <div><h3>Představit si</h3><p>V hlavě vám přistane město, kde domy chodí na procházku. Fantazie otevírá možnost.</p></div>
+    <div><h3>Něco z toho vytvořit</h3><p>Z té představy vznikne příběh o domově, který si člověk nese s sebou. Hledáte tvar a smysl.</p></div>
+  </div>
+  <p class="overview-bridge">Jak dlouho už takové možnosti hledáme? Mnohem déle, než o nich mluvíme slovem kreativita.</p>
+</section>
+<section class="overview-sheet" id="historie" aria-labelledby="overview-history-title" tabindex="-1">
+  <div class="overview-split">
+    <h2 id="overview-history-title">Tvoříme dávno.<br /><em>Přemýšlíme o tom různě.</em></h2>
+    <div class="overview-copy"><p>Lidské tvoření a představy o něm mají dvě různé historie. Archeologické nálezy ukazují, co lidé vyráběli. Filozofie a psychologie se zase ptají, odkud se nové věci berou.</p><p>Tahle stručná osa vybírá několik zastavení. Není žebříčkem vyspělosti kultur ani úplnými dějinami tvořivosti; filozofická část sleduje především evropskou tradici.</p></div>
+  </div>
+  <ol class="overview-timeline">
+    <li><h3>Pravěk<br /><em>Nástroje a významy</em></h3><p>Opracovaný kámen, ozdoby, rytiny nebo hudební nástroje dokládají různé podoby lidské vynalézavosti. Zachované předměty nám umožňují sledovat technické i symbolické jednání. Přesné myšlenky jejich tvůrců z nich ale nepřečteme.</p></li>
+    <li><h3>Antika<br /><em>Inspirace, nebo dovednost?</em></h3><p>Platón spojoval básnické tvoření s božskou inspirací. Aristotelés zdůrazňoval také záměrnou, dovednou práci. Otázka, kolik je v tvorbě vnuknutí a kolik řemesla, tak není vůbec nová.</p></li>
+    <li><h3>18. a 19. století<br /><em>Do popředí přichází génius</em></h3><p>V evropském uvažování sílí důraz na originalitu jednotlivce. Kant popisuje génia jako člověka s přirozenou schopností vytvářet původní umělecká díla. Představa mimořádně nadaného tvůrce ovlivňuje pohled na umění i později.</p></li>
+    <li><h3>20. století<br /><em>Tvořivost jako předmět výzkumu</em></h3><p>Psychologie zkoumá tvůrčí myšlení, motivaci i prostředí. Pozornost se rozšiřuje od výjimečných osobností také ke každodenním nápadům, učení a pracovnímu životu.</p></li>
+    <li><h3>Současnost<br /><em>Více nástrojů, další otázky</em></h3><p>Text, obraz, zvuk i návrhy vznikají s pomocí digitálních nástrojů a generativní AI. Vedle možností tvorby se znovu ptáme na původ nápadu, vlastní vklad a hodnotu výsledku. K tomu se ještě dostaneme.</p></li>
+  </ol>
+  <p class="overview-source">Historické podklady: Smithsonian — <a href={sources.tools}>Stone Tools</a> a <a href={sources.art}>Art &amp; Music</a>; <a href={sources.history}>Stanford Encyclopedia of Philosophy: Creativity</a>. K psychologii dále <a href={sources.conditions}>Amabile (2012)</a> a <a href={sources.forms}>Kaufman a Beghetto (2009)</a>.</p>
+  <p class="overview-bridge">Od výjimečných tvůrců se tím dostáváme k obyčejnému dni. A k sobě.</p>
+</section>
+<section class="overview-sheet" id="kdo-tvori" aria-labelledby="overview-people-title" tabindex="-1">
+  <div class="overview-split">
+    <h2 id="overview-people-title">Kdo je<br /><em>kreativní?</em></h2>
+    <div class="overview-copy"><p>U slova kreativita si možná vybavíte malíře, spisovatele nebo vynálezce. Prostor pro tvořivost ale najdete i při vysvětlování učiva, opravě věci nebo hledání způsobu, jak se na něčem domluvit.</p><p>Kaufman a Beghetto rozlišují v modelu čtyř C osobní objev při učení, každodenní tvořivost, profesionální tvorbu a mimořádný historický přínos. Jsou to různé podoby a dosahy tvorby, ne čtyři neměnné typy lidí.</p></div>
+  </div>
+  <div class="overview-cards overview-cards--four">
+    <div><h3>Pro sebe</h3><p>Najdete vlastní způsob, jak si představit zlomek. Něco vám konečně zapadne.</p></div>
+    <div><h3>Pro běžný den</h3><p>Vymyslíte hru na dlouhou cestu. Funguje právě pro vaši posádku.</p></div>
+    <div><h3>V oboru</h3><p>Navrhnete neobvyklé uspořádání malého bytu, opřené o znalost prostoru a materiálů.</p></div>
+    <div><h3>S velkým dosahem</h3><p>Vznikne dílo nebo objev, který promění možnosti celého oboru.</p></div>
+  </div>
+  <p class="overview-source">Volně podle <a href={sources.forms}>Kaufmana a Beghetta: Beyond Big and Little (2009)</a>. Situace jsou vlastní ilustrační příklady.</p>
+  <p class="overview-bridge">Výsledek nemusí změnit svět, aby měl pro někoho cenu.</p>
+</section>
+<section class="overview-sheet" id="prinos" aria-labelledby="overview-value-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-value-title">Co nám<br /><em>přináší?</em></h2><div class="overview-copy"><p>Přínos snáz uvidíte na konkrétní situaci než na velkém slibu. Představte si třeba tyhle tři možnosti.</p></div></div>
+  <div class="overview-cards">
+    <div><h3>Něco vyřešit</h3><p>V předsíni se hromadí boty. Místo další skříňky navrhnete závěsný systém, který využije dosud prázdnou stěnu.</p></div>
+    <div><h3>Něco sdělit</h3><p>Složitý návod převedete do krátkého obrázkového příběhu. Člověk hned pozná, kde začít.</p></div>
+    <div><h3>Něco prožít</h3><p>Napíšete pro kamaráda příběh, kterému porozumíte jen vy dva. Jeho hodnotou je společný smích a blízkost.</p></div>
+  </div>
+  <p class="overview-bridge">A někdy nejde jen o příjemnou možnost. Potřebujeme se pohnout z místa.</p>
+</section>
+<section class="overview-sheet" id="proc-ji-potrebujeme" aria-labelledby="overview-need-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-need-title">Když dosavadní<br /><em>cesta nestačí.</em></h2><div class="overview-copy">
+    <p>Máte uspořádat sousedské setkání, ale místnost je malá, rozpočet omezený a účastníci se neznají. Zopakovat velkou slavnost z minulého roku není možné. Potřebujete upravit zadání a hledat jinou podobu setkání.</p>
+    <p>Podobnou otázku mohou řešit školy, firmy i obce: co zachovat a co změnit, když se změní podmínky? Tvořivé uvažování dává prostor navrhnout více cest a porovnat jejich důsledky.</p>
+    <p>Novost sama přitom není cíl. Pokud známý postup dobře funguje, může být nejlepší volbou. Smyslem je umět hledat další možnost ve chvíli, kdy je skutečně potřeba.</p>
+  </div></div>
+  <p class="overview-bridge">Jenže jak se od takové potřeby dostat k použitelnému nápadu?</p>
+</section>
+<section class="overview-sheet" id="jak-vznika-napad" aria-labelledby="overview-process-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-process-title">Nápad má<br /><em>svou cestu.</em></h2><div class="overview-copy"><p>Záblesk je jen jeden okamžik. Před ním může být dlouhé hledání a po něm spousta úprav. Užitečnou pomůckou je střídání rozšiřování možností a jejich výběru.</p><p>Vraťme se k sousedskému setkání. Následující příklad volně využívá čtyři kroky modelu Double Diamond od Design Council.</p></div></div>
+  <ol class="overview-process">
+    <li><h3>Porozumět</h3><p>Zeptejte se sousedů, co jim na dosavadních akcích chybělo. Možná nejde o velikost prostoru, ale o příležitost začít rozhovor.</p></li>
+    <li><h3>Upřesnit otázku</h3><p>„Jak uspořádat slavnost?“ změníte na „Jak dát lidem snadný důvod oslovit někoho nového?“</p></li>
+    <li><h3>Hledat možnosti</h3><p>Výměna receptů, společná mapa čtvrti, stůl na opravy. Zkuste více odlišných podob a vyberte slibnou.</p></li>
+    <li><h3>Vyzkoušet a upravit</h3><p>Otestujte jeden stůl s několika lidmi. Sledujte, zda vznikají rozhovory, a podle toho změňte zadání nebo uspořádání.</p></li>
+  </ol>
+  <p class="overview-source">Volná aplikace <a href={sources.process}>Double Diamond — Design Council</a>. Kroky se mohou vracet a překrývat; nejsou pevným pořadím každého tvůrčího procesu.</p>
+  <p class="overview-bridge">Aby bylo z čeho vybírat, potřebujeme také něco, z čeho nápady stavět.</p>
+</section>
+<section class="overview-sheet" id="inspirace" aria-labelledby="overview-inspiration-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-inspiration-title">Z čeho<br /><em>nápady rostou?</em></h2><div class="overview-copy">
+    <p>Zkuste si inspiraci představit jako vlastní zásobu materiálu. Větu zaslechnutou v tramvaji, tvar starého nástroje, zkušenost z práce i otázku, na kterou neznáte odpověď.</p>
+    <p>Ukládejte si nejen to, co se vám líbí, ale také proč vás to zaujalo. „Ten plakát je hezký“ vám při další práci pomůže méně než „jedno velké slovo je čitelné i z druhé strany ulice“.</p>
+    <p>Když se učíte z cizí práce, zkuste pojmenovat její princip a použít ho na jiný problém. Převzít hotový obrázek nebo text a podepsat se pod něj je něco jiného než rozvinout vlastní řešení.</p>
+  </div></div>
+  <div class="overview-prompt"><h3>Malý pokus s pozorností</h3><p>Vyberte obyčejný předmět. Napište tři věci, kterých jste si na něm nikdy pořádně nevšimli. Potom zkuste jednu vlastnost využít úplně jinde. Co by si mohl jídelní lístek půjčit od mapy?</p></div>
+  <p class="overview-bridge">Materiál máme. Teď mu potřebujeme dát podmínky, ve kterých s ním půjde pracovat.</p>
+</section>
+<section class="overview-sheet" id="podminky" aria-labelledby="overview-conditions-title" tabindex="-1">
+  <div class="overview-split">
+    <div><h2 id="overview-conditions-title">Co tvoření<br /><em>pomáhá?</em></h2><p class="overview-intro">V teorii Teresy Amabile se potkávají dovednosti, způsob myšlení, vnitřní zájem a okolní prostředí.</p></div>
+    <dl class="overview-definitions">
+      <div><dt>Mít o co se opřít</dt><dd>Znalosti oboru, dovednosti a zkušenosti dávají nápadům stavební materiál i měřítko, podle kterého je posoudit.</dd></div>
+      <div><dt>Umět měnit pohled</dt><dd>Hledat souvislosti, pracovat s nejistotou a zkoušet různé možnosti řešení.</dd></div>
+      <div><dt>Mít důvod pokračovat</dt><dd>Zájem o téma, radost z činnosti nebo osobní výzva mohou podporovat chuť se úkolu věnovat.</dd></div>
+      <div><dt>Mít prostor pro pokus</dt><dd>Prostředí může tvorbu podpořit volností a spoluprací, nebo ji brzdit tvrdým odmítáním nových nápadů a přehnaným časovým tlakem.</dd></div>
+    </dl>
+  </div>
+  <p class="overview-source">Zjednodušeně podle <a href={sources.conditions}>Amabile: Componential Theory of Creativity (2012)</a>. Jde o teoretický rámec, nikoli záruku výsledku.</p>
+  <p class="overview-bridge">Část prostoru si ale zavřeme ještě dřív, než něco zkusíme.</p>
+</section>
+<section class="overview-sheet" id="prekazky" aria-labelledby="overview-barriers-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-barriers-title">Co když si<br /><em>stojíme v cestě?</em></h2><div class="overview-copy"><p>Následující věty nejsou diagnózy. Jsou to známé situace a návrhy, jak na ně při práci odpovědět. Zkuste poznat tu svou.</p></div></div>
+  <dl class="overview-myths">
+    <div><dt>„Nejsem kreativní člověk.“</dt><dd>Zmenšete úkol. Nemusíte vymyslet nový žánr. Zkuste najít jiný začátek jedné věty.</dd></div>
+    <div><dt>„Počkám, až přijde inspirace.“</dt><dd>Sepište nejprve, co o tématu víte a čemu nerozumíte. Vytvoříte si konkrétní místo, odkud pokračovat.</dd></div>
+    <div><dt>„První verze musí být skvělá.“</dt><dd>Dejte jí skromnější úkol: ukázat, co ještě nefunguje. Pracovní návrh můžete upravit.</dd></div>
+    <div><dt>„To už určitě někdo udělal.“</dt><dd>Zjistěte kdo a jak. Potom si položte otázku, v čem je vaše situace jiná a co do ní můžete přinést.</dd></div>
+    <div><dt>„Potřebuji úplnou volnost.“</dt><dd>Zkuste si vybrat jedno užitečné omezení: příběh na sto slov nebo plakát s jedinou barvou. Sledujte, zda vám hledání usnadní.</dd></div>
+  </dl>
+  <p class="overview-bridge">Místo otázky „Mám na to?“ si tak můžeme položit praktičtější: „Co budu zkoušet?“</p>
+</section>
+<section class="overview-sheet" id="rozvijeni" aria-labelledby="overview-practice-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-practice-title">Jak kreativitu<br /><em>rozvíjet?</em></h2><div class="overview-copy"><p>OECD při popisu kreativního myšlení zdůrazňuje vytváření rozmanitých a originálních nápadů, jejich hodnocení a zlepšování. Jde o schopnost, kterou lze procvičovat, ne jen o čekání na mimořádný okamžik.</p><p>Pro začátek si vyberte jednu malou činnost a opakujte ji na různých tématech. Všímejte si nejen počtu nápadů, ale i toho, jak se liší a co se při jejich zkoušení dozvíte.</p><p class="overview-source">Rámec: <a href={sources.thinking}>OECD — PISA 2022 Creative Thinking Framework (2024)</a>. Následující úkoly jsou vlastní praktické návrhy.</p></div></div>
+  <div class="overview-cards">
+    <div><h3>Změňte otázku</h3><p>Místo „Jak to zrychlit?“ se zeptejte „Co z toho vůbec nemusíme dělat?“</p></div>
+    <div><h3>Najděte tři cesty</h3><p>Navrhněte řešení levné, překvapivé a takové, které zapojí dalšího člověka.</p></div>
+    <div><h3>Upravte jeden pokus</h3><p>Vezměte starý nápad a změňte jedinou vlastnost. Porovnejte, co se tím zlepšilo a co ztratilo.</p></div>
+  </div>
+  <a class="overview-text-link" href={withBase('/kreativec/magazin/cviceni')}>Vybrat si kreativní cvičení <span aria-hidden="true">↗</span></a>
+  <p class="overview-bridge">Nemusíme přitom zůstat sami. Další člověk může otevřít jinou možnost.</p>
+</section>
+<section class="overview-sheet" id="spolecne" aria-labelledby="overview-together-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-together-title">Když tvoříme<br /><em>společně.</em></h2><div class="overview-copy"><p>Jeden zná téma, druhý si všimne nesrozumitelné věty a třetí položí otázku, kterou nikdo nečekal. Společná práce dává příležitost takové pohledy propojit. Samotné svolání porady to ale nezařídí.</p><p>V experimentech Diehla a Stroebeho s brainstormingem snižovalo výkon skupin hlavně vzájemné blokování: zatímco jeden mluví, ostatní čekají. Výsledek není zákazem spolupráce, ale upozorněním, že záleží na jejím uspořádání.</p><p>Zkuste proto nejprve pár minut psát samostatně. Pak nápady sdílejte, propojujte a teprve potom vybírejte. Při zpětné vazbě pojmenujte konkrétní místo: „Tady nevím, komu je text určený“ pomůže víc než „Nelíbí se mi to“.</p><p class="overview-source">Výzkum: <a href={sources.groups}>Diehl a Stroebe: Productivity Loss in Brainstorming Groups (1987)</a>. Navazující postup je praktické doporučení.</p></div></div>
+  <p class="overview-bridge">Do společného tvoření dnes vstupují také nástroje, které samy nabízejí varianty.</p>
+</section>
+<section class="overview-sheet" id="technologie" aria-labelledby="overview-ai-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-ai-title">Nové nástroje.<br /><em>Vlastní úsudek.</em></h2><div class="overview-copy"><p>Digitální nástroje umožňují zkoušet různé verze textu, obrazu nebo zvuku. Generativní AI může do tohoto procesu přidat návrhy. Co z nich vyberete, jak je proměníte a proč je použijete, ale zůstává důležitou částí práce.</p><p>Doshi a Hauser v experimentu s krátkými příběhy zjistili, že přístup k námětům od AI zlepšil průměrné hodnocení jednotlivých příběhů. Příběhy s touto pomocí si zároveň byly více podobné. Jde o konkrétní experiment, nikoli univerzální závěr o všech nástrojích a oborech.</p><p>Praktický pokus: napište si nejdřív vlastní směr. Teprve pak si nechte nabídnout alternativy a porovnejte, jestli rozšiřují vaše možnosti, nebo vás stahují k jednomu snadnému řešení. Faktická tvrzení v návrzích ověřujte.</p><p class="overview-source"><a href={sources.ai}>Doshi a Hauser: Generative AI Enhances Individual Creativity but Reduces the Collective Diversity of Novel Content (2024)</a>.</p></div></div>
+  <p class="overview-bridge">S větším množstvím možností roste i význam otázky, které z nich stojí za uskutečnění.</p>
+</section>
+<section class="overview-sheet" id="odpovednost" aria-labelledby="overview-responsibility-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-responsibility-title">Originální.<br /><em>Ale také dobré?</em></h2><div class="overview-copy"><p>Vraťme se k přínosu ze začátku. Poutavá reklama může upoutat pozornost a zároveň někoho mást. Vtip může část publika pobavit a jinému člověku ublížit. Nápad proto stojí za posouzení i z pohledu lidí, kterých se dotkne.</p><p>Než ho pustíte do světa, zkuste si odpovědět na čtyři otázky. Nemusí mít snadné odpovědi. Právě tím mohou být užitečné.</p></div></div>
+  <ul class="overview-questions"><li>Komu to pomůže?</li><li>Komu to může uškodit?</li><li>Na čí práci navazuji?</li><li>Dokážu vysvětlit, proč to dělám?</li></ul>
+  <p class="overview-bridge">Tím se kruh uzavírá. Zbývá udělat něco malého, co si můžete sami ověřit.</p>
+</section>
+<section class="overview-sheet overview-finish" id="prvni-krok" aria-labelledby="overview-start-title" tabindex="-1">
+  <div class="overview-split"><h2 id="overview-start-title">Teď jeden<br /><em>váš nápad.</em></h2><div class="overview-copy"><p>Vyberte drobnost, která vás dnes zdržela, zmátla nebo zaujala. Stačí papír a pár minut pozornosti.</p><ol class="overview-first-steps"><li>Napište, co chcete změnit a pro koho.</li><li>Vymyslete tři opravdu odlišné možnosti.</li><li>Vyberte jednu a udělejte nejmenší možný pokus.</li><li>Podívejte se, co přinesl. Co upravíte příště?</li></ol></div></div>
+  <details class="overview-example"><summary>Ukázat jeden možný příklad <span aria-hidden="true">+</span></summary><div><p>Na schůzkách se vám ztrácejí dobré nápady. Zvažujete společnou nástěnku, krátkou hlasovou poznámku nebo jednoho člověka, který na závěr přečte hlavní podněty.</p><p>Na příští schůzce vyzkoušíte třetí možnost. Za týden se podíváte, jestli se k nápadům někdo vrátil. Pokud ne, možná potřebují vedle zápisu také konkrétní další krok.</p><p>Vlastní modelový příklad, nikoli popis skutečného projektu.</p></div></details>
+  <div class="overview-next"><a href={withBase('/kreativec/magazin/cviceni')}>Zkusit další cvičení <span aria-hidden="true">↗</span></a><a href={withBase('/kreativec/magazin/odborne')}>Jít víc do hloubky <span aria-hidden="true">↗</span></a></div>
+  <a class="overview-text-link" href="#prehled-kapitol">Zpět na přehled kapitol <span aria-hidden="true">↑</span></a>
+</section>
+<aside class="overview-editorial-note" aria-label="O tomto průvodci"><p>Průvodce je pracovní redakční verze. Odborné a historické pasáže odkazují na podklady přímo u textu. Příklady, otázky a praktické podněty jsou vlastní vysvětlení; nejsou citacemi z výzkumů ani popisem Markových zakázek.</p></aside>
